@@ -1,0 +1,22 @@
+{
+  "size": [16, 32],
+  "margin": [2, 13, 31, 16],
+  "origin": [8, 24],
+  "bounding_box_mode": 2,
+  "special": {
+    "version": 3,
+    "type": "Normal",
+    "playback_speed": 1,
+    "playback_speed_type": "FramesPerGameFrame"
+  },
+  "texture_pages": [
+    {
+      "source_position": [64, 48],
+      "source_size": [16, 32],
+      "target_position": [0, 0],
+      "target_size": [16, 32],
+      "bounding_size": [16, 32],
+      "texture": "Texture 114"
+    }
+  ]
+}
