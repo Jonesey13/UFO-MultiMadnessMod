@@ -11,7 +11,7 @@
   },
   "texture_pages": [
     {
-      "source_position": [16, 90],
+      "source_position": [16, 96],
       "source_size": [16, 16],
       "target_position": [0, 0],
       "target_size": [16, 16],

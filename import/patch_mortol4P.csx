@@ -22,7 +22,7 @@ catch (FileNotFoundException e)
 }
 
 
-Dictionary<string, UndertaleEmbeddedTexture> textures = new();
+Dictionary<string, UndertaleEmbeddedTexture> textures = [];
 
 foreach (string texturePath in Directory.EnumerateFiles("textures", "*.png", SearchOption.TopDirectoryOnly))
 {
@@ -40,7 +40,7 @@ foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", Sear
 {
     var spriteText = File.ReadAllText(spritePath);
 
-    string spriteName = spritePath.Split("\\")[1].Split(".")[0];
+    string spriteName = Path.GetFileNameWithoutExtension(spritePath);
     Sprite sprite = JsonSerializer.Deserialize<Sprite>(spriteText);
 
 
@@ -91,6 +91,20 @@ foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", Sear
 
     gameData.Sprites.Add(newSprite);
 }
+
+var importGroup = new UndertaleModLib.Compiler.CodeImportGroup(gameData);
+
+foreach (string scriptPath in Directory.EnumerateFiles("scripts", "*.gml", SearchOption.AllDirectories))
+{
+    var scriptText = File.ReadAllText(scriptPath);
+
+    string scriptName = Path.GetFileNameWithoutExtension(scriptPath);
+
+    importGroup.QueueReplace(scriptName, scriptText);
+}
+
+importGroup.Import();
+
 
 using (var stream = new FileStream("data_modded.win", FileMode.Create, FileAccess.Write))
 {
