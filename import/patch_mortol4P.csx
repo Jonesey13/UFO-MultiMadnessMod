@@ -40,9 +40,11 @@ foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", Sear
 {
     var spriteText = File.ReadAllText(spritePath);
 
+    string spriteName = spritePath.Split("\\")[1].Split(".")[0];
     Sprite sprite = JsonSerializer.Deserialize<Sprite>(spriteText);
 
-    List<UndertaleTexturePageItem> texturePages = new();
+
+    UndertaleSimpleList<UndertaleSprite.TextureEntry> textureEntries = new();
 
     foreach (TexturePage texturePage in sprite.TexturePages) {
         UndertaleTexturePageItem newPage = new();
@@ -60,8 +62,34 @@ foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", Sear
         newPage.TexturePage = textures[texturePage.EmbeddedTextureName];
 
         gameData.TexturePageItems.Add(newPage);
-        texturePages.Add(newPage);
+
+        UndertaleSprite.TextureEntry textureEntry = new();
+        textureEntry.Texture = newPage;
+        textureEntries.Add(textureEntry);
     }
+
+    UndertaleSprite newSprite = new();
+
+    var spriteString = gameData.Strings.MakeString(spriteName);
+
+    newSprite.Name = spriteString;
+    newSprite.Width = sprite.Size[0];
+    newSprite.Height = sprite.Size[1];
+    newSprite.MarginLeft = sprite.Margin[0];
+    newSprite.MarginRight = sprite.Margin[1];
+    newSprite.MarginBottom = sprite.Margin[2];
+    newSprite.MarginTop = sprite.Margin[3];
+    newSprite.OriginX = sprite.Origin[0];
+    newSprite.OriginY = sprite.Origin[1];
+    newSprite.BBoxMode = sprite.BoundingBoxMode;
+    newSprite.IsSpecialType = true;
+    newSprite.SVersion = sprite.Special.Version;
+    newSprite.SSpriteType = sprite.Special.SpriteType;
+    newSprite.GMS2PlaybackSpeedType = sprite.Special.PlaybackSpeedType;
+    newSprite.GMS2PlaybackSpeed = sprite.Special.PlaybackSpeed;
+    newSprite.Textures = textureEntries;
+
+    gameData.Sprites.Add(newSprite);
 }
 
 using (var stream = new FileStream("data_modded.win", FileMode.Create, FileAccess.Write))
@@ -97,13 +125,15 @@ public class SpriteSpecialData
     public ushort Version { get; set; }
 
     [JsonPropertyName("type")]
-    public string Type { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter<UndertaleSprite.SpriteType>))]
+    public UndertaleSprite.SpriteType SpriteType { get; set; }
 
     [JsonPropertyName("playback_speed")]
     public ushort PlaybackSpeed { get; set; }
 
     [JsonPropertyName("playback_speed_type")]
-    public string PlaybackSpeedType { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter<AnimSpeedType>))]
+    public AnimSpeedType PlaybackSpeedType { get; set; }
 }
 
 public class TexturePage

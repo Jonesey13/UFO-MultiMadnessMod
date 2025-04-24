@@ -1,8 +1,9 @@
 {
   "size": [64, 8],
   "margin": [0, 63, 7, 0],
+  "origin": [0, 0],
   "special": {
-    "version": 1,
+    "version": 3,
     "type": "Normal",
     "playback_speed": 15,
     "playback_speed_type": "FramesPerSecond"
