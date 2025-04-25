@@ -1,0 +1,124 @@
+--- original_scripts/gml_Object_oPauseMenu_Other_12.gml
++++ modded_scripts\gml_Object_oPauseMenu_Other_12.gml
+@@ -9 +10,2 @@
+-    for (var p = 0; p <= 1; p++)
++    
++    for (var p = 0; p <= 3; p++)
+@@ -12 +13,0 @@
+-        {
+@@ -15 +16 @@
+-    }
++    
+@@ -38,0 +40 @@
++    
+@@ -44,0 +47 @@
++    
+@@ -50 +53,2 @@
+-    if (keyboard_check_pressed(112))
++    
++    if (keyboard_check_pressed(vk_f1))
+@@ -55,0 +60 @@
++    
+@@ -64,0 +70 @@
++            
+@@ -75,0 +82 @@
++            
+@@ -87,2 +94 @@
+-        if (keyboard_check_released(global.keyMap[0][global.INP_FIRE2]) || keyboard_check_released(global.keyMap[1][global.INP_FIRE2]) || gamepad_button_check_released(global.joySlot[0], global.joyMap[0][global.INP_FIRE2]) || gamepad_button_check_released(global.joySlot[1], global.joyMap[1][global.INP_FIRE2]) || keyboard_check_released(13))
+-        {
++        if (keyboard_check_released(global.keyMap[0][global.INP_FIRE2]) || keyboard_check_released(global.keyMap[1][global.INP_FIRE2]) || gamepad_button_check_released(global.joySlot[0], global.joyMap[0][global.INP_FIRE2]) || gamepad_button_check_released(global.joySlot[1], global.joyMap[1][global.INP_FIRE2]) || keyboard_check_released(vk_enter))
+@@ -91 +96,0 @@
+-    }
+@@ -99 +104,2 @@
+-        if (keyboard_key != 0)
++        
++        if (keyboard_key != vk_nokey)
+@@ -101,0 +108 @@
++            
+@@ -103 +109,0 @@
+-            {
+@@ -105 +111 @@
+-            }
++            
+@@ -107 +112,0 @@
+-            {
+@@ -109 +114 @@
+-            }
++            
+@@ -111 +115,0 @@
+-            {
+@@ -113 +117 @@
+-            }
++            
+@@ -115 +118,0 @@
+-            {
+@@ -117 +120 @@
+-            }
++            
+@@ -119 +121,0 @@
+-            {
+@@ -121 +123 @@
+-            }
++            
+@@ -123 +124,0 @@
+-            {
+@@ -125 +126 @@
+-            }
++            
+@@ -127 +127,0 @@
+-            {
+@@ -129 +129 @@
+-            }
++            
+@@ -131,0 +132 @@
++            
+@@ -133 +133,0 @@
+-            {
+@@ -135 +134,0 @@
+-            }
+@@ -137 +135,0 @@
+-            {
+@@ -139 +137 @@
+-            }
++            
+@@ -143 +141,2 @@
+-                for (var p = 0; p <= 1; p++)
++                
++                for (var p = 0; p <= 3; p++)
+@@ -150 +148,0 @@
+-                            {
+@@ -155 +153 @@
+-                }
++                
+@@ -157 +155,2 @@
+-                for (var p = 0; p <= 1; p++)
++                
++                for (var p = 0; p <= 3; p++)
+@@ -160 +158,0 @@
+-                    {
+@@ -163 +161 @@
+-                }
++                
+@@ -182 +180 @@
+-        for (var p = 0; p <= 1; p++)
++        for (var p = 0; p <= 3; p++)
+@@ -185 +182,0 @@
+-            {
+@@ -188,2 +185,2 @@
+-        }
+-        for (var p = 0; p <= 1; p++)
++        
++        for (var p = 0; p <= 3; p++)
+@@ -192 +188,0 @@
+-            {
+@@ -195 +191 @@
+-        }
++        
+@@ -197,0 +194 @@
++    
+@@ -200,0 +198 @@
++        
+@@ -202 +199,0 @@
+-        {
+@@ -204 +200,0 @@
+-        }

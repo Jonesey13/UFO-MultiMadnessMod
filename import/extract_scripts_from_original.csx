@@ -42,12 +42,10 @@ foreach (string scriptPath in Directory.EnumerateFiles("modded_scripts", "*.gml"
     var scriptOutputPath = scriptPath.Substring("modded_scripts/".Length);
     var outputFilePath = Path.Join($"original_scripts/{scriptOutputPath}");
     
-    if (!File.Exists(outputFilePath)) {
-        var directoryName = Path.GetDirectoryName(outputFilePath);
-        if (!Directory.Exists(directoryName)) {
-            Directory.CreateDirectory(directoryName);
-        }
-        File.WriteAllText(outputFilePath, codestring);
+    var directoryName = Path.GetDirectoryName(outputFilePath);
+    if (!Directory.Exists(directoryName)) {
+        Directory.CreateDirectory(directoryName);
     }
+    File.WriteAllText(outputFilePath, codestring);
 }
 

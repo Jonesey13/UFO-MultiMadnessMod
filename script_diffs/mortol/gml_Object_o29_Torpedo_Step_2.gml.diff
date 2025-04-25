@@ -1,0 +1,10 @@
+--- original_scripts/mortol\gml_Object_o29_Torpedo_Step_2.gml
++++ modded_scripts\mortol\gml_Object_o29_Torpedo_Step_2.gml
+@@ -5 +5,0 @@
+-    {
+@@ -7 +7,4 @@
+-    }
++    if (o29_Game.currPlayer == 2)
++        sprite_index = s29_Torpedo3;
++    if (o29_Game.currPlayer == 3)
++        sprite_index = s29_Torpedo4;

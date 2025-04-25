@@ -1,0 +1,73 @@
+--- original_scripts/mortol\gml_Object_o29_Player_Step_2.gml
++++ modded_scripts\mortol\gml_Object_o29_Player_Step_2.gml
+@@ -4,0 +6 @@
++    
+@@ -6 +7,0 @@
+-    {
+@@ -8 +8,0 @@
+-    }
+@@ -10 +9,0 @@
+-    {
+@@ -13 +11,0 @@
+-}
+@@ -25 +22,0 @@
+-        {
+@@ -27 +24 @@
+-        }
++        
+@@ -39 +35,0 @@
+-    {
+@@ -41 +36,0 @@
+-    }
+@@ -43 +37,0 @@
+-    {
+@@ -45 +39 @@
+-    }
++    
+@@ -51 +45,0 @@
+-    {
+@@ -53 +47 @@
+-    }
++    
+@@ -55 +48,0 @@
+-    {
+@@ -57 +50 @@
+-    }
++    
+@@ -59 +51,0 @@
+-    {
+@@ -61 +53 @@
+-    }
++    
+@@ -63 +54,0 @@
+-    {
+@@ -65,0 +57,29 @@
++
++if (controller == 3)
++{
++    if (sprite_index == s29_Player)
++        sprite_index = s29_Player3;
++
++    if (sprite_index == s29_PlayerJumping)
++        sprite_index = s29_PlayerJumping3;
++    
++    if (sprite_index == s29_PlayerSwimming)
++        sprite_index = s29_PlayerSwimming3;
++
++    if (sprite_index == s29_PlayerClimbing)
++        sprite_index = s29_PlayerClimbing3;
++} 
++
++if (controller == 4)
++{
++    if (sprite_index == s29_Player)
++        sprite_index = s29_Player4;
++
++    if (sprite_index == s29_PlayerJumping)
++        sprite_index = s29_PlayerJumping4;
++    
++    if (sprite_index == s29_PlayerSwimming)
++        sprite_index = s29_PlayerSwimming4;
++
++    if (sprite_index == s29_PlayerClimbing)
++        sprite_index = s29_PlayerClimbing4;
