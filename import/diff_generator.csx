@@ -14,9 +14,9 @@ using Internal;
 
 foreach (string moddedScriptPath in Directory.EnumerateFiles("modded_scripts", "*.gml", SearchOption.AllDirectories))
 {
-    var scriptOutputPath = moddedScriptPath.Substring("modded_scripts/".Length);
-    var originalScriptPath = Path.Join($"original_scripts/{scriptOutputPath}");
-    var diffScriptPath = Path.Join($"script_diffs/{scriptOutputPath}.diff");
+    var relativeScriptPath = moddedScriptPath.Substring("modded_scripts/".Length);
+    var originalScriptPath = Path.Join($"original_scripts/{relativeScriptPath}");
+    var diffScriptPath = Path.Join($"script_diffs/{relativeScriptPath}.diff");
 
     var diffstring = await BusyBox(
         "diff", 
