@@ -1,18 +1,17 @@
 # Mortol 4 Player Mod
 
-This is a mod to enable 4 players for the game UFO50.
-* This **might** evolve in more 4 player modes for other games in the collection
+This is a mod to enable 4 players for the game Mortol from UFO50.
+* This *might* evolve into more multiplayer versions of other games in UFO50 over time
 
-This mod is provided as a combination of code diffs and additional assets and is heavily inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods)
+This mod is provided as a combination of code diffs and additional assets and is heavily inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods).
 
-I have tried to minimise data from the original game by provided the minimal code context needed (1 line) and only new textures to be added to the `data.win` file.
-
-All rights belong to Mossmouth (am happy to remove this repo at their request)
-
+All original rights belong to Mossmouth (and am happy to take down this repo at their request).
+* Data from the original game has been minimised by providing the smallest diff context needed (1 line)
+* Some of the "new" sprites are palette swaps of existing sprites
 
 ## How to use this repo
 
-> These are instructions for developers. Please use the delta files provided on the Releases page if you are not a developer!
+> These are instructions for developers. Please use a delta for the `data.win` file provided on [the Releases page](https://github.com/Jonesey13/Mortol4PMod/releases) if you are not a developer!
 
 This repo is designed to run standalone as a Dev Container in VSCode.
 
@@ -27,13 +26,13 @@ bash import/setup_lib.sh
 
 From here you want to run the following scripts in order:
 1. `extract_scripts_from_original.csx`
-    * This extracts the relevant original source `*.gml` files from `data.win`
+    * This extracts the relevant original source `*.gml` files from `data.win` 
 2. `diff_applyer.csx`
-    * This generates the modded versions of the source files
+    * This generates the modded versions of the source files (you can view the modded files in the `ufo50_modded_scripts` folder)
 3. `patch_mortol4P.csx`
     * This copies `data.win` into the `output` folder and imports the modded code and textures/sprites
 
 After completing these steps the modded `data.win` file can be copied back into your original UFO50 game folder to apply the mod.
 
-The `.csx` scripts can be run using the VSCode launch configuration provided.
+The `.csx` scripts can be run using the VSCode launch configuration provided (you must select the script you want to run first in the explorer).
 
