@@ -1,0 +1,36 @@
+*** original_scripts/mortol/gml_Object_o29_Player_Step_2.gml	Sun Apr 27 20:54:42 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Player_Step_2.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 56 ****
+--- 56,86 ----
+  }
++ 
++ if (controller == 3)
++ {
++     if (sprite_index == s29_Player)
++         sprite_index = s29_Player3;
++ 
++     if (sprite_index == s29_PlayerJumping)
++         sprite_index = s29_PlayerJumping3;
++     
++     if (sprite_index == s29_PlayerSwimming)
++         sprite_index = s29_PlayerSwimming3;
++ 
++     if (sprite_index == s29_PlayerClimbing)
++         sprite_index = s29_PlayerClimbing3;
++ } 
++ 
++ if (controller == 4)
++ {
++     if (sprite_index == s29_Player)
++         sprite_index = s29_Player4;
++ 
++     if (sprite_index == s29_PlayerJumping)
++         sprite_index = s29_PlayerJumping4;
++     
++     if (sprite_index == s29_PlayerSwimming)
++         sprite_index = s29_PlayerSwimming4;
++ 
++     if (sprite_index == s29_PlayerClimbing)
++         sprite_index = s29_PlayerClimbing4;
++ }

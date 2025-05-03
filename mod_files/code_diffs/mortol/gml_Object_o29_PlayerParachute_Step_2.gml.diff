@@ -1,0 +1,11 @@
+*** original_scripts/mortol/gml_Object_o29_PlayerParachute_Step_2.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_PlayerParachute_Step_2.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 7 ****
+--- 7,11 ----
+      sprite_index = s29_PlayerParachute2;
++ if (controller == 3)
++     sprite_index = s29_PlayerParachute3;
++ if (controller == 4)
++     sprite_index = s29_PlayerParachute4;
+\ No newline at end of file

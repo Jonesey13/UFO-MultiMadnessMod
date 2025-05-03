@@ -1,0 +1,14 @@
+*** original_scripts/mortol/gml_Object_o29_Game_Other_16.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Game_Other_16.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 310,315 ****
+      {
+!         if (numPlayers == 1)
+!             currPlayer = 0;
+!         else
+!             currPlayer = 1;
+          
+--- 310,312 ----
+      {
+!         currPlayer = numPlayers - 1;
+          

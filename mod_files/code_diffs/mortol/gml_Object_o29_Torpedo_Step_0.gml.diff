@@ -1,0 +1,11 @@
+*** original_scripts/mortol/gml_Object_o29_Torpedo_Step_0.gml	Sun Apr 27 20:54:42 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Torpedo_Step_0.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 203,204 ****
+--- 203,208 ----
+              tc.sprite_index = s29_TorpedoCrashed2;
++         if (o29_Game.currPlayer == 2)
++             tc.sprite_index = s29_TorpedoCrashed3;
++         if (o29_Game.currPlayer == 3)
++             tc.sprite_index = s29_TorpedoCrashed4;
+      }

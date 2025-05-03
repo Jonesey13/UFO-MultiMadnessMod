@@ -1,0 +1,62 @@
+*** original_scripts/gml_GlobalScript_scrInitInput.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 5,6 ****
+--- 5,8 ----
+      global.joySlot[1] = 1;
++     global.joySlot[2] = 2;
++     global.joySlot[3] = 3;
+      global.joyConnected = gamepad_is_connected(0);
+***************
+*** 50,53 ****
+      global.DEFAULT_JOY[1][global.INP_START] = 32778;
+      
+!     for (var p = 0; p <= 1; p++)
+      {
+--- 52,83 ----
+      global.DEFAULT_JOY[1][global.INP_START] = 32778;
++     global.DEFAULT_KEY[2][global.INP_UP] = 101;
++     global.DEFAULT_KEY[2][global.INP_DOWN] = 98;
++     global.DEFAULT_KEY[2][global.INP_LEFT] = 97;
++     global.DEFAULT_KEY[2][global.INP_RIGHT] = 99;
++     global.DEFAULT_KEY[2][global.INP_FIRE1] = 35;
++     global.DEFAULT_KEY[2][global.INP_FIRE2] = 46;
++     global.DEFAULT_KEY[2][global.INP_START] = 33;
++     global.DEFAULT_JOY[2][global.INP_UP] = 32781;
++     global.DEFAULT_JOY[2][global.INP_DOWN] = 32782;
++     global.DEFAULT_JOY[2][global.INP_LEFT] = 32783;
++     global.DEFAULT_JOY[2][global.INP_RIGHT] = 32784;
++     global.DEFAULT_JOY[2][global.INP_FIRE1] = 32771;
++     global.DEFAULT_JOY[2][global.INP_FIRE2] = 32769;
++     global.DEFAULT_JOY[2][global.INP_START] = 32778;
++     global.DEFAULT_KEY[3][global.INP_UP] = 101;
++     global.DEFAULT_KEY[3][global.INP_DOWN] = 98;
++     global.DEFAULT_KEY[3][global.INP_LEFT] = 97;
++     global.DEFAULT_KEY[3][global.INP_RIGHT] = 99;
++     global.DEFAULT_KEY[3][global.INP_FIRE1] = 35;
++     global.DEFAULT_KEY[3][global.INP_FIRE2] = 46;
++     global.DEFAULT_KEY[3][global.INP_START] = 33;
++     global.DEFAULT_JOY[3][global.INP_UP] = 32781;
++     global.DEFAULT_JOY[3][global.INP_DOWN] = 32782;
++     global.DEFAULT_JOY[3][global.INP_LEFT] = 32783;
++     global.DEFAULT_JOY[3][global.INP_RIGHT] = 32784;
++     global.DEFAULT_JOY[3][global.INP_FIRE1] = 32771;
++     global.DEFAULT_JOY[3][global.INP_FIRE2] = 32769;
++     global.DEFAULT_JOY[3][global.INP_START] = 32778;
+      
+!     for (var p = 0; p <= 3; p++)
+      {
+***************
+*** 62,63 ****
+--- 92,95 ----
+      global.doubledUpButtons[1] = scrReadConfig("doubledUpButtonsP2", true);
++     global.doubledUpButtons[2] = scrReadConfig("doubledUpButtonsP3", true);
++     global.doubledUpButtons[3] = scrReadConfig("doubledUpButtonsP4", true);
+      gamepad_set_axis_deadzone(0, 0);
+***************
+*** 349,350 ****
+--- 381,384 ----
+      global.joyType[1] = scrReadConfig("joyTypeP2", scrDetectJoyType(1));
++     global.joyType[2] = scrReadConfig("joyTypeP3", scrDetectJoyType(2));
++     global.joyType[3] = scrReadConfig("joyTypeP4", scrDetectJoyType(3));
+      

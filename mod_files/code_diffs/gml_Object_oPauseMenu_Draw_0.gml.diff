@@ -1,0 +1,11 @@
+*** original_scripts/gml_Object_oPauseMenu_Draw_0.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Draw_0.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 296,298 ****
+                  draw_set_halign(fa_right);
+!                 draw_sprite(sMenuP1P2, itemIndex[i], RIGHT_TEXT_X - 32, TOP);
+                  draw_set_halign(fa_left);
+--- 296,298 ----
+                  draw_set_halign(fa_right);
+!                 draw_sprite(sMenuP1P2P3P4, itemIndex[i], RIGHT_TEXT_X - 64, TOP);
+                  draw_set_halign(fa_left);
