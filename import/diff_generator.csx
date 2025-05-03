@@ -1,28 +1,16 @@
-#load "./busybox.csx"
+#load "./terminal_helper.csx"
 
-#r ".\lib\UndertaleModLib.dll"
-#r ".\lib\Underanalyzer.dll"
-
-using UndertaleModLib.Util;
-using UndertaleModLib.Models;
-using UndertaleModLib;
-using UndertaleModLib.Decompiler;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using Internal;
-
-
-foreach (string moddedScriptPath in Directory.EnumerateFiles("modded_scripts", "*.gml", SearchOption.AllDirectories))
+foreach (string moddedScriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
 {
-    var relativeScriptPath = moddedScriptPath.Substring("modded_scripts/".Length);
+    var relativeScriptPath = moddedScriptPath.Substring("ufo50_modded_scripts/".Length);
     var originalScriptPath = Path.Join($"original_scripts/{relativeScriptPath}");
-    var diffScriptPath = Path.Join($"script_diffs/{relativeScriptPath}.diff");
+    var diffScriptPath = Path.Join($"mod_files/code_diffs/{relativeScriptPath}.diff");
 
-    var diffstring = await BusyBox(
+    var diffstring = await RunTerminalCommand(
         "diff", 
         Path.GetFullPath("."), 
-        $"-a -b -B -d -N -w -U 0 -r {originalScriptPath} {moddedScriptPath}".Split(' '), 
-        1
+        $"-b -B -C1 {originalScriptPath} {moddedScriptPath}".Split(' '), 
+        [0, 1]
     );
 
     var directoryName = Path.GetDirectoryName(diffScriptPath);

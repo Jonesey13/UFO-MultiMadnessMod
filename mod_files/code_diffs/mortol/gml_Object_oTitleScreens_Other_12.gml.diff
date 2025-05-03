@@ -1,0 +1,93 @@
+*** original_scripts/mortol/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:54:42 2025
+--- ufo50_modded_scripts/mortol/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:59:53 2025
+***************
+*** 149,152 ****
+          menuOption[1] = scrStringManual("title_2p_continue", 0);
+!         menuOption[2] = scrStringManual("title_1p_new_game", 0);
+!         menuOption[3] = scrStringManual("title_2p_new_game", 0);
+          
+--- 149,161 ----
+          menuOption[1] = scrStringManual("title_2p_continue", 0);
+!         menuOption[2] = "3P CONTINUE";
+!         menuOption[3] = "4P CONTINUE";
+!         menuOption[4] = scrStringManual("title_1p_new_game", 0);
+!         menuOption[5] = scrStringManual("title_2p_new_game", 0);
+!         menuOption[6] = "3P NEW GAME";
+!         menuOption[7] = "4P NEW GAME";
+!         
+!         if (newGameStarted)
+!             menuSel = 0;
+!         else
+!             menuSel = 4;
+          
+***************
+*** 158,163 ****
+          
+!         if (newGameStarted)
+!             menuSel = 0;
+!         else
+!             menuSel = 2;
+      }
+--- 167,173 ----
+          
+!         if (!newGame3PStarted)
+!             menuAvail[2] = false;
+!         
+!         if (!newGame4PStarted)
+!             menuAvail[3] = false;
+      }
+***************
+*** 293,297 ****
+                  scrSwitchSub(SUB_CONFIRM);
+!             else if (newGameStarted && menuStyle == 15 && menuSel == 2)
+                  scrSwitchSub(SUB_CONFIRM);
+!             else if (newGame2PStarted && menuStyle == 15 && menuSel == 3)
+                  scrSwitchSub(SUB_CONFIRM);
+--- 303,311 ----
+                  scrSwitchSub(SUB_CONFIRM);
+!             else if (newGameStarted && menuStyle == 15 && menuSel == 4)
+!                 scrSwitchSub(SUB_CONFIRM);
+!             else if (newGame2PStarted && menuStyle == 15 && menuSel == 5)
+                  scrSwitchSub(SUB_CONFIRM);
+!             else if (newGame3PStarted && menuStyle == 15 && menuSel == 6)
+!                 scrSwitchSub(SUB_CONFIRM);
+!             else if (newGame4PStarted && menuStyle == 15 && menuSel == 7)
+                  scrSwitchSub(SUB_CONFIRM);
+***************
+*** 406,407 ****
+--- 420,427 ----
+          
++         if (menuStyle == 16 && menuSel == 1)
++             global.numPlayers = 2;
++         
++         if (menuStyle == 17 && menuSel == 1)
++             global.numPlayers = 4;
++ 
+          if (menuStyle == 15 && menuSel == 1)
+***************
+*** 409,417 ****
+          
+          if (menuStyle == 15 && menuSel == 3)
+!             global.numPlayers = 2;
+          
+!         if (menuStyle == 16 && menuSel == 1)
+              global.numPlayers = 2;
+          
+!         if (menuStyle == 17 && menuSel == 1)
+              global.numPlayers = 4;
+--- 429,443 ----
+          
++         if (menuStyle == 15 && menuSel == 2)
++             global.numPlayers = 3;
++ 
+          if (menuStyle == 15 && menuSel == 3)
+!             global.numPlayers = 4;
+          
+!         if (menuStyle == 15 && menuSel == 5)
+              global.numPlayers = 2;
+          
+!         if (menuStyle == 15 && menuSel == 6)
+!             global.numPlayers = 3;
+!         
+!         if (menuStyle == 15 && menuSel == 7)
+              global.numPlayers = 4;

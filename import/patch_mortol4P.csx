@@ -1,5 +1,5 @@
-#r ".\lib\UndertaleModLib.dll"
-#r ".\lib\Underanalyzer.dll"
+#r "../lib/UndertaleModLib.dll"
+#r "../lib/Underanalyzer.dll"
 
 using UndertaleModLib.Util;
 using UndertaleModLib.Models;
@@ -7,7 +7,7 @@ using UndertaleModLib;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-var datafile = new FileInfo("data.win");
+var datafile = new FileInfo("input/data.win");
 UndertaleData gameData;
 
 try
@@ -24,19 +24,19 @@ catch (FileNotFoundException e)
 
 Dictionary<string, UndertaleEmbeddedTexture> textures = [];
 
-foreach (string texturePath in Directory.EnumerateFiles("textures", "*.png", SearchOption.TopDirectoryOnly))
+foreach (string texturePath in Directory.EnumerateFiles("mod_files/textures", "*.png", SearchOption.TopDirectoryOnly))
 {
     var textureBytes = File.ReadAllBytes(texturePath);
 
     UndertaleEmbeddedTexture texture = new();
-    string textureName = texturePath.Split("\\")[1].Split(".")[0];
+    string textureName = Path.GetFileNameWithoutExtension(texturePath);
     texture.Name = new UndertaleString(textureName);
     texture.TextureData.Image = GMImage.FromPng(textureBytes);
     gameData.EmbeddedTextures.Add(texture);
     textures.Add(textureName, texture);
 }
 
-foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", SearchOption.TopDirectoryOnly))
+foreach (string spritePath in Directory.EnumerateFiles("mod_files/sprites", "*.json", SearchOption.TopDirectoryOnly))
 {
     var spriteText = File.ReadAllText(spritePath);
 
@@ -94,7 +94,7 @@ foreach (string spritePath in Directory.EnumerateFiles("sprites", "*.json", Sear
 
 var importGroup = new UndertaleModLib.Compiler.CodeImportGroup(gameData);
 
-foreach (string scriptPath in Directory.EnumerateFiles("scripts", "*.gml", SearchOption.AllDirectories))
+foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
 {
     var scriptText = File.ReadAllText(scriptPath);
 
@@ -106,10 +106,12 @@ foreach (string scriptPath in Directory.EnumerateFiles("scripts", "*.gml", Searc
 importGroup.Import();
 
 
-using (var stream = new FileStream("data_modded.win", FileMode.Create, FileAccess.Write))
+using (var stream = new FileStream("/tmp/data.win", FileMode.Create, FileAccess.Write))
 {
     UndertaleIO.Write(stream, gameData);
 }
+
+File.Copy("/tmp/data.win", "output/data.win", true);
 
 
 public class Sprite

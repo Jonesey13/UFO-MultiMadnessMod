@@ -1,35 +1,56 @@
-#load "./busybox.csx"
+#load "./terminal_helper.csx"
 
-#r ".\lib\UndertaleModLib.dll"
-#r ".\lib\Underanalyzer.dll"
+if(Directory.Exists("modded_scripts")) {
+    Directory.Delete("modded_scripts", true);
+}
+Directory.CreateDirectory("original_scripts_backup");
 
-using UndertaleModLib.Util;
-using UndertaleModLib.Models;
-using UndertaleModLib;
-using UndertaleModLib.Decompiler;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using Internal;
-
-foreach (string scriptDiffPath in Directory.EnumerateFiles("script_diffs", "*.diff", SearchOption.AllDirectories))
+foreach (string originalScriptPath in Directory.EnumerateFiles("original_scripts", "*.gml", SearchOption.AllDirectories))
 {
-    var relativeDiffPath = scriptDiffPath.Substring("script_diffs/".Length);
-    var relativeScriptPath = Path.GetFileNameWithoutExtension(relativeDiffPath);
-    var originalScriptPath = Path.Join($"original_scripts/{relativeScriptPath}");
-    var moddedScriptPath = Path.Join($"modded_scripts/{relativeScriptPath}");
+    var relativeScriptPath = originalScriptPath.Substring("original_scripts/".Length);
+    var targetScriptPath = $"original_scripts_backup/{relativeScriptPath}";
 
-    var directoryName = Path.GetDirectoryName(moddedScriptPath);
-    if (!Directory.Exists(directoryName)) {
-        Directory.CreateDirectory(directoryName);
+    if(!Directory.Exists(targetScriptPath)) {
+        Directory.CreateDirectory(Path.GetDirectoryName(targetScriptPath));
     }
 
-    var scriptText = File.ReadAllText(originalScriptPath);
-    File.WriteAllText(moddedScriptPath, scriptText);
-
-    var moddedCodeString = await BusyBox(
-        "patch", 
-        Path.GetFullPath("."), 
-        $"-R --dry-run -i {scriptDiffPath}".Split(' '), 
-        0
-    );
+    File.Copy(originalScriptPath, targetScriptPath, true);
 }
+
+try {
+    foreach (string scriptDiffPath in Directory.EnumerateFiles("mod_files/code_diffs", "*.diff", SearchOption.AllDirectories))
+    {
+        var relativeDiffPath = scriptDiffPath.Substring("mod_files/code_diffs/".Length);
+        var relativeScriptPath = relativeDiffPath.Substring(0, relativeDiffPath.Length - 5); // Remove .diff
+        var originalScriptPath = $"original_scripts/{relativeScriptPath}";
+
+        var moddedCodeString = await RunTerminalCommand(
+            "patch", 
+            Path.GetFullPath("."), 
+            $"-p0 -i {scriptDiffPath}".Split(' '), 
+            [0]
+        );
+    }
+    Directory.Move("original_scripts", "modded_scripts");
+} catch {
+    if(Directory.Exists("original_scripts")) {
+        Directory.Move("original_scripts", "modded_scripts");
+    }
+    throw;
+} finally {
+    Directory.Move("original_scripts_backup", "original_scripts");
+}
+
+foreach (string moddedScriptPath in Directory.EnumerateFiles("modded_scripts", "*.gml", SearchOption.AllDirectories))
+{
+    var relativeScriptPath = moddedScriptPath.Substring("modded_scripts/".Length);
+    var targetScriptPath = $"ufo50_modded_scripts/{relativeScriptPath}";
+
+    if(!Directory.Exists(targetScriptPath)) {
+        Directory.CreateDirectory(Path.GetDirectoryName(targetScriptPath));
+    }
+
+    File.Copy(moddedScriptPath, targetScriptPath, true);
+}
+
+Directory.Delete("modded_scripts", true);

@@ -1,0 +1,11 @@
+*** original_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 53,54 ****
+--- 53,58 ----
+          para.sprite_index = s29_Parachute2;
++     if (controller == 3)
++         para.sprite_index = s29_Parachute3;
++     if (controller == 4)
++         para.sprite_index = s29_Parachute4;
+      

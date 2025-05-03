@@ -1,0 +1,15 @@
+*** original_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 57,60 ****
+  saveFileExists = scrReadSaveStatus();
+! newGameStarted = scrReadNewGameStatus();
+! newGame2PStarted = scrReadNewGame2PStatus();
+  scrCloseCurrFile();
+--- 57,62 ----
+  saveFileExists = scrReadSaveStatus();
+! newGameStarted = scrReadReal("newGame", false);
+! newGame2PStarted = scrReadReal("newGame2P", false);
+! newGame3PStarted = scrReadReal("newGame3P", false);
+! newGame4PStarted = scrReadReal("newGame4P", false);
+  scrCloseCurrFile();

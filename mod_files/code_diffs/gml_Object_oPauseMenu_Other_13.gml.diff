@@ -1,0 +1,43 @@
+*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Sun Apr 27 20:54:41 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Sun Apr 27 20:58:36 2025
+***************
+*** 11,13 ****
+      
+!     for (var p = 0; p <= 1; p++)
+      {
+--- 11,13 ----
+      
+!     for (var p = 0; p <= 3; p++)
+      {
+***************
+*** 39,40 ****
+--- 39,42 ----
+      gamepadConnect[1] = gamepad_is_connected(global.joySlot[1]);
++     gamepadConnect[2] = gamepad_is_connected(global.joySlot[2]);
++     gamepadConnect[3] = gamepad_is_connected(global.joySlot[3]);
+      drawMenu = true;
+***************
+*** 261,263 ****
+      {
+!         for (var p = 0; p <= 1; p++)
+          {
+--- 263,265 ----
+      {
+!         for (var p = 0; p <= 3; p++)
+          {
+***************
+*** 267,269 ****
+          
+!         for (var p = 0; p <= 1; p++)
+          {
+--- 269,271 ----
+          
+!         for (var p = 0; p <= 3; p++)
+          {
+***************
+*** 277,278 ****
+--- 279,282 ----
+          global.joyType[1] = scrDetectJoyType(1);
++         global.joyType[2] = scrDetectJoyType(2);
++         global.joyType[3] = scrDetectJoyType(3);
+          stateCounter = 1;
