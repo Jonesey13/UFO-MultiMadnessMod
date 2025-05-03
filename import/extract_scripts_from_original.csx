@@ -38,11 +38,12 @@ if (Directory.Exists("original_scripts"))
     Directory.Delete("original_scripts", true);
 }
 
-foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
+foreach (string diffPath in Directory.EnumerateFiles("mod_files/code_diffs", "*.diff", SearchOption.AllDirectories))
 {
-    var scriptText = File.ReadAllText(scriptPath);
+    var scriptText = File.ReadAllText(diffPath);
 
-    string scriptName = Path.GetFileNameWithoutExtension(scriptPath);
+    string scriptFilePath = diffPath.Substring(0, diffPath.Length - 5); // Remove .diff
+    string scriptName = Path.GetFileNameWithoutExtension(scriptFilePath);
 
     var originalCode = originalScripts.Single(script => script.Name.Content == scriptName);
     var compileSettings = new DecompileSettings();
@@ -51,7 +52,7 @@ foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "
     compileSettings.EmptyLineBeforeSwitchCases = true;
     compileSettings.EmptyLineAroundBranchStatements = true;
     var codestring = new DecompileContext(context, originalCode, compileSettings).DecompileToString();
-    var scriptOutputPath = scriptPath.Substring("ufo50_modded_scripts/".Length);
+    var scriptOutputPath = scriptFilePath.Substring("mod_files/code_diffs/".Length);
     var outputFilePath = Path.Join($"original_scripts/{scriptOutputPath}");
 
     var directoryName = Path.GetDirectoryName(outputFilePath);
