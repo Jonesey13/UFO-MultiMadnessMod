@@ -1,7 +1,8 @@
-# Mortol 4 Player Mod
+# Mortol 4P Mods
 
-This is a mod to enable 4 players for the game Mortol from UFO50.
-* This *might* evolve into more multiplayer versions of other games in UFO50 over time
+This is a mod to enable 4 players for various games in the game UFO50. Currently the following games are supported:
+* Mortol
+* Paint Chase
 
 This mod is provided as a combination of code diffs and additional assets and is *heavily* inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods).
 
@@ -26,7 +27,7 @@ bash import/setup_lib.sh
 
 From here you want to run the following scripts in order:
 1. `extract_scripts_from_original.csx`
-    * This extracts the relevant original source `*.gml` files from `data.win` 
+    * This extracts the relevant original source `*.gml` files from `data.win` and puts them in the `ufo50_original_scripts` folder
 2. `diff_applyer.csx`
     * This generates the modded versions of the source files (you can view the modded files in the `ufo50_modded_scripts` folder)
 3. `patch_mortol4P.csx`
