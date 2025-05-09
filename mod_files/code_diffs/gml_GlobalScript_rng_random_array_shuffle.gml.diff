@@ -1,0 +1,21 @@
+*** original_scripts/gml_GlobalScript_rng_random_array_shuffle.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_GlobalScript_rng_random_array_shuffle.gml	Fri May  9 19:57:06 2025
+***************
+*** 0 ****
+--- 1,16 ----
++ function rng_random_array_shuffle(arg0)
++ {
++     var items = arg0;
++     var i = array_length(items);
++     
++     while (i > 1)
++     {
++         i = i - 1;
++         var j = rng_random_int(0, i);
++         var f = items[j];
++         items[j] = items[i];
++         items[i] = f;
++     }
++     
++     return items;
++ }

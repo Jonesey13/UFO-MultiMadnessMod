@@ -80,16 +80,16 @@ foreach (string scriptPath in combinedListOfTargets)
     }
 }
 
-foreach (string moddedScriptPath in Directory.EnumerateFiles("original_scripts", "*.gml", SearchOption.AllDirectories))
+foreach (string originalScriptPath in Directory.EnumerateFiles("original_scripts", "*.gml", SearchOption.AllDirectories))
 {
-    var relativeScriptPath = moddedScriptPath.Substring("original_scripts/".Length);
+    var relativeScriptPath = originalScriptPath.Substring("original_scripts/".Length);
     var targetScriptPath = $"ufo50_original_scripts/{relativeScriptPath}";
 
     if(!Directory.Exists(targetScriptPath)) {
         Directory.CreateDirectory(Path.GetDirectoryName(targetScriptPath));
     }
 
-    File.Copy(moddedScriptPath, targetScriptPath, true);
+    File.Copy(originalScriptPath, targetScriptPath, true);
 }
 
 Directory.Delete("original_scripts", true);
