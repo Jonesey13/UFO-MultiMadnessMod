@@ -1,12 +1,22 @@
-*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 15:27:25 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:59:53 2025
+*** ufo50_original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 18:27:35 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 17:55:15 2025
+***************
+*** 59,61 ****
+          menuOption[1] = scrStringManual("title_2players", 0);
+!         menuOption[2] = scrStringManual("title_high_scores", 0);
+      }
+--- 59,62 ----
+          menuOption[1] = scrStringManual("title_2players", 0);
+!         menuOption[2] = "4 PLAYER TEAMS";
+!         menuOption[3] = scrStringManual("title_high_scores", 0);
+      }
 ***************
 *** 149,152 ****
           menuOption[1] = scrStringManual("title_2p_continue", 0);
 !         menuOption[2] = scrStringManual("title_1p_new_game", 0);
 !         menuOption[3] = scrStringManual("title_2p_new_game", 0);
           
---- 149,161 ----
+--- 150,162 ----
           menuOption[1] = scrStringManual("title_2p_continue", 0);
 !         menuOption[2] = "3P CONTINUE";
 !         menuOption[3] = "4P CONTINUE";
@@ -28,7 +38,7 @@
 !         else
 !             menuSel = 2;
       }
---- 167,173 ----
+--- 168,174 ----
           
 !         if (!newGame3PStarted)
 !             menuAvail[2] = false;
@@ -43,7 +53,7 @@
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGame2PStarted && menuStyle == 15 && menuSel == 3)
                   scrSwitchSub(SUB_CONFIRM);
---- 303,311 ----
+--- 304,312 ----
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGameStarted && menuStyle == 15 && menuSel == 4)
 !                 scrSwitchSub(SUB_CONFIRM);
@@ -54,8 +64,25 @@
 !             else if (newGame4PStarted && menuStyle == 15 && menuSel == 7)
                   scrSwitchSub(SUB_CONFIRM);
 ***************
+*** 299,301 ****
+                  scrSwitchState(STATE_HIGHSCORE);
+!             else if (menuStyle == 4 && menuSel == 2)
+                  scrSwitchState(STATE_HIGHSCORE);
+--- 314,316 ----
+                  scrSwitchState(STATE_HIGHSCORE);
+!             else if (menuStyle == 4 && menuSel == 3)
+                  scrSwitchState(STATE_HIGHSCORE);
+***************
+*** 379,380 ****
+--- 394,398 ----
+          
++         if (menuStyle == 4 && menuSel == 2)
++             global.numPlayers = 4;
++         
+          if (menuStyle == 5 && menuSel == 1)
+***************
 *** 406,407 ****
---- 420,427 ----
+--- 424,431 ----
           
 +         if (menuStyle == 16 && menuSel == 1)
 +             global.numPlayers = 2;
@@ -75,7 +102,7 @@
           
 !         if (menuStyle == 17 && menuSel == 1)
               global.numPlayers = 4;
---- 429,443 ----
+--- 433,447 ----
           
 +         if (menuStyle == 15 && menuSel == 2)
 +             global.numPlayers = 3;

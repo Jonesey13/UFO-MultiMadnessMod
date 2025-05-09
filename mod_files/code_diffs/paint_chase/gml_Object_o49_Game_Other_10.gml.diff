@@ -1,0 +1,53 @@
+*** ufo50_original_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Fri May  9 18:27:35 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Fri May  9 17:55:47 2025
+***************
+*** 32,34 ****
+  }
+! else if (numPlayers == 2)
+  {
+--- 32,34 ----
+  }
+! else if (numPlayers == 2 || numPlayers == 4)
+  {
+***************
+*** 299,300 ****
+--- 299,328 ----
+  
++ if (numPlayers == 4) {
++     var playerList = [0, 1, 2, 3];
++     var shuffled_list = rng_random_array_shuffle(playerList);
++ 
++ 
++     var p2 = instance_find(o49_Racer, shuffled_list[1]);
++     with (p2)
++     {
++         controller = 1;
++         myColor = RED;
++         sprite_index = s49_Racer2;
++     }
++     
++     var p3 = instance_find(o49_Racer, shuffled_list[2]);
++     with (p3)
++     {
++         controller = 2;
++     }
++ 
++     var p4 = instance_find(o49_Racer, shuffled_list[3]);
++     with (p4)
++     {
++         controller = 3;
++         myColor = RED;
++         sprite_index = s49_Racer2;
++     }
++ }
++ 
+  with (o49_Racer)
+***************
+*** 332,334 ****
+  }
+! else if (numPlayers == 2)
+  {
+--- 360,362 ----
+  }
+! else if (numPlayers == 2 || numPlayers == 4)
+  {

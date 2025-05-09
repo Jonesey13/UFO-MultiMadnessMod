@@ -1,0 +1,29 @@
+*** ufo50_original_scripts/paint_chase/gml_Object_o49_Game_Other_25.gml	Fri May  9 18:27:35 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_25.gml	Fri May  9 18:09:36 2025
+***************
+*** 40,42 ****
+          resultsPoint = paintGoal;
+!     else if (numPlayers == 2)
+          resultsPoint = min(bluePercent, redPercent);
+--- 40,42 ----
+          resultsPoint = paintGoal;
+!     else if (numPlayers == 2 || numPlayers == 4)
+          resultsPoint = min(bluePercent, redPercent);
+***************
+*** 50,52 ****
+      }
+!     else if (numPlayers == 2)
+      {
+--- 50,52 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {
+***************
+*** 92,94 ****
+      }
+!     else if (numPlayers == 2)
+      {
+--- 92,94 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {

@@ -1,0 +1,20 @@
+*** ufo50_original_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Fri May  9 18:27:35 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Fri May  9 18:14:04 2025
+***************
+*** 124,126 ****
+      
+!     if (numPlayers == 2 && (redPercent >= INSTANT_WIN_THRESHOLD_2P || bluePercent >= INSTANT_WIN_THRESHOLD_2P))
+          draw_text_bg_centered(192, 96, scrStringEven("blowout", 4), 0, 8, 8, true);
+--- 124,126 ----
+      
+!     if ((numPlayers == 2 || numPlayers == 4) && (redPercent >= INSTANT_WIN_THRESHOLD_2P || bluePercent >= INSTANT_WIN_THRESHOLD_2P))
+          draw_text_bg_centered(192, 96, scrStringEven("blowout", 4), 0, 8, 8, true);
+***************
+*** 254,256 ****
+      
+!     if (numPlayers == 2)
+      {
+--- 254,256 ----
+      
+!     if (numPlayers == 2 || numPlayers == 4)
+      {

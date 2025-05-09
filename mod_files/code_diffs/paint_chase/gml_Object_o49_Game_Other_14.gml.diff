@@ -1,0 +1,29 @@
+*** ufo50_original_scripts/paint_chase/gml_Object_o49_Game_Other_14.gml	Fri May  9 18:27:35 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_14.gml	Fri May  9 18:00:13 2025
+***************
+*** 55,57 ****
+      }
+!     else if (numPlayers == 2)
+      {
+--- 55,57 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {
+***************
+*** 140,142 ****
+      }
+!     else if (numPlayers == 2)
+      {
+--- 140,142 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {
+***************
+*** 185,187 ****
+      }
+!     else if (numPlayers == 2)
+      {
+--- 185,187 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {
