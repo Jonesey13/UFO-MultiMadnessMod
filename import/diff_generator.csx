@@ -1,5 +1,9 @@
 #load "./terminal_helper.csx"
 
+if(Directory.Exists("mod_files/code_diffs")) {
+    Directory.Delete("mod_files/code_diffs", true);
+}
+
 foreach (string moddedScriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
 {
     var relativeScriptPath = moddedScriptPath.Substring("ufo50_modded_scripts/".Length);

@@ -3,7 +3,7 @@
 This is a mod to enable 4 players for the game Mortol from UFO50.
 * This *might* evolve into more multiplayer versions of other games in UFO50 over time
 
-This mod is provided as a combination of code diffs and additional assets and is heavily inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods).
+This mod is provided as a combination of code diffs and additional assets and is *heavily* inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods).
 
 All original rights belong to Mossmouth (and am happy to take down this repo at their request).
 * Data from the original game has been minimised by providing the smallest diff context needed (1 line)
@@ -17,7 +17,7 @@ This repo is designed to run standalone as a Dev Container in VSCode.
 
 The dev container will setup dotnet & dotnet script.
 
-Once the dev container is loaded you must place your copy of UFO50's data.win file in the `input` folder.
+Once the dev container is loaded you must place your copy of UFO50's `data.win` file in the `input` folder.
 
 Next you need to run the following command to download [the UndertaleModTool CLI](https://github.com/UnderminersTeam/UndertaleModTool) and set it up for use:
 ```
@@ -34,5 +34,13 @@ From here you want to run the following scripts in order:
 
 After completing these steps the modded `data.win` file can be copied back into your original UFO50 game folder to apply the mod.
 
-The `.csx` scripts can be run using the VSCode launch configuration provided (you must select the script you want to run first in the explorer).
+The `.csx` scripts can be run using the VSCode launch configuration provided (first you must select the script you want to run in the "Explorer" menu before running it from the "Run and Debug" menu).
 
+## Credits
+Thank you to the incredible [Underminers team](https://github.com/UnderminersTeam) for providing such a useful and versatile modding library for Game Maker Studio.
+
+Credit also goes to [this UFO50 Wiki](https://ufo50.miraheze.org/) for documenting where to begin with modding UFO50.
+
+Next up a big thanks to [p-sam](https://github.com/p-sam) for providing such a good modding framework (this is a pale imitation of what you've already done).
+
+Lastly a massive thanks to [Mossmouth](https://www.mossmouth.com/) for making such a rich collection of games!

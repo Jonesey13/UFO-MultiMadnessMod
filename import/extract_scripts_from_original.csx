@@ -38,12 +38,25 @@ if (Directory.Exists("original_scripts"))
     Directory.Delete("original_scripts", true);
 }
 
-foreach (string diffPath in Directory.EnumerateFiles("mod_files/code_diffs", "*.diff", SearchOption.AllDirectories))
-{
-    var scriptText = File.ReadAllText(diffPath);
+List<string> listOfDiffsTargets = [];
 
-    string scriptFilePath = diffPath.Substring(0, diffPath.Length - 5); // Remove .diff
-    string scriptName = Path.GetFileNameWithoutExtension(scriptFilePath);
+if (Directory.Exists("mod_files/code_diffs")) {
+    listOfDiffsTargets = Directory.EnumerateFiles("mod_files/code_diffs", "*.gml.diff", SearchOption.AllDirectories)
+        .Select(diffFile => diffFile[..^5]["mod_files/code_diffs/".Length..]).ToList(); // Remove .diff and diff folder prefix
+}
+
+List<string> listOfModdedScriptTargets = [];
+
+if (Directory.Exists("ufo50_modded_scripts")) {
+    listOfModdedScriptTargets = Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories)
+        .Select(diffFile => diffFile["ufo50_modded_scripts/".Length..]).ToList(); // Remove ufo50_modded_scripts folder prefix
+}
+
+var combinedListOfTargets = listOfDiffsTargets.Concat(listOfModdedScriptTargets).Distinct().ToList();
+
+foreach (string scriptPath in combinedListOfTargets)
+{
+    string scriptName = Path.GetFileNameWithoutExtension(scriptPath);
 
     var originalCode = originalScripts.Single(script => script.Name.Content == scriptName);
     var compileSettings = new DecompileSettings();
@@ -52,8 +65,7 @@ foreach (string diffPath in Directory.EnumerateFiles("mod_files/code_diffs", "*.
     compileSettings.EmptyLineBeforeSwitchCases = true;
     compileSettings.EmptyLineAroundBranchStatements = true;
     var codestring = new DecompileContext(context, originalCode, compileSettings).DecompileToString();
-    var scriptOutputPath = scriptFilePath.Substring("mod_files/code_diffs/".Length);
-    var outputFilePath = Path.Join($"original_scripts/{scriptOutputPath}");
+    var outputFilePath = Path.Join($"original_scripts/{scriptPath}");
 
     var directoryName = Path.GetDirectoryName(outputFilePath);
     if (!Directory.Exists(directoryName))

@@ -1,0 +1,59 @@
+*** original_scripts/gml_Object_oTitleScreens_Draw_0.gml	Fri May  9 15:27:25 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Draw_0.gml	Sun May  4 22:25:23 2025
+***************
+*** 288,290 ****
+--- 288,294 ----
+  
++                 if (menuStyle == 15) {
++                     scrDrawTextInput(160 - titleX, 120 + (_lineSpacing * i) + titleY, menuOption[i], 0, 0, 0);
++                 } else {
+                      scrDrawTextInput(160 - titleX, 152 + (_lineSpacing * i) + titleY, menuOption[i], 0, 0, 0);
++                 }
+                  
+***************
+*** 306,309 ****
+--- 310,317 ----
+                  {
++                     if (menuStyle == 15) {
++                         draw_sprite(pointerSprite, 0, 128 - titleX, 117 + (menuSel * _lineSpacing) + titleY);
++                     } else {
+                          draw_sprite(pointerSprite, 0, 128 - titleX, 149 + (menuSel * _lineSpacing) + titleY);
+                      }
++                 }
+                  else
+***************
+*** 313,314 ****
+--- 321,326 ----
+                      if ((round(stateCounter / 8) % 2) == 0)
++                     {
++                         if (menuStyle == 15) {
++                             draw_sprite(sLittleArrow, 0, 151 - titleX, 120 + (menuSel * _lineSpacing) + titleY);
++                         } else {
+                              draw_sprite(sLittleArrow, 0, 151 - titleX, 152 + (menuSel * _lineSpacing) + titleY);
+***************
+*** 318,319 ****
+--- 330,333 ----
+              }
++         }
++     }
+      
+***************
+*** 334,335 ****
+--- 348,358 ----
+              
++             if (menuStyle == 15) {
++                 for (var i = 0; i <= menuSelBot; i++)
++                 {
++                     if (i == menuSel)
++                         scrDrawTextInput(160, 120 + (_lineSpacing * i), menuOption[i], 0, 0, 0);
++                 }
++                 
++                 draw_sprite(pointerSprite, 0, 128, 117 + (menuSel * _lineSpacing));
++             } else {
+                  for (var i = 0; i <= menuSelBot; i++)
+***************
+*** 342,343 ****
+--- 365,367 ----
+              }
++         }
+      }

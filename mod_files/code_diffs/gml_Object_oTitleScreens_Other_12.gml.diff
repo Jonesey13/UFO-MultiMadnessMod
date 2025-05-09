@@ -1,5 +1,5 @@
-*** original_scripts/mortol/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:54:42 2025
---- ufo50_modded_scripts/mortol/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:59:53 2025
+*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 15:27:25 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sun Apr 27 20:59:53 2025
 ***************
 *** 149,152 ****
           menuOption[1] = scrStringManual("title_2p_continue", 0);
