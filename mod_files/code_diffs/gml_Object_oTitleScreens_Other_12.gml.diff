@@ -1,5 +1,5 @@
-*** ufo50_original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 18:27:35 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 17:55:15 2025
+*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 19:27:30 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri May  9 19:57:06 2025
 ***************
 *** 59,61 ****
           menuOption[1] = scrStringManual("title_2players", 0);
@@ -56,9 +56,9 @@
 --- 304,312 ----
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGameStarted && menuStyle == 15 && menuSel == 4)
-!                 scrSwitchSub(SUB_CONFIRM);
-!             else if (newGame2PStarted && menuStyle == 15 && menuSel == 5)
                   scrSwitchSub(SUB_CONFIRM);
+!             else if (newGame2PStarted && menuStyle == 15 && menuSel == 5)
+!                 scrSwitchSub(SUB_CONFIRM);
 !             else if (newGame3PStarted && menuStyle == 15 && menuSel == 6)
 !                 scrSwitchSub(SUB_CONFIRM);
 !             else if (newGame4PStarted && menuStyle == 15 && menuSel == 7)
