@@ -58,20 +58,38 @@ foreach (string scriptPath in combinedListOfTargets)
 {
     string scriptName = Path.GetFileNameWithoutExtension(scriptPath);
 
-    var originalCode = originalScripts.Single(script => script.Name.Content == scriptName);
-    var compileSettings = new DecompileSettings();
-    compileSettings.CreateEnumDeclarations = true;
-    compileSettings.RemoveSingleLineBlockBraces = true;
-    compileSettings.EmptyLineBeforeSwitchCases = true;
-    compileSettings.EmptyLineAroundBranchStatements = true;
-    var codestring = new DecompileContext(context, originalCode, compileSettings).DecompileToString();
-    var outputFilePath = Path.Join($"original_scripts/{scriptPath}");
+    var originalCode = originalScripts.SingleOrDefault(script => script.Name.Content == scriptName);
 
-    var directoryName = Path.GetDirectoryName(outputFilePath);
-    if (!Directory.Exists(directoryName))
-    {
-        Directory.CreateDirectory(directoryName);
+    if (originalCode != null){
+        var compileSettings = new DecompileSettings();
+        compileSettings.CreateEnumDeclarations = true;
+        compileSettings.RemoveSingleLineBlockBraces = true;
+        compileSettings.EmptyLineBeforeSwitchCases = true;
+        compileSettings.EmptyLineAroundBranchStatements = true;
+        var codestring = new DecompileContext(context, originalCode, compileSettings).DecompileToString();
+        var outputFilePath = Path.Join($"original_scripts/{scriptPath}");
+
+        var directoryName = Path.GetDirectoryName(outputFilePath);
+        if (!Directory.Exists(directoryName))
+        {
+            Directory.CreateDirectory(directoryName);
+        }
+        File.WriteAllText(outputFilePath, codestring);
+    } else {
+        Console.WriteLine($"Skipping export of {scriptName} as not found in orginal file");
     }
-    File.WriteAllText(outputFilePath, codestring);
 }
 
+foreach (string moddedScriptPath in Directory.EnumerateFiles("original_scripts", "*.gml", SearchOption.AllDirectories))
+{
+    var relativeScriptPath = moddedScriptPath.Substring("original_scripts/".Length);
+    var targetScriptPath = $"ufo50_original_scripts/{relativeScriptPath}";
+
+    if(!Directory.Exists(targetScriptPath)) {
+        Directory.CreateDirectory(Path.GetDirectoryName(targetScriptPath));
+    }
+
+    File.Copy(moddedScriptPath, targetScriptPath, true);
+}
+
+Directory.Delete("original_scripts", true);

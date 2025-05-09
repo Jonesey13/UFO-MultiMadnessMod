@@ -3,12 +3,12 @@
 if(Directory.Exists("modded_scripts")) {
     Directory.Delete("modded_scripts", true);
 }
-Directory.CreateDirectory("original_scripts_backup");
+Directory.CreateDirectory("original_scripts");
 
-foreach (string originalScriptPath in Directory.EnumerateFiles("original_scripts", "*.gml", SearchOption.AllDirectories))
+foreach (string originalScriptPath in Directory.EnumerateFiles("ufo50_original_scripts", "*.gml", SearchOption.AllDirectories))
 {
     var relativeScriptPath = originalScriptPath.Substring("original_scripts/".Length);
-    var targetScriptPath = $"original_scripts_backup/{relativeScriptPath}";
+    var targetScriptPath = $"original_scripts/{relativeScriptPath}";
 
     if(!Directory.Exists(targetScriptPath)) {
         Directory.CreateDirectory(Path.GetDirectoryName(targetScriptPath));
@@ -37,8 +37,6 @@ try {
         Directory.Move("original_scripts", "modded_scripts");
     }
     throw;
-} finally {
-    Directory.Move("original_scripts_backup", "original_scripts");
 }
 
 foreach (string moddedScriptPath in Directory.EnumerateFiles("modded_scripts", "*.gml", SearchOption.AllDirectories))

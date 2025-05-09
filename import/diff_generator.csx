@@ -7,13 +7,13 @@ if(Directory.Exists("mod_files/code_diffs")) {
 foreach (string moddedScriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
 {
     var relativeScriptPath = moddedScriptPath.Substring("ufo50_modded_scripts/".Length);
-    var originalScriptPath = Path.Join($"original_scripts/{relativeScriptPath}");
+    var originalScriptPath = Path.Join($"ufo50_original_scripts/{relativeScriptPath}");
     var diffScriptPath = Path.Join($"mod_files/code_diffs/{relativeScriptPath}.diff");
 
     var diffstring = await RunTerminalCommand(
         "diff", 
         Path.GetFullPath("."), 
-        $"-b -B -C1 {originalScriptPath} {moddedScriptPath}".Split(' '), 
+        $"-b -B -C1 -N {originalScriptPath} {moddedScriptPath}".Split(' '), 
         [0, 1]
     );
 
