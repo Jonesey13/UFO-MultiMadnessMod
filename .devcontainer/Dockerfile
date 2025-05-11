@@ -12,6 +12,3 @@ ENV PATH=$PATH:/root/.dotnet
 # Install dotnet script
 RUN dotnet tool install -g dotnet-script --version 1.6.0
 ENV PATH=$PATH:/root/.dotnet/tools
-
-# Configure git for Dev Containers
-RUN git config --global core.autocrlf true
