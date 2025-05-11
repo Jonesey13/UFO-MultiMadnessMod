@@ -1,5 +1,6 @@
 #r "../lib/UndertaleModLib.dll"
 #r "../lib/Underanalyzer.dll"
+#load "./_setup_rich_presence.csx"
 
 using UndertaleModLib.Util;
 using UndertaleModLib.Models;
@@ -92,6 +93,8 @@ foreach (string spritePath in Directory.EnumerateFiles("mod_files/sprites", "*.j
     gameData.Sprites.Add(newSprite);
 }
 
+SetupRichPresence(gameData);
+
 var importGroup = new UndertaleModLib.Compiler.CodeImportGroup(gameData);
 
 foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
@@ -172,3 +175,5 @@ public class TexturePage
     [JsonPropertyName("texture")]
     public string EmbeddedTextureName { get; set; }
 }
+
+
