@@ -1,0 +1,12 @@
+*** original_scripts/rich_presence/gml_GlobalScript_scrGetRecords.gml	Sun May 11 20:13:19 2025
+--- ufo50_modded_scripts/rich_presence/gml_GlobalScript_scrGetRecords.gml	Sat May 10 20:51:10 2025
+***************
+*** 32,33 ****
+--- 32,38 ----
+      }
++     with (obj_richpresence)
++     {
++         array_copy(records, 0, _records, 0, array_length(_records));
++         alarm[0] = 1;
++      }
+      

@@ -1,0 +1,6 @@
+*** original_scripts/rich_presence/gml_Object_obj_richpresence_Step_0.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/rich_presence/gml_Object_obj_richpresence_Step_0.gml	Tue Apr 22 10:25:51 2025
+***************
+*** 0 ****
+--- 1 ----
++ np_update();

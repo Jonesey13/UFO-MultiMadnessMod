@@ -1,0 +1,12 @@
+*** original_scripts/rich_presence/gml_Object_obj_richpresence_Other_70.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/rich_presence/gml_Object_obj_richpresence_Other_70.gml	Sat May 10 21:34:40 2025
+***************
+*** 0 ****
+--- 1,7 ----
++ var ev_type = ds_map_find_value(async_load, "event_type");
++ 
++ if (ev_type == "DiscordReady")
++ {
++     discordReady = true;
++     alarm[0] = 1;
++ }

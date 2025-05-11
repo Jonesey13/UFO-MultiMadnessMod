@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrInputClear.gml	Fri May  9 19:27:30 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInputClear.gml	Fri May  9 19:57:06 2025
+*** original_scripts/gml_GlobalScript_scrInputClear.gml	Sun May 11 20:13:18 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInputClear.gml	Fri May  9 20:16:24 2025
 ***************
 *** 24,26 ****
       {

@@ -1,0 +1,13 @@
+*** original_scripts/rich_presence/gml_Object_obj_richpresence_Create_0.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/rich_presence/gml_Object_obj_richpresence_Create_0.gml	Tue Apr 22 10:25:51 2025
+***************
+*** 0 ****
+--- 1,8 ----
++ discordAppId = "1312167375491174501";
++ steamAppId = "1147860";
++ discordReady = false;
++ lastGameNum = -1;
++ records = array_create(0);
++ 
++ if (!np_initdiscord(discordAppId, true, steamAppId))
++     show_debug_message("NekoPresence init fail.");
