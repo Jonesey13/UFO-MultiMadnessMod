@@ -1,5 +1,5 @@
-*** original_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Sun May 11 20:13:18 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Fri May  9 20:16:24 2025
+*** original_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Sun May 11 20:25:31 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Sun May 11 20:14:00 2025
 ***************
 *** 315,316 ****
 --- 315,320 ----

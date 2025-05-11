@@ -1,21 +1,24 @@
-*** original_scripts/gml_GlobalScript_scrSaveGame.gml	Sun May 11 20:13:18 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrSaveGame.gml	Fri May  9 20:16:24 2025
+*** original_scripts/gml_GlobalScript_scrSaveGame.gml	Sun May 11 20:25:31 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrSaveGame.gml	Sun May 11 20:24:26 2025
 ***************
 *** 27,32 ****
               scrWriteReal("newGame2P", true);
 -     }
       
-!     var _makeBackup = false;
+      var _makeBackup = false;
       
       if (global.backupTimer >= global.BACKUP_MINIMUM_TIME && global.currFile >= 1 && global.currFile <= global.NUM_PROFILES_ACCESSIBLE)
---- 27,36 ----
+--- 27,39 ----
               scrWriteReal("newGame2P", true);
       
-!         if (global.numPlayers == 3)
-!             scrWriteReal("newGame3P", true);
-      
++         if (global.numPlayers == 3)
++             scrWriteReal("newGame3P", true);
++     
 +         if (global.numPlayers == 4)
 +             scrWriteReal("newGame4P", true);
 +     }
-+     var _makeBackup = false;
+      var _makeBackup = false;
+      
++     scrGetRecords();
++     
       if (global.backupTimer >= global.BACKUP_MINIMUM_TIME && global.currFile >= 1 && global.currFile <= global.NUM_PROFILES_ACCESSIBLE)

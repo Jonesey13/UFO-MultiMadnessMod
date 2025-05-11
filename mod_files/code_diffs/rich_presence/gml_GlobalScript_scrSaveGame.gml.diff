@@ -1,8 +1,0 @@
-*** original_scripts/rich_presence/gml_GlobalScript_scrSaveGame.gml	Sun May 11 20:13:19 2025
---- ufo50_modded_scripts/rich_presence/gml_GlobalScript_scrSaveGame.gml	Sun May 11 19:49:10 2025
-***************
-*** 30,31 ****
---- 30,32 ----
-      var _makeBackup = false;
-+     scrGetRecords();
-      
