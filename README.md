@@ -4,6 +4,8 @@ This is a mod to enable 4 players for various games in the game UFO50. Currently
 * Mortol
 * Paint Chase
 
+This also incorporates p-sam's rich presence for Discord mod.
+
 This mod is provided as a combination of code diffs and additional assets and is *heavily* inspired from [p-sam's UFO50 mods repo](https://github.com/p-sam/ufo50-mods).
 
 All original rights belong to Mossmouth (and am happy to take down this repo at their request).
