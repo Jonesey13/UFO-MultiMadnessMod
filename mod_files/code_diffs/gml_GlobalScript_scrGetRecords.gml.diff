@@ -1,5 +1,23 @@
 *** original_scripts/gml_GlobalScript_scrGetRecords.gml	Sun May 11 20:25:31 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrGetRecords.gml	Sun May 11 20:14:00 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrGetRecords.gml	Mon May 12 18:37:03 2025
+***************
+*** 8,10 ****
+          
+!         if (scrReadReal("gameRunCount" + string(global.mGameID[i]), 0) > 0)
+              _played = true;
+--- 8,10 ----
+          
+!         if (scrReadRealManual(0, "gameRunCount" + string(global.mGameID[i]), 0) > 0)
+              _played = true;
+***************
+*** 16,18 ****
+          
+!         var _winStatus = scrReadReal("gameWin" + string(global.mGameID[i]), 0);
+          _records[i] = "";
+--- 16,18 ----
+          
+!         var _winStatus = scrReadRealManual(0, "gameWin" + string(global.mGameID[i]), 0);
+          _records[i] = "";
 ***************
 *** 32,33 ****
 --- 32,38 ----
@@ -8,5 +26,5 @@
 +     {
 +         array_copy(records, 0, _records, 0, array_length(_records));
 +         alarm[0] = 1;
-+      }
++     }
       

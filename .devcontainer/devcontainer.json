@@ -11,7 +11,8 @@
 		"extensions": [
 			"mhutchie.git-graph",
 			"ms-dotnettools.csharp",
-			"liaronce.gml-support"
+			"liaronce.gml-support",
+      "vscode-icons-team.vscode-icons"
 		]
 	}
 }
