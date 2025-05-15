@@ -1,0 +1,8 @@
+*** original_scripts/paint_chase/gml_Object_o49_Racer_Step_0.gml	Thu May 15 21:38:36 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Racer_Step_0.gml	Thu May 15 21:15:05 2025
+***************
+*** 728,729 ****
+--- 728,730 ----
+              spawn.spawnType = -1 * myColor;
++             spawn.controller = controller;
+          }

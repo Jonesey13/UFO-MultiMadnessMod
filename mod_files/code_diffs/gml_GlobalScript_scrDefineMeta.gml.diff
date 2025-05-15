@@ -1,0 +1,8 @@
+*** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Thu May 15 21:38:36 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Thu May 15 21:31:59 2025
+***************
+*** 45,46 ****
+--- 45,47 ----
+      scr49_Meta(nGame);
++     global.mGameMenuStyle[nGame] = 18;
+      scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);

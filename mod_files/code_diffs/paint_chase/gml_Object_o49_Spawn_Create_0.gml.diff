@@ -1,0 +1,8 @@
+*** original_scripts/paint_chase/gml_Object_o49_Spawn_Create_0.gml	Thu May 15 21:38:36 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Spawn_Create_0.gml	Thu May 15 21:22:18 2025
+***************
+*** 23,24 ****
+--- 23,25 ----
+  spawnType = NONE;
++ controller = NONE;
+  defaultDirection = UP;

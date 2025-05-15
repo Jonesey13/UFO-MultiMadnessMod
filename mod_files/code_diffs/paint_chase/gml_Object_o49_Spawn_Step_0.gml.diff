@@ -1,0 +1,11 @@
+*** original_scripts/paint_chase/gml_Object_o49_Spawn_Step_0.gml	Thu May 15 21:38:36 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Spawn_Step_0.gml	Thu May 15 21:11:50 2025
+***************
+*** 118,120 ****
+              obj.moveChoice = obj.faceDirection;
+!             obj.controller = abs(spawnType) - 1;
+          }
+--- 118,120 ----
+              obj.moveChoice = obj.faceDirection;
+!             obj.controller = controller;
+          }

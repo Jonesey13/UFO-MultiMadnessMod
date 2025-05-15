@@ -29,7 +29,7 @@ async Task<string> RunTerminalCommand(string applet, string workdir, string[] ar
         await Task.WhenAll(tasks);
 
         if(!expectedExitCodes.Contains(p.ExitCode!)) {
-            throw new Exception($"Terminal command '{applet}' exited with code {p.ExitCode}:\n\nargs:{String.Join(' ', args)}\n\n{err}");
+            throw new Exception($"Terminal command '{applet}' exited with code {p.ExitCode}:\n\nargs:{String.Join(' ', args)}\n\n{res}\n\n{err}");
         }
 
         return res;
