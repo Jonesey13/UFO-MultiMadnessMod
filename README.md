@@ -35,7 +35,7 @@ From here you want to run the following scripts in order:
 3. `patch_mortol4P.csx`
     * This copies `data.win` into the `output` folder and imports the modded code and textures/sprites
 
-After completing these steps the modded `data.win` file can be copied back into your original UFO50 game folder to apply the mod.
+After completing these steps the files in the `output` folder can be copied back into your original UFO50 game folder to apply the mod.
 
 The `.csx` scripts can be run using the VSCode launch configuration provided (first you must select the script you want to run in the "Explorer" menu before running it from the "Run and Debug" menu).
 
