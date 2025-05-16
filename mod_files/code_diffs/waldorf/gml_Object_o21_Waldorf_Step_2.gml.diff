@@ -1,0 +1,17 @@
+*** original_scripts/waldorf/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 21:04:41 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 19:33:37 2025
+***************
+*** 164,167 ****
+      sprite_index = s21_Waldorf;
+! else
+      sprite_index = s21_Waldorf2;
+  
+--- 164,171 ----
+      sprite_index = s21_Waldorf;
+! else if(controller == 1)
+      sprite_index = s21_Waldorf2;
++ else if (controller == 2)
++     sprite_index = s21_Waldorf3;
++ else if (controller == 3)
++     sprite_index = s21_Waldorf4;
+  
