@@ -3,6 +3,7 @@
 This is a mod to enable 4 players for various games in the game UFO50. Currently the following games are supported:
 * Mortol
 * Paint Chase
+* Waldorf's Journey
 
 This also incorporates p-sam's rich presence for Discord mod.
 
