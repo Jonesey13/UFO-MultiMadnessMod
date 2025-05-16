@@ -1,0 +1,262 @@
+{
+  "size": [64, 64],
+  "margin": [20, 43, 55, 36],
+  "origin": [32, 40],
+  "bounding_box_mode": 2,
+  "special": {
+    "version": 3,
+    "type": "Normal",
+    "playback_speed": 1,
+    "playback_speed_type": "FramesPerGameFrame"
+  },
+  "texture_pages": [
+    {
+      "source_position": [0, 0],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 0],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 0],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 0],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 64],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 64],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 64],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 64],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 128],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 128],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 128],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 128],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 192],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 192],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 192],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 192],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 256],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 256],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 256],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 256],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 320],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 320],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 320],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 320],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 384],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 384],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [128, 384],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 384],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [0, 448],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [64, 448],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    },
+    {
+      "source_position": [192, 448],
+      "source_size": [64, 64],
+      "target_position": [0, 0],
+      "target_size": [64, 64],
+      "bounding_size": [64, 64],
+      "texture": "Texture 116"
+    }
+  ]
+}

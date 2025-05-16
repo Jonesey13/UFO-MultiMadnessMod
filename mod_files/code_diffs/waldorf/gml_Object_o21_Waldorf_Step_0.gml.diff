@@ -1,0 +1,62 @@
+*** original_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Fri May 16 21:04:41 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Fri May 16 20:58:16 2025
+***************
+*** 1055,1057 ****
+      
+!     if (o21_Game.numPlayers == 2)
+      {
+--- 1055,1057 ----
+      
+!     if (o21_Game.numPlayers >= 2)
+      {
+***************
+*** 1464,1475 ****
+              }
+!             else if (numPlayers == 2 && !endCondition)
+              {
+                  scrSfx(o21_Game.soundDie, 80);
+!                 muteBGM();
+!                 futureState = STATE_BATTLE_OVER;
+                  
+!                 if (other.controller == 0)
+!                     endCondition = P2_WIN;
+!                 else
+!                     endCondition = P1_WIN;
+              }
+--- 1464,1499 ----
+              }
+!             else if (numPlayers >= 2 && !endCondition)
+              {
+                  scrSfx(o21_Game.soundDie, 80);
+! 
+!                 index = array_get_index(livePlayers, other.controller + 1)
+!                 array_delete(livePlayers, index, 1)
+                  
+!                 if (array_length(livePlayers) == 1) {
+!                     muteBGM();
+!                     winner = livePlayers[0]
+!                     
+!                     if (winner == 1)
+!                         endCondition = P1_WIN;
+!                     else if (winner == 2)
+!                         endCondition = P2_WIN;
+!                     else if (winner == 3)
+!                         endCondition = P3_WIN;
+!                     else if (winner == 4)
+!                         endCondition = P4_WIN;
+! 
+!                     if (numPlayers == 2)
+!                         state = STATE_WAR_SETUP;
+!                         livePlayers = [1, 2];
+! 
+!                     if (numPlayers == 3)
+!                         state = STATE_WAR_SETUP;
+!                         livePlayers = [1, 2, 3];
+! 
+!                     if (numPlayers == 4)
+!                         state = STATE_WAR_SETUP;
+!                         livePlayers = [1, 2, 3, 4];
+! 
+!                     futureState = STATE_BATTLE_OVER;
+!                 }
+              }

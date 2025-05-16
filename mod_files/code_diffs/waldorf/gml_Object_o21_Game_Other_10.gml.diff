@@ -1,0 +1,68 @@
+*** original_scripts/waldorf/gml_Object_o21_Game_Other_10.gml	Fri May 16 21:04:41 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Other_10.gml	Fri May 16 20:45:42 2025
+***************
+*** 23,24 ****
+--- 23,26 ----
+  waldorf2 = -4;
++ waldorf3 = -4;
++ waldorf4 = -4;
+  scrResetSpeedRun();
+***************
+*** 709,711 ****
+  }
+! else if (numPlayers == 2)
+  {
+--- 711,713 ----
+  }
+! else if (numPlayers >= 2)
+  {
+***************
+*** 792,793 ****
+--- 794,831 ----
+      
++     if (numPlayers >=3) {
++         yStart = (scrIRandomRange(0, 3) * 32) + 72 + vShift;
++         plat = instance_create(160, yStart, o21_Platform);
++         
++         with (plat)
++             image_index = theme;
++         
++         waldorf3 = instance_create(176, yStart - 16, o21_Waldorf);
++         
++         with (waldorf3)
++         {
++             controller = 2;
++             flapEnergy = STARTING_FLAP_ENERGY_2P;
++             MAX_FLAP_ENERGY = MAX_FLAP_ENERGY_2P;
++         }
++     }
++ 
++     if (numPlayers >=4) {
++         yStart = (scrIRandomRange(0, 3) * 32) + 72 + vShift;
++         plat = instance_create(240, yStart, o21_Platform);
++         
++         with (plat)
++             image_index = theme;
++         
++         waldorf4 = instance_create(256, yStart - 16, o21_Waldorf);
++         
++         with (waldorf4)
++         {
++             controller = 3;
++             flapEnergy = STARTING_FLAP_ENERGY_2P;
++             MAX_FLAP_ENERGY = MAX_FLAP_ENERGY_2P;
++             aimerAngle = 180;
++             faceDirection = -1;
++         }
++     }
++     
+      if (scrIRandomRange(1, 3) == 1 && (currRound > 1 || currRound == numRounds))
+***************
+*** 840,842 ****
+  
+! if (numPlayers == 2)
+      futureState = STATE_BATTLE_INTRO;
+--- 878,880 ----
+  
+! if (numPlayers >= 2)
+      futureState = STATE_BATTLE_INTRO;

@@ -1,0 +1,127 @@
+*** original_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Fri May 16 21:04:41 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Fri May 16 20:40:31 2025
+***************
+*** 27,28 ****
+--- 27,32 ----
+      draw_sprite_ext(s21_Waldorf2, 0, 304, 120, -1, 1, 0, c_white, 1);
++     if (numPlayers >= 3)
++         draw_sprite_ext(s21_Waldorf3, 0, 192, 180, 1, 1, 0, c_white, 1);
++     if (numPlayers >= 4)
++         draw_sprite_ext(s21_Waldorf4, 0, 192, 60, 1, 1, 0, c_white, 1);
+  }
+***************
+*** 68,73 ****
+  
+! if ((state == STATE_PLAY || state == STATE_BATTLE_OVER || state == STATE_BATTLE_INTRO) && numPlayers == 2)
+  {
+      draw_sprite(s21_HUD, 3, xview, yview);
+-     
+      if (verify(waldorf))
+--- 72,76 ----
+  
+! if ((state == STATE_PLAY || state == STATE_BATTLE_OVER || state == STATE_BATTLE_INTRO) && numPlayers >= 2)
+  {
+      draw_sprite(s21_HUD, 3, xview, yview);
+      if (verify(waldorf))
+***************
+*** 82,85 ****
+      draw_sprite(s21_HUD, wins[1] + 4, xview + 72, yview + 8);
+!     draw_sprite(s21_HUD, 3, xview + 296, yview);
+      
+      if (verify(waldorf2))
+--- 85,89 ----
+      draw_sprite(s21_HUD, wins[1] + 4, xview + 72, yview + 8);
+! 
+      
++     draw_sprite(s21_HUD, 3, xview + 296, yview);
+      if (verify(waldorf2))
+***************
+*** 94,95 ****
+--- 98,127 ----
+      draw_sprite(s21_HUD, wins[2] + 4, xview + 296 + 72, yview + 8);
++ 
++     if (numPlayers >= 3) {
++         draw_sprite(s21_HUD, 3, xview + 98, yview);
++         if (verify(waldorf3))
++         {
++             scrDrawVarBar(xview + 98 + 25, yview + 9, xview + 98 + 70, yview + 14, false, waldorf3.flapEnergy, waldorf3.MAX_FLAP_ENERGY, global.palette[18], -1);
++             scrDrawVarBar(xview + 98 + 25, yview + 9, xview + 98 + 70, yview + 14, false, waldorf3.flapEnergy - waldorf3.flapDelta, waldorf3.MAX_FLAP_ENERGY, global.palette[2], -1);
++         }
++         
++         draw_set_color(c_white);
++         scrSetFont(fontDefault);
++         draw_text(xview + 98 + 8, yview + 8 + 1, "P3");
++         draw_sprite(s21_HUD, wins[3] + 4, xview + 98 + 72, yview + 8);
++     }
++ 
++     if (numPlayers >= 4) {
++         draw_sprite(s21_HUD, 3, xview + 196, yview);
++         if (verify(waldorf4))
++         {
++             scrDrawVarBar(xview + 196 + 25, yview + 9, xview + 196 + 70, yview + 14, false, waldorf4.flapEnergy, waldorf4.MAX_FLAP_ENERGY, global.palette[18], -1);
++             scrDrawVarBar(xview + 196 + 25, yview + 9, xview + 196 + 70, yview + 14, false, waldorf4.flapEnergy - waldorf4.flapDelta, waldorf4.MAX_FLAP_ENERGY, global.palette[2], -1);
++         }
++         
++         draw_set_color(c_white);
++         scrSetFont(fontDefault);
++         draw_text(xview + 196 + 8, yview + 8 + 1, "P4");
++         draw_sprite(s21_HUD, wins[4] + 4, xview + 196 + 72, yview + 8);
++     }
+  }
+***************
+*** 140,141 ****
+--- 172,185 ----
+      }
++ 
++     if (endCondition == P3_WIN && flicker16)
++     {
++         draw_text_bg_centered(xview + 192, yview + 96, "P3 WINS", 0, 8, 8, false);
++         draw_text_bg_centered(xview + 192, yview + 96 + 8, string(wins[1]) + "-" + string(wins[2]), 0, 8, 8, false);
++     }
++ 
++     if (endCondition == P4_WIN && flicker16)
++     {
++         draw_text_bg_centered(xview + 192, yview + 96, "P4 WINS", 0, 8, 8, false);
++         draw_text_bg_centered(xview + 192, yview + 96 + 8, string(wins[1]) + "-" + string(wins[2]), 0, 8, 8, false);
++     }
+  }
+***************
+*** 147,153 ****
+      
+!     if (endCondition == 1)
+          winMsg = scrStringExt("battle_over_3", 0, 0, 3);
+      
+!     if (endCondition == 2)
+          winMsg = scrStringExt("battle_over_4", 0, 0, 3);
+      
+--- 191,203 ----
+      
+!     if (endCondition == P1_WIN)
+          winMsg = scrStringExt("battle_over_3", 0, 0, 3);
+      
+!     if (endCondition == P2_WIN)
+          winMsg = scrStringExt("battle_over_4", 0, 0, 3);
++ 
++     if (endCondition == P3_WIN)
++         winMsg = "P3 IS THE OVERALL WINNER!";
++ 
++     if (endCondition == P4_WIN)
++         winMsg = "P4 IS THE OVERALL WINNER!";
+      
+***************
+*** 178,179 ****
+--- 228,241 ----
+      }
++ 
++     if (endCondition == P3_WIN)
++     {
++         draw_sprite(s21_Waldorf3, 0, xview + 192, yview + 112);
++         draw_sprite(s21_Waldorf3, 18, xview + 192, yview + 112);
++     }
++ 
++     if (endCondition == P4_WIN)
++     {
++         draw_sprite(s21_Waldorf4, 0, xview + 192, yview + 112);
++         draw_sprite(s21_Waldorf4, 18, xview + 192, yview + 112);
++     }
+      
