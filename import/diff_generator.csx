@@ -1,8 +1,8 @@
 #load "./terminal_helper.csx"
 
-if(Directory.Exists("mod_files/code_diffs")) {
-    Directory.Delete("mod_files/code_diffs", true);
-}
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 if(!Directory.Exists("original_scripts")) {
     Directory.CreateDirectory("original_scripts");
@@ -38,5 +38,25 @@ foreach (string moddedScriptPath in Directory.EnumerateFiles("ufo50_modded_scrip
     if (!Directory.Exists(directoryName)) {
         Directory.CreateDirectory(directoryName);
     }
-    File.WriteAllText(diffScriptPath, diffstring);
+
+    var skipWrite = false;
+
+    // Don't update the diff if only the dates have changed
+    if (File.Exists(diffScriptPath)) {
+        skipWrite = true;
+        var originalDiffContent = File.ReadAllLines(diffScriptPath).Skip(2);
+        var newDiffContent = diffstring.Split(Environment.NewLine).Skip(2);
+
+        foreach (var (first, second) in originalDiffContent.Zip(newDiffContent)){
+            if (first != second)
+            {
+                skipWrite = false;
+                break;
+            }
+        }
+    }
+
+    if(!skipWrite) {
+        File.WriteAllText(diffScriptPath, diffstring);
+    }
 }
