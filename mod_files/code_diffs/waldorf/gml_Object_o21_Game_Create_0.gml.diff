@@ -1,5 +1,5 @@
-*** original_scripts/waldorf/gml_Object_o21_Game_Create_0.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Create_0.gml	Fri May 16 20:06:42 2025
+*** original_scripts/waldorf/gml_Object_o21_Game_Create_0.gml	Fri May 16 21:07:39 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Create_0.gml	Wed May 21 18:07:21 2025
 ***************
 *** 19,20 ****
 --- 19,22 ----
@@ -8,16 +8,25 @@
 + P4_WIN = 4;
   CAMERA_RADIUS = 90;
 ***************
-*** 46,47 ****
---- 48,58 ----
+*** 44,47 ****
+  
+! if (numPlayers == 2)
+      state = STATE_WAR_SETUP;
+  
+--- 46,61 ----
+  
+! if (numPlayers == 2) {
       state = STATE_WAR_SETUP;
 +     livePlayers = [1, 2];
++ }
 + 
-+ if (numPlayers == 3)
++ if (numPlayers == 3) {
 +     state = STATE_WAR_SETUP;
 +     livePlayers = [1, 2, 3];
++ }
 + 
-+ if (numPlayers == 4)
++ if (numPlayers == 4) {
 +     state = STATE_WAR_SETUP;
 +     livePlayers = [1, 2, 3, 4];
++ }
   

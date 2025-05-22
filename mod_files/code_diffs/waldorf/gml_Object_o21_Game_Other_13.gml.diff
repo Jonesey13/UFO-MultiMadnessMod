@@ -1,5 +1,5 @@
-*** original_scripts/waldorf/gml_Object_o21_Game_Other_13.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Other_13.gml	Fri May 16 20:27:25 2025
+*** original_scripts/waldorf/gml_Object_o21_Game_Other_13.gml	Fri May 16 21:07:39 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Other_13.gml	Thu May 22 20:17:45 2025
 ***************
 *** 51,53 ****
   
@@ -9,3 +9,41 @@
   
 ! if (numPlayers >= 2)
   {
+***************
+*** 61,64 ****
+      
+!     if (verify(waldorf) && verify(waldorf2))
+!     {
+          if (((journeyTimer - 32) % 330) == 0)
+--- 61,64 ----
+      
+! 
+!     if (instance_exists(o21_Waldorf)) {
+          if (((journeyTimer - 32) % 330) == 0)
+***************
+*** 68,70 ****
+              
+!             do
+              {
+--- 68,70 ----
+              
+!             while(true)
+              {
+***************
+*** 83,86 ****
+                      break;
+              }
+-             until (point_distance(waldorf.x, waldorf.y, xx, yy) >= 128 && point_distance(waldorf2.x, waldorf2.y, xx, yy) >= 128 && !collision_rectangle(xx, yy, xx + 31, yy + 15, o21_Platform, 0, 1));
+              
+--- 83,93 ----
+                      break;
++ 
++                 with (o21_Waldorf) {
++                     if (point_distance(x, y, xx, yy) < 128)
++                         continue
++                 }
++ 
++                 if (!collision_rectangle(xx, yy, xx + 31, yy + 15, o21_Platform, 0, 1))
++                     break
+              }
+              

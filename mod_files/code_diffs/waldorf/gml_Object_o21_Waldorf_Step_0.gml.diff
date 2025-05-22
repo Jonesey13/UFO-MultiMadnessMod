@@ -1,5 +1,5 @@
-*** original_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Fri May 16 20:58:16 2025
+*** original_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Fri May 16 21:07:39 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Waldorf_Step_0.gml	Thu May 22 20:34:51 2025
 ***************
 *** 1055,1057 ****
       
@@ -23,7 +23,7 @@
 !                 else
 !                     endCondition = P1_WIN;
               }
---- 1464,1499 ----
+--- 1464,1502 ----
               }
 !             else if (numPlayers >= 2 && !endCondition)
               {
@@ -45,17 +45,20 @@
 !                     else if (winner == 4)
 !                         endCondition = P4_WIN;
 ! 
-!                     if (numPlayers == 2)
+!                     if (numPlayers == 2) {
 !                         state = STATE_WAR_SETUP;
 !                         livePlayers = [1, 2];
+!                     }
 ! 
-!                     if (numPlayers == 3)
+!                     if (numPlayers == 3) {
 !                         state = STATE_WAR_SETUP;
 !                         livePlayers = [1, 2, 3];
+!                     }
 ! 
-!                     if (numPlayers == 4)
+!                     if (numPlayers == 4) {
 !                         state = STATE_WAR_SETUP;
 !                         livePlayers = [1, 2, 3, 4];
+!                     }
 ! 
 !                     futureState = STATE_BATTLE_OVER;
 !                 }

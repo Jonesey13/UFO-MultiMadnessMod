@@ -1,13 +1,19 @@
-*** original_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Fri May 16 20:40:31 2025
+*** original_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Fri May 16 21:07:39 2025
+--- ufo50_modded_scripts/waldorf/gml_Object_o21_Game_Draw_0.gml	Thu May 22 20:32:52 2025
 ***************
 *** 27,28 ****
---- 27,32 ----
+--- 27,38 ----
       draw_sprite_ext(s21_Waldorf2, 0, 304, 120, -1, 1, 0, c_white, 1);
-+     if (numPlayers >= 3)
-+         draw_sprite_ext(s21_Waldorf3, 0, 192, 180, 1, 1, 0, c_white, 1);
-+     if (numPlayers >= 4)
-+         draw_sprite_ext(s21_Waldorf4, 0, 192, 60, 1, 1, 0, c_white, 1);
++     if (numPlayers >= 3) {
++         draw_set_color(global.palette[7]);
++         draw_text(147, 156, "P3");
++         draw_sprite_ext(s21_Waldorf3, 0, 151, 180, 1, 1, 0, c_white, 1);
++     }
++     if (numPlayers >= 4) {
++         draw_set_color(global.palette[8]);
++         draw_text(229, 156, "P4");
++         draw_sprite_ext(s21_Waldorf4, 0, 233, 180, -1, 1, 0, c_white, 1);
++     }
   }
 ***************
 *** 68,73 ****
@@ -17,7 +23,7 @@
       draw_sprite(s21_HUD, 3, xview, yview);
 -     
       if (verify(waldorf))
---- 72,76 ----
+--- 78,82 ----
   
 ! if ((state == STATE_PLAY || state == STATE_BATTLE_OVER || state == STATE_BATTLE_INTRO) && numPlayers >= 2)
   {
@@ -29,7 +35,7 @@
 !     draw_sprite(s21_HUD, 3, xview + 296, yview);
       
       if (verify(waldorf2))
---- 85,89 ----
+--- 91,95 ----
       draw_sprite(s21_HUD, wins[1] + 4, xview + 72, yview + 8);
 ! 
       
@@ -37,7 +43,7 @@
       if (verify(waldorf2))
 ***************
 *** 94,95 ****
---- 98,127 ----
+--- 104,133 ----
       draw_sprite(s21_HUD, wins[2] + 4, xview + 296 + 72, yview + 8);
 + 
 +     if (numPlayers >= 3) {
@@ -70,7 +76,7 @@
   }
 ***************
 *** 140,141 ****
---- 172,185 ----
+--- 178,191 ----
       }
 + 
 +     if (endCondition == P3_WIN && flicker16)
@@ -94,7 +100,7 @@
 !     if (endCondition == 2)
           winMsg = scrStringExt("battle_over_4", 0, 0, 3);
       
---- 191,203 ----
+--- 197,209 ----
       
 !     if (endCondition == P1_WIN)
           winMsg = scrStringExt("battle_over_3", 0, 0, 3);
@@ -110,7 +116,7 @@
       
 ***************
 *** 178,179 ****
---- 228,241 ----
+--- 234,247 ----
       }
 + 
 +     if (endCondition == P3_WIN)
