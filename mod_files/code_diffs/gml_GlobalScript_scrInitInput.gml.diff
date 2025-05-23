@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrInitInput.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Sun May 11 20:14:00 2025
+*** original_scripts/gml_GlobalScript_scrInitInput.gml	Fri May 16 21:07:39 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Fri May 23 15:56:36 2025
 ***************
 *** 5,6 ****
 --- 5,8 ----
@@ -8,6 +8,48 @@
 +     global.joySlot[3] = 3;
       global.joyConnected = gamepad_is_connected(0);
 ***************
+*** 22,30 ****
+      global.INP_TYPE_RELEASE = 2;
+!     global.DEFAULT_KEY[0][global.INP_UP] = 38;
+!     global.DEFAULT_KEY[0][global.INP_DOWN] = 40;
+!     global.DEFAULT_KEY[0][global.INP_LEFT] = 37;
+!     global.DEFAULT_KEY[0][global.INP_RIGHT] = 39;
+!     global.DEFAULT_KEY[0][global.INP_FIRE1] = 88;
+!     global.DEFAULT_KEY[0][global.INP_FIRE2] = 90;
+!     global.DEFAULT_KEY[0][global.INP_START] = 68;
+      global.DEFAULT_JOY[0][global.INP_UP] = 32781;
+--- 24,32 ----
+      global.INP_TYPE_RELEASE = 2;
+!     global.DEFAULT_KEY[0][global.INP_UP] = vk_up;
+!     global.DEFAULT_KEY[0][global.INP_DOWN] = vk_down;
+!     global.DEFAULT_KEY[0][global.INP_LEFT] = vk_left;
+!     global.DEFAULT_KEY[0][global.INP_RIGHT] = vk_right;
+!     global.DEFAULT_KEY[0][global.INP_FIRE1] = vk_rshift;
+!     global.DEFAULT_KEY[0][global.INP_FIRE2] = vk_rcontrol;
+!     global.DEFAULT_KEY[0][global.INP_START] = vk_enter;
+      global.DEFAULT_JOY[0][global.INP_UP] = 32781;
+***************
+*** 36,44 ****
+      global.DEFAULT_JOY[0][global.INP_START] = 32778;
+!     global.DEFAULT_KEY[1][global.INP_UP] = 101;
+!     global.DEFAULT_KEY[1][global.INP_DOWN] = 98;
+!     global.DEFAULT_KEY[1][global.INP_LEFT] = 97;
+!     global.DEFAULT_KEY[1][global.INP_RIGHT] = 99;
+!     global.DEFAULT_KEY[1][global.INP_FIRE1] = 35;
+!     global.DEFAULT_KEY[1][global.INP_FIRE2] = 46;
+!     global.DEFAULT_KEY[1][global.INP_START] = 33;
+      global.DEFAULT_JOY[1][global.INP_UP] = 32781;
+--- 38,46 ----
+      global.DEFAULT_JOY[0][global.INP_START] = 32778;
+!     global.DEFAULT_KEY[1][global.INP_UP] = vk_numpad5;
+!     global.DEFAULT_KEY[1][global.INP_DOWN] = vk_numpad2;
+!     global.DEFAULT_KEY[1][global.INP_LEFT] = vk_numpad1;
+!     global.DEFAULT_KEY[1][global.INP_RIGHT] = vk_numpad3;
+!     global.DEFAULT_KEY[1][global.INP_FIRE1] = vk_numpad9;
+!     global.DEFAULT_KEY[1][global.INP_FIRE2] = vk_add;
+!     global.DEFAULT_KEY[1][global.INP_START] = vk_subtract;
+      global.DEFAULT_JOY[1][global.INP_UP] = 32781;
+***************
 *** 50,53 ****
       global.DEFAULT_JOY[1][global.INP_START] = 32778;
       
@@ -15,13 +57,13 @@
       {
 --- 52,83 ----
       global.DEFAULT_JOY[1][global.INP_START] = 32778;
-+     global.DEFAULT_KEY[2][global.INP_UP] = 101;
-+     global.DEFAULT_KEY[2][global.INP_DOWN] = 98;
-+     global.DEFAULT_KEY[2][global.INP_LEFT] = 97;
-+     global.DEFAULT_KEY[2][global.INP_RIGHT] = 99;
-+     global.DEFAULT_KEY[2][global.INP_FIRE1] = 35;
-+     global.DEFAULT_KEY[2][global.INP_FIRE2] = 46;
-+     global.DEFAULT_KEY[2][global.INP_START] = 33;
++     global.DEFAULT_KEY[2][global.INP_UP] = ord("W");
++     global.DEFAULT_KEY[2][global.INP_DOWN] = ord("S");
++     global.DEFAULT_KEY[2][global.INP_LEFT] = ord("A");
++     global.DEFAULT_KEY[2][global.INP_RIGHT] = ord("D");
++     global.DEFAULT_KEY[2][global.INP_FIRE1] = vk_lalt;
++     global.DEFAULT_KEY[2][global.INP_FIRE2] = vk_space;
++     global.DEFAULT_KEY[2][global.INP_START] = ord("E");
 +     global.DEFAULT_JOY[2][global.INP_UP] = 32781;
 +     global.DEFAULT_JOY[2][global.INP_DOWN] = 32782;
 +     global.DEFAULT_JOY[2][global.INP_LEFT] = 32783;
@@ -29,13 +71,13 @@
 +     global.DEFAULT_JOY[2][global.INP_FIRE1] = 32771;
 +     global.DEFAULT_JOY[2][global.INP_FIRE2] = 32769;
 +     global.DEFAULT_JOY[2][global.INP_START] = 32778;
-+     global.DEFAULT_KEY[3][global.INP_UP] = 101;
-+     global.DEFAULT_KEY[3][global.INP_DOWN] = 98;
-+     global.DEFAULT_KEY[3][global.INP_LEFT] = 97;
-+     global.DEFAULT_KEY[3][global.INP_RIGHT] = 99;
-+     global.DEFAULT_KEY[3][global.INP_FIRE1] = 35;
-+     global.DEFAULT_KEY[3][global.INP_FIRE2] = 46;
-+     global.DEFAULT_KEY[3][global.INP_START] = 33;
++     global.DEFAULT_KEY[3][global.INP_UP] = ord("I");
++     global.DEFAULT_KEY[3][global.INP_DOWN] = ord("K");
++     global.DEFAULT_KEY[3][global.INP_LEFT] = ord("J");
++     global.DEFAULT_KEY[3][global.INP_RIGHT] = ord("L");
++     global.DEFAULT_KEY[3][global.INP_FIRE1] = ord("V");
++     global.DEFAULT_KEY[3][global.INP_FIRE2] = ord("B");
++     global.DEFAULT_KEY[3][global.INP_START] = ord("N");
 +     global.DEFAULT_JOY[3][global.INP_UP] = 32781;
 +     global.DEFAULT_JOY[3][global.INP_DOWN] = 32782;
 +     global.DEFAULT_JOY[3][global.INP_LEFT] = 32783;
