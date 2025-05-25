@@ -1,0 +1,68 @@
+*** original_scripts/ninpek/gml_Object_o34_Mas_Draw_0.gml	Sun May 25 20:11:31 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Draw_0.gml	Sun May 25 20:02:38 2025
+***************
+*** 133,162 ****
+  
+! if (life[0] > -1)
+! {
+!     for (var i = 0; i < min(life[0], 8); i++)
+!         draw_sprite(s34_HudLife, 0, _xv + (i * 16), _yv);
+!     
+!     var pointsString = string_format(points[0], 6, 0);
+!     pointsString = string_replace_all(pointsString, " ", "0");
+!     draw_text(_xv, _yv + 16, pointsString);
+! }
+! else if (mText == 0)
+! {
+!     draw_text_ext(_xv, _yv + 8, scrStringLimit("help_me_out", 24), 8, 48);
+! }
+! else
+! {
+!     draw_text_ext(_xv, _yv + 8, scrStringLimit("gather_ghosts", 24), 8, 48);
+! }
+! 
+! if (multip)
+! {
+!     if (life[1] > -1)
+      {
+!         for (var i = 0; i < min(life[1], 8); i++)
+!             draw_sprite(s34_HudLife, 1, (_xv + 368) - (i * 16), _yv);
+          
+!         var pointsString = string_format(points[1], 6, 0);
+          pointsString = string_replace_all(pointsString, " ", "0");
+!         draw_text(_xv + 336, _yv + 16, pointsString);
+      }
+--- 133,143 ----
+  
+! for (var playerNum = 0; playerNum < global.numPlayers; playerNum++) {
+!     if (life[playerNum] > -1)
+      {
+!         for (var i = 0; i < min(life[playerNum], 8); i++)
+!             draw_sprite(s34_HudLife, 0, (_xv + 100 * playerNum) + (i * 16), _yv);
+          
+!         var pointsString = string_format(points[playerNum], 6, 0);
+          pointsString = string_replace_all(pointsString, " ", "0");
+!         draw_text(_xv + 100 * playerNum, _yv + 16, pointsString);
+      }
+***************
+*** 164,168 ****
+      {
+!         draw_set_halign(fa_right);
+!         draw_text_ext(_xv + 384, _yv + 8, scrStringLimit("help_me_out", 24), 8, 48);
+!         draw_set_halign(fa_left);
+      }
+--- 145,147 ----
+      {
+!         draw_text_ext(_xv + 100 * playerNum, _yv + 8, scrStringLimit("help_me_out", 24), 8, 48);
+      }
+***************
+*** 170,174 ****
+      {
+!         draw_set_halign(fa_right);
+!         draw_text_ext(_xv + 384, _yv + 8, scrStringLimit("gather_ghosts", 24), 8, 48);
+!         draw_set_halign(fa_left);
+      }
+--- 149,151 ----
+      {
+!         draw_text_ext(_xv + 100 * playerNum, _yv + 8, scrStringLimit("gather_ghosts", 24), 8, 48);
+      }

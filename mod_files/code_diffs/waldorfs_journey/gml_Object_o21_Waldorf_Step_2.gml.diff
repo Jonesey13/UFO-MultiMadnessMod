@@ -1,5 +1,5 @@
-*** original_scripts/waldorf/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorf/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 19:33:37 2025
+*** original_scripts/waldorfs_journey/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 21:04:41 2025
+--- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Waldorf_Step_2.gml	Fri May 16 19:33:37 2025
 ***************
 *** 164,167 ****
       sprite_index = s21_Waldorf;
