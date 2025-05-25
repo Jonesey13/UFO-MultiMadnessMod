@@ -1,0 +1,156 @@
+*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Sun May 25 20:11:31 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Fri May 23 21:35:40 2025
+***************
+*** 60,62 ****
+      
+!     if (multip)
+      {
+--- 60,62 ----
+      
+!     if (global.numPlayers >= 2)
+      {
+***************
+*** 73,74 ****
+--- 73,102 ----
+      }
++ 
++     if (global.numPlayers >= 3)
++     {
++         p[2] = instance_create((x + 24) - 24, y, o34_Player);
++         points[2] = 0;
++         self.p[2].num = 2;
++         self.p[2].face = 1;
++         self.p[2].spriteRun = s34_P3Run;
++         self.p[2].spriteJump = s34_P3Jump2;
++         self.p[2].myWpn = o34_Shuriken;
++         self.p[2].sprite_index = s34_P3Run;
++         life[2] = 2;
++         pointsPre[2] = 0;
++     }
++ 
++     if (global.numPlayers >= 4)
++     {
++         p[3] = instance_create((x + 32) - 24, y, o34_Player);
++         points[3] = 0;
++         self.p[3].num = 3;
++         self.p[3].face = 1;
++         self.p[3].spriteRun = s34_P4Run;
++         self.p[3].spriteJump = s34_P4Jump2;
++         self.p[3].myWpn = o34_Shuriken2;
++         self.p[3].sprite_index = s34_P4Run;
++         life[3] = 2;
++         pointsPre[3] = 0;
++     }
+      
+***************
+*** 107,118 ****
+              global.g34_loop = 1;
+!         
+!         points[0] = max(0, global.g34_score[0]);
+!         
+!         if (multip)
+!         {
+!             life[0] = max(global.g34_life[0], 2);
+!             life[1] = max(global.g34_life[1], 2);
+!             points[1] = max(0, global.g34_score[1]);
+          }
+!         else
+          {
+--- 135,143 ----
+              global.g34_loop = 1;
+! 
+!         for (var i = 0; i < global.numPlayers; i++) {
+!             points[i] = max(0, global.g34_score[i]);
+!             life[i] = max(global.g34_life[i], 2);
+          }
+!     
+!         if (global.numPlayers == 1)
+          {
+***************
+*** 183,208 ****
+      
+!     if (pointsPre[0] < points[0])
+!     {
+!         pointsBalloon += (points[0] - pointsPre[0]);
+!         pointsPre[0] = points[0];
+!         
+!         if (pointsBalloon >= reqBalloon)
+          {
+!             scrSfx(sfx_special_loop00, 89, true, false);
+!             pointsBalloon -= reqBalloon;
+!             instance_create(_xv + 192, _yv + 216 + 32, o34_Balloon);
+!             
+!             if (reqBalloon == 3000)
+!                 reqBalloon = 4000;
+!             else if (reqBalloon == 4000)
+!                 reqBalloon = 5000;
+!         }
+!     }
+!     
+!     if (multip)
+!     {
+!         if (pointsPre[1] < points[1])
+!         {
+!             pointsBalloon += (points[1] - pointsPre[1]);
+!             pointsPre[1] = points[1];
+              
+--- 208,214 ----
+      
+!     for (var i = 0; i < global.numPlayers; i++) {
+!         if (pointsPre[i] < points[i])
+          {
+!             pointsBalloon += (points[i] - pointsPre[i]);
+!             pointsPre[i] = points[i];
+              
+***************
+*** 330,332 ****
+          
+!         if (multip)
+          {
+--- 336,338 ----
+          
+!         if (global.numPlayers >= 2)
+          {
+***************
+*** 346,348 ****
+          }
+!         
+          state++;
+--- 352,354 ----
+          }
+! 
+          state++;
+***************
+*** 352,361 ****
+  {
+!     var nmult;
+!     
+!     if (multip)
+!         nmult = 2;
+!     else
+!         nmult = 1;
+!     
+!     for (var i = 0; i < nmult; i++)
+      {
+--- 358,360 ----
+  {
+!     for (var i = 0; i < global.numPlayers; i++)
+      {
+***************
+*** 528,536 ****
+              global.g34_loop++;
+!             global.g34_life[0] = life[0];
+!             global.g34_score[0] = points[0];
+!             
+!             if (multip)
+!             {
+!                 global.g34_life[1] = life[1];
+!                 global.g34_score[1] = points[1];
+              }
+--- 527,532 ----
+              global.g34_loop++;
+! 
+!             for (var i = 0; i < global.numPlayers; i++) {
+!                 global.g34_life[i] = life[i];
+!                 global.g34_score[i] = points[i];
+              }

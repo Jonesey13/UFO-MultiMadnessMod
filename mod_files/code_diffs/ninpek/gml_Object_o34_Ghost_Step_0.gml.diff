@@ -1,0 +1,57 @@
+*** original_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Sun May 25 20:11:30 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Sun May 25 19:31:56 2025
+***************
+*** 102,107 ****
+                      
+!                     if (myWpn == o34_Shuriken)
+                          shuri.sprite_index = s34_Gshot;
+!                     else
+                          shuri.sprite_index = s34_Gshot2;
+                  }
+--- 102,111 ----
+                      
+!                     if (shuri.num == 0)
+                          shuri.sprite_index = s34_Gshot;
+!                     else if (shuri.num == 1)
+                          shuri.sprite_index = s34_Gshot2;
++                     else if (shuri.num == 2)
++                         shuri.sprite_index = s34_Gshot3;
++                     else if (shuri.num == 3)
++                         shuri.sprite_index = s34_Gshot4;
+                  }
+***************
+*** 129,130 ****
+--- 133,135 ----
+          spawn.face = face;
++         spawn.myWpn = o34_Shuriken;
+          
+***************
+*** 134,138 ****
+              spawn.spriteJump = s34_NinjaJump2;
+-             spawn.myWpn = o34_Shuriken;
+          }
+!         else
+          {
+--- 139,142 ----
+              spawn.spriteJump = s34_NinjaJump2;
+          }
+!         else if (num == 1)
+          {
+***************
+*** 140,142 ****
+              spawn.spriteJump = s34_P2Jump2;
+!             spawn.myWpn = o34_Shuriken2;
+          }
+--- 144,155 ----
+              spawn.spriteJump = s34_P2Jump2;
+!         }
+!         else if (num == 2)
+!         {
+!             spawn.spriteRun = s34_P3Run;
+!             spawn.spriteJump = s34_P3Jump2;
+!         }
+!         else if (num == 3)
+!         {
+!             spawn.spriteRun = s34_P4Run;
+!             spawn.spriteJump = s34_P4Jump2;
+          }
