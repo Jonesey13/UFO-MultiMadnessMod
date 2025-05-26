@@ -1,0 +1,27 @@
+*** original_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Fri May 23 16:06:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Fri May 23 14:18:46 2025
+***************
+*** 73,74 ****
+--- 73,77 ----
+          o22_Game.p1_sel = sel;
++         if (o22_Game.numPlayers == 5) {
++             o22_Game.p3_sel = sel;
++         }
+      }
+***************
+*** 101,103 ****
+      
+!     if (o22_Game.numPlayers == 2)
+      {
+--- 104,106 ----
+      
+!     if (o22_Game.numPlayers == 2 || o22_Game.numPlayers == 5)
+      {
+***************
+*** 116,117 ****
+--- 119,123 ----
+              o22_Game.p1_sel = -1;
++             if (o22_Game.numPlayers == 5) {
++                 o22_Game.p3_sel = -1;
++             }
+          }

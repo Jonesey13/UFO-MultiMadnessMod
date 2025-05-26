@@ -1,0 +1,56 @@
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri May 23 16:06:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri May 23 14:18:24 2025
+***************
+*** 189,191 ****
+      
+!     if (numPlayers == 2)
+      {
+--- 189,191 ----
+      
+!     if (numPlayers == 2 || numPlayers == 5)
+      {
+***************
+*** 335,337 ****
+                  
+!                 if (numPlayers == 4)
+                      str = scrString("team") + " " + str;
+--- 335,337 ----
+                  
+!                 if (numPlayers == 4 || numPlayers == 5)
+                      str = scrString("team") + " " + str;
+***************
+*** 344,346 ****
+                  
+!                 if (numPlayers == 4)
+                      str = scrString("team") + " " + str;
+--- 344,346 ----
+                  
+!                 if (numPlayers == 4 || numPlayers == 5)
+                      str = scrString("team") + " " + str;
+***************
+*** 389,391 ****
+              
+!             if (numPlayers == 4)
+              {
+--- 389,391 ----
+              
+!             if (numPlayers == 4 || numPlayers == 5)
+              {
+***************
+*** 420,422 ****
+              
+!             if (numPlayers == 4)
+              {
+--- 420,422 ----
+              
+!             if (numPlayers == 4 || numPlayers == 5)
+              {
+***************
+*** 476,478 ****
+          
+!         if (numPlayers == 4)
+          {
+--- 476,478 ----
+          
+!         if (numPlayers == 4 || numPlayers == 5)
+          {

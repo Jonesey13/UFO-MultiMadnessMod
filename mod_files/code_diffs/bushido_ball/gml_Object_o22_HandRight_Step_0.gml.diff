@@ -1,0 +1,10 @@
+*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Fri May 23 16:06:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Fri May 23 14:19:00 2025
+***************
+*** 178,179 ****
+--- 178,182 ----
+          o22_Game.p2_sel = -1;
++         if (o22_Game.numPlayers == 5) {
++             o22_Game.p4_sel = -1;
++         }
+      }
