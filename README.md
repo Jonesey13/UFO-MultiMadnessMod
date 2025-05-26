@@ -5,6 +5,7 @@ This is a mod to enable 4 players for various games in the game UFO50. Currently
 * Paint Chase
 * Waldorf's Journey
 * Ninpek
+* Bushido Ball
 
 This also incorporates p-sam's rich presence for Discord mod.
 
@@ -45,6 +46,8 @@ The `.csx` scripts can be run using the VSCode launch configuration provided (fi
 Thank you to the incredible [Underminers team](https://github.com/UnderminersTeam) for providing such a useful and versatile modding library for Game Maker Studio.
 
 Credit also goes to [this UFO50 Wiki](https://ufo50.miraheze.org/) for documenting where to begin with modding UFO50.
+
+Kudos to [Terrance](https://github.com/Terrance) for putting in the legwork for making Bushido Ball 4 player.
 
 Next up a big thanks to [p-sam](https://github.com/p-sam) for providing such a good modding framework (this is a pale imitation of what you've already done).
 
