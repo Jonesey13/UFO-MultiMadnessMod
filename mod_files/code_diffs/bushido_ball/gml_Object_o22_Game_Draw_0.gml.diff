@@ -1,5 +1,5 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri May 23 16:06:08 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri May 23 14:18:24 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Mon May 26 11:39:34 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Mon May 26 11:19:26 2025
 ***************
 *** 189,191 ****
       
@@ -9,6 +9,15 @@
       
 !     if (numPlayers == 2 || numPlayers == 5)
       {
+***************
+*** 203,205 ****
+                  draw_sprite(s22_CrossOut, 0, 128 + (48 * i), 304 + (48 * j));
+!             else if (p1_sel == ii || p2_sel == ii)
+                  draw_sprite(s22_CircleOut, 0, 128 + (48 * i), 304 + (48 * j));
+--- 203,205 ----
+                  draw_sprite(s22_CrossOut, 0, 128 + (48 * i), 304 + (48 * j));
+!             else if (p1_sel == ii || p2_sel == ii || p3_sel == ii || p4_sel == ii)
+                  draw_sprite(s22_CircleOut, 0, 128 + (48 * i), 304 + (48 * j));
 ***************
 *** 335,337 ****
                   

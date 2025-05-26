@@ -1,0 +1,15 @@
+*** original_scripts/bushido_ball/gml_Object_o22_HandThree_Create_0.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandThree_Create_0.gml	Mon May 26 11:23:19 2025
+***************
+*** 0 ****
+--- 1,10 ----
++ scr22_DefineConstants();
++ faceDir = RIGHT;
++ sel = 3;
++ ready = false;
++ readyCountMax = 10;
++ readyCount = readyCountMax;
++ aiDly = 60;
++ scrInputClear();
++ depth = -2;
++ sprite_index = s22_HandThree;

@@ -1,16 +1,11 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Fri May 23 16:06:08 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Fri May 23 14:17:02 2025
-***************
-*** 1 ****
---- 1,2 ----
-+ // TODO
-  if (substate == 0)
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Mon May 26 11:39:34 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Mon May 26 11:19:47 2025
 ***************
 *** 39,41 ****
           
 !         if (o22_Game.numPlayers == 4)
           {
---- 40,42 ----
+--- 39,41 ----
           
 !         if (o22_Game.numPlayers == 4 || o22_Game.numPlayers == 5)
           {
@@ -23,7 +18,7 @@
           }
 !         else if (o22_Game.numPlayers == 4)
           {
---- 72,81 ----
+--- 71,80 ----
           
 !         if (o22_Game.numPlayers == 2 || o22_Game.numPlayers == 5)
           {
@@ -36,7 +31,7 @@
           {
 ***************
 *** 92,93 ****
---- 96,101 ----
+--- 95,100 ----
                   y = other.ystart + 32;
 +                 if (o22_Game.numPlayers == 5) {
 +                     ai = false;
@@ -44,14 +39,18 @@
 +                 }
               }
 ***************
-*** 96,97 ****
---- 104,112 ----
+*** 96,98 ****
       
-+     if (numPlayers == 5)
-+     {
-+         scr22_CharacterTraits(p1_sel, o22_PlayerL);
-+         scr22_CharacterTraits(p2_sel, o22_PlayerL2);
-+         scr22_CharacterTraits(p3_sel, o22_PlayerR);
-+         scr22_CharacterTraits(p4_sel, o22_PlayerR2);
-+     }
-      if (numPlayers == 4)
+!     if (numPlayers == 4)
+      {
+--- 103,112 ----
+      
+!     if (numPlayers == 5)
+!     {
+!         scr22_CharacterTraits(p1_sel, o22_PlayerL);
+!         scr22_CharacterTraits(p2_sel, o22_PlayerL2);
+!         scr22_CharacterTraits(p3_sel, o22_PlayerR);
+!         scr22_CharacterTraits(p4_sel, o22_PlayerR2);
+!     }
+!     else if (numPlayers == 4)
+      {

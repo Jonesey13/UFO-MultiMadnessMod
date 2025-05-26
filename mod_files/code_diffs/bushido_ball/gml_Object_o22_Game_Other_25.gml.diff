@@ -1,0 +1,13 @@
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Mon May 26 11:39:34 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Mon May 26 11:22:04 2025
+***************
+*** 6,7 ****
+--- 6,13 ----
+  
++ with (o22_HandThree)
++     instance_destroy();
++ 
++ with (o22_HandFour)
++     instance_destroy();
++ 
+  with (o22_CharselLeft)
