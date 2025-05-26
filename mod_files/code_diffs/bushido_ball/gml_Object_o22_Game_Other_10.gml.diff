@@ -1,5 +1,5 @@
 *** original_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Mon May 26 11:39:34 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Mon May 26 11:19:39 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Mon May 26 19:49:03 2025
 ***************
 *** 20,22 ****
       }
@@ -55,12 +55,12 @@
           {
 --- 105,112 ----
       {
-!         var ready = o22_HandLeft.ready && o22_HandRight.ready;
+!         var allReady = o22_HandLeft.ready && o22_HandRight.ready;
 !         if (instance_exists(o22_HandThree) && instance_exists(o22_HandFour)) {
-!             ready = ready && o22_HandThree.ready && o22_HandFour.ready;
+!             allReady = allReady && o22_HandThree.ready && o22_HandFour.ready;
 !         }
 ! 
-!         if (ready)
+!         if (allReady)
           {
 ***************
 *** 75,76 ****
