@@ -1,0 +1,9 @@
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Create_0.gml	Fri May 23 16:06:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Create_0.gml	Fri May 23 14:18:36 2025
+***************
+*** 31,32 ****
+--- 31,34 ----
+  p2_sel = -1;
++ p3_sel = -1;
++ p4_sel = -1;
+  c1_sel = -1;

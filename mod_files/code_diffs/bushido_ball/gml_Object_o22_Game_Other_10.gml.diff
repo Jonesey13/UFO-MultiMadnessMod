@@ -1,0 +1,76 @@
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Mon May 26 11:39:34 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Mon May 26 19:49:03 2025
+***************
+*** 20,22 ****
+      }
+!     else if (numPlayers == 2 || numPlayers == 4)
+      {
+--- 20,22 ----
+      }
+!     else if (numPlayers == 2 || numPlayers == 4 || numPlayers == 5)
+      {
+***************
+*** 40,41 ****
+--- 40,75 ----
+          
++         if (numPlayers == 5)
++         {
++             p3_sel = -1;
++             p4_sel = -1;
++             
++             if (!instance_exists(o22_HandThree))
++                 _HandThree = instance_create(0, 0, o22_HandThree);
++             else
++                 _HandThree = instance_find(o22_HandThree, 0);
++ 
++             with (_HandThree)
++             {
++                 ready = false;
++                 readyCount = readyCountMax;
++                 ai = false;
++                 visible = true;
++                 active = true;
++             }
++             
++             if (!instance_exists(o22_HandFour))
++                 _HandFour = instance_create(0, 0, o22_HandFour);
++             else
++                 _HandFour = instance_find(o22_HandFour, 0);
++             
++             with (_HandFour)
++             {
++                 ready = false;
++                 readyCount = readyCountMax;
++                 ai = false;
++                 visible = true;
++                 active = true;
++             }
++         }
++         
+          with (o22_CharselRight)
+***************
+*** 71,73 ****
+      {
+!         if (o22_HandLeft.ready && o22_HandRight.ready)
+          {
+--- 105,112 ----
+      {
+!         var allReady = o22_HandLeft.ready && o22_HandRight.ready;
+!         if (instance_exists(o22_HandThree) && instance_exists(o22_HandFour)) {
+!             allReady = allReady && o22_HandThree.ready && o22_HandFour.ready;
+!         }
+! 
+!         if (allReady)
+          {
+***************
+*** 75,76 ****
+--- 114,122 ----
+              
++             if (numPlayers == 5) {
++                 if (p3_sel > -1)
++                     charsUsed[p3_sel] = true;
++                 if (p4_sel > -1)
++                     charsUsed[p4_sel] = true;
++             }
++             
+              if (numPlayers > 1 && p2_sel > -1)
