@@ -1,0 +1,11 @@
+*** original_scripts/the_big_bell_race/gml_Object_o28_UFO_Draw_0.gml	Tue May 27 20:29:37 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_UFO_Draw_0.gml	Tue May 27 10:14:08 2025
+***************
+*** 14,16 ****
+          if (tSign > 30 || (tSign % 2) == 0)
+!             draw_sprite(s28_PSign, num, x, y - 10);
+      }
+--- 14,16 ----
+          if (tSign > 30 || (tSign % 2) == 0)
+!             draw_sprite(s28_PSignMulti, num, x, y - 10);
+      }

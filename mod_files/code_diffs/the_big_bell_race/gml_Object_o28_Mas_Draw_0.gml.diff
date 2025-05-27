@@ -1,0 +1,68 @@
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Draw_0.gml	Tue May 27 20:29:37 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Draw_0.gml	Tue May 27 19:34:01 2025
+***************
+*** 8,20 ****
+      
+!     if (naviSel[0] == 0)
+!         draw_sprite(s28_Pointer, 0, xv + 104 + (40 * navi[0]), yv + 96);
+!     else
+!         draw_sprite(s28_Pointer, 2, xv + 104 + (40 * navi[0]), yv + 96);
+!     
+!     if (multip)
+!     {
+!         if (naviSel[1] == 0)
+!             draw_sprite(s28_Pointer, 1, xv + 104 + (40 * navi[1]), yv + 96);
+          else
+!             draw_sprite(s28_Pointer, 3, xv + 104 + (40 * navi[1]), yv + 96);
+      }
+--- 8,14 ----
+      
+!     for (var i = 0; i < global.numPlayers; i++) {
+!         if (naviSel[i] == 0)
+!             draw_sprite(s28_PointerMulti, i, xv + 104 + (40 * navi[i]), yv + 96);
+          else
+!             draw_sprite(s28_PointerOKMulti, i, xv + 104 + (40 * navi[i]), yv + 96);
+      }
+***************
+*** 25,28 ****
+          
+!         if (i == navi[0] || i == navi[1])
+!             ydo = -8;
+          
+--- 19,24 ----
+          
+!         for (var j = 0; j < global.numPlayers; j++) {
+!             if (i == navi[j])
+!                 ydo = -8;
+!         }
+          
+***************
+*** 94,99 ****
+              
+!             if (ds_grid_get(dsRank, 0, i).myId == playerSel[0])
+!                 draw_sprite(s28_PSign, 0, xv + 184, yv + 91 + (16 * i));
+!             else if (ds_grid_get(dsRank, 0, i).myId == playerSel[1])
+!                 draw_sprite(s28_PSign, 1, xv + 184, yv + 91 + (16 * i));
+              
+--- 90,95 ----
+              
+!             for (var j = 0; j < global.numPlayers; j++) {
+!                 if (ds_grid_get(dsRank, 0, i).myId == playerSel[j])
+!                     draw_sprite(s28_PSignMulti, j, xv + 184, yv + 91 + (16 * i));
+!             }
+              
+***************
+*** 125,130 ****
+              
+!             if (ds_grid_get(dsScore, 0, i) == playerSel[0])
+!                 draw_sprite(s28_PSign, 0, xv + 184, yv + 91 + (16 * i));
+!             else if (ds_grid_get(dsScore, 0, i) == playerSel[1])
+!                 draw_sprite(s28_PSign, 1, xv + 184, yv + 91 + (16 * i));
+              
+--- 121,126 ----
+              
+!             for (var j = 0; j < global.numPlayers; j++) {
+!                 if (ds_grid_get(dsScore, 0, i) == playerSel[j])
+!                     draw_sprite(s28_PSignMulti, j, xv + 184, yv + 91 + (16 * i));
+!             }
+              
