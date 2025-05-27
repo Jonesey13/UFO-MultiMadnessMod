@@ -6,6 +6,7 @@ This is a mod to enable 4 players for various games in the game UFO50. Currently
 * Waldorf's Journey
 * Ninpek
 * Bushido Ball
+* The Big Bell Race
 
 This also incorporates p-sam's rich presence for Discord mod.
 

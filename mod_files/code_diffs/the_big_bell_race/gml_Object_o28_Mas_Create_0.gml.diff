@@ -1,0 +1,54 @@
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Tue May 27 20:29:37 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Tue May 27 19:39:21 2025
+***************
+*** 12,14 ****
+  
+! if (global.numPlayers == 2)
+      multip = true;
+--- 12,14 ----
+  
+! if (global.numPlayers >= 2)
+      multip = true;
+***************
+*** 16,20 ****
+  navi[0] = 0;
+  
+  if (multip)
+!     navi[1] = 1;
+  else
+--- 16,23 ----
+  navi[0] = 0;
++ readies = 0;
+  
+  if (multip)
+!     for (var i = 0; i < global.numPlayers; i++) {
+!         navi[i] = i;
+!     }
+  else
+***************
+*** 22,27 ****
+  
+! naviSel[0] = 0;
+! naviSel[1] = 0;
+! playerSel[0] = 0;
+! playerSel[1] = 1;
+  cb = 0;
+--- 25,30 ----
+  
+! for (var i = 0; i < global.numPlayers; i++) {
+!     naviSel[i] = 0;
+!     playerSel[i] = i;
+! }
+  cb = 0;
+***************
+*** 46,49 ****
+  goalPos = 0;
+! p1InGoal = false;
+! p2InGoal = false;
+  dsRank = ds_grid_create(2, 6);
+--- 49,53 ----
+  goalPos = 0;
+! for (var i = 0; i < global.numPlayers; i++) {
+!     playerInGoal[i] = false;
+! }
+  dsRank = ds_grid_create(2, 6);
