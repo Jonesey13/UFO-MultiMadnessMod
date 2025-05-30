@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 15:29:31 2025
---- ufo50_modded_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 15:04:39 2025
+*** original_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 15:45:46 2025
+--- ufo50_modded_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 16:00:35 2025
 ***************
 *** 115,117 ****
           {
@@ -37,3 +37,12 @@
               
 !             if (controller && o43_Game.playMode == VS && o43_Game.numPlayers != 4)
               {
+***************
+*** 371,373 ****
+      
+!     if (controller && o43_Game.playMode != COOP && o43_Game.TM_JUMP_SYNC)
+      {
+--- 372,374 ----
+      
+!     if (controller && o43_Game.playMode == VS && o43_Game.numPlayers != 4 && o43_Game.TM_JUMP_SYNC)
+      {

@@ -1,0 +1,11 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_15.gml	Fri May 30 15:45:46 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_15.gml	Fri May 30 16:01:47 2025
+***************
+*** 14,16 ****
+      
+!     if (playMode == DEMO || (playMode == VS && numPlayers == 2))
+          scrTransition(7, 32, 0, -1, true);
+--- 14,16 ----
+      
+!     if (playMode == DEMO || (playMode == VS && numPlayers >= 2))
+          scrTransition(7, 32, 0, -1, true);

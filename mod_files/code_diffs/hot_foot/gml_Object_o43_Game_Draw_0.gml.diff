@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 15:29:31 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 14:30:12 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 15:45:46 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 15:38:54 2025
 ***************
 *** 134,136 ****
           
@@ -20,3 +20,12 @@
 +                 xShift = 28 * (p mod 2) + 96 * (p div 2);
 +             }
               
+***************
+*** 268,270 ****
+      }
+!     else if (numPlayers == 2 && playMode == VS)
+      {
+--- 274,276 ----
+      }
+!     else if (numPlayers >= 2 && playMode == VS)
+      {

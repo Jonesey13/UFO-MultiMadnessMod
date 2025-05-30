@@ -1,0 +1,11 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_20.gml	Fri May 30 15:45:46 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_20.gml	Fri May 30 15:41:47 2025
+***************
+*** 238,240 ****
+  }
+! else if (numPlayers == 2 && playMode == VS)
+  {
+--- 238,240 ----
+  }
+! else if (numPlayers >= 2 && playMode == VS)
+  {
