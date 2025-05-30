@@ -1,0 +1,14 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Fri May 30 11:14:28 2025
+***************
+*** 21,22 ****
+--- 21,29 ----
+      }
++     else if (numPlayers == 5)
++     {
++         playMode = VS;
++         subState = 3;
++         numPlayers = 4;
++         scrTransition(12, 16, global.palette[31], -1, false);
++     }
+      else if (numPlayers == 0)

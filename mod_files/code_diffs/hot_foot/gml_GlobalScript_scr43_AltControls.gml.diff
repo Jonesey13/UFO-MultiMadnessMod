@@ -1,0 +1,39 @@
+*** original_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_GlobalScript_scr43_AltControls.gml	Fri May 30 15:04:39 2025
+***************
+*** 115,117 ****
+          {
+!             if (!justSwitched && o43_Game.playMode == VS && (!hasBeanbag || (hasBeanbag && scr43_HandsFull(teammate))))
+              {
+--- 115,118 ----
+          {
+!             
+!             if (!justSwitched && o43_Game.playMode == VS && o43_Game.numPlayers != 4 && (!hasBeanbag || (hasBeanbag && scr43_HandsFull(teammate))))
+              {
+***************
+*** 155,157 ****
+                  
+!                 if (controller && o43_Game.playMode == VS)
+                  {
+--- 156,158 ----
+                  
+!                 if (controller && o43_Game.playMode == VS && o43_Game.numPlayers != 4)
+                  {
+***************
+*** 296,298 ****
+          
+!         if (!collision_rectangle(bbox_left - 4, bbox_top + 8, bbox_right + 4, bbox_bottom + 4, o43_AfterPickupImage, 0, 0) && !_justPushed && !justDroppedTimer && !blockSwitch && controller && fire1pressed && !fire2 && !disableAI && !justSwitched && !throwing && !pickingUp && o43_Game.playMode == VS && (!hasBeanbag || hovering || (hasBeanbag && scr43_HandsFull(teammate))))
+          {
+--- 297,299 ----
+          
+!         if (!collision_rectangle(bbox_left - 4, bbox_top + 8, bbox_right + 4, bbox_bottom + 4, o43_AfterPickupImage, 0, 0) && !_justPushed && !justDroppedTimer && !blockSwitch && controller && fire1pressed && !fire2 && !disableAI && !justSwitched && !throwing && !pickingUp && o43_Game.playMode == VS && o43_Game.numPlayers != 4 && (!hasBeanbag || hovering || (hasBeanbag && scr43_HandsFull(teammate))))
+          {
+***************
+*** 335,337 ****
+              
+!             if (controller && o43_Game.playMode == VS)
+              {
+--- 336,338 ----
+              
+!             if (controller && o43_Game.playMode == VS && o43_Game.numPlayers != 4)
+              {

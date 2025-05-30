@@ -1,0 +1,22 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 14:30:12 2025
+***************
+*** 134,136 ****
+          
+!         if (playMode != COOP && athlete[(2 * p) + 2])
+              teamFull = true;
+--- 134,138 ----
+          
+!         if (playMode == VS && numPlayers == 2 && athlete[(2 * p) + 2])
+!             teamFull = true;
+!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (p div 2) + 2])
+              teamFull = true;
+***************
+*** 148,149 ****
+--- 150,155 ----
+                  xShift = 192 * p;
++             else if (numPlayers == 4)
++             {
++                 xShift = 28 * (p mod 2) + 96 * (p div 2);
++             }
+              

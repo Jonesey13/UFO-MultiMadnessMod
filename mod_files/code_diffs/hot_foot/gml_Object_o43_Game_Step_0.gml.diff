@@ -1,0 +1,13 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Step_0.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Step_0.gml	Fri May 30 11:14:25 2025
+***************
+*** 1,3 ****
+  if (inputPlayer == 3)
+!     scrGetInputBoth();
+  else if (inputPlayer != 0)
+--- 1,5 ----
+  if (inputPlayer == 3)
+! {
+!     scrGetInputAll(numPlayers);
+! }
+  else if (inputPlayer != 0)
