@@ -1,0 +1,20 @@
+*** original_scripts/hot_foot/gml_Object_o43_Athlete_Step_0.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Athlete_Step_0.gml	Fri May 30 15:25:11 2025
+***************
+*** 191,193 ****
+  {
+!     if (controller && fire1pressed && !fire2 && !disableAI && !justSwitched && !throwing && o43_Game.playMode == VS && (!hasBeanbag || (hasBeanbag && scr43_HandsFull(teammate))))
+      {
+--- 191,193 ----
+  {
+!     if (controller && fire1pressed && !fire2 && !disableAI && !justSwitched && !throwing && o43_Game.playMode == VS && o43_Game.numPlayers != 4 && (!hasBeanbag || (hasBeanbag && scr43_HandsFull(teammate))))
+      {
+***************
+*** 229,231 ****
+          
+!         if (controller && o43_Game.playMode == VS)
+          {
+--- 229,231 ----
+          
+!         if (controller && o43_Game.playMode == VS && o43_Game.numPlayers != 4)
+          {

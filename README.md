@@ -7,6 +7,7 @@ This is a mod to enable 4 players for various games in the game UFO50. Currently
 * Ninpek
 * Bushido Ball
 * The Big Bell Race
+* Hot Foot
 
 This also incorporates p-sam's rich presence for Discord mod.
 

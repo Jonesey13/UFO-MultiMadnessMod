@@ -1,0 +1,28 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Fri May 30 15:29:31 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Fri May 30 15:26:13 2025
+***************
+*** 65,66 ****
+--- 65,68 ----
+              a2.controller = 2;
++         else if (numPlayers == 4 && playMode == VS)
++             a2.controller = 2;
+          else
+***************
+*** 83,84 ****
+--- 85,88 ----
+              a3.controller = 2;
++         else if (numPlayers == 4 && playMode == VS)
++             a3.controller = 3;
+          else
+***************
+*** 99,101 ****
+      {
+!         a4.controller = 0;
+          a4.team = 2;
+--- 103,108 ----
+      {
+!         if (numPlayers == 4 && playMode == VS)
+!             a4.controller = 4;
+!         else
+!             a4.controller = 0;
+          a4.team = 2;
