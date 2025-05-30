@@ -1,0 +1,11 @@
+*** original_scripts/hot_foot/gml_Object_o43_ShadowDrawer_Draw_0.gml	Fri May 30 19:56:17 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_ShadowDrawer_Draw_0.gml	Fri May 30 19:55:09 2025
+***************
+*** 33,35 ****
+      {
+!         var img = controller - 1;
+          
+--- 33,35 ----
+      {
+!         var img = (controller - 1) div 2;
+          

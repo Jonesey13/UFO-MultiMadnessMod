@@ -1,21 +1,25 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 15:29:31 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 11:21:11 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 19:56:16 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 20:05:07 2025
 ***************
 *** 50,51 ****
 --- 50,57 ----
       draftX[1] = 12;
 + 
 +     if (playMode == VS && numPlayers == 4) {
-+         draftX[1] = 1;
-+         draftX[2] = 12;
-+         draftX[3] = 11;
++         draftX[1] = 2;
++         draftX[2] = 11;
++         draftX[3] = 12;
 +     }
       
 ***************
-*** 61,62 ****
---- 67,69 ----
-      inputPlayer = 3;
-+     scrGetInputAll(numPlayers);
+*** 60,62 ****
+      
+!     inputPlayer = 3;
+  }
+--- 66,69 ----
+      
+!     inputPlayer = 5;
+!     scrGetInputAll(numPlayers);
   }
 ***************
 *** 68,70 ****
@@ -57,7 +61,7 @@
               {
 --- 144,146 ----
               
-!             if (playMode == VS && numPlayers == 2)
+!             if (playMode == VS && numPlayers <= 2)
               {
 ***************
 *** 138,140 ****
