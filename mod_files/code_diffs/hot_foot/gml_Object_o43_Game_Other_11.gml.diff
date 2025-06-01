@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Fri May 30 19:56:17 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Fri May 30 20:05:21 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sun Jun  1 20:32:04 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sun Jun  1 20:28:50 2025
 ***************
 *** 102,104 ****
       
@@ -10,11 +10,11 @@
 !     
 !     if (draftTurn <= 2 && numPlayers == 4) {
 !         draftPlayer = draftTeam;
-!         inputPlayer = draftTeam;
+!         inputPlayer = (draftTeam - 1) * 2 + 1;
 !     }
 !     else if (draftTurn >= 3 && numPlayers == 4) {
 !         draftPlayer = draftTeam;
-!         inputPlayer = draftTeam + 2;
+!         inputPlayer = (draftTeam - 1) * 2 + 2;
 !     }
 !     else if (draftTeam == 1 && playMode != DEMO)
       {

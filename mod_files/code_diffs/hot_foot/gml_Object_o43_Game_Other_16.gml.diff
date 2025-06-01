@@ -1,0 +1,20 @@
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_16.gml	Sun Jun  1 20:32:04 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_16.gml	Sun Jun  1 20:14:32 2025
+***************
+*** 4,6 ****
+      
+!     if (numPlayers == 2 && playMode == VS)
+          scrBGM(bgm43_stingWin, false);
+--- 4,6 ----
+      
+!     if (numPlayers >= 2 && playMode == VS)
+          scrBGM(bgm43_stingWin, false);
+***************
+*** 48,50 ****
+          
+!         if (playMode == VS && numPlayers == 2)
+          {
+--- 48,50 ----
+          
+!         if (playMode == VS && numPlayers >= 2)
+          {

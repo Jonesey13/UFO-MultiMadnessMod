@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 19:56:16 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri May 30 20:05:07 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sun Jun  1 20:32:04 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sun Jun  1 20:11:59 2025
 ***************
 *** 50,51 ****
 --- 50,57 ----
@@ -52,7 +52,7 @@
           
 !         if (playMode == VS && numPlayers == 2 && athlete[(2 * p) + 2])
 !             teamFull = true;
-!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (t + 1)])
+!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (t + 1)] && athlete[2 * t + 1])
               teamFull = true;
 ***************
 *** 133,135 ****
@@ -80,28 +80,15 @@
               }
 +             else if (playMode == VS && numPlayers == 4)
 +             {
-+                 pick = p + 1;
++                 pick = p mod 2 + 1;
 +             }
               else if (playMode == COOP)
-***************
-*** 147,153 ****
-              
-!             if (t == 0)
-!                 athlete[pick] = draftX[p];
-!             
-!             if (t == 1)
-!                 athlete[pick + 2] = draftX[p];
-              
---- 164,166 ----
-              
-!             athlete[pick] = draftX[p];
-              
 ***************
 *** 202,204 ****
               }
 !             else if (numPlayers == 2 && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
               {
---- 215,217 ----
+--- 219,221 ----
               }
 !             else if ((numPlayers == 2 || numPlayers = 4) && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
               {
