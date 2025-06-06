@@ -108,6 +108,27 @@ foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "
 
 importGroup.Import();
 
+foreach (string objectPath in Directory.EnumerateFiles("mod_files/objects", "*.json", SearchOption.TopDirectoryOnly))
+{
+    var objectText = File.ReadAllText(objectPath);
+
+    string objectName = Path.GetFileNameWithoutExtension(objectPath);
+    GameObject gameObject = JsonSerializer.Deserialize<GameObject>(objectText);
+
+    UndertaleGameObject newObject = new();
+
+    newObject.Sprite = gameData.Sprites.First(sprite => sprite.Name.Content == gameObject.Sprite);
+    newObject.Visible = gameObject.Visible;
+    newObject.CollisionShape = gameObject.CollisionShape;
+    newObject.Density = gameObject.Physics.Density;
+    newObject.Restitution = gameObject.Physics.Restitution;
+    newObject.LinearDamping = gameObject.Physics.LinearDamping;
+    newObject.AngularDamping = gameObject.Physics.AngularDamping;
+    newObject.Friction = gameObject.Physics.Friction;
+    newObject.Awake = gameObject.Physics.IsAwake;
+
+    gameData.GameObjects.Add(newObject);
+}
 
 using (var stream = new FileStream("/tmp/data.win", FileMode.Create, FileAccess.Write))
 {
@@ -177,3 +198,39 @@ public class TexturePage
 }
 
 
+public class GameObject
+{
+    [JsonPropertyName("sprite")]
+    public string Sprite { get; set; }
+
+    [JsonPropertyName("visible")]
+    public bool Visible { get; set; }
+
+    [JsonPropertyName("collision_shape")]
+    [JsonConverter(typeof(JsonStringEnumConverter<CollisionShapeFlags>))]
+    public CollisionShapeFlags CollisionShape { get; set; }
+
+    [JsonPropertyName("physics")]
+    public ObjectPhysics Physics { get; set; }
+}
+
+public class ObjectPhysics
+{
+    [JsonPropertyName("density")]
+    public float Density { get; set; }
+
+    [JsonPropertyName("restitution")]
+    public float Restitution { get; set; }
+
+    [JsonPropertyName("linear_damping")]
+    public float LinearDamping { get; set; }
+
+    [JsonPropertyName("angular_damping")]
+    public float AngularDamping { get; set; }
+
+    [JsonPropertyName("friction")]
+    public float Friction { get; set; }
+
+    [JsonPropertyName("is_awake")]
+    public bool IsAwake { get; set; }
+}
