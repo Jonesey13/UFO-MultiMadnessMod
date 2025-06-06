@@ -1,5 +1,5 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Tue May 27 20:29:37 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Tue May 27 20:29:02 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Jun  6 14:37:49 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Jun  6 18:16:04 2025
 ***************
 *** 5,74 ****
   {
@@ -189,8 +189,35 @@
 !         if (!multip || readies == global.numPlayers)
           {
 ***************
+*** 131,144 ****
+                  playerSel[1] = navi[1];
+!                 ds_grid_set(dsScore, 0, 5, playerSel[0]);
+!                 
+!                 if (multip)
+!                 {
+!                     ds_grid_set(dsScore, 0, 4, playerSel[1]);
+!                     nShuf = 3;
+!                 }
+!                 else
+!                 {
+!                     while (ds_grid_get(dsScore, 0, 4) == ds_grid_get(dsScore, 0, 5))
+!                         ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
+                  }
+                  
+--- 87,96 ----
+                  playerSel[1] = navi[1];
+! 
+!                 for (var j = 0; j < global.numPlayers; j++) {
+!                     playerSel[j] = navi[j];
+!                     ds_grid_set(dsScore, 0, 5 - j, playerSel[j]);
+                  }
++ 
++                 while (ds_grid_get(dsScore, 0, 4) == ds_grid_get(dsScore, 0, 5))
++                     ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
+                  
+***************
 *** 318,319 ****
---- 274,285 ----
+--- 270,281 ----
               }
 +             else if (global.numPlayers >= 3 && uId == playerSel[2])
 +             {
@@ -209,7 +236,7 @@
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 646,649 ----
+--- 642,645 ----
   {
 !     playerInGoal[0] = false;
 !     playerInGoal[1] = false;
@@ -219,7 +246,7 @@
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 654,656 ----
+--- 650,652 ----
   }
 ! else if ((!multip && playerInGoal[0]) || (global.numPlayers == 2 && playerInGoal[0] && playerInGoal[1]))
   {
