@@ -1,5 +1,5 @@
 *** original_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Thu Jan  1 00:00:00 1970
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Mon May 26 11:23:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Fri Jun  6 20:40:22 2025
 ***************
 *** 0 ****
 --- 1,174 ----
@@ -8,7 +8,7 @@
 + 
 + if (!ai)
 + {
-+     scrGetInput(3);
++     scrGetInput(o22_Game.controllerMap[3]);
 +     
 +     if (readyCount > 10)
 +         readyCount = 10;

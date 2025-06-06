@@ -1,0 +1,8 @@
+*** original_scripts/bushido_ball/gml_GlobalScript_scr22_SaveGame.gml	Fri Jun  6 20:57:22 2025
+--- ufo50_modded_scripts/bushido_ball/gml_GlobalScript_scr22_SaveGame.gml	Fri Jun  6 20:24:27 2025
+***************
+*** 74,75 ****
+--- 74,76 ----
+          scrWriteReal("weaponTap", global.g22_weaponTap);
++         scrWriteReal("randomiseControllers", global.g22_randomiseControllers);
+          return true;

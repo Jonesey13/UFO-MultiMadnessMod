@@ -1,5 +1,12 @@
-*** original_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Mon May 26 11:39:34 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Mon May 26 15:29:10 2025
+*** original_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Fri Jun  6 20:57:22 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Fri Jun  6 20:40:01 2025
+***************
+*** 1,2 ****
+! scrGetInput(0);
+  
+--- 1,2 ----
+! scrGetInput(o22_Game.controllerMap[0]);
+  
 ***************
 *** 101,111 ****
       

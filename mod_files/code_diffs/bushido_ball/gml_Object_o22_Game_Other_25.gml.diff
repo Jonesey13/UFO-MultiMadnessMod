@@ -1,5 +1,5 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Mon May 26 11:39:34 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Mon May 26 11:22:04 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Fri Jun  6 20:57:21 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_25.gml	Fri Jun  6 20:26:27 2025
 ***************
 *** 6,7 ****
 --- 6,13 ----
@@ -11,3 +11,28 @@
 +     instance_destroy();
 + 
   with (o22_CharselLeft)
+***************
+*** 27,29 ****
+      
+!     sel = scrWrap(sel, 5);
+      
+--- 33,35 ----
+      
+!     sel = scrWrap(sel, 6);
+      
+***************
+*** 107,110 ****
+                  break;
+!             
+              case 4:
+                  if (fire2pressed)
+--- 113,121 ----
+                  break;
+! 
+              case 4:
++                 scrSfx(sfx_switch02, 50);
++                 global.g22_randomiseControllers = !global.g22_randomiseControllers;
++                 break;
++             
++             case 5:
+                  if (fire2pressed)

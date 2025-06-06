@@ -1,0 +1,8 @@
+*** original_scripts/bushido_ball/gml_GlobalScript_scr22_Init.gml	Fri Jun  6 20:57:22 2025
+--- ufo50_modded_scripts/bushido_ball/gml_GlobalScript_scr22_Init.gml	Fri Jun  6 20:24:15 2025
+***************
+*** 11,12 ****
+--- 11,13 ----
+      global.g22_weaponTap = scrReadReal("weaponTap", true);
++     global.g22_randomiseControllers = scrReadReal("randomiseControllers", true);
+      scrCloseCurrFile();

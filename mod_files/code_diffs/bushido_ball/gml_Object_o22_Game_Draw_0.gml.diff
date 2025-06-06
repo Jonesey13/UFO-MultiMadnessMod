@@ -1,11 +1,34 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Mon May 26 11:39:34 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Mon May 26 11:19:26 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri Jun  6 20:57:21 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Fri Jun  6 20:46:18 2025
+***************
+*** 5,7 ****
+      draw_set_color(global.palette[0]);
+!     draw_rectangle(scrViewX() + 118, scrViewY() + 32, scrViewX() + 264, scrViewY() + 160, 0);
+      var _x = scrViewX() + 128;
+--- 5,7 ----
+      draw_set_color(global.palette[0]);
+!     draw_rectangle(scrViewX() + 118, scrViewY() + 32, scrViewX() + 300, scrViewY() + 200, 0);
+      var _x = scrViewX() + 128;
+***************
+*** 35,37 ****
+      
+!     _optionname[4] = scrString("option_back");
+      
+--- 35,42 ----
+      
+!     if (global.g22_randomiseControllers)
+!         _optionname[4] = "CONTROLLERS: RANDOM";
+!     else
+!         _optionname[4] = "CONTROLLERS: FIXED";
+! 
+!     _optionname[5] = scrString("option_back");
+      
 ***************
 *** 189,191 ****
       
 !     if (numPlayers == 2)
       {
---- 189,191 ----
+--- 194,196 ----
       
 !     if (numPlayers == 2 || numPlayers == 5)
       {
@@ -14,7 +37,7 @@
                   draw_sprite(s22_CrossOut, 0, 128 + (48 * i), 304 + (48 * j));
 !             else if (p1_sel == ii || p2_sel == ii)
                   draw_sprite(s22_CircleOut, 0, 128 + (48 * i), 304 + (48 * j));
---- 203,205 ----
+--- 208,210 ----
                   draw_sprite(s22_CrossOut, 0, 128 + (48 * i), 304 + (48 * j));
 !             else if (p1_sel == ii || p2_sel == ii || p3_sel == ii || p4_sel == ii)
                   draw_sprite(s22_CircleOut, 0, 128 + (48 * i), 304 + (48 * j));
@@ -23,7 +46,7 @@
                   
 !                 if (numPlayers == 4)
                       str = scrString("team") + " " + str;
---- 335,337 ----
+--- 340,342 ----
                   
 !                 if (numPlayers == 4 || numPlayers == 5)
                       str = scrString("team") + " " + str;
@@ -32,7 +55,7 @@
                   
 !                 if (numPlayers == 4)
                       str = scrString("team") + " " + str;
---- 344,346 ----
+--- 349,351 ----
                   
 !                 if (numPlayers == 4 || numPlayers == 5)
                       str = scrString("team") + " " + str;
@@ -41,7 +64,7 @@
               
 !             if (numPlayers == 4)
               {
---- 389,391 ----
+--- 394,396 ----
               
 !             if (numPlayers == 4 || numPlayers == 5)
               {
@@ -50,7 +73,7 @@
               
 !             if (numPlayers == 4)
               {
---- 420,422 ----
+--- 425,427 ----
               
 !             if (numPlayers == 4 || numPlayers == 5)
               {
@@ -59,7 +82,7 @@
           
 !         if (numPlayers == 4)
           {
---- 476,478 ----
+--- 481,483 ----
           
 !         if (numPlayers == 4 || numPlayers == 5)
           {

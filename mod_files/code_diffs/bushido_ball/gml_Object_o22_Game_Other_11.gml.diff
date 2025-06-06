@@ -1,14 +1,26 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Mon May 26 11:39:34 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Mon May 26 11:19:47 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Fri Jun  6 20:57:21 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_11.gml	Fri Jun  6 20:32:05 2025
 ***************
-*** 39,41 ****
+*** 38,41 ****
+          aiLevel = 10;
           
 !         if (o22_Game.numPlayers == 4)
           {
---- 39,41 ----
+--- 38,42 ----
+          aiLevel = 10;
++         player = o22_Game.controllerMap[0];
           
 !         if (o22_Game.numPlayers == 4 || o22_Game.numPlayers == 5)
           {
+***************
+*** 54,56 ****
+                  aiLevelStart = aiLevel;
+!                 player = 1;
+                  y = other.ystart + 32;
+--- 55,57 ----
+                  aiLevelStart = aiLevel;
+!                 player = o22_Game.controllerMap[1];
+                  y = other.ystart + 32;
 ***************
 *** 71,77 ****
           
@@ -18,24 +30,24 @@
           }
 !         else if (o22_Game.numPlayers == 4)
           {
---- 71,80 ----
+--- 72,81 ----
           
 !         if (o22_Game.numPlayers == 2 || o22_Game.numPlayers == 5)
           {
               ai = false;
 +             if (o22_Game.numPlayers == 5) {
-+                 player = 2;
++                 player = o22_Game.controllerMap[2];
 +             }
           }
 !         if (o22_Game.numPlayers == 4 || o22_Game.numPlayers == 5)
           {
 ***************
 *** 92,93 ****
---- 95,100 ----
+--- 96,101 ----
                   y = other.ystart + 32;
 +                 if (o22_Game.numPlayers == 5) {
 +                     ai = false;
-+                     player = 3;
++                     player = o22_Game.controllerMap[3];
 +                 }
               }
 ***************
@@ -43,7 +55,7 @@
       
 !     if (numPlayers == 4)
       {
---- 103,112 ----
+--- 104,113 ----
       
 !     if (numPlayers == 5)
 !     {
