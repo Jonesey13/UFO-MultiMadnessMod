@@ -1,5 +1,5 @@
-*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Sun May 25 20:11:31 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Fri May 23 21:35:40 2025
+*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Fri Jun  6 14:37:49 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Fri Jun  6 14:02:18 2025
 ***************
 *** 60,62 ****
       
@@ -22,7 +22,7 @@
 +         self.p[2].face = 1;
 +         self.p[2].spriteRun = s34_P3Run;
 +         self.p[2].spriteJump = s34_P3Jump2;
-+         self.p[2].myWpn = o34_Shuriken;
++         self.p[2].myWpn = o34_Shuriken3;
 +         self.p[2].sprite_index = s34_P3Run;
 +         life[2] = 2;
 +         pointsPre[2] = 0;
@@ -36,7 +36,7 @@
 +         self.p[3].face = 1;
 +         self.p[3].spriteRun = s34_P4Run;
 +         self.p[3].spriteJump = s34_P4Jump2;
-+         self.p[3].myWpn = o34_Shuriken2;
++         self.p[3].myWpn = o34_Shuriken4;
 +         self.p[3].sprite_index = s34_P4Run;
 +         life[3] = 2;
 +         pointsPre[3] = 0;

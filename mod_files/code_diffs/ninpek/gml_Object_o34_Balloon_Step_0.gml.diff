@@ -1,5 +1,5 @@
-*** original_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Sun May 25 20:15:31 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Sun May 25 20:35:11 2025
+*** original_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Fri Jun  6 14:37:49 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Fri Jun  6 14:00:31 2025
 ***************
 *** 5,10 ****
   {
@@ -38,27 +38,30 @@
 !             ghost.myWpn = o34_Shuriken2;
 !             ghost.sprite_index = s34_NinjaGhost;
           }
---- 33,57 ----
+--- 33,60 ----
           var _y = scrViewY() - 48;
           
 !         for (var i = 0; i < global.numPlayers; i++)
           {
-!             if (i != snum) {
+!             if (i != snum && o34_Mas.life[i] < 0) {
 !                 var ghost = instance_create(_x, _y, o34_Ghost);
 !                 o34_Mas.life[i] = 0;
 !                 ghost.num = i;
-!                 ghost.myWpn = o34_Shuriken;
 ! 
 !                 if (i == 0) {
+!                     ghost.myWpn = o34_Shuriken;
 !                     ghost.sprite_index = s34_NinjaGhost;
 !                     ghost.x -= 30;
 !                 } else if (i == 1) {
+!                     ghost.myWpn = o34_Shuriken2;
 !                     ghost.sprite_index = s34_P2Ghost;
 !                     ghost.x -= 10;
 !                 } else if (i == 2) {
+!                     ghost.myWpn = o34_Shuriken3;
 !                     ghost.sprite_index = s34_P3Ghost;
 !                     ghost.x += 10;
 !                 } else if (i == 3) {
+!                     ghost.myWpn = o34_Shuriken4;
 !                     ghost.sprite_index = s34_P4Ghost;
 !                     ghost.x += 20;
 !                 }

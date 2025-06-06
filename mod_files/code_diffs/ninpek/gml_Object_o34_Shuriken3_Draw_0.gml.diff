@@ -1,0 +1,6 @@
+*** original_scripts/ninpek/gml_Object_o34_Shuriken3_Draw_0.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Shuriken3_Draw_0.gml	Fri Jun  6 14:09:28 2025
+***************
+*** 0 ****
+--- 1 ----
++ draw_sprite_ext(sprite_index, image_index, round(x), round(y), face, 1, 0, c_white, 1);

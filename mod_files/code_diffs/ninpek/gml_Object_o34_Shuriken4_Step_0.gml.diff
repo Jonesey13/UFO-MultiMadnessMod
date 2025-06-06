@@ -1,0 +1,32 @@
+*** original_scripts/ninpek/gml_Object_o34_Shuriken4_Step_0.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Shuriken4_Step_0.gml	Fri Jun  6 14:10:16 2025
+***************
+*** 0 ****
+--- 1,27 ----
++ var enemy = instance_place(x, y, oEnemy);
++ 
++ if (enemy)
++     scr34_eDamage(enemy, num);
++ 
++ var balloon = instance_place(x, y, o34_Balloon);
++ 
++ if (balloon)
++ {
++     if (instance_number(o34_Balloon) <= 1)
++         mute(sfx_special_loop00);
++     
++     scrSfx(sfx_special01, 80);
++     balloon.pop = true;
++     balloon.snum = num;
++     instance_destroy();
++     exit;
++ }
++ 
++ if (t++ >= 30)
++ {
++     instance_destroy();
++     exit;
++ }
++ 
++ if (x < (scrViewX() + 4) || x > ((scrViewX() + 384) - 4))
++     instance_destroy();
