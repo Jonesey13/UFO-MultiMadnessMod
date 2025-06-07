@@ -1,0 +1,29 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Create_0.gml	Sat Jun  7 20:20:13 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Create_0.gml	Sat Jun  7 20:09:29 2025
+***************
+*** 96,105 ****
+  
+! for (var p = 1; p <= 2; p++)
+  {
+!     if (p == 1)
+          selX[p] = 64;
+!     else
+          selX[p] = 304;
+      
+!     selY[p] = 114;
+      selSprite[p] = s02_SelectorOff;
+--- 96,109 ----
+  
+! for (var p = 1; p <= global.numPlayers; p++)
+  {
+!     if (p == 1 || p == 3)
+          selX[p] = 64;
+!     else if (p == 2 || p == 4)
+          selX[p] = 304;
+      
+!     if (p <= 2)
+!         selY[p] = 114;
+!     else 
+!         selY[p] = 146;
+! 
+      selSprite[p] = s02_SelectorOff;

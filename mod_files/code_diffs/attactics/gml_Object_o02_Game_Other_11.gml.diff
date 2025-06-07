@@ -1,0 +1,20 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Other_11.gml	Sat Jun  7 20:20:13 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_11.gml	Sat Jun  7 19:06:53 2025
+***************
+*** 56,58 ****
+      
+!     if (pressDown && players == 2 && lvl == TOTAL_LEVELS)
+      {
+--- 56,58 ----
+      
+!     if (pressDown && players >= 2 && lvl == TOTAL_LEVELS)
+      {
+***************
+*** 81,83 ****
+      
+!     if (players == 2 && lvl == (TOTAL_LEVELS - 1))
+      {
+--- 81,83 ----
+      
+!     if (players >= 2 && lvl == (TOTAL_LEVELS - 1))
+      {

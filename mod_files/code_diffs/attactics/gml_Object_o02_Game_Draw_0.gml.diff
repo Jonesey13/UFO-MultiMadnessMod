@@ -1,0 +1,84 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Draw_0.gml	Sat Jun  7 20:20:13 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Draw_0.gml	Sat Jun  7 19:22:24 2025
+***************
+*** 82,84 ****
+      
+!     if (players == 2 && lvl >= (TOTAL_LEVELS - 1))
+          draw_sprite_ext(s02_LevelSelect, 0, 184, 48, 1, 1, 90, c_white, 1);
+--- 82,84 ----
+      
+!     if (players >= 2 && lvl >= (TOTAL_LEVELS - 1))
+          draw_sprite_ext(s02_LevelSelect, 0, 184, 48, 1, 1, 90, c_white, 1);
+***************
+*** 319,321 ****
+      
+!     if (players == 2)
+      {
+--- 319,321 ----
+      
+!     if (players >= 2)
+      {
+***************
+*** 334,336 ****
+      
+!     if (players == 2)
+      {
+--- 334,336 ----
+      
+!     if (players >= 2)
+      {
+***************
+*** 409,411 ****
+          
+!         if (players == 2)
+          {
+--- 409,411 ----
+          
+!         if (players >= 2)
+          {
+***************
+*** 442,444 ****
+          
+!         if (players == 2)
+          {
+--- 442,444 ----
+          
+!         if (players >= 2)
+          {
+***************
+*** 458,459 ****
+--- 458,491 ----
+          }
++ 
++         if (players >= 4)
++         {
++             draw_sprite(selSprite[3], selImage[3], selDrawX[3], selDrawY[3]);
++             
++             if (selRight[3])
++                 draw_sprite(selSprite[3], 1, selDrawX[3], selDrawY[3]);
++             
++             if (selUp[3])
++                 draw_sprite(selSprite[3], 2, selDrawX[3], selDrawY[3]);
++             
++             if (selLeft[3])
++                 draw_sprite(selSprite[3], 3, selDrawX[3], selDrawY[3]);
++             
++             if (selDown[3])
++                 draw_sprite(selSprite[3], 4, selDrawX[3], selDrawY[3]);
++ 
++ 
++             draw_sprite_ext(selSprite[4], selImage[4], selDrawX[4] + 32, selDrawY[4], -1, 1, 0, c_white, 1);
++             
++             if (selRight[4])
++                 draw_sprite(selSprite[4], 1, selDrawX[4], selDrawY[4]);
++             
++             if (selUp[4])
++                 draw_sprite(selSprite[4], 2, selDrawX[4], selDrawY[4]);
++             
++             if (selLeft[4])
++                 draw_sprite(selSprite[4], 3, selDrawX[4], selDrawY[4]);
++             
++             if (selDown[4])
++                 draw_sprite(selSprite[4], 4, selDrawX[4], selDrawY[4]);
++         }
+      }

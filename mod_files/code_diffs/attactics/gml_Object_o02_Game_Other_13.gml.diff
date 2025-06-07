@@ -1,0 +1,63 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 20:20:13 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 20:30:28 2025
+***************
+*** 159,161 ****
+              
+!             if (hasHero && players == 2 && heroCounter[BLUE] >= heroCost[BLUE])
+              {
+--- 159,161 ----
+              
+!             if (hasHero && players >= 2 && heroCounter[BLUE] >= heroCost[BLUE])
+              {
+***************
+*** 251,252 ****
+--- 251,253 ----
+          var i = p - 1;
++         var t = ((p - 1) mod 2) + 1;
+          selLeft[p] = false;
+***************
+*** 262,264 ****
+              {
+!                 if (p == selectableUnit.team)
+                  {
+--- 263,265 ----
+              {
+!                 if (t == selectableUnit.team)
+                  {
+***************
+*** 282,289 ****
+              
+!             if (p == RED)
+                  enemyUnit = o02__UnitBlue;
+!             else if (p == BLUE)
+                  enemyUnit = o02__UnitRed;
+              
+!             if (selX[p] != LEFT_EDGE && (selX[p] != (selStartColumn[p] * 32) || p == RED))
+              {
+--- 283,290 ----
+              
+!             if (t == RED)
+                  enemyUnit = o02__UnitBlue;
+!             else if (t == BLUE)
+                  enemyUnit = o02__UnitRed;
+              
+!             if (selX[p] != LEFT_EDGE && (selX[p] != (selStartColumn[p] * 32) || t == RED))
+              {
+***************
+*** 295,297 ****
+              
+!             if (selX[p] != RIGHT_EDGE && (selX[p] != (selStartColumn[p] * 32) || p == BLUE))
+              {
+--- 296,298 ----
+              
+!             if (selX[p] != RIGHT_EDGE && (selX[p] != (selStartColumn[p] * 32) || t == BLUE))
+              {
+***************
+*** 685,687 ****
+      
+!     if (players == 2)
+      {
+--- 686,688 ----
+      
+!     if (players >= 2)
+      {
