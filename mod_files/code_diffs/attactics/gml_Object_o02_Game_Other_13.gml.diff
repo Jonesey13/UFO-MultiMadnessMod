@@ -1,5 +1,5 @@
-*** original_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 20:20:13 2025
---- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 20:30:28 2025
+*** original_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_13.gml	Sat Jun  7 20:41:48 2025
 ***************
 *** 159,161 ****
               
@@ -16,6 +16,15 @@
 +         var t = ((p - 1) mod 2) + 1;
           selLeft[p] = false;
 ***************
+*** 256,258 ****
+          
+!         if (bFire2[i] && !selGrab[p])
+          {
+--- 257,259 ----
+          
+!         if (bFire2[ControllerMap[i]] && !selGrab[p])
+          {
+***************
 *** 262,264 ****
               {
 !                 if (p == selectableUnit.team)
@@ -24,6 +33,15 @@
               {
 !                 if (t == selectableUnit.team)
                   {
+***************
+*** 274,276 ****
+          {
+!             if (!bFire2[i] || !verify(selSwapper[p]))
+                  selGrab[p] = false;
+--- 275,277 ----
+          {
+!             if (!bFire2[ControllerMap[i]] || !verify(selSwapper[p]))
+                  selGrab[p] = false;
 ***************
 *** 282,289 ****
               
@@ -52,6 +70,36 @@
               
 !             if (selX[p] != RIGHT_EDGE && (selX[p] != (selStartColumn[p] * 32) || t == BLUE))
               {
+***************
+*** 322,330 ****
+              
+!             if (bPressUp[i] && selUp[p])
+                  swapToY = selY[p] - 32;
+!             else if (bPressDown[i] && selDown[p])
+                  swapToY = selY[p] + 32;
+!             else if (bPressLeft[i] && selLeft[p])
+                  swapToX = selX[p] - 32;
+!             else if (bPressRight[i] && selRight[p])
+                  swapToX = selX[p] + 32;
+--- 323,331 ----
+              
+!             if (bPressUp[ControllerMap[i]] && selUp[p])
+                  swapToY = selY[p] - 32;
+!             else if (bPressDown[ControllerMap[i]] && selDown[p])
+                  swapToY = selY[p] + 32;
+!             else if (bPressLeft[ControllerMap[i]] && selLeft[p])
+                  swapToX = selX[p] - 32;
+!             else if (bPressRight[ControllerMap[i]] && selRight[p])
+                  swapToX = selX[p] + 32;
+***************
+*** 376,378 ****
+              
+!             if (bFire2[i])
+                  selImage[p] = 2;
+--- 377,379 ----
+              
+!             if (bFire2[ControllerMap[i]])
+                  selImage[p] = 2;
 ***************
 *** 685,687 ****
       

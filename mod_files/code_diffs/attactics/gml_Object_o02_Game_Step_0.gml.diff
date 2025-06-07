@@ -1,5 +1,5 @@
-*** original_scripts/attactics/gml_Object_o02_Game_Step_0.gml	Sat Jun  7 20:20:13 2025
---- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Step_0.gml	Sat Jun  7 20:14:16 2025
+*** original_scripts/attactics/gml_Object_o02_Game_Step_0.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Step_0.gml	Sat Jun  7 20:40:50 2025
 ***************
 *** 24,26 ****
   
@@ -15,6 +15,27 @@
           var i = p - 1;
 +         var t = ((p - 1) mod 2) + 1;
           
+***************
+*** 52,60 ****
+              
+!             if (bPressRight[i])
+                  selX[p] += 32;
+!             else if (bPressLeft[i])
+                  selX[p] -= 32;
+!             else if (bPressUp[i])
+                  selY[p] -= 32;
+!             else if (bPressDown[i])
+                  selY[p] += 32;
+--- 53,61 ----
+              
+!             if (bPressRight[ControllerMap[i]])
+                  selX[p] += 32;
+!             else if (bPressLeft[ControllerMap[i]])
+                  selX[p] -= 32;
+!             else if (bPressUp[ControllerMap[i]])
+                  selY[p] -= 32;
+!             else if (bPressDown[ControllerMap[i]])
+                  selY[p] += 32;
 ***************
 *** 73,77 ****
               
