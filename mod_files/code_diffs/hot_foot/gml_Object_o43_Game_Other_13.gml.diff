@@ -1,28 +1,40 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Fri May 30 15:29:31 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Fri May 30 15:26:13 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Sat Jun  7 07:56:49 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_13.gml	Sat Jun  7 08:08:45 2025
+***************
+*** 49,51 ****
+      {
+!         a1.controller = 1;
+          a1.team = 1;
+--- 49,54 ----
+      {
+!         if (numPlayers == 4 && playMode == VS)
+!             a1.controller = ControllerMap[0];
+!         else
+!             a1.controller = 1;
+          a1.team = 1;
 ***************
 *** 65,66 ****
---- 65,68 ----
+--- 68,71 ----
               a2.controller = 2;
 +         else if (numPlayers == 4 && playMode == VS)
-+             a2.controller = 2;
++             a2.controller = ControllerMap[1];
           else
 ***************
 *** 83,84 ****
---- 85,88 ----
+--- 88,91 ----
               a3.controller = 2;
 +         else if (numPlayers == 4 && playMode == VS)
-+             a3.controller = 3;
++             a3.controller = ControllerMap[2];
           else
 ***************
 *** 99,101 ****
       {
 !         a4.controller = 0;
           a4.team = 2;
---- 103,108 ----
+--- 106,111 ----
       {
 !         if (numPlayers == 4 && playMode == VS)
-!             a4.controller = 4;
+!             a4.controller = ControllerMap[3];
 !         else
 !             a4.controller = 0;
           a4.team = 2;

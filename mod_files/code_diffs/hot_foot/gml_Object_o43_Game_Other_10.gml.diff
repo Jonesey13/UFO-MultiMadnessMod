@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Fri May 30 15:29:31 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Fri May 30 11:14:28 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Sat Jun  7 07:56:49 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Sat Jun  7 08:27:31 2025
 ***************
 *** 21,22 ****
 --- 21,29 ----
@@ -12,3 +12,66 @@
 +         scrTransition(12, 16, global.palette[31], -1, false);
 +     }
       else if (numPlayers == 0)
+***************
+*** 82,84 ****
+          
+!         subState = 5;
+          scrTransition(-1, 24, 0, -2, false);
+--- 89,94 ----
+          
+!         if (numPlayers == 4 && playMode = VS)
+!             subState = 7;
+!         else
+!             subState = 5;
+          scrTransition(-1, 24, 0, -2, false);
+***************
+*** 89,90 ****
+--- 99,103 ----
+  {
++     if (RANDOMISE_CONTROLLERS && global.numPlayers >= 4)
++         ControllerMap = rng_random_array_shuffle([1, 2, 3, 4]);
++ 
+      if (scrTransitionDone())
+***************
+*** 106,108 ****
+          if (titleY < 0)
+!             titleY = 5;
+      }
+--- 119,121 ----
+          if (titleY < 0)
+!             titleY = 6;
+      }
+***************
+*** 113,115 ****
+          
+!         if (titleY > 5)
+              titleY = 0;
+--- 126,128 ----
+          
+!         if (titleY > 6)
+              titleY = 0;
+***************
+*** 213,214 ****
+--- 226,235 ----
+      {
++         if (fire2pressed || pressRight || fire1pressed || pressLeft)
++         {
++             scrSfx(soundSelectA, 60);
++             RANDOMISE_CONTROLLERS = !RANDOMISE_CONTROLLERS;
++         }
++     }
++     else if (titleY == 6)
++     {
+          if (fire2pressed)
+***************
+*** 216,218 ****
+              scrSfx(soundSelectA, 60);
+!             subState = 8;
+              scrTransition(-1, 24, 0, -2, false);
+--- 237,242 ----
+              scrSfx(soundSelectA, 60);
+!             if (numPlayers == 4 && playMode = VS)
+!                 subState = 5;
+!             else 
+!                 subState = 8;
+              scrTransition(-1, 24, 0, -2, false);

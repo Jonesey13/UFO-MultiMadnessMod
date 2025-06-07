@@ -1,11 +1,39 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 19:56:16 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Fri May 30 19:28:09 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sat Jun  7 07:56:49 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sat Jun  7 08:12:46 2025
+***************
+*** 30,32 ****
+          draw_set_alpha(0.65);
+!         draw_rectangle(0, 0, 384, 216, false);
+          draw_set_alpha(1);
+--- 30,32 ----
+          draw_set_alpha(0.65);
+!         draw_rectangle(0, 0, 384, 240, false);
+          draw_set_alpha(1);
+***************
+*** 41,43 ****
+          scrStringDrawExt(88, 144, "option_jump", 0, 16, 0);
+!         scrStringDrawExt(88, 160, "option_exit", 0, 16, 0);
+          draw_text(224, 80, string(POINT_GOAL));
+--- 41,44 ----
+          scrStringDrawExt(88, 144, "option_jump", 0, 16, 0);
+!         draw_text(88, 160, "CONTROLLERS:");
+!         scrStringDrawExt(88, 176, "option_exit", 0, 16, 0);
+          draw_text(224, 80, string(POINT_GOAL));
+***************
+*** 47,48 ****
+--- 48,53 ----
+          draw_text(224, 144, scrString("setting_jump_" + string(TM_JUMP_SYNC + 1)));
++         var controllerText = "FIXED"
++         if (RANDOMISE_CONTROLLERS)
++             controllerText = "RANDOM";
++         draw_text(224, 160, controllerText);
+          
 ***************
 *** 134,136 ****
           
 !         if (playMode != COOP && athlete[(2 * p) + 2])
               teamFull = true;
---- 134,138 ----
+--- 139,143 ----
           
 !         if (playMode == VS && numPlayers <= 2 && athlete[(2 * p) + 2])
 !             teamFull = true;
@@ -13,13 +41,13 @@
               teamFull = true;
 ***************
 *** 143,144 ****
---- 145,147 ----
+--- 150,152 ----
               var xShift;
 +             var yShift = 0;
               
 ***************
 *** 148,149 ****
---- 151,157 ----
+--- 156,162 ----
                   xShift = 192 * p;
 +             else if (numPlayers == 4)
 +             {
@@ -35,7 +63,7 @@
 !                     draw_sprite(s43_DraftPicker, p, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
 !                     draw_sprite(s43_DraftPicker, p + 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
                   }
---- 159,169 ----
+--- 164,174 ----
               {
 !                 if (numPlayers != 4) {
 !                     if (flicker8 || p == 0 || draftPos != draftX[0] || athlete[2])
@@ -66,7 +94,7 @@
               var sa = chars[draftOptions[draftPos]][SA];
 !             scr43_DrawSpecialActionIcon(sa, 176 + xShift, 56);
               
---- 179,195 ----
+--- 184,200 ----
               
 !             draw_sprite(s43_InfoBox, 0, xShift, 16 + yShift);
               draw_set_color(c_white);
@@ -89,7 +117,7 @@
               var tr = chars[draftOptions[draftPos]][TRAIT_TEXT];
 !             draw_text(8 + xShift, 72, tr);
               draw_line(8 + xShift, 40, 183 + xShift, 40);
---- 201,203 ----
+--- 206,208 ----
               var tr = chars[draftOptions[draftPos]][TRAIT_TEXT];
 !             draw_text(8 + xShift, 72 + yShift, tr);
               draw_line(8 + xShift, 40, 183 + xShift, 40);
@@ -98,7 +126,7 @@
       }
 !     else if (numPlayers == 2 && playMode == VS)
       {
---- 281,283 ----
+--- 286,288 ----
       }
 !     else if (numPlayers >= 2 && playMode == VS)
       {
@@ -107,7 +135,7 @@
           
 !         if (numPlayers == 2 && playMode == VS)
           {
---- 391,393 ----
+--- 396,398 ----
           
 !         if ((numPlayers == 2 || numPlayers == 4) && playMode == VS)
           {

@@ -1,20 +1,43 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sun Jun  1 20:32:04 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sun Jun  1 20:28:50 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sat Jun  7 07:56:49 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_11.gml	Sat Jun  7 08:19:23 2025
+***************
+*** 57,58 ****
+--- 57,63 ----
+      draftTeam = scrChoose(1, 2);
++ 
++     if (numPlayers == 4 && playMode == VS)
++         draftTeamPlayerFirst = scrChoose(0, 1);
++     else
++         draftTeamPlayerFirst = 0;
+      
 ***************
 *** 102,104 ****
       
 !     if (draftTeam == 1 && playMode != DEMO)
       {
---- 102,113 ----
+--- 107,118 ----
       
 !     
-!     if (draftTurn <= 2 && numPlayers == 4) {
+!     if (draftTurn <= 2 && numPlayers == 4 && playMode == VS) {
 !         draftPlayer = draftTeam;
-!         inputPlayer = (draftTeam - 1) * 2 + 1;
+!         inputPlayer = ControllerMap[(draftTeam - 1) * 2 + draftTeamPlayerFirst];
 !     }
-!     else if (draftTurn >= 3 && numPlayers == 4) {
+!     else if (draftTurn >= 3 && numPlayers == 4 && playMode == VS) {
 !         draftPlayer = draftTeam;
-!         inputPlayer = (draftTeam - 1) * 2 + 2;
+!         inputPlayer = ControllerMap[(draftTeam - 1) * 2 + !draftTeamPlayerFirst];
 !     }
 !     else if (draftTeam == 1 && playMode != DEMO)
       {
+***************
+*** 194,198 ****
+          if (draftTurn <= 2)
+!             pick = 1;
+          else
+!             pick = 2;
+          
+--- 208,212 ----
+          if (draftTurn <= 2)
+!             pick = 1 + draftTeamPlayerFirst;
+          else
+!             pick = 1 + !draftTeamPlayerFirst;
+          

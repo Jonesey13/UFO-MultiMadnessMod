@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sun Jun  1 20:32:04 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sun Jun  1 20:11:59 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sat Jun  7 07:56:49 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sat Jun  7 08:05:19 2025
 ***************
 *** 50,51 ****
 --- 50,57 ----
@@ -55,6 +55,33 @@
 !         else if (playMode == VS && numPlayers == 4 && athlete[2 * (t + 1)] && athlete[2 * t + 1])
               teamFull = true;
 ***************
+*** 92,94 ****
+          
+!         if (bPressRight[p] && !teamFull)
+          {
+--- 103,105 ----
+          
+!         if (bPressRight[ControllerMap[p] - 1] && !teamFull)
+          {
+***************
+*** 106,108 ****
+          
+!         if (bPressLeft[p] && !teamFull)
+          {
+--- 117,119 ----
+          
+!         if (bPressLeft[ControllerMap[p] - 1] && !teamFull)
+          {
+***************
+*** 128,130 ****
+          
+!         if (bFire2pressed[p] && !invalidPick && !teamFull)
+          {
+--- 139,141 ----
+          
+!         if (bFire2pressed[ControllerMap[p] - 1] && !invalidPick && !teamFull)
+          {
+***************
 *** 133,135 ****
               
 !             if (playMode != COOP)
@@ -92,3 +119,21 @@
               }
 !             else if ((numPlayers == 2 || numPlayers = 4) && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
               {
+***************
+*** 213,215 ****
+          }
+!         else if (bFire2pressed[p])
+          {
+--- 230,232 ----
+          }
+!         else if (bFire2pressed[ControllerMap[p] - 1])
+          {
+***************
+*** 218,220 ****
+          
+!         if (bFire1pressed[p] && (athlete[(2 * t) + 1] || athlete[(2 * t) + 2]))
+          {
+--- 235,237 ----
+          
+!         if (bFire1pressed[ControllerMap[p] - 1] && (athlete[(2 * t) + 1] || athlete[(2 * t) + 2]))
+          {
