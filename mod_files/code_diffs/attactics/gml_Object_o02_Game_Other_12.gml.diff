@@ -1,0 +1,50 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Other_12.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_12.gml	Sat Jun  7 20:57:03 2025
+***************
+*** 20,29 ****
+  
+! for (var p = 1; p <= 2; p++)
+  {
+!     if (p == 1)
+          selX[p] = 64;
+!     else
+          selX[p] = 304;
+      
+!     selY[p] = 114;
+      selSprite[p] = s02_SelectorOff;
+--- 20,36 ----
+  
+! if (RANDOMISE_CONTROLLERS == 2)
+!     ControllerMap = rng_random_array_shuffle([0, 1, 2, 3]);
+! 
+! for (var p = 1; p <= players; p++)
+  {
+!     if (p == 1 || p == 3)
+          selX[p] = 64;
+!     else if (p == 2 || p == 4)
+          selX[p] = 304;
+      
+!     if (p <= 2)
+!         selY[p] = 114;
+!     else 
+!         selY[p] = 146;
+! 
+      selSprite[p] = s02_SelectorOff;
+***************
+*** 61,63 ****
+  
+! if (players == 2 && lvl == (TOTAL_LEVELS - 1))
+  {
+--- 68,70 ----
+  
+! if (players >= 2 && lvl == (TOTAL_LEVELS - 1))
+  {
+***************
+*** 69,71 ****
+  }
+! else if (players == 2 && lvl == TOTAL_LEVELS)
+  {
+--- 76,78 ----
+  }
+! else if (players >= 2 && lvl == TOTAL_LEVELS)
+  {

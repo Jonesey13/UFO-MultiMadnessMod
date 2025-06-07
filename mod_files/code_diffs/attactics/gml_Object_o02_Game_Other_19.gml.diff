@@ -1,0 +1,52 @@
+*** original_scripts/attactics/gml_Object_o02_Game_Other_19.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Other_19.gml	Sat Jun  7 21:00:28 2025
+***************
+*** 0 ****
+--- 1,46 ----
++ if (pressUp)
++ {
++     scrSfx(sfx_navi01, 50);
++     titleY--;
++     
++     if (titleY < 0)
++         titleY = 1;
++ }
++ else if (pressDown)
++ {
++     scrSfx(sfx_navi01, 50);
++     titleY++;
++     
++     if (titleY > 1)
++         titleY = 0;
++ }
++ 
++ if (titleY == 0)
++ {
++     if (fire2pressed || pressRight)
++     {
++         scrSfx(sfx_navi01, 60);
++         RANDOMISE_CONTROLLERS++;
++ 
++         if (RANDOMISE_CONTROLLERS == 3)
++             RANDOMISE_CONTROLLERS = 0;
++     } else if (fire1pressed || pressLeft)
++     {
++         scrSfx(sfx_navi01, 60);
++         RANDOMISE_CONTROLLERS--;
++ 
++         if (RANDOMISE_CONTROLLERS == -1)
++             RANDOMISE_CONTROLLERS = 2;
++     }
++ }
++ if (titleY == 1)
++ {
++     if (fire2pressed)
++     {
++         scrSfx(sfx_select01, 60);
++         if (RANDOMISE_CONTROLLERS == 1)
++             ControllerMap = rng_random_array_shuffle([0, 1, 2, 3]);
++         scrTransition(-1, 24, 0, -2, false);
++         state = STATE_LEVEL_SELECT;
++     }
++ }
+\ No newline at end of file

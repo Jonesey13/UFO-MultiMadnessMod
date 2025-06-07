@@ -1,11 +1,11 @@
 *** original_scripts/gml_GlobalScript_scrGetInputAll.gml	Thu Jan  1 00:00:00 1970
---- ufo50_modded_scripts/gml_GlobalScript_scrGetInputAll.gml	Fri May 30 10:52:24 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrGetInputAll.gml	Sat Jun  7 19:20:32 2025
 ***************
 *** 0 ****
 --- 1,22 ----
 + function scrGetInputAll(numPlayers)
 + {
-+     for (var p = 0; p < numPlayers; p++)
++     for (var p = numPlayers - 1; p >= 0; p--)
 +     {
 +         scrGetInput(p);
 +         bHoldUp[p] = holdUp;
