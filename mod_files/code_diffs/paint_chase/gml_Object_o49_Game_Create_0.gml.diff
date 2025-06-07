@@ -1,0 +1,24 @@
+*** original_scripts/paint_chase/gml_Object_o49_Game_Create_0.gml	Sat Jun  7 17:53:43 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Create_0.gml	Sat Jun  7 17:28:45 2025
+***************
+*** 6,7 ****
+--- 6,11 ----
+  
++ ControllerMap = [0, 1, 2, 3];
++ RANDOMISE_CONTROLLERS = false;
++ titleY = 0;
++ 
+  if (global.cheatID == 3)
+***************
+*** 34,35 ****
+--- 38,40 ----
+  STATE_CUTSCENES = 9;
++ STATE_VS_OPTIONS = 16;
+  STATE_LEVEL_SELECT = 14;
+***************
+*** 84,85 ****
+--- 89,92 ----
+      state = STATE_CUTSCENES_INTRO;
++ else if (numPlayers == 4)
++     state = STATE_VS_OPTIONS;
+  else

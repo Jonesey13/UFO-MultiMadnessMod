@@ -1,5 +1,5 @@
-*** original_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Sun May 11 20:14:00 2025
+*** original_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Sat Jun  7 17:53:43 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Draw_0.gml	Sat Jun  7 17:52:30 2025
 ***************
 *** 124,126 ****
       
@@ -18,3 +18,33 @@
       
 !     if (numPlayers == 2 || numPlayers == 4)
       {
+***************
+*** 483,484 ****
+--- 483,509 ----
+  }
++ 
++ if (state == STATE_VS_OPTIONS)
++ {
++     draw_set_color(global.palette[31]);
++     draw_set_alpha(0.65);
++     draw_rectangle(0, 0, 384, 240, false);
++     draw_set_alpha(1);
++     draw_set_color(c_white);
++     scrSetFont(global.fontTall);
++     draw_text(100, 24, "VS OPTIONS");
++     scrSetFont(global.fontDefault);
++     draw_text(88, 80, "CONTROLLERS:");
++     draw_text(88, 96, "START");
++     var controllerText = "FIXED"
++     if (RANDOMISE_CONTROLLERS == 1)
++         controllerText = "RANDOM AT START";
++     else if (RANDOMISE_CONTROLLERS == 2)
++         controllerText = "RANDOM EVERY LEVEL";
++     draw_text(210, 80, controllerText);
++     
++     if (scrTransitionDone())
++     {
++         draw_sprite_ext(s49_Racer2, 0, 72, 83 + (titleY * 16), 1, 1, -90, c_white, 1);
++     }
++ }
+  

@@ -1,5 +1,5 @@
-*** original_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Sun May 11 20:14:00 2025
+*** original_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Sat Jun  7 17:53:43 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Sat Jun  7 17:45:00 2025
 ***************
 *** 32,34 ****
   }
@@ -19,17 +19,25 @@
       
 ***************
 *** 299,300 ****
---- 302,331 ----
+--- 302,339 ----
   
 + if (numPlayers == 4) {
 +     var playerList = [0, 1, 2, 3];
 +     var shuffled_list = rng_random_array_shuffle(playerList);
 + 
++     if (RANDOMISE_CONTROLLERS == 2)
++         ControllerMap = rng_random_array_shuffle([0, 1, 2, 3]);
++ 
++     var p1 = instance_find(o49_Racer, shuffled_list[0]);
++     with (p1)
++     {
++         controller = o49_Game.ControllerMap[0];
++     }
 + 
 +     var p2 = instance_find(o49_Racer, shuffled_list[1]);
 +     with (p2)
 +     {
-+         controller = 1;
++         controller = o49_Game.ControllerMap[1];
 +         myColor = RED;
 +         sprite_index = s49_Racer2;
 +     }
@@ -37,13 +45,13 @@
 +     var p3 = instance_find(o49_Racer, shuffled_list[2]);
 +     with (p3)
 +     {
-+         controller = 2;
++         controller = o49_Game.ControllerMap[2];
 +     }
 + 
 +     var p4 = instance_find(o49_Racer, shuffled_list[3]);
 +     with (p4)
 +     {
-+         controller = 3;
++         controller = o49_Game.ControllerMap[3];
 +         myColor = RED;
 +         sprite_index = s49_Racer2;
 +     }
@@ -55,7 +63,7 @@
   }
 ! else if (numPlayers == 2)
   {
---- 363,365 ----
+--- 371,373 ----
   }
 ! else if (numPlayers == 2 || numPlayers == 4)
   {
