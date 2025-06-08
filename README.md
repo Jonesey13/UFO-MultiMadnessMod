@@ -6,7 +6,7 @@ This is a mod to enable 4 players for various games in the game UFO50. Currently
 * Paint Chase
 * Attactics
 * Waldorf's Journey
-* The Big Bell Race
+* The Big Bell Race (up to 6 Players)
 * Ninpek
 * Mortol
 
