@@ -1,5 +1,5 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Jun  6 14:37:49 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Jun  6 18:16:04 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Sun Jun  8 14:40:17 2025
 ***************
 *** 5,74 ****
   {
@@ -80,69 +80,43 @@
 !         if (naviSel[i] == 0)
           {
 ***************
-*** 77,86 ****
+*** 77,87 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
 !                 while (navi[1] == np || navi[1] == navi[0])
 !                 {
 !                     navi[1]--;
-                      
+!                     
 !                     if (navi[1] < 0)
 !                         navi[1] = 5;
-                  }
---- 13,31 ----
+!                 }
+              }
+--- 13,17 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]--;
 !                 if (navi[i] < 0)
 !                     navi[i] = 5;
-! 
-!                 var selectablePlayerFound = false;
-! 
-!                 while (!selectablePlayerFound) {
-!                     selectablePlayerFound = true;
-                      
-!                     for (var j = 0; j < global.numPlayers; j++) {
-!                         if (i != j && navi[i] == navi[j]) {
-!                             navi[i]--;
-!                             if (navi[i] < 0)
-!                                 navi[i] = 5;
-!                             selectablePlayerFound = false
-!                         }
-!                     }
-                  }
+              }
 ***************
-*** 90,99 ****
+*** 90,100 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
 !                 while (navi[1] == np || navi[1] == navi[0])
 !                 {
 !                     navi[1]++;
-                      
+!                     
 !                     if (navi[1] > 5)
 !                         navi[1] = 0;
-                  }
---- 35,53 ----
+!                 }
+              }
+--- 20,24 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]++;
 !                 if (navi[i] > 5)
 !                     navi[i] = 0;
-! 
-!                 var selectablePlayerFound = false;
-! 
-!                 while (!selectablePlayerFound) {
-!                     selectablePlayerFound = true;
-                      
-!                     for (var j = 0; j < global.numPlayers; j++) {
-!                         if (i != j && navi[i] == navi[j]) {
-!                             navi[i]++;
-!                             if (navi[i] > 5)
-!                                 navi[i] = 0;
-!                             selectablePlayerFound = false
-!                         }
-!                     }
-                  }
+              }
 ***************
 *** 102,108 ****
               {
@@ -152,9 +126,17 @@
                       scrSfx(sfx_select01, 45);
 !                     naviSel[1] = 1;
                   }
---- 56,63 ----
+--- 26,41 ----
               {
-!                 if (naviSel[i] == 0)
+!                 selectablePlayerFound = true;
+!                     
+!                 for (var j = 0; j < global.numPlayers; j++) {
+!                     if (i != j && navi[i] == navi[j] && naviSel[j] == 1) {
+!                         selectablePlayerFound = false
+!                     }
+!                 }
+! 
+!                 if (selectablePlayerFound && naviSel[i] == 0)
                   {
 +                     readies++;
                       mute(sfx_deselect00);
@@ -170,7 +152,7 @@
                   scrSfx(sfx_deselect00, 45);
 !                 naviSel[1] = 0;
                   t = 0;
---- 67,74 ----
+--- 45,52 ----
           {
 !             if (naviSel[i] == 1)
               {
@@ -184,7 +166,7 @@
       {
 !         if (!multip || naviSel[1] == 1)
           {
---- 80,82 ----
+--- 58,60 ----
       {
 !         if (!multip || readies == global.numPlayers)
           {
@@ -204,7 +186,7 @@
 !                         ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
                   }
                   
---- 87,96 ----
+--- 65,74 ----
                   playerSel[1] = navi[1];
 ! 
 !                 for (var j = 0; j < global.numPlayers; j++) {
@@ -217,7 +199,7 @@
                   
 ***************
 *** 318,319 ****
---- 270,281 ----
+--- 248,269 ----
               }
 +             else if (global.numPlayers >= 3 && uId == playerSel[2])
 +             {
@@ -229,6 +211,16 @@
 +                 racer[rCount].human = true;
 +                 racer[rCount].num = 3;
 +             }
++             else if (global.numPlayers >= 5 && uId == playerSel[4])
++             {
++                 racer[rCount].human = true;
++                 racer[rCount].num = 4;
++             }
++             else if (global.numPlayers >= 6 && uId == playerSel[5])
++             {
++                 racer[rCount].human = true;
++                 racer[rCount].num = 5;
++             }
               else
 ***************
 *** 680,683 ****
@@ -236,7 +228,7 @@
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 642,645 ----
+--- 630,633 ----
   {
 !     playerInGoal[0] = false;
 !     playerInGoal[1] = false;
@@ -246,7 +238,7 @@
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 650,652 ----
+--- 638,640 ----
   }
 ! else if ((!multip && playerInGoal[0]) || (global.numPlayers == 2 && playerInGoal[0] && playerInGoal[1]))
   {

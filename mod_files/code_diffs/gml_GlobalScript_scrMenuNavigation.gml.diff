@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrMenuNavigation.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrMenuNavigation.gml	Sun May 11 20:14:00 2025
+*** original_scripts/gml_GlobalScript_scrMenuNavigation.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrMenuNavigation.gml	Sun Jun  8 14:00:58 2025
 ***************
 *** 185,187 ****
       {
@@ -35,5 +35,5 @@
 !         {
 !             arrowRightActive = arrowActiveMax;
               
-!             itemIndex[menuSel] = min(itemIndex[menuSel] + 1, 3);
+!             itemIndex[menuSel] = min(itemIndex[menuSel] + 1, 5);
               return itemIndex[menuSel];

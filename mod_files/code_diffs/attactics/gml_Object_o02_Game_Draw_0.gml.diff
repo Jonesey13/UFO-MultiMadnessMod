@@ -1,5 +1,5 @@
 *** original_scripts/attactics/gml_Object_o02_Game_Draw_0.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Draw_0.gml	Sat Jun  7 21:00:51 2025
+--- ufo50_modded_scripts/attactics/gml_Object_o02_Game_Draw_0.gml	Sat Jun  7 21:12:10 2025
 ***************
 *** 82,84 ****
       
@@ -109,7 +109,7 @@
 +     
 +     if (scrTransitionDone())
 +     {
-+         draw_sprite(s02_Arrow, 0, 60, 70 + (titleY * 16));
++         draw_sprite(s02_Arrow, 0, 52, 70 + (titleY * 16));
 +     }
 + }
 \ No newline at end of file

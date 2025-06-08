@@ -41,6 +41,22 @@
       "target_size": [16, 8],
       "bounding_size": [16, 8],
       "texture": "Texture 122"
+    },
+    {
+      "source_position": [64, 0],
+      "source_size": [16, 8],
+      "target_position": [0, 0],
+      "target_size": [16, 8],
+      "bounding_size": [16, 8],
+      "texture": "Texture 122"
+    },
+    {
+      "source_position": [80, 0],
+      "source_size": [16, 8],
+      "target_position": [0, 0],
+      "target_size": [16, 8],
+      "bounding_size": [16, 8],
+      "texture": "Texture 122"
     }
   ]
 }

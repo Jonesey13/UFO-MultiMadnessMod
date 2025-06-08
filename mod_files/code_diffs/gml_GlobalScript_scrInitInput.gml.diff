@@ -1,11 +1,13 @@
-*** original_scripts/gml_GlobalScript_scrInitInput.gml	Fri May 16 21:07:39 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Fri May 23 15:56:36 2025
+*** original_scripts/gml_GlobalScript_scrInitInput.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Sun Jun  8 14:18:41 2025
 ***************
 *** 5,6 ****
---- 5,8 ----
+--- 5,10 ----
       global.joySlot[1] = 1;
 +     global.joySlot[2] = 2;
 +     global.joySlot[3] = 3;
++     global.joySlot[4] = 4;
++     global.joySlot[5] = 5;
       global.joyConnected = gamepad_is_connected(0);
 ***************
 *** 22,30 ****
@@ -18,7 +20,7 @@
 !     global.DEFAULT_KEY[0][global.INP_FIRE2] = 90;
 !     global.DEFAULT_KEY[0][global.INP_START] = 68;
       global.DEFAULT_JOY[0][global.INP_UP] = 32781;
---- 24,32 ----
+--- 26,34 ----
       global.INP_TYPE_RELEASE = 2;
 !     global.DEFAULT_KEY[0][global.INP_UP] = vk_up;
 !     global.DEFAULT_KEY[0][global.INP_DOWN] = vk_down;
@@ -39,7 +41,7 @@
 !     global.DEFAULT_KEY[1][global.INP_FIRE2] = 46;
 !     global.DEFAULT_KEY[1][global.INP_START] = 33;
       global.DEFAULT_JOY[1][global.INP_UP] = 32781;
---- 38,46 ----
+--- 40,48 ----
       global.DEFAULT_JOY[0][global.INP_START] = 32778;
 !     global.DEFAULT_KEY[1][global.INP_UP] = vk_numpad5;
 !     global.DEFAULT_KEY[1][global.INP_DOWN] = vk_numpad2;
@@ -55,7 +57,7 @@
       
 !     for (var p = 0; p <= 1; p++)
       {
---- 52,83 ----
+--- 54,113 ----
       global.DEFAULT_JOY[1][global.INP_START] = 32778;
 +     global.DEFAULT_KEY[2][global.INP_UP] = ord("W");
 +     global.DEFAULT_KEY[2][global.INP_DOWN] = ord("S");
@@ -85,20 +87,52 @@
 +     global.DEFAULT_JOY[3][global.INP_FIRE1] = 32771;
 +     global.DEFAULT_JOY[3][global.INP_FIRE2] = 32769;
 +     global.DEFAULT_JOY[3][global.INP_START] = 32778;
++     global.DEFAULT_KEY[4][global.INP_UP] = ord("1");
++     global.DEFAULT_KEY[4][global.INP_DOWN] = ord("2");
++     global.DEFAULT_KEY[4][global.INP_LEFT] = ord("3");
++     global.DEFAULT_KEY[4][global.INP_RIGHT] = ord("4");
++     global.DEFAULT_KEY[4][global.INP_FIRE1] = ord("R");
++     global.DEFAULT_KEY[4][global.INP_FIRE2] = ord("T");
++     global.DEFAULT_KEY[4][global.INP_START] = ord("Y");
++     global.DEFAULT_JOY[4][global.INP_UP] = 32781;
++     global.DEFAULT_JOY[4][global.INP_DOWN] = 32782;
++     global.DEFAULT_JOY[4][global.INP_LEFT] = 32783;
++     global.DEFAULT_JOY[4][global.INP_RIGHT] = 32784;
++     global.DEFAULT_JOY[4][global.INP_FIRE1] = 32771;
++     global.DEFAULT_JOY[4][global.INP_FIRE2] = 32769;
++     global.DEFAULT_JOY[4][global.INP_START] = 32778;
++     global.DEFAULT_KEY[5][global.INP_UP] = ord("7");
++     global.DEFAULT_KEY[5][global.INP_DOWN] = ord("8");
++     global.DEFAULT_KEY[5][global.INP_LEFT] = ord("9");
++     global.DEFAULT_KEY[5][global.INP_RIGHT] = ord("0");
++     global.DEFAULT_KEY[5][global.INP_FIRE1] = ord("U");
++     global.DEFAULT_KEY[5][global.INP_FIRE2] = ord("O");
++     global.DEFAULT_KEY[5][global.INP_START] = ord("P");
++     global.DEFAULT_JOY[5][global.INP_UP] = 32781;
++     global.DEFAULT_JOY[5][global.INP_DOWN] = 32782;
++     global.DEFAULT_JOY[5][global.INP_LEFT] = 32783;
++     global.DEFAULT_JOY[5][global.INP_RIGHT] = 32784;
++     global.DEFAULT_JOY[5][global.INP_FIRE1] = 32771;
++     global.DEFAULT_JOY[5][global.INP_FIRE2] = 32769;
++     global.DEFAULT_JOY[5][global.INP_START] = 32778;
       
-!     for (var p = 0; p <= 3; p++)
+!     for (var p = 0; p <= 5; p++)
       {
 ***************
 *** 62,63 ****
---- 92,95 ----
+--- 122,127 ----
       global.doubledUpButtons[1] = scrReadConfig("doubledUpButtonsP2", true);
 +     global.doubledUpButtons[2] = scrReadConfig("doubledUpButtonsP3", true);
 +     global.doubledUpButtons[3] = scrReadConfig("doubledUpButtonsP4", true);
++     global.doubledUpButtons[4] = scrReadConfig("doubledUpButtonsP5", true);
++     global.doubledUpButtons[5] = scrReadConfig("doubledUpButtonsP6", true);
       gamepad_set_axis_deadzone(0, 0);
 ***************
 *** 349,350 ****
---- 381,384 ----
+--- 413,418 ----
       global.joyType[1] = scrReadConfig("joyTypeP2", scrDetectJoyType(1));
 +     global.joyType[2] = scrReadConfig("joyTypeP3", scrDetectJoyType(2));
 +     global.joyType[3] = scrReadConfig("joyTypeP4", scrDetectJoyType(3));
++     global.joyType[4] = scrReadConfig("joyTypeP5", scrDetectJoyType(2));
++     global.joyType[5] = scrReadConfig("joyTypeP6", scrDetectJoyType(3));
       

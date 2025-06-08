@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Sat Jun  7 20:20:12 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sat Jun  7 19:09:40 2025
+*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sun Jun  8 13:23:27 2025
 ***************
 *** 72,74 ****
           menuOption[2] = scrStringManual("title_coop", 0);
@@ -61,7 +61,7 @@
       }
 ***************
 *** 174,175 ****
---- 188,218 ----
+--- 188,220 ----
       }
 +     else if (menuStyle == 18)
 +     {
@@ -84,6 +84,8 @@
 +         menuOption[1] = scrStringManual("title_2players", 0);
 +         menuOption[2] = "3 PLAYERS";
 +         menuOption[3] = "4 PLAYERS";
++         menuOption[4] = "5 PLAYERS";
++         menuOption[5] = "6 PLAYERS";
 +     }
 +     else if (menuStyle == 21)
 +     {
@@ -100,7 +102,7 @@
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGame2PStarted && menuStyle == 15 && menuSel == 3)
                   scrSwitchSub(SUB_CONFIRM);
---- 336,344 ----
+--- 338,346 ----
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGameStarted && menuStyle == 15 && menuSel == 4)
 !                 scrSwitchSub(SUB_CONFIRM);
@@ -112,7 +114,7 @@
                   scrSwitchSub(SUB_CONFIRM);
 ***************
 *** 301,302 ****
---- 348,353 ----
+--- 350,355 ----
                   scrSwitchState(STATE_HIGHSCORE);
 +             else if (menuStyle == 18 && menuSel == 3)
 +                 scrSwitchState(STATE_HIGHSCORE);
@@ -121,7 +123,7 @@
               else if (menuStyle == 10 && menuSel == 3)
 ***************
 *** 378,379 ****
---- 429,454 ----
+--- 431,462 ----
               global.numPlayers = 2;
 + 
 +         if (menuStyle == 18 && menuSel == 1)
@@ -147,10 +149,16 @@
 + 
 +         if (menuStyle == 20 && menuSel == 3)
 +             global.numPlayers = 4;
++ 
++         if (menuStyle == 20 && menuSel == 4)
++             global.numPlayers = 5;
++ 
++         if (menuStyle == 20 && menuSel == 5)
++             global.numPlayers = 6;
           
 ***************
 *** 387,388 ****
---- 462,469 ----
+--- 470,477 ----
               global.numPlayers = 2;
 + 
 +         if (menuStyle == 7 && menuSel == 2)
@@ -161,7 +169,7 @@
           
 ***************
 *** 402,403 ****
---- 483,487 ----
+--- 491,495 ----
               global.numPlayers = 2;
 + 
 +         if (menuStyle == 12 && menuSel == 3)
@@ -169,7 +177,7 @@
           
 ***************
 *** 406,407 ****
---- 490,503 ----
+--- 498,511 ----
           
 +         if (menuStyle == 16 && menuSel == 1)
 +             global.numPlayers = 2;
@@ -195,7 +203,7 @@
           
 !         if (menuStyle == 17 && menuSel == 1)
               global.numPlayers = 4;
---- 505,519 ----
+--- 513,527 ----
           
 +         if (menuStyle == 15 && menuSel == 2)
 +             global.numPlayers = 3;
@@ -219,7 +227,7 @@
           
 !         if (menuStyle == 6 && menuSel == 3)
               global.numPlayers = 0;
---- 526,537 ----
+--- 534,545 ----
           
 +         if (menuStyle == 6 && menuSel == 3)
 +             global.numPlayers = 5;

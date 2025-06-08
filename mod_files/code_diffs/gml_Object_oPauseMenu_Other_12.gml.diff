@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oPauseMenu_Other_12.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_12.gml	Sun May 11 20:14:00 2025
+*** original_scripts/gml_Object_oPauseMenu_Other_12.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_12.gml	Sun Jun  8 13:42:30 2025
 ***************
 *** 10,12 ****
       
@@ -7,7 +7,7 @@
       {
 --- 10,12 ----
       
-!     for (var p = 0; p <= 3; p++)
+!     for (var p = 0; p <= 5; p++)
       {
 ***************
 *** 141,143 ****
@@ -16,7 +16,7 @@
                   {
 --- 141,143 ----
                   
-!                 for (var p = 0; p <= 3; p++)
+!                 for (var p = 0; p <= 5; p++)
                   {
 ***************
 *** 155,157 ****
@@ -25,7 +25,7 @@
                   {
 --- 155,157 ----
                   
-!                 for (var p = 0; p <= 3; p++)
+!                 for (var p = 0; p <= 5; p++)
                   {
 ***************
 *** 179,181 ****
@@ -34,7 +34,7 @@
           {
 --- 179,181 ----
       {
-!         for (var p = 0; p <= 3; p++)
+!         for (var p = 0; p <= 5; p++)
           {
 ***************
 *** 185,187 ****
@@ -43,5 +43,5 @@
           {
 --- 185,187 ----
           
-!         for (var p = 0; p <= 3; p++)
+!         for (var p = 0; p <= 5; p++)
           {

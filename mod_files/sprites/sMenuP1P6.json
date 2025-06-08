@@ -1,0 +1,61 @@
+{
+  "size": [64, 8],
+  "margin": [0, 63, 7, 0],
+  "origin": [0, 0],
+  "special": {
+    "version": 3,
+    "type": "Normal",
+    "playback_speed": 15,
+    "playback_speed_type": "FramesPerSecond"
+  },
+  "texture_pages": [
+    {
+      "source_position": [0, 0],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    },
+    {
+      "source_position": [0, 8],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    },
+    {
+      "source_position": [0, 16],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    },
+    {
+      "source_position": [0, 24],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    },
+    {
+      "source_position": [0, 32],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    },
+    {
+      "source_position": [0, 40],
+      "source_size": [96, 8],
+      "target_position": [0, 0],
+      "target_size": [96, 8],
+      "bounding_size": [96, 8],
+      "texture": "Texture 113"
+    }
+  ]
+}
