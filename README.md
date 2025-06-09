@@ -20,7 +20,14 @@ All original rights belong to Mossmouth (and am happy to take down this repo at 
 
 ## How to use this repo
 
-> These are instructions for developers. Please use a delta for the `data.win` file provided on [the Releases page](https://github.com/Jonesey13/Mortol4PMod/releases) if you are not a developer!
+### Instructions for Non-Developers
+UFO 50 mods commonly use an `xdelta` file to patch the main gamefile (`data.win`) directly. Please use a delta [from the Releases page](https://github.com/Jonesey13/Mortol4PMod/releases). 
+
+A quick and easy way to apply a delta file is to use a site like [https://kotcrab.github.io/xdelta-wasm/](https://kotcrab.github.io/xdelta-wasm/) or download a standalone tool such as [https://github.com/marco-calautti/DeltaPatcher](https://github.com/marco-calautti/DeltaPatcher).
+* You can find more details at [https://ufo50.miraheze.org/wiki/Guide_to_Modding_UFO_50](https://ufo50.miraheze.org/wiki/Guide_to_Modding_UFO_50)
+
+### Instructions for Developers
+
 
 This repo is designed to run standalone as a Dev Container in VSCode.
 
