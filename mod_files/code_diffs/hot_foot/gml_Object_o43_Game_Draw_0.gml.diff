@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sat Jun  7 07:56:49 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sat Jun  7 08:12:46 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Draw_0.gml	Sun Jun 15 19:40:38 2025
 ***************
 *** 30,32 ****
           draw_set_alpha(0.65);
@@ -37,7 +37,7 @@
           
 !         if (playMode == VS && numPlayers <= 2 && athlete[(2 * p) + 2])
 !             teamFull = true;
-!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (p div 2) + 2])
+!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (p div 2) + 2] && athlete[2 * (p div 2) + 1])
               teamFull = true;
 ***************
 *** 143,144 ****
@@ -63,7 +63,7 @@
 !                     draw_sprite(s43_DraftPicker, p, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
 !                     draw_sprite(s43_DraftPicker, p + 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
                   }
---- 164,174 ----
+--- 164,182 ----
               {
 !                 if (numPlayers != 4) {
 !                     if (flicker8 || p == 0 || draftPos != draftX[0] || athlete[2])
@@ -72,8 +72,16 @@
 !                         draw_sprite(s43_DraftPicker, p + 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
 !                     }
 !                 } else {
-!                     draw_sprite(s43_DraftPicker, p div 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
-!                     draw_sprite(s43_DraftPicker, (p mod 2) + 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
+!                     var otherPlayerNum = ((p + 1) mod 2) + 2 * (p div 2);
+! 
+!                     if (draftX[p] != draftX[otherPlayerNum]){
+!                         draw_sprite(s43_DraftPicker, p div 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
+!                         draw_sprite(s43_DraftPicker, (p mod 2) + 2, ((draftPos * 24) + 36) - (24 * charUnlock), 144);
+!                     } else {
+!                         var horizontalPos = (p mod 2) * 16 + ((draftPos * 24) + 28) - (24 * charUnlock);
+!                         draw_sprite(s43_DraftPicker, p div 2, horizontalPos, 144);
+!                         draw_sprite(s43_DraftPicker, (p mod 2) + 2, horizontalPos, 144);
+!                     }
                   }
 ***************
 *** 166,182 ****
@@ -94,7 +102,7 @@
               var sa = chars[draftOptions[draftPos]][SA];
 !             scr43_DrawSpecialActionIcon(sa, 176 + xShift, 56);
               
---- 184,200 ----
+--- 192,208 ----
               
 !             draw_sprite(s43_InfoBox, 0, xShift, 16 + yShift);
               draw_set_color(c_white);
@@ -117,7 +125,7 @@
               var tr = chars[draftOptions[draftPos]][TRAIT_TEXT];
 !             draw_text(8 + xShift, 72, tr);
               draw_line(8 + xShift, 40, 183 + xShift, 40);
---- 206,208 ----
+--- 214,216 ----
               var tr = chars[draftOptions[draftPos]][TRAIT_TEXT];
 !             draw_text(8 + xShift, 72 + yShift, tr);
               draw_line(8 + xShift, 40, 183 + xShift, 40);
@@ -126,7 +134,7 @@
       }
 !     else if (numPlayers == 2 && playMode == VS)
       {
---- 286,288 ----
+--- 294,296 ----
       }
 !     else if (numPlayers >= 2 && playMode == VS)
       {
@@ -135,7 +143,7 @@
           
 !         if (numPlayers == 2 && playMode == VS)
           {
---- 396,398 ----
+--- 404,406 ----
           
 !         if ((numPlayers == 2 || numPlayers == 4) && playMode == VS)
           {
