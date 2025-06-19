@@ -1,5 +1,5 @@
-*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Fri Jun  6 20:57:22 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Fri Jun  6 20:40:10 2025
+*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Sat Jun  7 21:06:07 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Thu Jun 19 22:13:24 2025
 ***************
 *** 5,7 ****
   {
@@ -9,6 +9,15 @@
   {
 !     scrGetInput(o22_Game.controllerMap[1]);
       
+***************
+*** 112,113 ****
+--- 112,117 ----
+      o22_CharselRight.val = sel;
++ 
++     if (o22_Game.numPlayers == 5)
++         o22_CharselRight.y = 300;
++ 
+      o22_PortraitRight.val = sel;
 ***************
 *** 165,173 ****
   {
@@ -20,7 +29,7 @@
 !             _canBackOut = false;
 !     }
       
---- 165,170 ----
+--- 169,174 ----
   {
 !     var _canBackOut = !o22_HandLeft.ready;
       
