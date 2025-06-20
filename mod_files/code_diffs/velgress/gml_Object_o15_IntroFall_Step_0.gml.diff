@@ -1,0 +1,31 @@
+*** original_scripts/velgress/gml_Object_o15_IntroFall_Step_0.gml	Fri Jun 20 15:44:20 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_IntroFall_Step_0.gml	Fri Jun 20 15:28:18 2025
+***************
+*** 2,13 ****
+  {
+!     mute(sfx_polyDrop00);
+!     
+!     if (global.g15_QuickRestart > 0)
+!     {
+!         o15_Game.substate = 3;
+!         miscCount = 10;
+!     }
+!     else
+!     {
+!         o15_Game.substate += 1;
+      }
+--- 2,15 ----
+  {
+!     if (!dummy) {
+!         mute(sfx_polyDrop00);
+!         
+!         if (global.g15_QuickRestart > 0)
+!         {
+!             o15_Game.substate = 3;
+!             miscCount = 10;
+!         }
+!         else
+!         {
+!             o15_Game.substate += 1;
+!         }
+      }

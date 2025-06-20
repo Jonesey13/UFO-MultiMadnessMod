@@ -1,0 +1,57 @@
+*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Fri Jun 20 15:44:20 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Fri Jun 20 15:34:57 2025
+***************
+*** 37,38 ****
+--- 37,50 ----
+  
++ numPlayers = global.numPlayers;
++ 
++ COOP_COST_MULTIPLIER = 1.2;
++ 
++ if (numPlayers == 2) {
++   for (var i = 0; i <= 8; i++) {
++     shopPrices[i] *= COOP_COST_MULTIPLIER;
++   }
++ }
++ 
++ players[0] = o15_Player;
++ 
+  for (var i = 0; i < 50; i++)
+***************
+*** 103,104 ****
+--- 115,131 ----
+  
++ if (numPlayers >= 2) {
++     players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++     players[1].playerNum = 2;
++ }
++ 
++ if (numPlayers >= 3) {
++     players[2] = instance_create_layer(25, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++     players[2].playerNum = 3;
++ }
++ 
++ if (numPlayers >= 4) {
++     players[3] = instance_create_layer(335, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++     players[3].playerNum = 4;
++ }
++ 
+  soldOutCount = 0;
+***************
+*** 122,125 ****
+  
+! if (!inRecordOrPlayback())
+!     instance_create(192, -32, o15_IntroFall);
+  
+--- 149,159 ----
+  
+! if (numPlayers == 1) {
+!     if (!inRecordOrPlayback())
+!         instance_create(192, -32, o15_IntroFall);
+! } else {
+!     instance_create(170, -32, o15_IntroFall);
+!     var dropSecond = instance_create(214, -32, o15_IntroFall);
+!     dropSecond.dummy = true;
+! }
+! 
+  

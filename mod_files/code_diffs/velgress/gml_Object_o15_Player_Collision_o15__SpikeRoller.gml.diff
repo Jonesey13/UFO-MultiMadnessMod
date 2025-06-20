@@ -1,0 +1,41 @@
+*** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 15:44:20 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 15:10:13 2025
+***************
+*** 2,4 ****
+  {
+-     muteBGM();
+      scrSfx(sfx_die01, 85);
+--- 2,3 ----
+***************
+*** 11,19 ****
+      vspd = 0;
+-     o15_Game.state = -99;
+-     o15_Game.alarm[0] = 10;
+      
+!     if (o15_Game.currHighFloor > o15_Game.highFloor)
+!         o15_Game.newHighFloor = true;
+!     
+!     scrSaveGame(0);
+  }
+--- 10,30 ----
+      vspd = 0;
+      
+!     var allDead = true;
+! 
+!     for (var p = 0; p < o15_Game.numPlayers; p++) {
+!         if (!o15_Game.players[p].dead) {
+!             allDead = false;
+!         }
+!     }
+! 
+!     if (allDead) {
+!         muteBGM();
+!         o15_Game.state = -99;
+!         o15_Game.alarm[0] = 10;
+!         
+!         if (o15_Game.currHighFloor > o15_Game.highFloor)
+!             o15_Game.newHighFloor = true;
+!         
+!         scrSaveGame(0);
+!     }
+  }

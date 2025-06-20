@@ -1,0 +1,11 @@
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Jun 20 15:44:20 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Jun 20 14:03:15 2025
+***************
+*** 322,324 ****
+  if (o15_Game.state != 3 && o15_Game.state != 4)
+!     scrGetInput(0);
+  
+--- 322,324 ----
+  if (o15_Game.state != 3 && o15_Game.state != 4)
+!     scrGetInput(playerNum - 1);
+  

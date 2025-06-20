@@ -1,0 +1,8 @@
+*** original_scripts/velgress/gml_Object_o15_Player_Create_0.gml	Fri Jun 20 15:44:20 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Create_0.gml	Fri Jun 20 13:34:08 2025
+***************
+*** 67 ****
+--- 67,68 ----
+  debugOn = false;
++ playerNum = 1;
+\ No newline at end of file
