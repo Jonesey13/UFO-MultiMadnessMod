@@ -1,0 +1,9 @@
+*** original_scripts/velgress/gml_Object_o15_SpikeRoller_Other_7.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_SpikeRoller_Other_7.gml	Fri Jun 20 21:04:34 2025
+***************
+*** 2 ****
+--- 2,4 ----
+      sprite_index = s15_SpikeRoller;
++ else if (sprite_index == s15_SpikeRollerRollLarge)
++     sprite_index = s15_SpikeRollerLarge;
+\ No newline at end of file

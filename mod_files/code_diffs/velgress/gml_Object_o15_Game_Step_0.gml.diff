@@ -1,0 +1,133 @@
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Jun 20 21:56:14 2025
+***************
+*** 9,15 ****
+  
+! if (!introSoundTrig)
+! {
+!     scrSfx(sfx_polyDrop00, 89);
+!     introSoundTrig = true;
+! }
+  
+--- 9,11 ----
+  
+! 
+  
+***************
+*** 27,31 ****
+          
+!         if (fire2pressed)
+              room_restart();
+      }
+  }
+--- 23,126 ----
+          
+!         if (fire2pressed) {
+!             global.skipOptionsMenu = true;
+!             global.numPlayers = numPlayers;
+              room_restart();
++         }
++     }
++ }
++ else if (state == STATE_VS_OPTIONS)
++ {
++     scrGetInput(0);
++ 
++     if (pressUp)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY--;
++         
++         if (titleY < 0)
++             titleY = 1;
++     }
++     else if (pressDown)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY++;
++         
++         if (titleY > 1)
++             titleY = 0;
++     }
++ 
++     if (titleY == 0)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             numPlayers++;
++ 
++             if (numPlayers == 5)
++                 numPlayers = 4;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             numPlayers--;
++ 
++             if (numPlayers == 1)
++                 numPlayers = 2;
++         }
++     }
++     if (titleY == 1)
++     {
++         if (fire2pressed)
++         {
++             scrSfx(sfx_powerup01, 60);
++             state = STATE_INTRO_FALL;
++         }
++     }
++ }
++ else if (state == STATE_INTRO_FALL)
++ {
++     if (!introSoundTrig)
++     {
++         scrSfx(sfx_polyDrop00, 89);
++         introSoundTrig = true;
++     }
++ 
++     if (numPlayers == 1) {
++         if (!inRecordOrPlayback())
++             instance_create(192, -32, o15_IntroFall);
++     } else if (numPlayers == 2) {
++         instance_create(170, -32, o15_IntroFall);
++         var dropSecond = instance_create(214, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++     } else if (numPlayers == 3) {
++         instance_create(160, -32, o15_IntroFall);
++         var dropSecond = instance_create(190, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++         var dropThird = instance_create(220, -32, o15_IntroFall);
++         dropThird.dummy = true;
++     } else if (numPlayers == 4) {
++         instance_create(150, -32, o15_IntroFall);
++         var dropSecond = instance_create(180, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++         var dropThird = instance_create(210, -32, o15_IntroFall);
++         dropThird.dummy = true;
++         var dropFourth = instance_create(240, -32, o15_IntroFall);
++         dropFourth.dummy = true;
++     }
++     
++     if (numPlayers >= 2) {
++         players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[1].playerNum = 2;
++     }
++ 
++     if (numPlayers >= 3) {
++         players[2] = instance_create_layer(25, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[2].playerNum = 3;
++     }
++ 
++     if (numPlayers >= 4) {
++         players[3] = instance_create_layer(335, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[3].playerNum = 4;
+      }
++ 
++     state = STATE_INTRO_FALL_WAIT;
+  }
+***************
+*** 33,34 ****
+--- 128,130 ----
+  {
++ 
+      if (substate == 1)

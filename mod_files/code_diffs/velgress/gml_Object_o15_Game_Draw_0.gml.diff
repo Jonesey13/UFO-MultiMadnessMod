@@ -1,0 +1,29 @@
+*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 15:56:29 2025
+***************
+*** 189 ****
+--- 189,211 ----
+  }
++ 
++ 
++ if (state == STATE_VS_OPTIONS)
++ {
++     draw_set_color(global.palette[31]);
++     draw_set_alpha(0.65);
++     draw_rectangle(0, 0, 384, 240, false);
++     draw_set_alpha(1);
++     draw_set_color(c_white);
++     scrSetFont(global.fontTall);
++     draw_text(100, 24, "VS OPTIONS");
++     scrSetFont(global.fontDefault);
++     draw_text(88, 80, "PLAYERS:");
++     draw_text(88, 96, "START");
++     var controllerText = string(numPlayers);
++     draw_text(210, 80, controllerText);
++     
++     if (scrTransitionDone())
++     {
++         draw_sprite_ext(s15_Keys, 0, 72, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
++     }
++ }
+\ No newline at end of file
