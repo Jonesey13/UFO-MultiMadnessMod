@@ -1,0 +1,218 @@
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 20:54:47 2025
+***************
+*** 9,17 ****
+  
+- if (!introSoundTrig)
+- {
+-     scrSfx(sfx_polyDrop00, 89);
+-     introSoundTrig = true;
+- }
+  
+! if (state == -99)
+  {
+--- 9,13 ----
+  
+  
+! 
+! if (state == STATE_GAME_OVER)
+  {
+***************
+*** 25,34 ****
+          
+!         scrGetInput(0);
+          
+          if (fire2pressed)
+!             room_restart();
+      }
+  }
+  else if (state == -2)
+  {
+      if (substate == 1)
+--- 21,191 ----
+          
+!         for (p = 0; p <= global.numPlayers; p++) {
+!             scrGetInput(p);
+!             
+!             if (fire2pressed) {
+!                 global.g15_skipOptionsMenu = true;
+!                 room_restart();
+!             }
+!         }
+!     }
+! }
+! else if (state == STATE_VS_OPTIONS)
+! {
+!     scrGetInput(0);
+! 
+!     if (pressUp)
+!     {
+!         scrSfx(sfx_navi01, 50);
+!         titleY--;
+          
++         if (titleY < 0)
++             titleY = 4;
++     }
++     else if (pressDown)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY++;
++         
++         if (titleY > 4)
++             titleY = 0;
++     }
++ 
++     if (titleY == 0)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             global.numPlayers++;
++ 
++             if (global.numPlayers == 5)
++                 global.numPlayers = 4;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             global.numPlayers--;
++ 
++             if (global.numPlayers == 1)
++                 global.numPlayers = 2;
++         }
++     }
++     if (titleY == 1)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             currentThreshYSelect++;
++ 
++             if (currentThreshYSelect == 3)
++                 currentThreshYSelect = 2;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             currentThreshYSelect--;
++ 
++             if (currentThreshYSelect == -1)
++                 currentThreshYSelect = 0;
++         }
++     }
++     if (titleY == 2)
++     {
++         if (!global.g15_isVsMode) {
++             if (fire2pressed || pressRight)
++             {
++                 scrSfx(sfx_navi01, 60);
++                 currentGameOverConditionSelect++;
++ 
++                 if (currentGameOverConditionSelect == 2)
++                     currentGameOverConditionSelect = 1;
++             } else if (fire1pressed || pressLeft)
++             {
++                 scrSfx(sfx_navi01, 60);
++                 currentGameOverConditionSelect--;
++ 
++                 if (currentGameOverConditionSelect == -1)
++                     currentGameOverConditionSelect = 0;
++             }
++         }
++     }
++     if (titleY == 3)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             coopCostSelection++;
++ 
++             if (coopCostSelection == 4)
++                 coopCostSelection = 3;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             coopCostSelection--;
++ 
++             if (coopCostSelection == -1)
++                 coopCostSelection = 0;
++         }
++     }
++     if (titleY == 4)
++     {
+          if (fire2pressed)
+!         {
+!             scrSfx(sfx_powerup01, 60);
+!             state = STATE_INTRO_FALL;
+!         }
+      }
+  }
++ else if (state == STATE_INTRO_FALL)
++ {
++     if (!introSoundTrig)
++     {
++         scrSfx(sfx_polyDrop00, 89);
++         introSoundTrig = true;
++     }
++ 
++     if (global.numPlayers == 1) {
++         global.g15_threshY = 96;
++         if (!inRecordOrPlayback())
++             instance_create(192, -32, o15_IntroFall);
++     } else if (global.numPlayers == 2) {
++         global.g15_threshY = threshYValues[currentThreshYSelect];
++         global.g15_gameOverCondition = currentGameOverConditionSelect;
++         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
++         instance_create(170, -32, o15_IntroFall);
++         var dropSecond = instance_create(214, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++     } else if (global.numPlayers == 3) {
++         instance_create(160, -32, o15_IntroFall);
++         var dropSecond = instance_create(190, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++         var dropThird = instance_create(220, -32, o15_IntroFall);
++         dropThird.dummy = true;
++     } else if (global.numPlayers == 4) {
++         instance_create(150, -32, o15_IntroFall);
++         var dropSecond = instance_create(180, -32, o15_IntroFall);
++         dropSecond.dummy = true;
++         var dropThird = instance_create(210, -32, o15_IntroFall);
++         dropThird.dummy = true;
++         var dropFourth = instance_create(240, -32, o15_IntroFall);
++         dropFourth.dummy = true;
++     }
++     
++     if (global.numPlayers >= 2) {
++         players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[1].playerNum = 2;
++     }
++ 
++     if (global.numPlayers >= 3) {
++         players[2] = instance_create_layer(25, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[2].playerNum = 3;
++     }
++ 
++     if (global.numPlayers >= 4) {
++         players[3] = instance_create_layer(335, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[3].playerNum = 4;
++     }
++ 
++     state = STATE_INTRO_FALL_WAIT;
++ }
+  else if (state == -2)
+  {
++ 
+      if (substate == 1)
+***************
+*** 160,165 ****
+                  {
+!                     if (coins >= shopPrices[selItem])
+                      {
+                          scrSfx(sfx_special00, 55);
+!                         coins -= shopPrices[selItem];
+                          shopBought[selItem] = 1;
+--- 317,322 ----
+                  {
+!                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
+                      {
+                          scrSfx(sfx_special00, 55);
+!                         coins -= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier);
+                          shopBought[selItem] = 1;

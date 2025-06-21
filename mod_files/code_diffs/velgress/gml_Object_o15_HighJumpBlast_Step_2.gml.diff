@@ -1,0 +1,9 @@
+*** original_scripts/velgress/gml_Object_o15_HighJumpBlast_Step_2.gml	Sat Jun 21 22:16:10 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_HighJumpBlast_Step_2.gml	Sat Jun 21 21:59:20 2025
+***************
+*** 1,2 ****
+! x = o15_Player.x;
+! y = o15_Player.y - 12;
+--- 1,2 ----
+! x = o15_Game.players[playerNum - 1].x;
+! y = o15_Game.players[playerNum - 1].y - 12;

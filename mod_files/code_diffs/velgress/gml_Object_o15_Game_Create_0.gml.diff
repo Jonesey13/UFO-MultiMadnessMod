@@ -1,0 +1,65 @@
+*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Sat Jun 21 21:02:05 2025
+***************
+*** 2,3 ****
+--- 2,30 ----
+  state = -2;
++ STATE_GAME_OVER = -99;
++ STATE_INTRO_FALL_WAIT = -3;
++ STATE_INTRO_FALL = -4;
++ STATE_VS_OPTIONS = -5;
++ titleY = 0;
++ threshYOptions = ["NORMAL", "LENIENT", "WATCH YOUR HEAD"];
++ threshYValues = [96, 64, 32];
++ 
++ currentThreshYSelect = 0;
++ if (global.g15_threshY == 64)
++     currentThreshYSelect = 1;
++ else if (global.g15_threshY == 32)
++     currentThreshYSelect = 2;
++ 
++ gameOverConditions = ["EVERYONE DIES", "ANYONE DIES"];
++ currentGameOverConditionSelect = global.g15_gameOverCondition;
++ 
++ coopCostOptions = ["NORMAL", "20% MORE", "50% MORE" , "DOUBLE THE PRICE"];
++ coopCostValues = [1.0, 1.2, 1.5, 2.0];
++ coopCostSelection = 0;
++ if (global.g15_coopCostMultiplier == 1.2)
++     coopCostSelection = 1;
++ else if (global.g15_coopCostMultiplier == 1.5)
++     coopCostSelection = 2;
++ else if (global.g15_coopCostMultiplier == 2.0)
++     coopCostSelection = 3;
++ 
+  substate = 0;
+***************
+*** 37,38 ****
+--- 64,75 ----
+  
++ if (global.numPlayers >= 2) {
++     with (o15_SpikeRoller)
++     {
++         sprite_index = s15_SpikeRollerLarge;
++         x -= 20;
++     }
++ }
++ 
++ players[0] = o15_Player;
++ 
+  for (var i = 0; i < 50; i++)
+***************
+*** 122,125 ****
+  
+! if (!inRecordOrPlayback())
+!     instance_create(192, -32, o15_IntroFall);
+  
+--- 159,167 ----
+  
+! if (global.numPlayers == 1)
+!     state = STATE_INTRO_FALL;
+! else if (global.g15_skipOptionsMenu) {
+!     global.g15_skipOptionsMenu = false;
+!     state = STATE_INTRO_FALL;
+! } else
+!     state = STATE_VS_OPTIONS;
+  

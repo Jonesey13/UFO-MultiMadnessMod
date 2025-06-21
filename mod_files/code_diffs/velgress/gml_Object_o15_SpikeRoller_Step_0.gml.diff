@@ -1,0 +1,14 @@
+*** original_scripts/velgress/gml_Object_o15_SpikeRoller_Step_0.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_SpikeRoller_Step_0.gml	Fri Jun 20 21:28:23 2025
+***************
+*** 2,4 ****
+  {
+!     x = scrViewX() + 32;
+      y = (scrViewY() + __view_get(e__VW.HView, 0)) - 32;
+--- 2,7 ----
+  {
+!     if (global.numPlayers >= 2)
+!         x = scrViewX() + 12;
+!     else
+!         x = scrViewX() + 32;
+      y = (scrViewY() + __view_get(e__VW.HView, 0)) - 32;
