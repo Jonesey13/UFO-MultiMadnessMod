@@ -1,14 +1,21 @@
 # UFO-MultiMadnessMod
 
-This is a mod to enable 4 players for various games in the game UFO50. Currently the following games are supported:
-* Bushido Ball
-* Hot Foot
-* Paint Chase
-* Attactics
-* Waldorf's Journey
+This is a mod to enable 4 players for various games in the game UFO50. 
+
+![velgress4P](./images/Velgress4P.png)
+
+Currently the following games are supported:
+* Velgress (2/3/4P Co-op & VS)
+* Bushido Ball (4P VS)
+* Hot Foot (4P VS)
+* Paint Chase (4P Team VS)
+* Attactics (4P Team VS)
+* Waldorf's Journey (2/3/4P Free For All)
 * The Big Bell Race (up to 6 Players)
-* Ninpek
-* Mortol
+* Ninpek (3/4P Co-op)
+* Mortol (2/3/4P Co-op)
+
+![waldorf4P](./images/Waldorf4P.png)
 
 This also incorporates p-sam's rich presence for Discord mod.
 
