@@ -1,14 +1,15 @@
 *** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Jun 20 22:34:23 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sat Jun 21 18:10:38 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
       exit;
---- 1,6 ----
+--- 1,7 ----
 ! if (instance_exists(oTextBox) 
 !     || o15_Game.state == -2 
 !     || o15_Game.state == o15_Game.STATE_VS_OPTIONS 
 !     || o15_Game.state == o15_Game.STATE_INTRO_FALL 
+!     || o15_Game.state == o15_Game.STATE_INTRO_FALL_WAIT 
 !     || o15_Game.state == 4)
       exit;
 ***************
@@ -17,7 +18,7 @@
 !         x = 416 + (384 * (o15_Game.level - 1)) + 8;
 !         y = o15_Game.LEVEL_HEIGHT + 8;
           
---- 192,199 ----
+--- 193,200 ----
           o15_Game.state = 0;
 ! 
 !         with (o15_Player) {
@@ -28,19 +29,39 @@
           
 ***************
 *** 195,196 ****
---- 203,208 ----
+--- 204,209 ----
               y = o15_Game.LEVEL_HEIGHT + 40;
-+             if (o15_Game.numPlayers >= 2) {
++             if (global.numPlayers >= 2) {
 +                 x = 396 + (384 * (o15_Game.level - 1));
 +                 sprite_index = s15_SpikeRollerLarge;
 +             }
           }
 ***************
+*** 251,255 ****
+  
+! threshY = 96;
+! 
+! if (y < (scrViewY() + threshY))
+  {
+--- 264,266 ----
+  
+! if (y < (scrViewY() + global.g15_threshY))
+  {
+***************
+*** 260,262 ****
+      {
+!         __view_set(e__VW.YView, 0, y - threshY);
+          
+--- 271,273 ----
+      {
+!         __view_set(e__VW.YView, 0, y - global.g15_threshY);
+          
+***************
 *** 267,269 ****
           {
 !             if (o15_Game.level == 3 && sprite_index == s15_SpikeRoller)
               {
---- 279,281 ----
+--- 278,280 ----
           {
 !             if (o15_Game.level == 3 && (sprite_index == s15_SpikeRoller || sprite_index == s15_SpikeRollerLarge))
               {
@@ -49,9 +70,9 @@
               
 !             sprite_index = s15_SpikeRollerRoll;
           }
---- 291,296 ----
+--- 290,295 ----
               
-!             if (o15_Game.numPlayers >= 2)
+!             if (global.numPlayers >= 2)
 !                 sprite_index = s15_SpikeRollerRollLarge;
 !             else
 !                 sprite_index = s15_SpikeRollerRoll;
@@ -61,7 +82,7 @@
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(0);
   
---- 337,339 ----
+--- 336,338 ----
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(playerNum - 1);
   

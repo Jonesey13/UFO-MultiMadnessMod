@@ -1,8 +1,38 @@
 *** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 15:56:29 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 18:02:52 2025
+***************
+*** 6,8 ****
+  
+! if ((state == 0 || state == -99) && instance_exists(o15_Player))
+  {
+--- 6,8 ----
+  
+! if ((state == 0 || state == STATE_GAME_OVER) && instance_exists(o15_Player))
+  {
+***************
+*** 158,160 ****
+                  draw_sprite(s15_ShopItems, shopItems[i + ((level - 1) * 3)], _xv + 32 + (i * 64), _yv + 80);
+!                 draw_text(_xv + 32 + (i * 64) + 16, _yv + 80 + 24, string(shopPrices[i + ((level - 1) * 3)]));
+              }
+--- 158,163 ----
+                  draw_sprite(s15_ShopItems, shopItems[i + ((level - 1) * 3)], _xv + 32 + (i * 64), _yv + 80);
+!                 draw_text(
+!                     _xv + 32 + (i * 64) + 16, _yv + 80 + 24, 
+!                     string(ceil(shopPrices[i + ((level - 1) * 3)] * global.g15_coopCostMultiplier))
+!                     );
+              }
+***************
+*** 175,177 ****
+  }
+! else if (state == -99)
+  {
+--- 178,180 ----
+  }
+! else if (state == STATE_GAME_OVER)
+  {
 ***************
 *** 189 ****
---- 189,211 ----
+--- 192,228 ----
   }
 + 
 + 
@@ -16,14 +46,28 @@
 +     scrSetFont(global.fontTall);
 +     draw_text(100, 24, "VS OPTIONS");
 +     scrSetFont(global.fontDefault);
-+     draw_text(88, 80, "PLAYERS:");
-+     draw_text(88, 96, "START");
-+     var controllerText = string(numPlayers);
++ 
++     draw_text(50, 80, "PLAYERS:");
++     var controllerText = string(global.numPlayers);
 +     draw_text(210, 80, controllerText);
++ 
++     draw_text(50, 96, "SCROLL THRESHOLD:");
++     var scrollThresholdText = threshYOptions[currentThreshYSelect];
++     draw_text(210, 96, scrollThresholdText);
++ 
++     draw_text(50, 112, "GAME OVER CONDITION:");
++     var gameOverConditionText = gameOverConditions[currentGameOverConditionSelect];
++     draw_text(210, 112, gameOverConditionText);
++ 
++     draw_text(50, 128, "ITEM COST:");
++     var coopCostText = coopCostOptions[coopCostSelection];
++     draw_text(210, 128, coopCostText);
++ 
++     draw_text(50, 144, "START");
 +     
 +     if (scrTransitionDone())
 +     {
-+         draw_sprite_ext(s15_Keys, 0, 72, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
++         draw_sprite_ext(s15_Keys, 0, 54, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
 +     }
 + }
 \ No newline at end of file

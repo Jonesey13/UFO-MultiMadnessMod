@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 15:44:20 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 15:10:13 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 22:40:40 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Sat Jun 21 17:45:46 2025
 ***************
 *** 2,4 ****
   {
@@ -17,20 +17,29 @@
 !     
 !     scrSaveGame(0);
   }
---- 10,30 ----
+--- 10,39 ----
       vspd = 0;
       
-!     var allDead = true;
+!     var gameOver = true;
 ! 
-!     for (var p = 0; p < o15_Game.numPlayers; p++) {
-!         if (!o15_Game.players[p].dead) {
-!             allDead = false;
+!     if (global.g15_gameOverCondition == 0) {
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             if (!o15_Game.players[p].dead) {
+!                 gameOver = false;
+!             }
+!         }
+!     } else if (global.g15_gameOverCondition == 1) {
+!         gameOver = false;
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             if (!o15_Game.players[p].dead) {
+!                 gameOver = true;
+!             }
 !         }
 !     }
 ! 
-!     if (allDead) {
+!     if (gameOver) {
 !         muteBGM();
-!         o15_Game.state = -99;
+!         o15_Game.state = o15_Game.STATE_GAME_OVER;
 !         o15_Game.alarm[0] = 10;
 !         
 !         if (o15_Game.currHighFloor > o15_Game.highFloor)
