@@ -1,5 +1,5 @@
 *** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Fri Jun 20 22:40:39 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Sat Jun 21 17:51:58 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Sat Jun 21 20:51:57 2025
 ***************
 *** 41,42 ****
 --- 41,43 ----
@@ -14,7 +14,7 @@
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 ***************
 *** 57,58 ****
---- 59,67 ----
+--- 59,68 ----
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 +     global.mGameCoop[nGame] = true;
 +     global.mGameMultiplayer[nGame] = true;
@@ -23,16 +23,17 @@
 +     global.g15_skipOptionsMenu = false;
 +     global.g15_gameOverCondition = 0;
 +     global.g15_coopCostMultiplier = 1.2;
++     global.g15_isVsMode = false;
       nGame++;
 ***************
 *** 97,98 ****
---- 106,108 ----
+--- 107,109 ----
       scr28_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 20;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 ***************
 *** 122,123 ****
---- 132,134 ----
+--- 133,135 ----
       scr43_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 21;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);

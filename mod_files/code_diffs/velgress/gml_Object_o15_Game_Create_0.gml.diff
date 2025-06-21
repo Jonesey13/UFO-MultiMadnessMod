@@ -1,5 +1,5 @@
 *** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Sat Jun 21 17:57:36 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Sat Jun 21 21:02:05 2025
 ***************
 *** 2,3 ****
 --- 2,30 ----
@@ -18,7 +18,7 @@
 + else if (global.g15_threshY == 32)
 +     currentThreshYSelect = 2;
 + 
-+ gameOverConditions = ["EVERYONE", "ANYONE"];
++ gameOverConditions = ["EVERYONE DIES", "ANYONE DIES"];
 + currentGameOverConditionSelect = global.g15_gameOverCondition;
 + 
 + coopCostOptions = ["NORMAL", "20% MORE", "50% MORE" , "DOUBLE THE PRICE"];

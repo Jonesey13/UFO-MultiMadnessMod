@@ -1,5 +1,5 @@
 *** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 18:05:07 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 20:54:47 2025
 ***************
 *** 9,17 ****
   
@@ -29,7 +29,7 @@
   else if (state == -2)
   {
       if (substate == 1)
---- 21,189 ----
+--- 21,191 ----
           
 !         for (p = 0; p <= global.numPlayers; p++) {
 !             scrGetInput(p);
@@ -100,20 +100,22 @@
 +     }
 +     if (titleY == 2)
 +     {
-+         if (fire2pressed || pressRight)
-+         {
-+             scrSfx(sfx_navi01, 60);
-+             currentGameOverConditionSelect++;
++         if (!global.g15_isVsMode) {
++             if (fire2pressed || pressRight)
++             {
++                 scrSfx(sfx_navi01, 60);
++                 currentGameOverConditionSelect++;
 + 
-+             if (currentGameOverConditionSelect == 2)
-+                 currentGameOverConditionSelect = 1;
-+         } else if (fire1pressed || pressLeft)
-+         {
-+             scrSfx(sfx_navi01, 60);
-+             currentGameOverConditionSelect--;
++                 if (currentGameOverConditionSelect == 2)
++                     currentGameOverConditionSelect = 1;
++             } else if (fire1pressed || pressLeft)
++             {
++                 scrSfx(sfx_navi01, 60);
++                 currentGameOverConditionSelect--;
 + 
-+             if (currentGameOverConditionSelect == -1)
-+                 currentGameOverConditionSelect = 0;
++                 if (currentGameOverConditionSelect == -1)
++                     currentGameOverConditionSelect = 0;
++             }
 +         }
 +     }
 +     if (titleY == 3)
@@ -207,7 +209,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 315,320 ----
+--- 317,322 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {

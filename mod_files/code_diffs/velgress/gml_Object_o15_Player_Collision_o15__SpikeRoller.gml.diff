@@ -1,5 +1,5 @@
 *** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Sat Jun 21 17:45:46 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Sat Jun 21 20:58:18 2025
 ***************
 *** 2,4 ****
   {
@@ -17,12 +17,30 @@
 !     
 !     scrSaveGame(0);
   }
---- 10,39 ----
+--- 10,57 ----
       vspd = 0;
       
 !     var gameOver = true;
 ! 
-!     if (global.g15_gameOverCondition == 0) {
+!     if (global.g15_isVsMode) {
+!         var playersAlive = global.numPlayers;
+!         var livingPlayerNum = 1;
+!         gameOver = false;
+! 
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             if (o15_Game.players[p].dead) {
+!                 playersAlive--;
+!             } else {
+!                 livingPlayerNum = p + 1;
+!             }
+!         }
+! 
+!         if (playersAlive == 1) {
+!             gameOver = true;
+!             global.g15_winningPlayerNum = livingPlayerNum;
+!         }
+!     }
+!     else if (global.g15_gameOverCondition == 0) {
 !         for (var p = 0; p < global.numPlayers; p++) {
 !             if (!o15_Game.players[p].dead) {
 !                 gameOver = false;

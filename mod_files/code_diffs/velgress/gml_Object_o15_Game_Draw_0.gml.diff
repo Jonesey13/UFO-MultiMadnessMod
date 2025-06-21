@@ -1,5 +1,5 @@
 *** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 18:02:52 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 21:04:04 2025
 ***************
 *** 6,8 ****
   
@@ -22,17 +22,27 @@
 !                     );
               }
 ***************
-*** 175,177 ****
+*** 175,180 ****
   }
 ! else if (state == -99)
   {
---- 178,180 ----
+      scrSetFont(global.fontTall);
+!     draw_text_centered(_xv + 192, _yv + 96, scrStringExt("game_over", "*", 42, 4), 8);
+      scrSetFont(global.fontDefault);
+--- 178,187 ----
   }
 ! else if (state == STATE_GAME_OVER)
   {
+      scrSetFont(global.fontTall);
+!     if (global.g15_isVsMode) {
+!         draw_text_centered(_xv + 192, _yv + 96, "PLAYER " + string(global.g15_winningPlayerNum) + " WINS", 8);
+!     } else {
+!         draw_text_centered(_xv + 192, _yv + 96, scrStringExt("game_over", "*", 42, 4), 8);
+!     }
+      scrSetFont(global.fontDefault);
 ***************
 *** 189 ****
---- 192,228 ----
+--- 196,236 ----
   }
 + 
 + 
@@ -55,8 +65,12 @@
 +     var scrollThresholdText = threshYOptions[currentThreshYSelect];
 +     draw_text(210, 96, scrollThresholdText);
 + 
-+     draw_text(50, 112, "GAME OVER CONDITION:");
-+     var gameOverConditionText = gameOverConditions[currentGameOverConditionSelect];
++     draw_text(50, 112, "GAME OVER WHEN:");
++     if (global.g15_isVsMode) {
++         var gameOverConditionText = "LAST PERSON STANDING";
++     } else {
++         var gameOverConditionText = gameOverConditions[currentGameOverConditionSelect];
++     }
 +     draw_text(210, 112, gameOverConditionText);
 + 
 +     draw_text(50, 128, "ITEM COST:");
@@ -67,7 +81,7 @@
 +     
 +     if (scrTransitionDone())
 +     {
-+         draw_sprite_ext(s15_Keys, 0, 54, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
++         draw_sprite_ext(s15_Keys, 0, 34, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
 +     }
 + }
 \ No newline at end of file
