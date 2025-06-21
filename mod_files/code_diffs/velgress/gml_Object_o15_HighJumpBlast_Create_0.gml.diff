@@ -1,0 +1,8 @@
+*** original_scripts/velgress/gml_Object_o15_HighJumpBlast_Create_0.gml	Sat Jun 21 22:16:10 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_HighJumpBlast_Create_0.gml	Sat Jun 21 22:00:41 2025
+***************
+*** 2 ****
+--- 2,3 ----
+  depth = 200;
++ playerNum = 1;
+\ No newline at end of file
