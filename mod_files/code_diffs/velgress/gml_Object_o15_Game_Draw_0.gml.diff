@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 21:04:04 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 22:16:10 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sun Jun 22 14:59:33 2025
 ***************
 *** 6,8 ****
   
@@ -42,7 +42,7 @@
       scrSetFont(global.fontDefault);
 ***************
 *** 189 ****
---- 196,236 ----
+--- 196,240 ----
   }
 + 
 + 
@@ -73,11 +73,15 @@
 +     }
 +     draw_text(210, 112, gameOverConditionText);
 + 
-+     draw_text(50, 128, "ITEM COST:");
-+     var coopCostText = coopCostOptions[coopCostSelection];
-+     draw_text(210, 128, coopCostText);
++     draw_text(50, 128, "STARTING LEVEL:");
++     var startingLevelText = string(startingLevelSelection);
++     draw_text(210, 128, startingLevelText);
 + 
-+     draw_text(50, 144, "START");
++     draw_text(50, 144, "ITEM COST:");
++     var coopCostText = coopCostOptions[coopCostSelection];
++     draw_text(210, 144, coopCostText);
++ 
++     draw_text(50, 160, "START");
 +     
 +     if (scrTransitionDone())
 +     {

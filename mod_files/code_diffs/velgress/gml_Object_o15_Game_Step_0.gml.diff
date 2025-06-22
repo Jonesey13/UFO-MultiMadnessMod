@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Jun 20 22:40:40 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 20:54:47 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 22:16:10 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jun 22 15:35:42 2025
 ***************
 *** 9,17 ****
   
@@ -29,7 +29,7 @@
   else if (state == -2)
   {
       if (substate == 1)
---- 21,191 ----
+--- 21,232 ----
           
 !         for (p = 0; p <= global.numPlayers; p++) {
 !             scrGetInput(p);
@@ -49,16 +49,16 @@
 !     {
 !         scrSfx(sfx_navi01, 50);
 !         titleY--;
+!         
+!         if (titleY < 0)
+!             titleY = 5;
+!     }
+!     else if (pressDown)
+!     {
+!         scrSfx(sfx_navi01, 50);
+!         titleY++;
           
-+         if (titleY < 0)
-+             titleY = 4;
-+     }
-+     else if (pressDown)
-+     {
-+         scrSfx(sfx_navi01, 50);
-+         titleY++;
-+         
-+         if (titleY > 4)
++         if (titleY > 5)
 +             titleY = 0;
 +     }
 + 
@@ -123,6 +123,24 @@
 +         if (fire2pressed || pressRight)
 +         {
 +             scrSfx(sfx_navi01, 60);
++             startingLevelSelection++;
++ 
++             if (startingLevelSelection == 5)
++                 startingLevelSelection = 1;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             startingLevelSelection--;
++ 
++             if (startingLevelSelection == -0)
++                 startingLevelSelection = 1;
++         }
++     }
++     if (titleY == 4)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
 +             coopCostSelection++;
 + 
 +             if (coopCostSelection == 4)
@@ -136,7 +154,7 @@
 +                 coopCostSelection = 0;
 +         }
 +     }
-+     if (titleY == 4)
++     if (titleY == 5)
 +     {
           if (fire2pressed)
 !         {
@@ -161,6 +179,7 @@
 +         global.g15_threshY = threshYValues[currentThreshYSelect];
 +         global.g15_gameOverCondition = currentGameOverConditionSelect;
 +         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
++         global.g15_multiplayerStartingLevel = startingLevelSelection;
 +         instance_create(170, -32, o15_IntroFall);
 +         var dropSecond = instance_create(214, -32, o15_IntroFall);
 +         dropSecond.dummy = true;
@@ -199,6 +218,28 @@
 + }
   else if (state == -2)
   {
++     if (global.numPlayers >= 2 && global.g15_multiplayerStartingLevel >= 2) {
++         level = global.g15_multiplayerStartingLevel - 1;
++         state = 5;
++         oGame.fadeIn = true;
++         
++         if (o15_Game.level == 1)
++         {
++             instance_create(416, 5184, o15_RoomGen);
++             instance_create(576, 5184, o15_RoomGen);
++         }
++         else if (o15_Game.level == 2)
++         {
++             instance_create(800, 5184, o15_RoomGen);
++             instance_create(960, 5184, o15_RoomGen);
++         }
++         else if (o15_Game.level == 3)
++         {
++             instance_create(1184, 5184, o15_RoomGen);
++             instance_create(1344, 5184, o15_RoomGen);
++         }
++         exit;
++     }
 + 
       if (substate == 1)
 ***************
@@ -209,7 +250,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 317,322 ----
+--- 358,363 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {
