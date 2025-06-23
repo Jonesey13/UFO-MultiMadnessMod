@@ -1,4 +1,5 @@
 {
+  "name": "o34_Shuriken4",
   "sprite": "s34_Shuriken4",
   "visible": true,
   "collision_shape": "Circle",

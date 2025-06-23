@@ -117,6 +117,8 @@ foreach (string objectPath in Directory.EnumerateFiles("mod_files/objects", "*.j
 
     UndertaleGameObject newObject = new();
 
+    var objectNameString = gameData.Strings.MakeString(gameObject.Name);
+    newObject.Name = objectNameString;
     newObject.Sprite = gameData.Sprites.First(sprite => sprite.Name.Content == gameObject.Sprite);
     newObject.Visible = gameObject.Visible;
     newObject.CollisionShape = gameObject.CollisionShape;
@@ -200,6 +202,9 @@ public class TexturePage
 
 public class GameObject
 {
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
     [JsonPropertyName("sprite")]
     public string Sprite { get; set; }
 
