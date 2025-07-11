@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sat Jun 21 22:16:10 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jun 22 15:35:42 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jul  6 17:34:26 2025
 ***************
 *** 9,17 ****
   
@@ -18,7 +18,7 @@
 ! if (state == STATE_GAME_OVER)
   {
 ***************
-*** 25,34 ****
+*** 25,31 ****
           
 !         scrGetInput(0);
           
@@ -26,12 +26,11 @@
 !             room_restart();
       }
   }
-  else if (state == -2)
-  {
-      if (substate == 1)
---- 21,232 ----
+--- 21,211 ----
           
-!         for (p = 0; p <= global.numPlayers; p++) {
+!         for (p = 0; p < global.numPlayers; p++) {
+!             players[p].dead = true;
+! 
 !             scrGetInput(p);
 !             
 !             if (fire2pressed) {
@@ -161,42 +160,45 @@
 !             scrSfx(sfx_powerup01, 60);
 !             state = STATE_INTRO_FALL;
 !         }
+!     }
+! }
+! else if (state == STATE_INTRO_FALL)
+! {
+!     if (!introSoundTrig)
+!     {
+!         scrSfx(sfx_polyDrop00, 89);
+!         introSoundTrig = true;
       }
-  }
-+ else if (state == STATE_INTRO_FALL)
-+ {
-+     if (!introSoundTrig)
-+     {
-+         scrSfx(sfx_polyDrop00, 89);
-+         introSoundTrig = true;
-+     }
 + 
 +     if (global.numPlayers == 1) {
 +         global.g15_threshY = 96;
 +         if (!inRecordOrPlayback())
 +             instance_create(192, -32, o15_IntroFall);
-+     } else if (global.numPlayers == 2) {
++     } else {
 +         global.g15_threshY = threshYValues[currentThreshYSelect];
 +         global.g15_gameOverCondition = currentGameOverConditionSelect;
 +         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
 +         global.g15_multiplayerStartingLevel = startingLevelSelection;
-+         instance_create(170, -32, o15_IntroFall);
-+         var dropSecond = instance_create(214, -32, o15_IntroFall);
-+         dropSecond.dummy = true;
-+     } else if (global.numPlayers == 3) {
-+         instance_create(160, -32, o15_IntroFall);
-+         var dropSecond = instance_create(190, -32, o15_IntroFall);
-+         dropSecond.dummy = true;
-+         var dropThird = instance_create(220, -32, o15_IntroFall);
-+         dropThird.dummy = true;
-+     } else if (global.numPlayers == 4) {
-+         instance_create(150, -32, o15_IntroFall);
-+         var dropSecond = instance_create(180, -32, o15_IntroFall);
-+         dropSecond.dummy = true;
-+         var dropThird = instance_create(210, -32, o15_IntroFall);
-+         dropThird.dummy = true;
-+         var dropFourth = instance_create(240, -32, o15_IntroFall);
-+         dropFourth.dummy = true;
++         
++         if (global.numPlayers == 2) {
++             instance_create(170, -32, o15_IntroFall);
++             var dropSecond = instance_create(214, -32, o15_IntroFall);
++             dropSecond.dummy = true;
++         } else if (global.numPlayers == 3) {
++             instance_create(160, -32, o15_IntroFall);
++             var dropSecond = instance_create(190, -32, o15_IntroFall);
++             dropSecond.dummy = true;
++             var dropThird = instance_create(220, -32, o15_IntroFall);
++             dropThird.dummy = true;
++         } else if (global.numPlayers == 4) {
++             instance_create(150, -32, o15_IntroFall);
++             var dropSecond = instance_create(180, -32, o15_IntroFall);
++             dropSecond.dummy = true;
++             var dropThird = instance_create(210, -32, o15_IntroFall);
++             dropThird.dummy = true;
++             var dropFourth = instance_create(240, -32, o15_IntroFall);
++             dropFourth.dummy = true;
++         }
 +     }
 +     
 +     if (global.numPlayers >= 2) {
@@ -215,8 +217,10 @@
 +     }
 + 
 +     state = STATE_INTRO_FALL_WAIT;
-+ }
-  else if (state == -2)
+  }
+***************
+*** 33,34 ****
+--- 213,237 ----
   {
 +     if (global.numPlayers >= 2 && global.g15_multiplayerStartingLevel >= 2) {
 +         level = global.g15_multiplayerStartingLevel - 1;
@@ -250,7 +254,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 358,363 ----
+--- 363,368 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {

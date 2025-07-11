@@ -1,0 +1,8 @@
+*** original_scripts/velgress/gml_Object_o15_JellySmall_Create_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_JellySmall_Create_0.gml	Fri Jul  4 20:39:20 2025
+***************
+*** 6 ****
+--- 6,7 ----
+  speed = 2;
++ targetPlayer = 0;
+\ No newline at end of file

@@ -1,0 +1,8 @@
+*** original_scripts/velgress/gml_Object_o15_Jelly_Create_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Jelly_Create_0.gml	Fri Jul  4 20:37:12 2025
+***************
+*** 4 ****
+--- 4,5 ----
+  depth = 5;
++ targetPlayer = 0;
+\ No newline at end of file

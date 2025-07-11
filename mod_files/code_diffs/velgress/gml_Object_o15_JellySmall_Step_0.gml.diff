@@ -1,0 +1,11 @@
+*** original_scripts/velgress/gml_Object_o15_JellySmall_Step_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_JellySmall_Step_0.gml	Sun Jul  6 17:16:58 2025
+***************
+*** 18,20 ****
+  {
+!     direction = point_direction(x, y, o15_Player.x, o15_Player.y);
+      speed = 1;
+--- 18,20 ----
+  {
+!     direction = point_direction(x, y, o15_Game.players[targetPlayer].x, o15_Game.players[targetPlayer].y);
+      speed = 1;

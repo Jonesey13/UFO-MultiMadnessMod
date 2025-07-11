@@ -1,0 +1,14 @@
+*** original_scripts/velgress/gml_Object_o15_Jelly_Destroy_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Jelly_Destroy_0.gml	Fri Jul  4 20:40:51 2025
+***************
+*** 4,6 ****
+  obj = instance_create(x, y + 8, o15_JellySmall);
+  obj.direction = 190;
+! instance_create(x, y + 8, o15_JellySmall);
+--- 4,8 ----
+  obj = instance_create(x, y + 8, o15_JellySmall);
++ obj.targetPlayer = targetPlayer;
+  obj.direction = 190;
+! obj2 = instance_create(x, y + 8, o15_JellySmall);
+! obj2.targetPlayer = targetPlayer;
+\ No newline at end of file

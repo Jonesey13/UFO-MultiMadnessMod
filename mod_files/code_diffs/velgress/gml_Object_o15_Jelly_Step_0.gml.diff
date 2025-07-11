@@ -1,0 +1,27 @@
+*** original_scripts/velgress/gml_Object_o15_Jelly_Step_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Jelly_Step_0.gml	Sun Jul  6 17:20:48 2025
+***************
+*** 10,13 ****
+      
+!     if (point_distance(x, y, o15_Player.x, o15_Player.y) < 96)
+!         state = 1;
+  }
+--- 10,18 ----
+      
+!     for (var p = 0; p < array_length(o15_Game.players); p++) {
+!         if (point_distance(x, y, o15_Game.players[p].x, o15_Game.players[p].y) < 96)
+!         {
+!             state = 1;
+!             targetPlayer = p;
+!         }
+!     }
+  }
+***************
+*** 15,17 ****
+  {
+!     direction = point_direction(x, y, o15_Player.x, o15_Player.y);
+      speed = 1;
+--- 20,22 ----
+  {
+!     direction = point_direction(x, y, o15_Game.players[targetPlayer].x, o15_Game.players[targetPlayer].y);
+      speed = 1;

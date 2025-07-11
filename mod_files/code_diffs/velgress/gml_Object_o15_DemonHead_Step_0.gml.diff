@@ -1,0 +1,45 @@
+*** original_scripts/velgress/gml_Object_o15_DemonHead_Step_0.gml	Sun Jul  6 17:09:22 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_DemonHead_Step_0.gml	Sun Jul  6 17:20:39 2025
+***************
+*** 18,24 ****
+      scrSfx(sfx_shot00, 45);
+!     var bdir = point_direction(x, y, o15_Player.x, o15_Player.y);
+!     bdir = (bdir / 15) * 15;
+!     var obj = instance_create(x + 8, y + 8, o15_FireballBig);
+!     obj.direction = bdir;
+!     obj.speed = 1;
+      invincibility = 10;
+--- 18,28 ----
+      scrSfx(sfx_shot00, 45);
+!     for (p = 0; p < array_length(o15_Game.players); p++) {
+!         if (!o15_Game.players[p].dead) {
+!             var bdir = point_direction(x, y, o15_Game.players[p].x, o15_Game.players[p].y);
+!             bdir = (bdir / 15) * 15;
+!             var obj = instance_create(x + 8, y + 8, o15_FireballBig);
+!             obj.direction = bdir;
+!             obj.speed = 1;
+!         }
+!     }
+      invincibility = 10;
+***************
+*** 30,36 ****
+  
+! if (o15_Player.x > (x - 32) && o15_Player.x < (x + 32))
+!     dir = 0;
+! else if (o15_Player.x < x)
+!     dir = 1;
+! else
+!     dir = 2;
+--- 34,45 ----
+  
+! for (p = 0; p < array_length(o15_Game.players); p++) {
+!     if (!o15_Game.players[p].dead) {
+!         if (o15_Game.players[p].x > (x - 32) && o15_Game.players[p].x < (x + 32))
+!             dir = 0;
+!         else if (o15_Game.players[p].x < x)
+!             dir = 1;
+!         else
+!             dir = 2;
+!         break;
+!     }
+! }
