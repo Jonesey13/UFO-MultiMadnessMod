@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sat Jun 21 22:16:10 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sat Jun 21 22:15:37 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sun Aug 10 16:08:16 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sun Aug 10 15:33:29 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -13,23 +13,69 @@
 !     || o15_Game.state == 4)
       exit;
 ***************
+*** 11,13 ****
+      image_speed = 0.2;
+!     sprite_index = s15_Player1Walk;
+      
+--- 16,18 ----
+      image_speed = 0.2;
+!     sprite_index = s15_Player1WalkMulti;
+      
+***************
+*** 56,58 ****
+              if (o15_Game.key1 && o15_Game.key2 && o15_Game.key3)
+!                 sprite_index = s15_Player1Stand;
+              
+--- 61,63 ----
+              if (o15_Game.key1 && o15_Game.key2 && o15_Game.key3)
+!                 sprite_index = s15_Player1StandMulti;
+              
+***************
+*** 75,77 ****
+              scrBGM(bgm00_alpha_stingWin, false);
+!             sprite_index = s15_Player1Stand;
+              scrDrawTextBoxSplit(scrString("you_did_it"));
+--- 80,82 ----
+              scrBGM(bgm00_alpha_stingWin, false);
+!             sprite_index = s15_Player1StandMulti;
+              scrDrawTextBoxSplit(scrString("you_did_it"));
+***************
+*** 90,92 ****
+              scrBGM(bgm00_alpha_stingWin, false);
+!             sprite_index = s15_Player1Stand;
+              scrDrawTextBoxSplit(scrString("level_complete"));
+--- 95,97 ----
+              scrBGM(bgm00_alpha_stingWin, false);
+!             sprite_index = s15_Player1StandMulti;
+              scrDrawTextBoxSplit(scrString("level_complete"));
+***************
 *** 188,191 ****
           o15_Game.state = 0;
 !         x = 416 + (384 * (o15_Game.level - 1)) + 8;
 !         y = o15_Game.LEVEL_HEIGHT + 8;
           
---- 193,200 ----
+--- 193,210 ----
           o15_Game.state = 0;
 ! 
 !         with (o15_Player) {
-!             x = 416 + (384 * (o15_Game.level - 1)) + 8;
+!             if (playerNum == 1) {
+!                 x = 416 + (384 * (o15_Game.level - 1)) + 8;
+!             } else if (playerNum == 2) {
+!                 x = 416 + (384 * (o15_Game.level - 1)) + 8 + 304;
+!             }
+!             else if (playerNum == 3) {
+!                 x = 416 + (384 * (o15_Game.level - 1)) + 8 + 72;
+!             }
+!             else if (playerNum == 4) {
+!                 x = 416 + (384 * (o15_Game.level - 1)) + 8 + 224;
+!             }
 !             y = o15_Game.LEVEL_HEIGHT + 8;
 !             dead = false;
 !         }
           
 ***************
 *** 195,196 ****
---- 204,209 ----
+--- 214,219 ----
               y = o15_Game.LEVEL_HEIGHT + 40;
 +             if (global.numPlayers >= 2) {
 +                 x = 396 + (384 * (o15_Game.level - 1));
@@ -37,13 +83,22 @@
 +             }
           }
 ***************
+*** 224,226 ****
+  {
+!     sprite_index = s15_Player1Dead;
+      hspd = 0;
+--- 247,249 ----
+  {
+!     sprite_index = s15_Player1DeadMulti;
+      hspd = 0;
+***************
 *** 251,255 ****
   
 ! threshY = 96;
 ! 
 ! if (y < (scrViewY() + threshY))
   {
---- 264,266 ----
+--- 274,276 ----
   
 ! if (y < (scrViewY() + global.g15_threshY))
   {
@@ -52,7 +107,7 @@
       {
 !         __view_set(e__VW.YView, 0, y - threshY);
           
---- 271,273 ----
+--- 281,283 ----
       {
 !         __view_set(e__VW.YView, 0, y - global.g15_threshY);
           
@@ -61,7 +116,7 @@
           {
 !             if (o15_Game.level == 3 && sprite_index == s15_SpikeRoller)
               {
---- 278,280 ----
+--- 288,290 ----
           {
 !             if (o15_Game.level == 3 && (sprite_index == s15_SpikeRoller || sprite_index == s15_SpikeRollerLarge))
               {
@@ -70,7 +125,7 @@
               
 !             sprite_index = s15_SpikeRollerRoll;
           }
---- 290,295 ----
+--- 300,305 ----
               
 !             if (global.numPlayers >= 2)
 !                 sprite_index = s15_SpikeRollerRollLarge;
@@ -82,7 +137,7 @@
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(0);
   
---- 336,338 ----
+--- 346,348 ----
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(playerNum - 1);
   
@@ -95,7 +150,7 @@
 !                 highJumpMult = 4;
 !                 alarm[0] = 1;
               }
---- 462,480 ----
+--- 472,490 ----
               {
 !                 with (o15_Player) {
 !                     if (global.numPlayers >= 2) {
@@ -120,7 +175,78 @@
       
 !     if (fire2pressed)
       {
---- 513,515 ----
+--- 523,525 ----
       
 !     if (fire2pressed && (global.numPlayers == 1 || highJumpCount == 0))
       {
+***************
+*** 635,639 ****
+          if (doubleJump > 0)
+!             sprite_index = s15_Player1Walk;
+          else
+!             sprite_index = s15_Player2Walk;
+      }
+--- 671,675 ----
+          if (doubleJump > 0)
+!             sprite_index = s15_Player1WalkMulti;
+          else
+!             sprite_index = s15_Player2WalkMulti;
+      }
+***************
+*** 641,643 ****
+      {
+!         sprite_index = s15_Player1Stand;
+      }
+--- 677,679 ----
+      {
+!         sprite_index = s15_Player1StandMulti;
+      }
+***************
+*** 645,647 ****
+      {
+!         sprite_index = s15_Player2Stand;
+      }
+--- 681,683 ----
+      {
+!         sprite_index = s15_Player2StandMulti;
+      }
+***************
+*** 650,652 ****
+  {
+!     sprite_index = s15_Player2Flip;
+  }
+--- 686,688 ----
+  {
+!     sprite_index = s15_Player2FlipMulti;
+  }
+***************
+*** 657,661 ****
+          if (doubleJump > 0)
+!             sprite_index = s15_Player1Jump;
+          else
+!             sprite_index = s15_Player2Jump;
+      }
+--- 693,697 ----
+          if (doubleJump > 0)
+!             sprite_index = s15_Player1JumpMulti;
+          else
+!             sprite_index = s15_Player2JumpMulti;
+      }
+***************
+*** 663,665 ****
+      {
+!         sprite_index = s15_Player1Fall;
+      }
+--- 699,701 ----
+      {
+!         sprite_index = s15_Player1FallMulti;
+      }
+***************
+*** 667,669 ****
+      {
+!         sprite_index = s15_Player2Fall;
+      }
+--- 703,705 ----
+      {
+!         sprite_index = s15_Player2FallMulti;
+      }

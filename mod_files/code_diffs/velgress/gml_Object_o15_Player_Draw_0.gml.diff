@@ -1,0 +1,85 @@
+*** original_scripts/velgress/gml_Object_o15_Player_Draw_0.gml	Sun Aug 10 16:08:16 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Draw_0.gml	Sun Aug 10 15:47:10 2025
+***************
+*** 19,23 ****
+  if (doubleJump > 0)
+!     sprTorso = s15_Player1Torso;
+  else
+!     sprTorso = s15_Player2Torso;
+  
+--- 19,23 ----
+  if (doubleJump > 0)
+!     sprTorso = s15_Player1TorsoMulti;
+  else
+!     sprTorso = s15_Player2TorsoMulti;
+  
+***************
+*** 26,30 ****
+      if (doubleJump > 0)
+!         sprTorso = s15_Player1TorsoU;
+      else
+!         sprTorso = s15_Player2TorsoU;
+  }
+--- 26,30 ----
+      if (doubleJump > 0)
+!         sprTorso = s15_Player1TorsoUMulti;
+      else
+!         sprTorso = s15_Player2TorsoUMulti;
+  }
+***************
+*** 33,37 ****
+      if (doubleJump > 0)
+!         sprTorso = s15_Player1TorsoD;
+      else
+!         sprTorso = s15_Player2TorsoD;
+  }
+--- 33,37 ----
+      if (doubleJump > 0)
+!         sprTorso = s15_Player1TorsoDMulti;
+      else
+!         sprTorso = s15_Player2TorsoDMulti;
+  }
+***************
+*** 40,42 ****
+  {
+!     sprite_index = s15_Player2Stunned;
+      
+--- 40,42 ----
+  {
+!     sprite_index = s15_Player2StunnedMulti;
+      
+***************
+*** 44,46 ****
+      {
+!         draw_sprite_ext(sprite_index, image_index, x, y, fDraw, image_yscale, image_angle, c_white, 1);
+      }
+--- 44,46 ----
+      {
+!         draw_sprite_ext(sprite_index, playerNum - 1, x, y, fDraw, image_yscale, image_angle, c_white, 1);
+      }
+***************
+*** 52,57 ****
+  {
+!     draw_sprite_ext(sprite_index, image_index, x, y, fDraw, image_yscale, image_angle, c_white, 1);
+!     
+      if (!dead && (doubleJump > 0 || doubleShot))
+!         draw_sprite_ext(sprTorso, image_index, x, y, fDraw, image_yscale, image_angle, c_white, image_alpha);
+  }
+--- 52,68 ----
+  {
+!     if (
+!         sprite_index == s15_Player1WalkMulti 
+!         || sprite_index == s15_Player2WalkMulti
+!         || sprite_index == s15_Player2FlipMulti
+!         ) {
+!         if (image_index >= 4) {
+!             image_index = 0;
+!         }
+!         draw_sprite_ext(sprite_index, image_index + 4 * (playerNum - 1), x, y, fDraw, image_yscale, image_angle, c_white, 1);
+!     } else {
+!         draw_sprite_ext(sprite_index, playerNum - 1, x, y, fDraw, image_yscale, image_angle, c_white, 1);
+!     }
+!         
+      if (!dead && (doubleJump > 0 || doubleShot))
+!         draw_sprite_ext(sprTorso, playerNum - 1, x, y, fDraw, image_yscale, image_angle, c_white, image_alpha);
+  }

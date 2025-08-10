@@ -11,7 +11,7 @@
   },
   "texture_pages": [
     {
-      "source_position": [128, 0],
+      "source_position": [32, 64],
       "source_size": [32, 32],
       "target_position": [0, 0],
       "target_size": [32, 32],
@@ -19,7 +19,7 @@
       "texture": "Texture 124"
     },
     {
-      "source_position": [128, 0],
+      "source_position": [32, 64],
       "source_size": [32, 32],
       "target_position": [0, 0],
       "target_size": [32, 32],
@@ -27,7 +27,7 @@
       "texture": "Texture 125"
     },
     {
-      "source_position": [128, 0],
+      "source_position": [32, 64],
       "source_size": [32, 32],
       "target_position": [0, 0],
       "target_size": [32, 32],
@@ -35,7 +35,7 @@
       "texture": "Texture 126"
     },
     {
-      "source_position": [128, 0],
+      "source_position": [32, 64],
       "source_size": [32, 32],
       "target_position": [0, 0],
       "target_size": [32, 32],

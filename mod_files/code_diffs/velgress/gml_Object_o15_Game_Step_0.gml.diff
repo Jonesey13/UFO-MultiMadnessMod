@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jul  6 17:09:22 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Jul  6 17:34:26 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Aug 10 16:08:16 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Aug 10 16:11:45 2025
 ***************
 *** 9,17 ****
   
@@ -26,7 +26,7 @@
 !             room_restart();
       }
   }
---- 21,211 ----
+--- 21,226 ----
           
 !         for (p = 0; p < global.numPlayers; p++) {
 !             players[p].dead = true;
@@ -183,20 +183,32 @@
 +         if (global.numPlayers == 2) {
 +             instance_create(170, -32, o15_IntroFall);
 +             var dropSecond = instance_create(214, -32, o15_IntroFall);
++             dropSecond.sprite_index = s15_Player1StunnedMulti;
++             dropSecond.image_index = 1;
 +             dropSecond.dummy = true;
 +         } else if (global.numPlayers == 3) {
 +             instance_create(160, -32, o15_IntroFall);
 +             var dropSecond = instance_create(190, -32, o15_IntroFall);
++             dropSecond.sprite_index = s15_Player1StunnedMulti;
++             dropSecond.image_index = 1;
 +             dropSecond.dummy = true;
 +             var dropThird = instance_create(220, -32, o15_IntroFall);
++             dropThird.sprite_index = s15_Player1StunnedMulti;
++             dropThird.image_index = 2;
 +             dropThird.dummy = true;
 +         } else if (global.numPlayers == 4) {
 +             instance_create(150, -32, o15_IntroFall);
 +             var dropSecond = instance_create(180, -32, o15_IntroFall);
++             dropSecond.sprite_index = s15_Player1StunnedMulti;
++             dropSecond.image_index = 1;
 +             dropSecond.dummy = true;
 +             var dropThird = instance_create(210, -32, o15_IntroFall);
++             dropThird.sprite_index = s15_Player1StunnedMulti;
++             dropThird.image_index = 2;
 +             dropThird.dummy = true;
 +             var dropFourth = instance_create(240, -32, o15_IntroFall);
++             dropFourth.sprite_index = s15_Player1StunnedMulti;
++             dropFourth.image_index = 3;
 +             dropFourth.dummy = true;
 +         }
 +     }
@@ -204,23 +216,26 @@
 +     if (global.numPlayers >= 2) {
 +         players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
 +         players[1].playerNum = 2;
++         players[1].x = players[0].x + 304;
 +     }
 + 
 +     if (global.numPlayers >= 3) {
-+         players[2] = instance_create_layer(25, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[2] = instance_create_layer(40 + 70, 5336, "Compatibility_Instances_Depth_100", o15_Player);
 +         players[2].playerNum = 3;
++         players[2].x = players[0].x + 72;
 +     }
 + 
 +     if (global.numPlayers >= 4) {
-+         players[3] = instance_create_layer(335, 5336, "Compatibility_Instances_Depth_100", o15_Player);
++         players[3] = instance_create_layer(40 + 224, 5336, "Compatibility_Instances_Depth_100", o15_Player);
 +         players[3].playerNum = 4;
++         players[3].x = players[0].x + 224;
 +     }
 + 
 +     state = STATE_INTRO_FALL_WAIT;
   }
 ***************
 *** 33,34 ****
---- 213,237 ----
+--- 228,252 ----
   {
 +     if (global.numPlayers >= 2 && global.g15_multiplayerStartingLevel >= 2) {
 +         level = global.g15_multiplayerStartingLevel - 1;
@@ -254,7 +269,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 363,368 ----
+--- 378,383 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {
