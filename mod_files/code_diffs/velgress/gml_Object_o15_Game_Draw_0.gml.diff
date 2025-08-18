@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sat Jun 21 22:16:10 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Sun Jun 22 14:59:33 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Mon Aug 18 11:00:28 2025
 ***************
 *** 6,8 ****
   
@@ -29,20 +29,36 @@
       scrSetFont(global.fontTall);
 !     draw_text_centered(_xv + 192, _yv + 96, scrStringExt("game_over", "*", 42, 4), 8);
       scrSetFont(global.fontDefault);
---- 178,187 ----
+--- 178,203 ----
   }
 ! else if (state == STATE_GAME_OVER)
   {
       scrSetFont(global.fontTall);
 !     if (global.g15_isVsMode) {
-!         draw_text_centered(_xv + 192, _yv + 96, "PLAYER " + string(global.g15_winningPlayerNum) + " WINS", 8);
+!         draw_text_centered(_xv + 192, _yv + 30, "PLAYER " + string(global.g15_winningPlayerNum) + " WINS", 8);
+! 
+!         draw_sprite(s15_Player1TorsoMulti, 0, _xv + 166, _yv + 106);
+!         draw_text_centered(_xv + 218, _yv + 96, string(global.g15_playerScores[0]) + " WINS", 8);
+! 
+!         draw_sprite(s15_Player1TorsoMulti, 1, _xv + 166, _yv + 126);
+!         draw_text_centered(_xv + 218, _yv + 116, string(global.g15_playerScores[1]) + " WINS", 8);
+! 
+!         if (global.numPlayers >= 3) {
+!             draw_sprite(s15_Player1TorsoMulti, 2, _xv + 166, _yv + 146);
+!             draw_text_centered(_xv + 218, _yv + 136, string(global.g15_playerScores[2]) + " WINS", 8);
+!         }
+! 
+!         if (global.numPlayers >= 4) {
+!             draw_sprite(s15_Player1TorsoMulti, 3, _xv + 166, _yv + 166);
+!             draw_text_centered(_xv + 218, _yv + 156, string(global.g15_playerScores[3]) + " WINS", 8);
+!         }
 !     } else {
 !         draw_text_centered(_xv + 192, _yv + 96, scrStringExt("game_over", "*", 42, 4), 8);
 !     }
       scrSetFont(global.fontDefault);
 ***************
 *** 189 ****
---- 196,240 ----
+--- 212,259 ----
   }
 + 
 + 
@@ -75,6 +91,9 @@
 + 
 +     draw_text(50, 128, "STARTING LEVEL:");
 +     var startingLevelText = string(startingLevelSelection);
++     if (startingLevelSelection == 5) {
++         startingLevelText = "RANDOM LEVEL";
++     }
 +     draw_text(210, 128, startingLevelText);
 + 
 +     draw_text(50, 144, "ITEM COST:");

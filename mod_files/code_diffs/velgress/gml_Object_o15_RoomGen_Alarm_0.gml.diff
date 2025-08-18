@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Sun Aug 10 16:08:16 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Fri Aug 15 21:28:33 2025
+*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Mon Aug 18 10:02:08 2025
 ***************
 *** 378,379 ****
 --- 378,395 ----
@@ -9,15 +9,15 @@
 +         var xpos = playX + 104;
 +         var ypos = y + 160;
 +         var rock = instance_create(xpos, ypos, o15_PlatRock);
-+         rock.life = 1000;
++         rock.life = 10000;
 +         var rock = instance_create(xpos, ypos + 16, o15_PlatRock);
-+         rock.life = 1000;
++         rock.life = 10000;
 + 
 +         xpos = playX + 258;
 +         ypos = y + 160;
 +         var rock = instance_create(xpos, ypos, o15_PlatRock);
-+         rock.life = 1000;
++         rock.life = 10000;
 +         var rock = instance_create(xpos, ypos + 16, o15_PlatRock);
-+         rock.life = 1000;
++         rock.life = 10000;
 +     }
   }

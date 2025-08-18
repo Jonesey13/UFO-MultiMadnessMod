@@ -1,0 +1,12 @@
+*** original_scripts/rich_presence/gml_GlobalScript_scrPlayGame.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/rich_presence/gml_GlobalScript_scrPlayGame.gml	Sun Jun  8 14:43:51 2025
+***************
+*** 7,8 ****
+--- 7,13 ----
+          return false;
++ 
++     with (obj_richpresence)
++     {
++         alarm[0] = 1;
++     }
+      

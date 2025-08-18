@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sun Aug 10 16:08:16 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Sun Aug 10 15:33:29 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Aug 18 10:53:25 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -92,13 +92,52 @@
 !     sprite_index = s15_Player1DeadMulti;
       hspd = 0;
 ***************
+*** 232,235 ****
+  {
+!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!     createdBoss = true;
+  }
+--- 255,260 ----
+  {
+!     if (!instance_exists(o15_Cavian)) {
+!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!         createdBoss = true;
+!     }
+  }
+***************
+*** 237,240 ****
+  {
+!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!     createdBoss = true;
+  }
+--- 262,267 ----
+  {
+!     if (!instance_exists(o15_Cavian)) {
+!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!         createdBoss = true;
+!     }
+  }
+***************
+*** 242,245 ****
+  {
+!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!     createdBoss = true;
+  }
+--- 269,274 ----
+  {
+!     if (!instance_exists(o15_Cavian)) {
+!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
+!         createdBoss = true;
+!     }
+  }
+***************
 *** 251,255 ****
   
 ! threshY = 96;
 ! 
 ! if (y < (scrViewY() + threshY))
   {
---- 274,276 ----
+--- 280,282 ----
   
 ! if (y < (scrViewY() + global.g15_threshY))
   {
@@ -107,7 +146,7 @@
       {
 !         __view_set(e__VW.YView, 0, y - threshY);
           
---- 281,283 ----
+--- 287,289 ----
       {
 !         __view_set(e__VW.YView, 0, y - global.g15_threshY);
           
@@ -116,7 +155,7 @@
           {
 !             if (o15_Game.level == 3 && sprite_index == s15_SpikeRoller)
               {
---- 288,290 ----
+--- 294,296 ----
           {
 !             if (o15_Game.level == 3 && (sprite_index == s15_SpikeRoller || sprite_index == s15_SpikeRollerLarge))
               {
@@ -125,7 +164,7 @@
               
 !             sprite_index = s15_SpikeRollerRoll;
           }
---- 300,305 ----
+--- 306,311 ----
               
 !             if (global.numPlayers >= 2)
 !                 sprite_index = s15_SpikeRollerRollLarge;
@@ -137,7 +176,7 @@
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(0);
   
---- 346,348 ----
+--- 352,354 ----
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(playerNum - 1);
   
@@ -150,7 +189,7 @@
 !                 highJumpMult = 4;
 !                 alarm[0] = 1;
               }
---- 472,490 ----
+--- 478,496 ----
               {
 !                 with (o15_Player) {
 !                     if (global.numPlayers >= 2) {
@@ -175,7 +214,7 @@
       
 !     if (fire2pressed)
       {
---- 523,525 ----
+--- 529,531 ----
       
 !     if (fire2pressed && (global.numPlayers == 1 || highJumpCount == 0))
       {
@@ -186,7 +225,7 @@
           else
 !             sprite_index = s15_Player2Walk;
       }
---- 671,675 ----
+--- 677,681 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1WalkMulti;
           else
@@ -197,7 +236,7 @@
       {
 !         sprite_index = s15_Player1Stand;
       }
---- 677,679 ----
+--- 683,685 ----
       {
 !         sprite_index = s15_Player1StandMulti;
       }
@@ -206,7 +245,7 @@
       {
 !         sprite_index = s15_Player2Stand;
       }
---- 681,683 ----
+--- 687,689 ----
       {
 !         sprite_index = s15_Player2StandMulti;
       }
@@ -215,7 +254,7 @@
   {
 !     sprite_index = s15_Player2Flip;
   }
---- 686,688 ----
+--- 692,694 ----
   {
 !     sprite_index = s15_Player2FlipMulti;
   }
@@ -226,7 +265,7 @@
           else
 !             sprite_index = s15_Player2Jump;
       }
---- 693,697 ----
+--- 699,703 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1JumpMulti;
           else
@@ -237,7 +276,7 @@
       {
 !         sprite_index = s15_Player1Fall;
       }
---- 699,701 ----
+--- 705,707 ----
       {
 !         sprite_index = s15_Player1FallMulti;
       }
@@ -246,7 +285,7 @@
       {
 !         sprite_index = s15_Player2Fall;
       }
---- 703,705 ----
+--- 709,711 ----
       {
 !         sprite_index = s15_Player2FallMulti;
       }

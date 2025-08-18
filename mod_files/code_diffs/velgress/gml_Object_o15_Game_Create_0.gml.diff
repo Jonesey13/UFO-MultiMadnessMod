@@ -1,10 +1,11 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Sat Jun 21 22:16:10 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Sun Jun 22 14:47:03 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Mon Aug 18 11:51:22 2025
 ***************
 *** 2,3 ****
---- 2,32 ----
+--- 2,37 ----
   state = -2;
 + STATE_GAME_OVER = -99;
++ STATE_INTRO_FALL_FINISH = -2;
 + STATE_INTRO_FALL_WAIT = -3;
 + STATE_INTRO_FALL = -4;
 + STATE_VS_OPTIONS = -5;
@@ -33,10 +34,14 @@
 + 
 + startingLevelSelection = global.g15_multiplayerStartingLevel;
 + 
++ if (global.g15_randomiseLevel) {
++     startingLevelSelection = 5;
++ }
++ 
   substate = 0;
 ***************
 *** 37,38 ****
---- 66,77 ----
+--- 71,82 ----
   
 + if (global.numPlayers >= 2) {
 +     with (o15_SpikeRoller)
@@ -55,7 +60,7 @@
 ! if (!inRecordOrPlayback())
 !     instance_create(192, -32, o15_IntroFall);
   
---- 161,169 ----
+--- 166,174 ----
   
 ! if (global.numPlayers == 1)
 !     state = STATE_INTRO_FALL;

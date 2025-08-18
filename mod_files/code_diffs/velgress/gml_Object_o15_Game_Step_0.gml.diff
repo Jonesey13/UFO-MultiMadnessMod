@@ -1,7 +1,7 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Aug 10 16:08:16 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Sun Aug 10 16:11:45 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Mon Aug 18 11:59:19 2025
 ***************
-*** 9,17 ****
+*** 9,18 ****
   
 - if (!introSoundTrig)
 - {
@@ -11,14 +11,17 @@
   
 ! if (state == -99)
   {
---- 9,13 ----
+      if (activeInput)
+--- 9,15 ----
   
   
 ! 
 ! if (state == STATE_GAME_OVER)
   {
++     gameOverDelay -= delta_time;
+      if (activeInput)
 ***************
-*** 25,31 ****
+*** 25,34 ****
           
 !         scrGetInput(0);
           
@@ -26,14 +29,17 @@
 !             room_restart();
       }
   }
---- 21,226 ----
+! else if (state == -2)
+  {
+      if (substate == 1)
+--- 22,276 ----
           
 !         for (p = 0; p < global.numPlayers; p++) {
 !             players[p].dead = true;
 ! 
 !             scrGetInput(p);
-!             
-!             if (fire2pressed) {
+! 
+!             if (gameOverDelay <= 0 && fire2pressed) {
 !                 global.g15_skipOptionsMenu = true;
 !                 room_restart();
 !             }
@@ -124,15 +130,15 @@
 +             scrSfx(sfx_navi01, 60);
 +             startingLevelSelection++;
 + 
-+             if (startingLevelSelection == 5)
++             if (startingLevelSelection == 6)
 +                 startingLevelSelection = 1;
 +         } else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             startingLevelSelection--;
 + 
-+             if (startingLevelSelection == -0)
-+                 startingLevelSelection = 1;
++             if (startingLevelSelection == 0)
++                 startingLevelSelection = 5;
 +         }
 +     }
 +     if (titleY == 4)
@@ -158,17 +164,18 @@
           if (fire2pressed)
 !         {
 !             scrSfx(sfx_powerup01, 60);
+!             global.g15_playerScores = [0, 0, 0, 0];
 !             state = STATE_INTRO_FALL;
 !         }
-!     }
-! }
-! else if (state == STATE_INTRO_FALL)
-! {
-!     if (!introSoundTrig)
-!     {
-!         scrSfx(sfx_polyDrop00, 89);
-!         introSoundTrig = true;
       }
+  }
+! else if (state == STATE_INTRO_FALL)
+  {
++     if (!introSoundTrig)
++     {
++         scrSfx(sfx_polyDrop00, 89);
++         introSoundTrig = true;
++     }
 + 
 +     if (global.numPlayers == 1) {
 +         global.g15_threshY = 96;
@@ -179,6 +186,17 @@
 +         global.g15_gameOverCondition = currentGameOverConditionSelect;
 +         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
 +         global.g15_multiplayerStartingLevel = startingLevelSelection;
++ 
++         if (startingLevelSelection == 5) {
++             global.g15_randomiseLevel = true;
++         } else {
++             global.g15_randomiseLevel = false;
++         }
++ 
++         if (global.numPlayers >= 2 && global.g15_randomiseLevel) {
++             randomise();
++             global.g15_multiplayerStartingLevel = irandom(3) + 1;
++         }
 +         
 +         if (global.numPlayers == 2) {
 +             instance_create(170, -32, o15_IntroFall);
@@ -232,11 +250,20 @@
 +     }
 + 
 +     state = STATE_INTRO_FALL_WAIT;
-  }
-***************
-*** 33,34 ****
---- 228,252 ----
-  {
++ }
++ else if (state == STATE_INTRO_FALL_FINISH)
++ {
++     if (global.g15_isVsMode && global.g15_multiplayerStartingLevel == 1) {
++         global.g15_QuickRestart = true;
++         __view_set(e__VW.YView, 0, room_height - __view_get(e__VW.HView, 0));
++         activeInput = false;
++         scrBGM(bgm15_stage01);
++         scrDeactivateRegion(384, 0, room_width - 384, room_height, true, true);
++         oGame.fadeIn = true;
++         state = 0;
++         exit;
++     }
++ 
 +     if (global.numPlayers >= 2 && global.g15_multiplayerStartingLevel >= 2) {
 +         level = global.g15_multiplayerStartingLevel - 1;
 +         state = 5;
@@ -269,7 +296,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 378,383 ----
+--- 402,407 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {

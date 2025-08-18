@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrGetRecords.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrGetRecords.gml	Wed May 14 20:26:43 2025
+*** original_scripts/rich_presence/gml_GlobalScript_scrGetRecords.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/rich_presence/gml_GlobalScript_scrGetRecords.gml	Sun Jun  8 14:43:51 2025
 ***************
 *** 8,10 ****
           
