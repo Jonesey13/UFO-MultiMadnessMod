@@ -1,5 +1,5 @@
-*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Other_16.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Other_16.gml	Fri May 16 20:31:04 2025
+*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Other_16.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Other_16.gml	Mon Aug 18 15:05:27 2025
 ***************
 *** 5,6 ****
 --- 5,8 ----
@@ -7,3 +7,30 @@
 +     wins[3] = 0;
 +     wins[4] = 0;
       currRound = 1;
+***************
+*** 22,33 ****
+      if (pressLeft)
+!         numRounds -= 2;
+      
+      if (pressRight)
+!         numRounds += 2;
+      
+!     if (numRounds < 1)
+!         numRounds = 9;
+      
+!     if (numRounds > 9)
+!         numRounds = 1;
+      
+--- 24,35 ----
+      if (pressLeft)
+!         winningScore -= 1;
+      
+      if (pressRight)
+!         winningScore += 1;
+      
+!     if (winningScore < 1)
+!         winningScore = 5;
+      
+!     if (winningScore > 5)
+!         winningScore = 1;
+      

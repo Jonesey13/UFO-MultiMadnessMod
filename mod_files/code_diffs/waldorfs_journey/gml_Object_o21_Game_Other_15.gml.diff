@@ -1,5 +1,5 @@
-*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Other_15.gml	Fri May 16 21:04:41 2025
---- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Other_15.gml	Fri May 16 20:32:44 2025
+*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Other_15.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Other_15.gml	Mon Aug 18 15:00:22 2025
 ***************
 *** 22,24 ****
       {
@@ -7,5 +7,5 @@
               futureState = STATE_WAR_OVER;
 --- 22,24 ----
       {
-!         if (wins[1] >= ceil(numRounds / 2) || wins[2] >= ceil(numRounds / 2) || wins[3] >= ceil(numRounds / 2) || wins[4] >= ceil(numRounds / 2))
+!         if (wins[1] >= winningScore || wins[2] >= winningScore || wins[3] >= winningScore || wins[4] >= winningScore)
               futureState = STATE_WAR_OVER;

@@ -1,5 +1,30 @@
-*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Draw_0.gml	Fri May 16 21:07:39 2025
---- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Draw_0.gml	Thu May 22 20:32:52 2025
+*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Draw_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Draw_0.gml	Mon Aug 18 14:57:37 2025
+***************
+*** 8,18 ****
+      scrSetFont(fontTall);
+!     scrStringDrawCenterAltExt(192, 64, "battle_setup_1", 0, 0, 3);
+      scrSetFont(fontDefault);
+!     scrStringDrawCenterAltExt(192, 96, "battle_setup_2", 0, 0, 3);
+      scrSetFont(fontTall);
+      
+!     if (numRounds < 10)
+!         draw_text_centered(xview + 192, 112, " " + string(numRounds), 8);
+      else
+!         draw_text_centered(192, 112, string(numRounds), 8);
+      
+--- 8,18 ----
+      scrSetFont(fontTall);
+!     draw_text_centered(192, 64, "SELECT VICTORY CONDITION", 8);
+      scrSetFont(fontDefault);
+!     draw_text_centered(192, 96, "FIRST TO", 8);
+      scrSetFont(fontTall);
+      
+!     if (winningScore < 10)
+!         draw_text_centered(xview + 192, 112, " " + string(winningScore), 8);
+      else
+!         draw_text_centered(192, 112, string(winningScore), 8);
+      
 ***************
 *** 27,28 ****
 --- 27,38 ----

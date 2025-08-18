@@ -1,5 +1,5 @@
-*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Create_0.gml	Fri May 16 21:07:39 2025
---- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Create_0.gml	Wed May 21 18:07:21 2025
+*** original_scripts/waldorfs_journey/gml_Object_o21_Game_Create_0.gml	Mon Aug 18 14:47:09 2025
+--- ufo50_modded_scripts/waldorfs_journey/gml_Object_o21_Game_Create_0.gml	Mon Aug 18 14:57:17 2025
 ***************
 *** 19,20 ****
 --- 19,22 ----
@@ -7,6 +7,15 @@
 + P3_WIN = 3;
 + P4_WIN = 4;
   CAMERA_RADIUS = 90;
+***************
+*** 39,41 ****
+  percent = 0;
+! numRounds = 3;
+  
+--- 41,43 ----
+  percent = 0;
+! winningScore = 2;
+  
 ***************
 *** 44,47 ****
   
