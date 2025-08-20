@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Aug 18 10:53:25 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Wed Aug 20 11:20:31 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Wed Aug 20 11:08:56 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -7,7 +7,7 @@
 --- 1,7 ----
 ! if (instance_exists(oTextBox) 
 !     || o15_Game.state == -2 
-!     || o15_Game.state == o15_Game.STATE_VS_OPTIONS 
+!     || o15_Game.state == o15_Game.STATE_MULTIPLAYER_OPTIONS 
 !     || o15_Game.state == o15_Game.STATE_INTRO_FALL 
 !     || o15_Game.state == o15_Game.STATE_INTRO_FALL_WAIT 
 !     || o15_Game.state == 4)

@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Mon Aug 18 11:00:28 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Wed Aug 20 11:20:31 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Wed Aug 20 11:13:18 2025
 ***************
 *** 6,8 ****
   
@@ -58,11 +58,11 @@
       scrSetFont(global.fontDefault);
 ***************
 *** 189 ****
---- 212,259 ----
+--- 212,282 ----
   }
 + 
 + 
-+ if (state == STATE_VS_OPTIONS)
++ if (state == STATE_MULTIPLAYER_OPTIONS)
 + {
 +     draw_set_color(global.palette[31]);
 +     draw_set_alpha(0.65);
@@ -70,41 +70,64 @@
 +     draw_set_alpha(1);
 +     draw_set_color(c_white);
 +     scrSetFont(global.fontTall);
-+     draw_text(100, 24, "VS OPTIONS");
++ 
++     if (global.g15_isVsMode) {
++         draw_text(150, 24, "VS OPTIONS");
++     } else {
++         draw_text(150, 24, "COOP OPTIONS");
++     }
++     
 +     scrSetFont(global.fontDefault);
 + 
-+     draw_text(50, 80, "PLAYERS:");
++     draw_text(50, 64, "PLAYERS:");
 +     var controllerText = string(global.numPlayers);
-+     draw_text(210, 80, controllerText);
++     draw_text(210, 64, controllerText);
 + 
-+     draw_text(50, 96, "SCROLL THRESHOLD:");
++     draw_text(50, 80, "SCROLL THRESHOLD:");
 +     var scrollThresholdText = threshYOptions[currentThreshYSelect];
-+     draw_text(210, 96, scrollThresholdText);
++     draw_text(210, 80, scrollThresholdText);
 + 
-+     draw_text(50, 112, "GAME OVER WHEN:");
++     draw_text(50, 96, "GAME OVER WHEN:");
 +     if (global.g15_isVsMode) {
 +         var gameOverConditionText = "LAST PERSON STANDING";
 +     } else {
 +         var gameOverConditionText = gameOverConditions[currentGameOverConditionSelect];
 +     }
-+     draw_text(210, 112, gameOverConditionText);
++     draw_text(210, 96, gameOverConditionText);
 + 
-+     draw_text(50, 128, "STARTING LEVEL:");
++     draw_text(50, 112, "STARTING LEVEL:");
 +     var startingLevelText = string(startingLevelSelection);
 +     if (startingLevelSelection == 5) {
 +         startingLevelText = "RANDOM LEVEL";
 +     }
-+     draw_text(210, 128, startingLevelText);
++     draw_text(210, 112, startingLevelText);
 + 
-+     draw_text(50, 144, "ITEM COST:");
++     draw_text(50, 128, "ITEM COST:");
 +     var coopCostText = coopCostOptions[coopCostSelection];
-+     draw_text(210, 144, coopCostText);
++     draw_text(210, 128, coopCostText);
 + 
-+     draw_text(50, 160, "START");
++     icon_spacing = 40;
++ 
++     draw_sprite(s15_RecoveryItem, iRecov, 50, 144);
++     draw_sprite(s15_GunItem, iGun, 50 + icon_spacing, 144);
++     draw_sprite(s15_FootItem, iFoot, 50 + 2 * icon_spacing, 144);
++     draw_sprite(s15_MagnetItem, iMagnet, 50 + 3 * icon_spacing, 144);
++     draw_sprite(s15_LighteningItem, iLightning, 50 + 4 * icon_spacing, 144);
++     draw_sprite(s15_JumpItem, iJump, 50 + 5 * icon_spacing, 144);
++     draw_sprite(s15_Cursor, 0, 50 + titleX * icon_spacing, 144);
++ 
++     draw_text(50, 160 + icon_spacing, "START");
 +     
 +     if (scrTransitionDone())
 +     {
-+         draw_sprite_ext(s15_Keys, 0, 34, 83 + (titleY * 16), 1, 1, 0, c_white, 1);
++         keyPos = 67 + (titleY * 16);
++         if (titleY == 5) {
++             keyPos += icon_spacing / 4;
++         } else if (titleY == 6) {
++             keyPos += icon_spacing;
++         }
++ 
++         draw_sprite_ext(s15_Keys, 0, 34, keyPos, 1, 1, 0, c_white, 1);
 +     }
 + }
 \ No newline at end of file

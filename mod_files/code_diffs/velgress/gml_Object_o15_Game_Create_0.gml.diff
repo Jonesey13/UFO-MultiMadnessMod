@@ -1,15 +1,16 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Mon Aug 18 11:51:22 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Wed Aug 20 11:20:31 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Create_0.gml	Wed Aug 20 11:10:04 2025
 ***************
 *** 2,3 ****
---- 2,37 ----
+--- 2,38 ----
   state = -2;
 + STATE_GAME_OVER = -99;
 + STATE_INTRO_FALL_FINISH = -2;
 + STATE_INTRO_FALL_WAIT = -3;
 + STATE_INTRO_FALL = -4;
-+ STATE_VS_OPTIONS = -5;
++ STATE_MULTIPLAYER_OPTIONS = -5;
 + titleY = 0;
++ titleX = 0;
 + threshYOptions = ["NORMAL", "LENIENT", "WATCH YOUR HEAD"];
 + threshYValues = [96, 64, 32];
 + 
@@ -41,7 +42,7 @@
   substate = 0;
 ***************
 *** 37,38 ****
---- 71,82 ----
+--- 72,83 ----
   
 + if (global.numPlayers >= 2) {
 +     with (o15_SpikeRoller)
@@ -55,12 +56,24 @@
 + 
   for (var i = 0; i < 50; i++)
 ***************
+*** 101,102 ****
+--- 146,154 ----
+      global.g15_QuickRestart = true;
++ } else if (global.numPlayers >= 2) {
++     iRecov     = global.g15_multiplayerStartingPowerups[0];
++     iGun       = global.g15_multiplayerStartingPowerups[1];
++     iFoot      = global.g15_multiplayerStartingPowerups[2];
++     iMagnet    = global.g15_multiplayerStartingPowerups[3];
++     iLightning = global.g15_multiplayerStartingPowerups[4];
++     iJump      = global.g15_multiplayerStartingPowerups[5];
+  }
+***************
 *** 122,125 ****
   
 ! if (!inRecordOrPlayback())
 !     instance_create(192, -32, o15_IntroFall);
   
---- 166,174 ----
+--- 174,182 ----
   
 ! if (global.numPlayers == 1)
 !     state = STATE_INTRO_FALL;
@@ -68,5 +81,5 @@
 !     global.g15_skipOptionsMenu = false;
 !     state = STATE_INTRO_FALL;
 ! } else
-!     state = STATE_VS_OPTIONS;
+!     state = STATE_MULTIPLAYER_OPTIONS;
   

@@ -1,8 +1,21 @@
-*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Mon Aug 18 10:02:08 2025
+*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Wed Aug 20 11:20:31 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Wed Aug 20 11:19:38 2025
+***************
+*** 145,147 ****
+  
+! bounceChanceMax = 300;
+  bounceChance = bounceChanceMax;
+--- 145,151 ----
+  
+! if (global.numPlayers >= 2) {
+!     bounceChanceMax = 30000;
+! } else {
+!     bounceChanceMax = 300;
+! }
+  bounceChance = bounceChanceMax;
 ***************
 *** 378,379 ****
---- 378,395 ----
+--- 382,399 ----
       }
 + 
 +     if (life == 30) {

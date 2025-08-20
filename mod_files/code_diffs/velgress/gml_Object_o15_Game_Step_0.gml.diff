@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Mon Aug 18 11:59:19 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Wed Aug 20 11:20:31 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Wed Aug 20 11:08:53 2025
 ***************
 *** 9,18 ****
   
@@ -32,7 +32,7 @@
 ! else if (state == -2)
   {
       if (substate == 1)
---- 22,276 ----
+--- 22,331 ----
           
 !         for (p = 0; p < global.numPlayers; p++) {
 !             players[p].dead = true;
@@ -46,7 +46,7 @@
 !         }
 !     }
 ! }
-! else if (state == STATE_VS_OPTIONS)
+! else if (state == STATE_MULTIPLAYER_OPTIONS)
 ! {
 !     scrGetInput(0);
 ! 
@@ -54,16 +54,16 @@
 !     {
 !         scrSfx(sfx_navi01, 50);
 !         titleY--;
-!         
-!         if (titleY < 0)
-!             titleY = 5;
-!     }
-!     else if (pressDown)
-!     {
-!         scrSfx(sfx_navi01, 50);
-!         titleY++;
           
-+         if (titleY > 5)
++         if (titleY < 0)
++             titleY = 6;
++     }
++     else if (pressDown)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY++;
++         
++         if (titleY > 6)
 +             titleY = 0;
 +     }
 + 
@@ -161,7 +161,61 @@
 +     }
 +     if (titleY == 5)
 +     {
++         if (pressLeft)
++         {
++             scrSfx(sfx_navi01, 50);
++             titleX--;
++             
++             if (titleX < 0)
++                 titleX = 5;
++         }
++         else if (pressRight)
++         {
++             scrSfx(sfx_navi01, 50);
++             titleX++;
++             
++             if (titleX > 5)
++                 titleX = 0;
++         }
++ 
           if (fire2pressed)
+!         {
+!             if (titleX == 0) {
+!                 iRecov++;
+!                 if (iRecov > 2) {
+!                     iRecov = 0;
+!                 }
+!             } else if (titleX == 1) {
+!                 iGun++;
+!                 if (iGun > 2) {
+!                     iGun = 0;
+!                 }
+!             } else if (titleX == 2) {
+!                 iFoot++;
+!                 if (iFoot > 2) {
+!                     iFoot = 0;
+!                 }
+!             } else if (titleX == 3) {
+!                 iMagnet++;
+!                 if (iMagnet > 1) {
+!                     iMagnet = 0;
+!                 }
+!             } else if (titleX == 4) {
+!                 iLightning++;
+!                 if (iLightning > 1) {
+!                     iLightning = 0;
+!                 }
+!             } else if (titleX == 5) {
+!                 iJump++;
+!                 if (iJump > 1) {
+!                     iJump = 0;
+!                 }
+!             }
+!         } 
+!     }
+!     if (titleY == 6)
+!     {
+!         if (fire2pressed)
 !         {
 !             scrSfx(sfx_powerup01, 60);
 !             global.g15_playerScores = [0, 0, 0, 0];
@@ -186,6 +240,7 @@
 +         global.g15_gameOverCondition = currentGameOverConditionSelect;
 +         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
 +         global.g15_multiplayerStartingLevel = startingLevelSelection;
++         global.g15_multiplayerStartingPowerups = [iRecov, iGun, iFoot, iMagnet, iLightning, iJump];
 + 
 +         if (startingLevelSelection == 5) {
 +             global.g15_randomiseLevel = true;
@@ -296,7 +351,7 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 402,407 ----
+--- 457,462 ----
                   {
 !                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
                       {

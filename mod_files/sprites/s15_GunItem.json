@@ -1,0 +1,38 @@
+{
+  "size": [32, 32],
+  "margin": [0, 31, 31, 0],
+  "origin": [0, 0],
+  "bounding_box_mode": 0,
+  "special": {
+    "version": 3,
+    "type": "Normal",
+    "playback_speed": 1,
+    "playback_speed_type": "FramesPerGameFrame"
+  },
+  "texture_pages": [
+    {
+      "source_position": [0, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 128"
+    },
+    {
+      "source_position": [32, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 128"
+    },
+    {
+      "source_position": [64, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 128"
+    }
+  ]
+}

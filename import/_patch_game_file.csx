@@ -8,7 +8,7 @@ using UndertaleModLib;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-void patchGameWinFile(bool excludeDiscordIntegration)
+void patchGameWinFile(bool excludeAdditionalEnhancements)
 {
 
     var datafile = new FileInfo("input/data.win");
@@ -97,7 +97,7 @@ void patchGameWinFile(bool excludeDiscordIntegration)
         gameData.Sprites.Add(newSprite);
     }
 
-    if (!excludeDiscordIntegration)
+    if (!excludeAdditionalEnhancements)
     {
         SetupRichPresence(gameData);
     }
@@ -106,7 +106,7 @@ void patchGameWinFile(bool excludeDiscordIntegration)
 
     foreach (string scriptPath in Directory.EnumerateFiles("ufo50_modded_scripts", "*.gml", SearchOption.AllDirectories))
     {
-        if (excludeDiscordIntegration && scriptPath.Contains("rich_presence")) {
+        if (excludeAdditionalEnhancements && (scriptPath.Contains("rich_presence") || scriptPath.Contains("skip_intro"))) {
             continue;
         }
         
