@@ -52,7 +52,7 @@ From here you want to run the following scripts in order:
     * This extracts the relevant original source `*.gml` files from `data.win` and puts them in the `ufo50_original_scripts` folder
 2. `diff_applyer.csx`
     * This generates the modded versions of the source files (you can view the modded files in the `ufo50_modded_scripts` folder)
-3. `patch_ufo4P.csx`
+3. `patch_for_local.csx`
     * This copies `data.win` into the `output` folder and imports the modded code and textures/sprites
 
 After completing these steps the files in the `output` folder can be copied back into your original UFO50 game folder to apply the mod.
