@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Sun Jun  8 13:41:46 2025
+*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Fri Aug 22 11:55:08 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Fri Aug 22 12:35:16 2025
 ***************
 *** 11,13 ****
       
@@ -18,6 +18,15 @@
 +     gamepadConnect[4] = gamepad_is_connected(global.joySlot[4]);
 +     gamepadConnect[5] = gamepad_is_connected(global.joySlot[5]);
       drawMenu = true;
+***************
+*** 236,238 ****
+                  
+!                 for (var p = 0; p <= 1; p++)
+                  {
+--- 240,242 ----
+                  
+!                 for (var p = 0; p <= 5; p++)
+                  {
 ***************
 *** 261,263 ****
       {
