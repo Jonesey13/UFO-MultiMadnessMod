@@ -1,0 +1,26 @@
+*** original_scripts/gml_GlobalScript_scrSaveConfig.gml	Fri Aug 22 11:55:09 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrSaveConfig.gml	Fri Aug 22 11:48:15 2025
+***************
+*** 12,14 ****
+      
+!     for (var p = 0; p <= 1; p++)
+      {
+--- 12,14 ----
+      
+!     for (var p = 0; p <= 5; p++)
+      {
+***************
+*** 23,26 ****
+--- 23,34 ----
+      scrWriteConfig("doubledUpButtonsP2", global.doubledUpButtons[1]);
++     scrWriteConfig("doubledUpButtonsP3", global.doubledUpButtons[2]);
++     scrWriteConfig("doubledUpButtonsP4", global.doubledUpButtons[3]);
++     scrWriteConfig("doubledUpButtonsP5", global.doubledUpButtons[4]);
++     scrWriteConfig("doubledUpButtonsP6", global.doubledUpButtons[5]);
+      scrWriteConfig("joyTypeP1", global.joyType[0]);
+      scrWriteConfig("joyTypeP2", global.joyType[1]);
++     scrWriteConfig("joyTypeP3", global.joyType[2]);
++     scrWriteConfig("joyTypeP4", global.joyType[3]);
++     scrWriteConfig("joyTypeP5", global.joyType[4]);
++     scrWriteConfig("joyTypeP6", global.joyType[5]);
+      scrWriteConfig("defaultLanguage", global.LANG_SAVE_ID[global.defaultLanguage]);
