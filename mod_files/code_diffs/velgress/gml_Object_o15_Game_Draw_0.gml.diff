@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Wed Aug 20 11:20:31 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Wed Aug 20 11:13:18 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Aug 22 11:55:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Draw_0.gml	Fri Aug 22 12:02:38 2025
 ***************
 *** 6,8 ****
   
@@ -14,11 +14,18 @@
                   draw_sprite(s15_ShopItems, shopItems[i + ((level - 1) * 3)], _xv + 32 + (i * 64), _yv + 80);
 !                 draw_text(_xv + 32 + (i * 64) + 16, _yv + 80 + 24, string(shopPrices[i + ((level - 1) * 3)]));
               }
---- 158,163 ----
+--- 158,170 ----
                   draw_sprite(s15_ShopItems, shopItems[i + ((level - 1) * 3)], _xv + 32 + (i * 64), _yv + 80);
+! 
+!                 if (global.numPlayers == 1) {
+!                     costMultiplier = 1;
+!                 } else {
+!                     costMultiplier = global.g15_coopCostMultiplier;
+!                 }
+! 
 !                 draw_text(
 !                     _xv + 32 + (i * 64) + 16, _yv + 80 + 24, 
-!                     string(ceil(shopPrices[i + ((level - 1) * 3)] * global.g15_coopCostMultiplier))
+!                     string(ceil(shopPrices[i + ((level - 1) * 3)] * costMultiplier))
 !                     );
               }
 ***************
@@ -29,7 +36,7 @@
       scrSetFont(global.fontTall);
 !     draw_text_centered(_xv + 192, _yv + 96, scrStringExt("game_over", "*", 42, 4), 8);
       scrSetFont(global.fontDefault);
---- 178,203 ----
+--- 185,210 ----
   }
 ! else if (state == STATE_GAME_OVER)
   {
@@ -58,7 +65,7 @@
       scrSetFont(global.fontDefault);
 ***************
 *** 189 ****
---- 212,282 ----
+--- 219,289 ----
   }
 + 
 + 

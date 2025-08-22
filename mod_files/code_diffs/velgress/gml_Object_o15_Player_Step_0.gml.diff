@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Wed Aug 20 11:20:31 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Wed Aug 20 11:08:56 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Aug 22 11:55:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Aug 22 11:16:21 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -189,24 +189,15 @@
 !                 highJumpMult = 4;
 !                 alarm[0] = 1;
               }
---- 478,496 ----
+--- 478,487 ----
               {
 !                 with (o15_Player) {
-!                     if (global.numPlayers >= 2) {
-!                         scrSfx(sfx_warp00, 80);
-!                         highBlast = instance_create(x, y - 12, o15_HighJumpBlast);
-!                         highBlast.playerNum = playerNum;
-!                         highJumpCount = highJumpCountMax;
-!                         highJumpMult = 4;
-!                         alarm[0] = 1;
-!                     } else {
-!                         scrSfx(sfx_warp00, 80);
-!                         highBlast = instance_create(x, y - 12, o15_HighJumpBlast);
-!                         highBlast.playerNum = playerNum;
-!                         highJumpCount = highJumpCountMax;
-!                         highJumpMult = 2;
-!                         alarm[0] = 1;
-!                     }
+!                     scrSfx(sfx_warp00, 80);
+!                     highBlast = instance_create(x, y - 12, o15_HighJumpBlast);
+!                     highBlast.playerNum = playerNum;
+!                     highJumpCount = highJumpCountMax;
+!                     highJumpMult = 4;
+!                     alarm[0] = 1;
 !                 }
               }
 ***************
@@ -214,7 +205,7 @@
       
 !     if (fire2pressed)
       {
---- 529,531 ----
+--- 520,522 ----
       
 !     if (fire2pressed && (global.numPlayers == 1 || highJumpCount == 0))
       {
@@ -225,7 +216,7 @@
           else
 !             sprite_index = s15_Player2Walk;
       }
---- 677,681 ----
+--- 668,672 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1WalkMulti;
           else
@@ -236,7 +227,7 @@
       {
 !         sprite_index = s15_Player1Stand;
       }
---- 683,685 ----
+--- 674,676 ----
       {
 !         sprite_index = s15_Player1StandMulti;
       }
@@ -245,7 +236,7 @@
       {
 !         sprite_index = s15_Player2Stand;
       }
---- 687,689 ----
+--- 678,680 ----
       {
 !         sprite_index = s15_Player2StandMulti;
       }
@@ -254,7 +245,7 @@
   {
 !     sprite_index = s15_Player2Flip;
   }
---- 692,694 ----
+--- 683,685 ----
   {
 !     sprite_index = s15_Player2FlipMulti;
   }
@@ -265,7 +256,7 @@
           else
 !             sprite_index = s15_Player2Jump;
       }
---- 699,703 ----
+--- 690,694 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1JumpMulti;
           else
@@ -276,7 +267,7 @@
       {
 !         sprite_index = s15_Player1Fall;
       }
---- 705,707 ----
+--- 696,698 ----
       {
 !         sprite_index = s15_Player1FallMulti;
       }
@@ -285,7 +276,7 @@
       {
 !         sprite_index = s15_Player2Fall;
       }
---- 709,711 ----
+--- 700,702 ----
       {
 !         sprite_index = s15_Player2FallMulti;
       }

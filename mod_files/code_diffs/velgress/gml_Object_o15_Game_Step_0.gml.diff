@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Wed Aug 20 11:20:31 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Wed Aug 20 11:08:53 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Aug 22 11:55:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Aug 22 12:02:00 2025
 ***************
 *** 9,18 ****
   
@@ -351,10 +351,16 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= shopPrices[selItem];
                           shopBought[selItem] = 1;
---- 457,462 ----
+--- 457,468 ----
                   {
-!                     if (coins >= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier))
+!                     if (global.numPlayers == 1) {
+!                         costMultiplier = 1;
+!                     } else {
+!                         costMultiplier = global.g15_coopCostMultiplier;
+!                     }
+! 
+!                     if (coins >= ceil(shopPrices[selItem] * costMultiplier))
                       {
                           scrSfx(sfx_special00, 55);
-!                         coins -= ceil(shopPrices[selItem] * global.g15_coopCostMultiplier);
+!                         coins -= ceil(shopPrices[selItem] * costMultiplier);
                           shopBought[selItem] = 1;

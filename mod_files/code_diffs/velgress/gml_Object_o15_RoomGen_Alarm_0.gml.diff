@@ -1,21 +1,44 @@
-*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Wed Aug 20 11:20:31 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Wed Aug 20 11:19:38 2025
+*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Fri Aug 22 11:55:09 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Fri Aug 22 11:18:31 2025
 ***************
-*** 145,147 ****
-  
-! bounceChanceMax = 300;
-  bounceChance = bounceChanceMax;
---- 145,151 ----
-  
-! if (global.numPlayers >= 2) {
-!     bounceChanceMax = 30000;
-! } else {
-!     bounceChanceMax = 300;
-! }
-  bounceChance = bounceChanceMax;
+*** 179,181 ****
+              {
+!                 if (rand(1, bounceChance) == 1)
+                  {
+--- 179,181 ----
+              {
+!                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
+                  {
+***************
+*** 200,202 ****
+              {
+!                 if (rand(1, bounceChance) == 1)
+                  {
+--- 200,202 ----
+              {
+!                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
+                  {
+***************
+*** 225,227 ****
+              {
+!                 if (rand(1, bounceChance) == 1)
+                  {
+--- 225,227 ----
+              {
+!                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
+                  {
+***************
+*** 336,338 ****
+          
+!         if (bounceChance > 1)
+              bounceChance -= 1;
+--- 336,338 ----
+          
+!         if (global.numPlayers == 1 && bounceChance > 1)
+              bounceChance -= 1;
 ***************
 *** 378,379 ****
---- 382,399 ----
+--- 378,395 ----
       }
 + 
 +     if (life == 30) {
