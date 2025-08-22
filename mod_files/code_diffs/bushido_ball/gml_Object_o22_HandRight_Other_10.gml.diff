@@ -1,9 +1,9 @@
-*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Other_10.gml	Fri May 23 16:06:08 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Other_10.gml	Fri May 23 14:18:53 2025
+*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Other_10.gml	Fri Aug 22 11:55:08 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Other_10.gml	Wed Aug 20 18:52:33 2025
 ***************
 *** 3 ****
 --- 3,6 ----
   o22_Game.p2_sel = sel;
 + if (o22_Game.numPlayers == 5) {
-+     o22_Game.p4_sel = sel;
++     o22_Game.p2_sel = sel;
 + }
