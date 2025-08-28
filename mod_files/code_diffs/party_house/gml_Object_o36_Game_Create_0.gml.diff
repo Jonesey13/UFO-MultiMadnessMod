@@ -1,0 +1,32 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Create_0.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Create_0.gml	Fri Aug 22 21:56:10 2025
+***************
+*** 43,45 ****
+  
+! if (global.numPlayers == 2)
+      STORE_SUPPLY = STORE_SUPPLY_2P;
+--- 43,45 ----
+  
+! if (global.numPlayers >= 2)
+      STORE_SUPPLY = STORE_SUPPLY_2P;
+***************
+*** 157,159 ****
+  
+! for (var p = 0; p < 2; p++)
+      deck[p] = ds_list_create();
+--- 157,159 ----
+  
+! for (var p = 0; p < numPlayers; p++)
+      deck[p] = ds_list_create();
+***************
+*** 173,176 ****
+  cutCharType = 0;
+! capacity[0] = START_CAPACITY;
+! capacity[1] = START_CAPACITY;
+  randSeed = 0;
+--- 173,177 ----
+  cutCharType = 0;
+! for (var p = 0; p < numPlayers; p++) {
+!     capacity[p] = START_CAPACITY;
+! }
+  randSeed = 0;

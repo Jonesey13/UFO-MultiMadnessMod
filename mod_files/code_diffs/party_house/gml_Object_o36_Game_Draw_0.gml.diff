@@ -1,0 +1,75 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Draw_0.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Draw_0.gml	Thu Aug 28 19:32:48 2025
+***************
+*** 74,87 ****
+          {
+!             var metaStr;
+              
+!             if (scenarioWinsP1[i] == 0 && scenarioWinsP2[i] == 0)
+!                 metaStr = scrStringExt("unplayed", 0, 16, 0);
+!             else if (scenarioWinsP1[i] == 1)
+!                 metaStr = scrStringExt("p1_won_last_game", 0, 16, 0);
+!             else if (scenarioWinsP1[i] > 1)
+!                 metaStr = scrStringExt("p1_won_last_x", scenarioWinsP1[i], 16, 0);
+!             else if (scenarioWinsP2[i] == 1)
+!                 metaStr = scrStringExt("p2_won_last_game", 0, 16, 0);
+!             else if (scenarioWinsP2[i] > 1)
+!                 metaStr = scrStringExt("p2_won_last_x", scenarioWinsP2[i], 16, 0);
+              
+--- 74,83 ----
+          {
+!             var metaStr = "UNPLAYED";
+              
+!             for (var player = 0; player < 4; player++) {
+!                 if (scenarioWinsMulti[player][i] == 1)
+!                     metaStr = "P1 WON LAST GAME";
+!                 else if (scenarioWinsMulti[player][i] > 1)
+!                     metaStr = "P1 WON " + string(scenarioWinsMulti[player][i]) + " GAMES";
+!             }
+              
+***************
+*** 102,104 ****
+          
+!         if (numPlayers == 2 || scenarioIndex != 5)
+          {
+--- 98,100 ----
+          
+!         if (numPlayers >= 2 || scenarioIndex != 5)
+          {
+***************
+*** 147,149 ****
+      
+!     if (numPlayers == 2)
+      {
+--- 143,145 ----
+      
+!     if (numPlayers >= 2)
+      {
+***************
+*** 640,642 ****
+  {
+!     draw_sprite(s36_Headers, 2 + cp, 0, 0);
+      draw_sprite_part(s36_House, 0, 0, 0, 288, 144, 0, 32);
+--- 636,638 ----
+  {
+!     draw_sprite(s36_HeadersMulti, cp, 0, 0);
+      draw_sprite_part(s36_House, 0, 0, 0, 288, 144, 0, 32);
+***************
+*** 648,659 ****
+          {
+!             if (cp == 0)
+!             {
+!                 draw_sprite(s36_HeaderMeter1, floor(generalTimer / 8) % 4, 240, 0);
+!                 global.solutionState = true;
+!             }
+!             else
+!             {
+!                 draw_sprite(s36_HeaderMeter2, floor(generalTimer / 8) % 4, 240, 0);
+!                 global.solutionState = false;
+!             }
+          }
+--- 644,647 ----
+          {
+!             draw_sprite(s36_HeaderMeterMulti, floor(generalTimer / 8) % 4 + cp * 4, 240, 0);
+!             global.solutionState = true;
+          }

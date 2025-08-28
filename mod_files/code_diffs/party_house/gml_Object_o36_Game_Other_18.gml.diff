@@ -1,0 +1,180 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Other_18.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_18.gml	Thu Aug 28 19:37:58 2025
+***************
+*** 15,18 ****
+      {
+-         tiePossible = false;
+-         
+          if (numPlayers == 1)
+--- 15,16 ----
+***************
+*** 66,113 ****
+          }
+!         else if (numPlayers == 2)
+          {
+!             if (cp == 0)
+              {
+!                 var numDeckStars2P = 0;
+                  
+!                 for (var i = 0; i < ds_list_size(deck[1]); i++)
+                  {
+!                     var currCard = ds_list_find_value(deck[1], i);
+!                     numDeckStars2P += currCard.prestige;
+                  }
+                  
+!                 if (numDeckStars2P >= PRESTIGE_GOAL)
+                      tiePossible = true;
+              }
+!             
+!             if (wonGame[0] && !wonGame[1] && tiePossible == false)
+              {
+!                 messageColor = global.palette[2];
+!                 
+!                 if (cp == 0)
+!                     scr36_MessageSet(scrString("p1_won_1"));
+!                 else if (cp == 1)
+!                     scr36_MessageSet(scrString("p1_won_2"));
+!                 
+!                 scenarioWinsP1[scenarioIndex]++;
+!                 scenarioWinsP2[scenarioIndex] = 0;
+                  scrSaveGame(0);
+              }
+!             else if (wonGame[0] && !wonGame[1] && tiePossible == true)
+              {
+!                 messageColor = global.palette[2];
+!                 scr36_MessageSet(scrString("p1_won_3"));
+              }
+!             else if (wonGame[1] && !wonGame[0])
+              {
+!                 messageColor = global.palette[2];
+!                 scr36_MessageSet(scrString("p2_won_1"));
+!                 scenarioWinsP1[scenarioIndex] = 0;
+!                 scenarioWinsP2[scenarioIndex]++;
+                  scrSaveGame(0);
+              }
+!             else if (wonGame[0] && wonGame[1])
+              {
+!                 messageColor = global.palette[2];
+!                 scr36_MessageSet(scrString("p2_won_2"));
+              }
+--- 64,169 ----
+          }
+!         else if (numPlayers >= 2)
+          {
+!             tiePossible = false;
+!             tiePossiblePlayers = [];
+!             tiePossiblePlayerNumbers = [];
+!             anotherPlayerAlreadyWon = false;
+!             winningPlayers = [];
+!             winningPlayerNumbers = [];
+! 
+!             for (var op = cp + 1; op < numPlayers; op++)
+              {
+!                 var numDeckStarsOP = 0;
+                  
+!                 for (var i = 0; i < ds_list_size(deck[op]); i++)
+                  {
+!                     var currCard = ds_list_find_value(deck[op], i);
+!                     numDeckStarsOP += currCard.prestige;
+                  }
+                  
+!                 if (numDeckStarsOP >= PRESTIGE_GOAL)
+!                 {
+!                     array_push(tiePossiblePlayers, "P" + string(op + 1));
+!                     array_push(tiePossiblePlayerNumbers, op);
+                      tiePossible = true;
++                 }
+              }
+! 
+!             for (var op = 0; op <= cp; op++)
+              {
+!                 if (wonGame[op]) {
+!                     array_push(winningPlayers, "P" + string(op + 1));
+!                     array_push(winningPlayerNumbers, op + 1);
+! 
+!                     if (op != cp) {
+!                         anotherPlayerAlreadyWon = true;
+!                     }
+!                 }
+!             }
+! 
+!             messageColor = global.palette[2];
+!             
+!             if (array_length(tiePossiblePlayers) >= 1) 
+!                 tiePossiblePlayersListString = array_reduce(tiePossiblePlayers, combinePlayerNumbers);
+! 
+!             if (array_length(winningPlayers) >= 1) 
+!                 winningPlayersListString = array_reduce(winningPlayers, combinePlayerNumbers);
+! 
+!             function combinePlayerNumbers(previous, current) {
+!                 return string(previous) + ", " + string(current);
+!             }
+! 
+!             if (!tiePossible && !anotherPlayerAlreadyWon)
+!             {
+!                 scr36_MessageSet("P" + string(cp + 1) + " WON THE GAME!");
+!                 for (var player = 0; player < 4; player++) {
+!                     if (player != cp)
+!                         scenarioWinsMulti[player][scenarioIndex] = 0;
+!                 }
+!                 scenarioWinsMulti[cp][scenarioIndex]++;
+                  scrSaveGame(0);
+              }
+!             else if (!tiePossible && anotherPlayerAlreadyWon && wonGame[cp])
+              {
+!                 message = winningPlayersListString + " HAVE WON THE GAME!";
+!                 scr36_MessageSet(message);
+!                 scrSaveGame(0);
+              }
+!             else if (!tiePossible && anotherPlayerAlreadyWon && !wonGame[cp])
+              {
+!                 if (array_length(winningPlayers) == 1) {
+!                     message = "P" + string(cp + 1) + " HAS FAILED TO TIE. " + winningPlayersListString + " HAS WON THE GAME!";
+!                     for (var player = 0; player < 4; player++) {
+!                         if (player != winningPlayerNumbers[0])
+!                             scenarioWinsMulti[player][scenarioIndex] = 0;
+!                     }
+!                     scenarioWinsMulti[winningPlayerNumbers[0]][scenarioIndex]++;
+!                 } else if (array_length(winningPlayers) >= 1) {
+!                     message = "P" + string(cp + 1) + " HAS FAILED TO TIE. " + winningPlayersListString + " HAVE WON THE GAME!";
+!                 }
+!                 scr36_MessageSet(message);
+                  scrSaveGame(0);
+              }
+!             else if (tiePossible && !anotherPlayerAlreadyWon && wonGame[cp])
+              {
+!                 message = "P" + string(cp + 1) + " HAS WON BUT " + tiePossiblePlayersListString + " CAN STILL TIE";
+!                 scr36_MessageSet(message);
+!             }
+!             else if (tiePossible && anotherPlayerAlreadyWon && wonGame[cp])
+!             {
+!                 message = winningPlayersListString + " HAVE WON BUT " + tiePossiblePlayersListString + " CAN STILL TIE";
+!                 scr36_MessageSet(message);
+!             }
+!             else if (tiePossible && anotherPlayerAlreadyWon && !wonGame[0])
+!             {
+!                 if (array_length(winningPlayers) == 1) {
+!                     message = "P" + string(cp + 1) + " HAS FAILED TO TIE. " 
+!                         + winningPlayersListString + " HAS WON BUT " 
+!                         + tiePossiblePlayersListString + " CAN STILL TIE";
+!                 } else if (array_length(winningPlayers) >= 1) {
+!                     message = "P" + string(cp + 1) + " HAS FAILED TO TIE. " 
+!                         + winningPlayersListString + " HAVE WON BUT " 
+!                         + tiePossiblePlayersListString + " CAN STILL TIE";
+!                 }
+!                 scr36_MessageSet(message);
+              }
+***************
+*** 141,145 ****
+              
+!             if (numPlayers == 2 && tiePossible)
+              {
+                  muteBGM();
+                  gotoState = STATE_START_PARTY;
+--- 197,202 ----
+              
+!             if (numPlayers >= 2 && tiePossible)
+              {
+                  muteBGM();
++                 cp = tiePossiblePlayerNumbers[0] - 1;
+                  gotoState = STATE_START_PARTY;

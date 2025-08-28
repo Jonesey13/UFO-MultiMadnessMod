@@ -1,0 +1,29 @@
+*** original_scripts/party_house/gml_GlobalScript_scr36_SetupGame.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_GlobalScript_scr36_SetupGame.gml	Thu Aug 28 19:41:17 2025
+***************
+*** 2,5 ****
+  {
+!     wonGame[0] = false;
+!     wonGame[1] = false;
+      tiePossible = false;
+--- 2,5 ----
+  {
+!     for (var p = 0; p < numPlayers; p++)
+!         wonGame[p] = false;
+      tiePossible = false;
+***************
+*** 7,9 ****
+      
+!     for (var p = 0; p < 2; p++)
+      {
+--- 7,9 ----
+      
+!     for (var p = 0; p < numPlayers; p++)
+      {
+***************
+*** 17,20 ****
+      
+-     popularity[1] += POP_2P_BONUS;
+-     money[1] += MONEY_2P_BONUS;
+      ds_list_copy(store, scenario[arg0]);
+--- 17,18 ----

@@ -1,0 +1,11 @@
+*** original_scripts/party_house/gml_GlobalScript_scr36_Cleanup.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_GlobalScript_scr36_Cleanup.gml	Fri Aug 22 21:59:17 2025
+***************
+*** 4,6 ****
+      {
+!         for (var p = 0; p < 2; p++)
+          {
+--- 4,6 ----
+      {
+!         for (var p = 0; p < numPlayers; p++)
+          {

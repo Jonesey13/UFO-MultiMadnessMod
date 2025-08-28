@@ -1,0 +1,11 @@
+*** original_scripts/party_house/gml_Object_o36_Stats_Draw_0.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Stats_Draw_0.gml	Fri Aug 22 15:02:10 2025
+***************
+*** 2,4 ****
+  
+! if (o36_Game.numPlayers == 2)
+      draw_sprite(sprite_index, 4, x, y);
+--- 2,4 ----
+  
+! if (o36_Game.numPlayers >= 2)
+      draw_sprite(sprite_index, 4, x, y);

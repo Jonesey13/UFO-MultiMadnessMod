@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Wed Aug 20 11:20:30 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Wed Aug 20 08:11:41 2025
+*** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Thu Aug 28 19:59:00 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Sat Aug 23 18:33:32 2025
 ***************
 *** 41,42 ****
 --- 41,43 ----
@@ -42,8 +42,14 @@
 +     global.mGameMenuStyle[nGame] = 20;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 ***************
+*** 118,119 ****
+--- 134,136 ----
+      scr36_Meta(nGame);
++     global.mGameMenuStyle[nGame] = 24;
+      scrAddPillars(global.PILLAR_EPIC, global.PILLAR_THINKY);
+***************
 *** 122,123 ****
---- 138,140 ----
+--- 139,141 ----
       scr43_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 21;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);

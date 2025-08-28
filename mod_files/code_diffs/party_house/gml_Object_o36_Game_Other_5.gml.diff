@@ -1,0 +1,9 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Other_5.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_5.gml	Fri Aug 22 21:59:41 2025
+***************
+*** 1,2 ****
+! for (var p = 0; p < 2; p++)
+  {
+--- 1,2 ----
+! for (var p = 0; p < numPlayers; p++)
+  {

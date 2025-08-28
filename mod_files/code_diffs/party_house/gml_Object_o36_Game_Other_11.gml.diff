@@ -1,0 +1,27 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Other_11.gml	Thu Aug 28 19:59:01 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_11.gml	Fri Aug 22 15:48:46 2025
+***************
+*** 13,16 ****
+          
+!         if (numPlayers == 2 && time[0] != NUM_DAYS)
+!             cp = !cp;
+          
+--- 13,21 ----
+          
+!         if (numPlayers >= 2 && time[0] != NUM_DAYS)
+!         {
+!             cp++;
+!             if (cp = numPlayers) {
+!                 cp = 0;
+!             }
+!         }
+          
+***************
+*** 29,31 ****
+          
+!         if (numPlayers == 2)
+          {
+--- 34,36 ----
+          
+!         if (numPlayers >= 2)
+          {

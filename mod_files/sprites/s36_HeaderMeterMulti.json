@@ -1,0 +1,142 @@
+{
+  "size": [32, 32],
+  "margin": [0, 31, 31, 0],
+  "origin": [0, 0],
+  "bounding_box_mode": 0,
+  "special": {
+    "version": 3,
+    "type": "Normal",
+    "playback_speed": 1,
+    "playback_speed_type": "FramesPerGameFrame"
+  },
+  "texture_pages": [
+    {
+      "source_position": [288, 0],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 0],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 0],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 0],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 32],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 32],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 32],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 32],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 64],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 96],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [288, 96],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 96],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    },
+    {
+      "source_position": [320, 96],
+      "source_size": [32, 32],
+      "target_position": [0, 0],
+      "target_size": [32, 32],
+      "bounding_size": [32, 32],
+      "texture": "Texture 129"
+    }
+  ]
+}
