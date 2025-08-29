@@ -12,6 +12,7 @@ Currently the following games are supported:
 * Attactics (4P Team VS)
 * Waldorf's Journey (2/3/4P Free For All)
 * The Big Bell Race (up to 6 Players)
+* Party House (3/4P VS)
 * Ninpek (3/4P Co-op)
 * Mortol (2/3/4P Co-op)
 
