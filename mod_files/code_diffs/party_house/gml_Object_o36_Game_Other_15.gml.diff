@@ -1,0 +1,816 @@
+*** original_scripts/party_house/gml_Object_o36_Game_Other_15.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_15.gml	Sat Aug 30 16:19:04 2025
+***************
+*** 0 ****
+--- 1,811 ----
++ if (substate == 0)
++ {
++     selOn = false;
++     stateTimer++;
++     pauseTimer = 0;
++     betweenPause = false;
++     
++     if (stateTimer == 100)
++     {
++         stateTimer = 0;
++         substate = 1;
++     }
++     
++     if (phase == PHASE_SCORING)
++     {
++         justBusted[cp] = false;
++         scoreStart = 0;
++         scoreEnd = ds_list_size(party);
++     }
++ }
++ 
++ if (phase == PHASE_PARTY)
++ {
++     pauseAmount = 50;
++     betweenAmount = 0;
++     specialAmount = 150;
++ }
++ else if (fire1 || fire2)
++ {
++     pauseAmount = 10;
++     betweenAmount = 0;
++     specialAmount = 30;
++ }
++ else
++ {
++     pauseAmount = 30;
++     betweenAmount = 30;
++     specialAmount = 150;
++ }
++ 
++ if (substate == 1)
++ {
++     scr36_MessageSet("");
++     var totalPrestige = 0;
++     
++     for (var i = scoreStart; i < scoreEnd; i++)
++         totalPrestige += ds_list_find_value(party, i).prestige;
++     
++     if (totalPrestige >= PRESTIGE_GOAL)
++         wonGame[cp] = true;
++     
++     for (var op = 0; op < numPlayers; op++)
++     {
++         if (wonGame[op] && phase == PHASE_SCORING)
++         {
++             scr36_ChangeState(STATE_WIN);
++             exit;
++         }
++     }
++     substate = 2;
++     listPos = scoreStart;
++     stateTimer = 0;
++ }
++ 
++ if (substate == 2)
++ {
++     if (stateTimer == 0)
++     {
++         if (listPos == scoreEnd)
++         {
++             if (pauseTimer++ > betweenAmount || !betweenPause)
++             {
++                 betweenPause = false;
++                 pauseTimer = 0;
++                 stateTimer = 0;
++                 listPos = scoreStart;
++                 substate++;
++                 exit;
++             }
++             else
++             {
++                 exit;
++             }
++         }
++         
++         var scoreCard = ds_list_find_value(party, listPos);
++         
++         if (!instance_exists(scoreCard))
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++         
++         if (scoreCard.popularity > 0)
++         {
++             scrSfx(soundPopAdd, 60);
++             popularity[cp] += scoreCard.popularity;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(listPos, scoreCard.popularity, global.palette[3], 1);
++             scoreCard.flickerTimer = 32;
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSetFull(scrString("pop_bonus"));
++             stateTimer = 2;
++             betweenPause = true;
++         }
++         else
++         {
++             listPos++;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer >= pauseAmount)
++         {
++             stateTimer = 0;
++             listPos++;
++         }
++     }
++ }
++ 
++ if (substate == 3)
++ {
++     if (stateTimer == 0)
++     {
++         if (listPos == scoreEnd)
++         {
++             if (pauseTimer++ > betweenAmount || !betweenPause)
++             {
++                 betweenPause = false;
++                 pauseTimer = 0;
++                 stateTimer = 0;
++                 listPos = scoreStart;
++                 substate++;
++                 exit;
++             }
++             else
++             {
++                 exit;
++             }
++         }
++         
++         var scoreCard = ds_list_find_value(party, listPos);
++         
++         if (!instance_exists(scoreCard))
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++         
++         if (scoreCard.popularity < 0)
++         {
++             scrSfx(soundPopSub, 61);
++             popularity[cp] += scoreCard.popularity;
++             
++             if (popularity[cp] < 0)
++                 popularity[cp] = 0;
++             
++             scr36_CreateBonus(listPos, scoreCard.popularity, global.palette[3], 1);
++             scoreCard.flickerTimer = 32;
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[9];
++             scr36_MessageSetFull(scrString("pop_penalty"));
++             stateTimer = 2;
++             betweenPause = true;
++         }
++         else
++         {
++             listPos++;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer >= pauseAmount)
++         {
++             stateTimer = 0;
++             listPos++;
++         }
++     }
++ }
++ 
++ if (substate == 4)
++ {
++     if (stateTimer == 0)
++     {
++         if (listPos == scoreEnd)
++         {
++             if (pauseTimer++ > betweenAmount || !betweenPause)
++             {
++                 betweenPause = false;
++                 pauseTimer = 0;
++                 stateTimer = 0;
++                 listPos = scoreStart;
++                 substate++;
++                 exit;
++             }
++             else
++             {
++                 exit;
++             }
++         }
++         
++         var scoreCard = ds_list_find_value(party, listPos);
++         
++         if (!instance_exists(scoreCard))
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++         
++         if (scoreCard.money > 0)
++         {
++             scrSfx(soundMoneyAdd, 62);
++             money[cp] += scoreCard.money;
++             
++             if (money[cp] > MONEY_MAX)
++                 money[cp] = MONEY_MAX;
++             
++             scr36_CreateBonus(listPos, scoreCard.money, global.palette[11], 2);
++             scoreCard.flickerTimer = 32;
++             
++             with (o36_Stats)
++                 scoreMoney = true;
++             
++             messageColor = global.palette[11];
++             scr36_MessageSetFull(scrString("money_bonus"));
++             stateTimer = 2;
++             betweenPause = true;
++         }
++         else
++         {
++             listPos++;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer >= pauseAmount)
++         {
++             stateTimer = 0;
++             listPos++;
++         }
++     }
++ }
++ 
++ if (substate == 5)
++ {
++     if (stateTimer == 0)
++     {
++         var troublePop = 0;
++         
++         for (var i = scoreStart; i < scoreEnd; i++)
++             troublePop += ds_list_find_value(party, i).troubleMoneyBonus;
++         
++         var troubleAmount = 0;
++         
++         for (var i = 0; i < ds_list_size(party); i++)
++             troubleAmount += ds_list_find_value(party, i).troublemaker;
++         
++         bonusSize = troublePop * troubleAmount;
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             money[cp] += bonusSize;
++             
++             if (money[cp] > MONEY_MAX)
++                 money[cp] = MONEY_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[11], 1);
++             
++             for (var i = scoreStart; i < scoreEnd; i++)
++             {
++                 if (ds_list_find_value(party, i).troubleMoneyBonus)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             for (var i = 0; i < ds_list_size(party); i++)
++             {
++                 if (ds_list_find_value(party, i).troublemaker)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             with (o36_Stats)
++                 scoreMoney = true;
++             
++             messageColor = global.palette[11];
++             scr36_MessageSet(scrStringVal("trouble_money_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 6)
++ {
++     if (stateTimer == 0)
++     {
++         if (listPos == scoreEnd)
++         {
++             if (pauseTimer++ > betweenAmount || !betweenPause)
++             {
++                 betweenPause = false;
++                 pauseTimer = 0;
++                 stateTimer = 0;
++                 listPos = scoreStart;
++                 substate++;
++                 exit;
++             }
++             else
++             {
++                 exit;
++             }
++         }
++         
++         var scoreCard = ds_list_find_value(party, listPos);
++         
++         if (!instance_exists(scoreCard))
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++         
++         if (scoreCard.money < 0)
++         {
++             money[cp] += scoreCard.money;
++             
++             if (money[cp] < 0)
++             {
++                 scrSfx(soundPopSub, 63);
++                 popularity[cp] += DEBT_PENALTY * money[cp];
++                 scr36_CreateBonus(listPos, DEBT_PENALTY * money[cp], global.palette[3], 2);
++                 scoreCard.flickerTimer = 32;
++                 
++                 with (o36_Stats)
++                     scorePopularity = true;
++                 
++                 messageColor = global.palette[9];
++                 var str = scrStringVal("money_penalty", DEBT_PENALTY * money[cp]);
++                 scr36_MessageSet(str);
++                 
++                 if (popularity[cp] < 0)
++                     popularity[cp] = 0;
++                 
++                 money[cp] = 0;
++                 stateTimer = 2;
++                 betweenPause = true;
++             }
++             else
++             {
++                 scrSfx(soundMoneySub, 63);
++                 scr36_CreateBonus(listPos, scoreCard.money, global.palette[11], 2);
++                 scoreCard.flickerTimer = 32;
++                 
++                 with (o36_Stats)
++                     scoreMoney = true;
++                 
++                 messageColor = global.palette[9];
++                 scr36_MessageSetFull(scrString("money_payment"));
++                 stateTimer = 2;
++             }
++         }
++         else
++         {
++             listPos++;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (money[cp] > 0 && stateTimer >= pauseAmount)
++         {
++             stateTimer = 0;
++             listPos++;
++         }
++         else if (stateTimer >= (2 * pauseAmount))
++         {
++             stateTimer = 0;
++             listPos++;
++         }
++     }
++ }
++ 
++ if (substate == 7)
++ {
++     if (stateTimer == 0)
++     {
++         var dancerBeingScored = false;
++         
++         for (var i = scoreStart; i < scoreEnd; i++)
++         {
++             if (ds_list_find_value(party, i).dancer)
++                 dancerBeingScored = true;
++         }
++         
++         var numDancers = 0;
++         
++         if (dancerBeingScored)
++         {
++             for (var i = 0; i < ds_list_size(party); i++)
++                 numDancers += ds_list_find_value(party, i).dancer;
++         }
++         
++         bonusSize = numDancers * numDancers;
++         
++         if (bonusSize > 16)
++             bonusSize = 16;
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             popularity[cp] += bonusSize;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[3], 1);
++             
++             for (var i = 0; i < ds_list_size(party); i++)
++             {
++                 if (ds_list_find_value(party, i).dancer)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSet(scrStringVal("dancing_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 8)
++ {
++     if (stateTimer == 0)
++     {
++         bonusSize = 0;
++         
++         if (ds_list_size(party) == capacity[cp])
++         {
++             for (var i = scoreStart; i < scoreEnd; i++)
++                 bonusSize += ds_list_find_value(party, i).full;
++         }
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             popularity[cp] += bonusSize;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[3], 1);
++             
++             for (var i = scoreStart; i < scoreEnd; i++)
++             {
++                 if (ds_list_find_value(party, i).full)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSet(scrStringVal("full_house_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 9)
++ {
++     if (stateTimer == 0)
++     {
++         var prideAmount = 0;
++         
++         for (var i = scoreStart; i < scoreEnd; i++)
++             prideAmount += ds_list_find_value(party, i).schoolpride;
++         
++         var oldFriendAmount = 0;
++         
++         for (var i = 0; i < ds_list_size(party); i++)
++             oldFriendAmount += ds_list_find_value(party, i).oldfriend;
++         
++         bonusSize = prideAmount * oldFriendAmount;
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             popularity[cp] += bonusSize;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[3], 1);
++             
++             for (var i = scoreStart; i < scoreEnd; i++)
++             {
++                 if (ds_list_find_value(party, i).schoolpride)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             for (var i = 0; i < ds_list_size(party); i++)
++             {
++                 if (ds_list_find_value(party, i).oldfriend)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSet(scrStringVal("old_friend_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 10)
++ {
++     if (stateTimer == 0)
++     {
++         var introvertAmount = 0;
++         
++         for (var i = scoreStart; i < scoreEnd; i++)
++             introvertAmount += ds_list_find_value(party, i).introvert;
++         
++         var emptySpaceAmount = capacity[cp] - ds_list_size(party);
++         bonusSize = introvertAmount * emptySpaceAmount;
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             popularity[cp] += bonusSize;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[3], 1);
++             
++             for (var i = scoreStart; i < scoreEnd; i++)
++             {
++                 if (ds_list_find_value(party, i).introvert)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             for (var i = 0; i < (capacity[cp] + 2); i++)
++             {
++                 if (i >= (ds_list_size(party) + 2))
++                 {
++                     var yFX = floor(i / 9);
++                     var xFX = i - (yFX * 9);
++                     instance_create(32 * xFX, (32 * yFX) + 32, o36_Flicker);
++                 }
++             }
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSet(scrStringVal("empty_space_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 11)
++ {
++     if (stateTimer == 0)
++     {
++         var troublePop = 0;
++         
++         for (var i = scoreStart; i < scoreEnd; i++)
++             troublePop += ds_list_find_value(party, i).troublePopBonus;
++         
++         var troubleAmount = 0;
++         
++         for (var i = 0; i < ds_list_size(party); i++)
++             troubleAmount += ds_list_find_value(party, i).troublemaker;
++         
++         bonusSize = troublePop * troubleAmount;
++         
++         if (bonusSize > 0)
++         {
++             stateTimer = 1;
++         }
++         else
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++     
++     if (stateTimer >= 1)
++     {
++         stateTimer++;
++         
++         if (stateTimer == 15)
++         {
++             scrSfx(soundBonus, 65);
++             popularity[cp] += bonusSize;
++             
++             if (popularity[cp] > POP_MAX)
++                 popularity[cp] = POP_MAX;
++             
++             scr36_CreateBonus(-1, bonusSize, global.palette[3], 1);
++             
++             for (var i = scoreStart; i < scoreEnd; i++)
++             {
++                 if (ds_list_find_value(party, i).troublePopBonus)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             for (var i = 0; i < ds_list_size(party); i++)
++             {
++                 if (ds_list_find_value(party, i).troublemaker)
++                     ds_list_find_value(party, i).flickerTimer = 64;
++             }
++             
++             with (o36_Stats)
++                 scorePopularity = true;
++             
++             messageColor = global.palette[3];
++             scr36_MessageSet(scrStringVal("trouble_bonus", bonusSize));
++         }
++         
++         if (stateTimer >= specialAmount)
++         {
++             stateTimer = 0;
++             listPos = scoreStart;
++             substate++;
++             exit;
++         }
++     }
++ }
++ 
++ if (substate == 12)
++ {
++     if (phase == PHASE_PARTY)
++     {
++         scr36_ChangeState(STATE_PARTY);
++         scr36_MessageSet("");
++         
++         if (greeting)
++             substate = 9;
++         
++         exit;
++     }
++     
++     stateTimer++;
++     
++     if (stateTimer > 60)
++     {
++         time[cp]--;
++         
++         if (numPlayers == 1 && time[cp] == 0)
++             scr36_ChangeState(STATE_LOSE);
++         else
++             scr36_ChangeState(STATE_STORE);
++     }
++ }
