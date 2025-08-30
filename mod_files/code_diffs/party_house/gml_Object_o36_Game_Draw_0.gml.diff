@@ -1,5 +1,5 @@
 *** original_scripts/party_house/gml_Object_o36_Game_Draw_0.gml	Thu Aug 28 19:59:01 2025
---- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Draw_0.gml	Thu Aug 28 19:32:48 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Draw_0.gml	Sat Aug 30 16:37:07 2025
 ***************
 *** 74,87 ****
           {
@@ -22,9 +22,9 @@
               
 !             for (var player = 0; player < 4; player++) {
 !                 if (scenarioWinsMulti[player][i] == 1)
-!                     metaStr = "P1 WON LAST GAME";
+!                     metaStr = "P" + string(player + 1) + " WON LAST GAME";
 !                 else if (scenarioWinsMulti[player][i] > 1)
-!                     metaStr = "P1 WON " + string(scenarioWinsMulti[player][i]) + " GAMES";
+!                     metaStr = "P" + string(player + 1) + " WON " + string(scenarioWinsMulti[player][i]) + " GAMES";
 !             }
               
 ***************

@@ -1,5 +1,5 @@
 *** original_scripts/party_house/gml_Object_o36_Game_Other_18.gml	Thu Aug 28 19:59:01 2025
---- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_18.gml	Thu Aug 28 19:37:58 2025
+--- ufo50_modded_scripts/party_house/gml_Object_o36_Game_Other_18.gml	Sat Aug 30 16:24:41 2025
 ***************
 *** 15,18 ****
       {
@@ -90,7 +90,7 @@
               {
 !                 if (wonGame[op]) {
 !                     array_push(winningPlayers, "P" + string(op + 1));
-!                     array_push(winningPlayerNumbers, op + 1);
+!                     array_push(winningPlayerNumbers, op);
 ! 
 !                     if (op != cp) {
 !                         anotherPlayerAlreadyWon = true;
