@@ -1,5 +1,5 @@
-*** original_scripts/the_big_bell_race/gml_GlobalScript_scr28_Checkpoints.gml	Tue May 27 20:29:37 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_GlobalScript_scr28_Checkpoints.gml	Tue May 27 19:27:32 2025
+*** original_scripts/the_big_bell_race/gml_GlobalScript_scr28_Checkpoints.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_GlobalScript_scr28_Checkpoints.gml	Mon Sep  1 20:01:11 2025
 ***************
 *** 98,107 ****
                   {
@@ -22,14 +22,14 @@
 ! 
                       with (dad)
                       {
-!                         var notAllInGoal = true;
+!                         var allInGoal = true;
 !                         
 !                         for (var i = 0; i < global.numPlayers; i++) {
 !                             if (!playerInGoal[i]) {
-!                                 notAllInGoal = false;
+!                                 allInGoal = false;
 !                                 break;
 !                             }
 !                         }
 ! 
-!                         if (!notAllInGoal)
+!                         if (allInGoal)
                               scrBGM(bgm28_results);

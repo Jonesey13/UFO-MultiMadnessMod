@@ -1,7 +1,7 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Sun Jun  8 14:40:17 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 12 15:29:48 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 12 15:34:19 2025
 ***************
-*** 5,74 ****
+*** 2,71 ****
   {
 !     scrGetInput(0);
 !     
@@ -72,7 +72,7 @@
 !     {
 !         if (naviSel[1] == 0)
           {
---- 5,10 ----
+--- 2,7 ----
   {
 !     for (var i = 0; i < global.numPlayers; i++) {
 !         scrGetInput(i);
@@ -80,7 +80,7 @@
 !         if (naviSel[i] == 0)
           {
 ***************
-*** 77,87 ****
+*** 74,84 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
@@ -92,14 +92,14 @@
 !                         navi[1] = 5;
 !                 }
               }
---- 13,17 ----
+--- 10,14 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]--;
 !                 if (navi[i] < 0)
 !                     navi[i] = 5;
               }
 ***************
-*** 90,100 ****
+*** 87,97 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
@@ -111,14 +111,14 @@
 !                         navi[1] = 0;
 !                 }
               }
---- 20,24 ----
+--- 17,21 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]++;
 !                 if (navi[i] > 5)
 !                     navi[i] = 0;
               }
 ***************
-*** 102,108 ****
+*** 99,105 ****
               {
 !                 if (naviSel[1] == 0)
                   {
@@ -126,7 +126,7 @@
                       scrSfx(sfx_select01, 45);
 !                     naviSel[1] = 1;
                   }
---- 26,41 ----
+--- 23,38 ----
               {
 !                 selectablePlayerFound = true;
 !                     
@@ -144,7 +144,7 @@
 !                     naviSel[i] = 1;
                   }
 ***************
-*** 112,118 ****
+*** 109,115 ****
           {
 !             if (naviSel[1] == 1)
               {
@@ -152,7 +152,7 @@
                   scrSfx(sfx_deselect00, 45);
 !                 naviSel[1] = 0;
                   t = 0;
---- 45,52 ----
+--- 42,49 ----
           {
 !             if (naviSel[i] == 1)
               {
@@ -162,16 +162,16 @@
 !                 naviSel[i] = 0;
                   t = 0;
 ***************
-*** 124,126 ****
+*** 121,123 ****
       {
 !         if (!multip || naviSel[1] == 1)
           {
---- 58,60 ----
+--- 55,57 ----
       {
 !         if (!multip || readies == global.numPlayers)
           {
 ***************
-*** 131,144 ****
+*** 128,141 ****
                   playerSel[1] = navi[1];
 !                 ds_grid_set(dsScore, 0, 5, playerSel[0]);
 !                 
@@ -186,7 +186,7 @@
 !                         ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
                   }
                   
---- 65,74 ----
+--- 62,71 ----
                   playerSel[1] = navi[1];
 ! 
 !                 for (var j = 0; j < global.numPlayers; j++) {
@@ -198,8 +198,14 @@
 +                     ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
                   
 ***************
-*** 318,319 ****
---- 248,269 ----
+*** 284,285 ****
+--- 214,216 ----
+          tLaunch = 0;
++         goalPos = 0;
+          
+***************
+*** 315,316 ****
+--- 246,267 ----
               }
 +             else if (global.numPlayers >= 3 && uId == playerSel[2])
 +             {
@@ -223,22 +229,35 @@
 +             }
               else
 ***************
-*** 680,683 ****
+*** 675,680 ****
+  
+  if (goalPos == 6)
   {
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 630,633 ----
+--- 626,640 ----
+  
++ var allInGoal = true;
++ 
++ for (var i = 0; i < global.numPlayers; i++) {
++     if (!playerInGoal[i]) {
++         allInGoal = false;
++         break;
++     }
++ }
++ 
+  if (goalPos == 6)
   {
 !     playerInGoal[0] = false;
 !     playerInGoal[1] = false;
       goalPos = 0;
 ***************
-*** 688,690 ****
+*** 685,687 ****
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 638,640 ----
+--- 645,647 ----
   }
-! else if ((!multip && playerInGoal[0]) || (global.numPlayers == 2 && playerInGoal[0] && playerInGoal[1]))
+! else if (allInGoal)
   {
