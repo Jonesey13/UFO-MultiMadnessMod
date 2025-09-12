@@ -1,8 +1,8 @@
-*** original_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Sun May 11 20:14:00 2025
+*** original_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_PlayerParachute_Step_0.gml	Tue Sep  9 21:38:09 2025
 ***************
-*** 53,54 ****
---- 53,58 ----
+*** 55,56 ****
+--- 55,60 ----
           para.sprite_index = s29_Parachute2;
 +     if (controller == 3)
 +         para.sprite_index = s29_Parachute3;

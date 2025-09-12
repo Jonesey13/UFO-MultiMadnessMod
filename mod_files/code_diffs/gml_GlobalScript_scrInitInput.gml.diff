@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrInitInput.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Sun Jun  8 14:18:41 2025
+*** original_scripts/gml_GlobalScript_scrInitInput.gml	Mon Sep  8 19:19:27 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Tue Sep  9 20:39:19 2025
 ***************
 *** 5,6 ****
 --- 5,10 ----
@@ -128,8 +128,8 @@
 +     global.doubledUpButtons[5] = scrReadConfig("doubledUpButtonsP6", true);
       gamepad_set_axis_deadzone(0, 0);
 ***************
-*** 349,350 ****
---- 413,418 ----
+*** 337,338 ****
+--- 401,406 ----
       global.joyType[1] = scrReadConfig("joyTypeP2", scrDetectJoyType(1));
 +     global.joyType[2] = scrReadConfig("joyTypeP3", scrDetectJoyType(2));
 +     global.joyType[3] = scrReadConfig("joyTypeP4", scrDetectJoyType(3));

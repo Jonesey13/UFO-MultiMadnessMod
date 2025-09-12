@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Aug 22 11:55:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Fri Aug 22 11:16:21 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Tue Sep  9 21:14:41 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -83,88 +83,29 @@
 +             }
           }
 ***************
-*** 224,226 ****
+*** 231,233 ****
   {
 !     sprite_index = s15_Player1Dead;
       hspd = 0;
---- 247,249 ----
+--- 254,256 ----
   {
 !     sprite_index = s15_Player1DeadMulti;
       hspd = 0;
 ***************
-*** 232,235 ****
-  {
-!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!     createdBoss = true;
-  }
---- 255,260 ----
-  {
-!     if (!instance_exists(o15_Cavian)) {
-!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!         createdBoss = true;
-!     }
-  }
-***************
-*** 237,240 ****
-  {
-!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!     createdBoss = true;
-  }
---- 262,267 ----
-  {
-!     if (!instance_exists(o15_Cavian)) {
-!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!         createdBoss = true;
-!     }
-  }
-***************
-*** 242,245 ****
-  {
-!     instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!     createdBoss = true;
-  }
---- 269,274 ----
-  {
-!     if (!instance_exists(o15_Cavian)) {
-!         instance_create(scrViewX() + rand(64, 320), scrViewY() - 16, o15_Cavian);
-!         createdBoss = true;
-!     }
-  }
-***************
-*** 251,255 ****
-  
-! threshY = 96;
-! 
-! if (y < (scrViewY() + threshY))
-  {
---- 280,282 ----
-  
-! if (y < (scrViewY() + global.g15_threshY))
-  {
-***************
-*** 260,262 ****
-      {
-!         __view_set(e__VW.YView, 0, y - threshY);
-          
---- 287,289 ----
-      {
-!         __view_set(e__VW.YView, 0, y - global.g15_threshY);
-          
-***************
-*** 267,269 ****
+*** 274,276 ****
           {
 !             if (o15_Game.level == 3 && sprite_index == s15_SpikeRoller)
               {
---- 294,296 ----
+--- 297,299 ----
           {
 !             if (o15_Game.level == 3 && (sprite_index == s15_SpikeRoller || sprite_index == s15_SpikeRollerLarge))
               {
 ***************
-*** 279,281 ****
+*** 286,288 ****
               
 !             sprite_index = s15_SpikeRollerRoll;
           }
---- 306,311 ----
+--- 309,314 ----
               
 !             if (global.numPlayers >= 2)
 !                 sprite_index = s15_SpikeRollerRollLarge;
@@ -172,16 +113,16 @@
 !                 sprite_index = s15_SpikeRollerRoll;
           }
 ***************
-*** 322,324 ****
+*** 329,331 ****
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(0);
   
---- 352,354 ----
+--- 355,357 ----
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(playerNum - 1);
   
 ***************
-*** 448,454 ****
+*** 455,461 ****
               {
 !                 scrSfx(sfx_warp00, 80);
 !                 instance_create(x, y - 12, o15_HighJumpBlast);
@@ -189,7 +130,7 @@
 !                 highJumpMult = 4;
 !                 alarm[0] = 1;
               }
---- 478,487 ----
+--- 481,490 ----
               {
 !                 with (o15_Player) {
 !                     scrSfx(sfx_warp00, 80);
@@ -201,82 +142,82 @@
 !                 }
               }
 ***************
-*** 487,489 ****
+*** 494,496 ****
       
 !     if (fire2pressed)
       {
---- 520,522 ----
+--- 523,525 ----
       
 !     if (fire2pressed && (global.numPlayers == 1 || highJumpCount == 0))
       {
 ***************
-*** 635,639 ****
+*** 642,646 ****
           if (doubleJump > 0)
 !             sprite_index = s15_Player1Walk;
           else
 !             sprite_index = s15_Player2Walk;
       }
---- 668,672 ----
+--- 671,675 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1WalkMulti;
           else
 !             sprite_index = s15_Player2WalkMulti;
       }
 ***************
-*** 641,643 ****
+*** 648,650 ****
       {
 !         sprite_index = s15_Player1Stand;
       }
---- 674,676 ----
+--- 677,679 ----
       {
 !         sprite_index = s15_Player1StandMulti;
       }
 ***************
-*** 645,647 ****
+*** 652,654 ****
       {
 !         sprite_index = s15_Player2Stand;
       }
---- 678,680 ----
+--- 681,683 ----
       {
 !         sprite_index = s15_Player2StandMulti;
       }
 ***************
-*** 650,652 ****
+*** 657,659 ****
   {
 !     sprite_index = s15_Player2Flip;
   }
---- 683,685 ----
+--- 686,688 ----
   {
 !     sprite_index = s15_Player2FlipMulti;
   }
 ***************
-*** 657,661 ****
+*** 664,668 ****
           if (doubleJump > 0)
 !             sprite_index = s15_Player1Jump;
           else
 !             sprite_index = s15_Player2Jump;
       }
---- 690,694 ----
+--- 693,697 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1JumpMulti;
           else
 !             sprite_index = s15_Player2JumpMulti;
       }
 ***************
-*** 663,665 ****
+*** 670,672 ****
       {
 !         sprite_index = s15_Player1Fall;
       }
---- 696,698 ----
+--- 699,701 ----
       {
 !         sprite_index = s15_Player1FallMulti;
       }
 ***************
-*** 667,669 ****
+*** 674,676 ****
       {
 !         sprite_index = s15_Player2Fall;
       }
---- 700,702 ----
+--- 703,705 ----
       {
 !         sprite_index = s15_Player2FallMulti;
       }

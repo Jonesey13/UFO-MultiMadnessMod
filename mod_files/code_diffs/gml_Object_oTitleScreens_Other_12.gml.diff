@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Thu Aug 28 19:59:00 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sat Aug 23 18:54:03 2025
+*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri Sep 12 15:29:47 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Fri Sep 12 15:45:48 2025
 ***************
 *** 72,74 ****
           menuOption[2] = scrStringManual("title_coop", 0);

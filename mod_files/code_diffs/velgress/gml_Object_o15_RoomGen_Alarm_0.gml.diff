@@ -1,44 +1,44 @@
-*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Fri Aug 22 11:55:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Fri Aug 22 11:18:31 2025
+*** original_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_RoomGen_Alarm_0.gml	Tue Sep  9 21:54:43 2025
 ***************
-*** 179,181 ****
+*** 178,180 ****
               {
 !                 if (rand(1, bounceChance) == 1)
                   {
---- 179,181 ----
+--- 178,180 ----
               {
 !                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
                   {
 ***************
-*** 200,202 ****
+*** 199,201 ****
               {
 !                 if (rand(1, bounceChance) == 1)
                   {
---- 200,202 ----
+--- 199,201 ----
               {
 !                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
                   {
 ***************
-*** 225,227 ****
+*** 224,226 ****
               {
 !                 if (rand(1, bounceChance) == 1)
                   {
---- 225,227 ----
+--- 224,226 ----
               {
 !                 if (global.numPlayers == 1 && rand(1, bounceChance) == 1)
                   {
 ***************
-*** 336,338 ****
+*** 335,337 ****
           
 !         if (bounceChance > 1)
               bounceChance -= 1;
---- 336,338 ----
+--- 335,337 ----
           
 !         if (global.numPlayers == 1 && bounceChance > 1)
               bounceChance -= 1;
 ***************
-*** 378,379 ****
---- 378,395 ----
+*** 377,378 ****
+--- 377,394 ----
       }
 + 
 +     if (life == 30) {
@@ -57,3 +57,15 @@
 +         rock.life = 10000;
 +     }
   }
+***************
+*** 399,400 ****
+--- 415,423 ----
+  
++ with (o15__Platform)
++     visible = true;
++     
++ with (o15__JumpThru)
++     visible = true;
++ 
++ 
+  instance_destroy();

@@ -1,11 +1,11 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Mon May 26 20:00:01 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Mon May 26 15:54:38 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Tue Sep  9 21:33:17 2025
 ***************
-*** 187,189 ****
+*** 185,187 ****
               {
 !                 if (numPlayers != 4)
                   {
---- 187,189 ----
+--- 185,187 ----
               {
 !                 if (numPlayers != 4 && numPlayers != 5)
                   {

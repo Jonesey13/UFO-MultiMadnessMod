@@ -1,8 +1,8 @@
-*** original_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Sun May 11 20:14:00 2025
+*** original_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Mon Sep  8 19:19:28 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Player_Step_0.gml	Tue Sep  9 21:37:27 2025
 ***************
-*** 315,316 ****
---- 315,320 ----
+*** 320,321 ****
+--- 320,325 ----
               dyingPlayer.sprite_index = s29_PlayerDie2;
 +         if (o29_Game.currPlayer == 2)
 +             dyingPlayer.sprite_index = s29_PlayerDie3;

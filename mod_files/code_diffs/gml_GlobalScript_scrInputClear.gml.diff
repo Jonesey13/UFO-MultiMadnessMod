@@ -1,11 +1,11 @@
-*** original_scripts/gml_GlobalScript_scrInputClear.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInputClear.gml	Sun Jun  8 13:20:42 2025
+*** original_scripts/gml_GlobalScript_scrInputClear.gml	Mon Sep  8 19:19:27 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInputClear.gml	Tue Sep  9 20:40:04 2025
 ***************
-*** 24,26 ****
+*** 20,22 ****
       {
 !         for (var p = 0; p <= 1; p++)
           {
---- 24,26 ----
+--- 20,22 ----
       {
 !         for (var p = 0; p <= 5; p++)
           {

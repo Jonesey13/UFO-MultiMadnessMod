@@ -1,17 +1,17 @@
-*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Fri Aug 22 11:55:08 2025
---- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Fri Aug 22 12:35:16 2025
+*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Mon Sep  8 19:19:27 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Tue Sep  9 20:42:48 2025
 ***************
-*** 11,13 ****
+*** 12,14 ****
       
 !     for (var p = 0; p <= 1; p++)
       {
---- 11,13 ----
+--- 12,14 ----
       
 !     for (var p = 0; p <= 5; p++)
       {
 ***************
-*** 39,40 ****
---- 39,44 ----
+*** 40,41 ****
+--- 40,45 ----
       gamepadConnect[1] = gamepad_is_connected(global.joySlot[1]);
 +     gamepadConnect[2] = gamepad_is_connected(global.joySlot[2]);
 +     gamepadConnect[3] = gamepad_is_connected(global.joySlot[3]);
@@ -19,35 +19,35 @@
 +     gamepadConnect[5] = gamepad_is_connected(global.joySlot[5]);
       drawMenu = true;
 ***************
-*** 236,238 ****
+*** 237,239 ****
                   
 !                 for (var p = 0; p <= 1; p++)
                   {
---- 240,242 ----
+--- 241,243 ----
                   
 !                 for (var p = 0; p <= 5; p++)
                   {
 ***************
-*** 261,263 ****
+*** 262,264 ****
       {
 !         for (var p = 0; p <= 1; p++)
           {
---- 265,267 ----
+--- 266,268 ----
       {
 !         for (var p = 0; p <= 5; p++)
           {
 ***************
-*** 267,269 ****
+*** 268,270 ****
           
 !         for (var p = 0; p <= 1; p++)
           {
---- 271,273 ----
+--- 272,274 ----
           
 !         for (var p = 0; p <= 5; p++)
           {
 ***************
-*** 277,278 ****
---- 281,286 ----
+*** 278,279 ****
+--- 282,287 ----
           global.joyType[1] = scrDetectJoyType(1);
 +         global.joyType[2] = scrDetectJoyType(2);
 +         global.joyType[3] = scrDetectJoyType(3);
