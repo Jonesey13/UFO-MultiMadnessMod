@@ -1,5 +1,5 @@
-*** original_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Sun Sep 14 15:32:57 2025
---- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Sun Sep 14 15:30:36 2025
+*** original_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Mon Sep 15 18:24:15 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Mon Sep 15 17:26:49 2025
 ***************
 *** 6,9 ****
       var pcount = instance_number(oPlayer);
@@ -15,8 +15,8 @@
               var xCamTest1 = xpmin - 8;
 --- 15,26 ----
           {
-!             var xpmin = 1000;
-!             var xpmax = -1000;
+!             var xpmin = 100000;
+!             var xpmax = -100000;
 ! 
 !             for (var i = 0; i < instance_number(oPlayer); ++i)
 !             {
@@ -34,8 +34,8 @@
           }
 --- 45,55 ----
           {
-!             ypmin = 1000;
-!             ypmax = -1000;
+!             ypmin = 100000;
+!             ypmax = -100000;
 ! 
 !             for (var i = 0; i < instance_number(oPlayer); ++i)
 !             {

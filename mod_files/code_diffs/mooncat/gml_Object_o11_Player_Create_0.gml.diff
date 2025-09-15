@@ -1,0 +1,57 @@
+*** original_scripts/mooncat/gml_Object_o11_Player_Create_0.gml	Mon Sep 15 18:24:15 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Player_Create_0.gml	Sun Sep 14 17:26:25 2025
+***************
+*** 59,60 ****
+--- 59,61 ----
+  skin = 0;
++ 
+  sIdle[0] = s11_PlayerIdle;
+***************
+*** 67,68 ****
+--- 68,70 ----
+  sStun[0] = s11_PlayerStun;
++ 
+  sIdle[1] = s11_Player2Idle;
+***************
+*** 75,84 ****
+  sStun[1] = s11_Player2Stun;
+! sIdle[2] = s11_NoomcatIdle;
+! sRun[2] = s11_NoomcatRun;
+! sFric[2] = s11_NoomcatFric;
+! sCharge[2] = s11_NoomcatCharge;
+! sJump[2] = s11_NoomcatJump;
+! sSlide[2] = s11_NoomcatSlide;
+! sSwim[2] = s11_PlayerSwim;
+! sStun[2] = s11_NoomcatStun;
+  image_speed = 0.125;
+--- 77,106 ----
+  sStun[1] = s11_Player2Stun;
+! 
+! sIdle[2] = s11_Player3Idle;
+! sRun[2] = s11_Player3Run;
+! sFric[2] = s11_Player3Fric;
+! sCharge[2] = s11_Player3Charge;
+! sJump[2] = s11_Player3Jump;
+! sSlide[2] = s11_Player3Slide;
+! sSwim[2] = s11_Player3Swim;
+! sStun[2] = s11_Player3Stun;
+! 
+! sIdle[3] = s11_Player4Idle;
+! sRun[3] = s11_Player4Run;
+! sFric[3] = s11_Player4Fric;
+! sCharge[3] = s11_Player4Charge;
+! sJump[3] = s11_Player4Jump;
+! sSlide[3] = s11_Player4Slide;
+! sSwim[3] = s11_Player4Swim;
+! sStun[3] = s11_Player4Stun;
+! 
+! sIdle[4] = s11_NoomcatIdle;
+! sRun[4] = s11_NoomcatRun;
+! sFric[4] = s11_NoomcatFric;
+! sCharge[4] = s11_NoomcatCharge;
+! sJump[4] = s11_NoomcatJump;
+! sSlide[4] = s11_NoomcatSlide;
+! sSwim[4] = s11_PlayerSwim;
+! sStun[4] = s11_NoomcatStun;
+! 
+  image_speed = 0.125;

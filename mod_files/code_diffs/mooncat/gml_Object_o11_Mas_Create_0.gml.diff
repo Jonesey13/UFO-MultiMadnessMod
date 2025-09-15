@@ -1,0 +1,148 @@
+*** original_scripts/mooncat/gml_Object_o11_Mas_Create_0.gml	Mon Sep 15 18:24:15 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Create_0.gml	Mon Sep 15 17:56:08 2025
+***************
+*** 35,37 ****
+  lvBGM[3] = bgm11_cave;
+! lvSpawnXa[4] = 1248;
+  lvSpawnYa[4] = 368;
+--- 35,40 ----
+  lvBGM[3] = bgm11_cave;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[4] = 1264;
+! else
+!     lvSpawnXa[4] = 1248;
+  lvSpawnYa[4] = 368;
+***************
+*** 47,49 ****
+  lvBGM[5] = bgm11_forestA;
+! lvSpawnXa[6] = 160;
+  lvSpawnYa[6] = 912;
+--- 50,55 ----
+  lvBGM[5] = bgm11_forestA;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[6] = 176;
+! else
+!     lvSpawnXa[6] = 160;
+  lvSpawnYa[6] = 912;
+***************
+*** 145,147 ****
+  LAYER_B_START = 50;
+! lvSpawnXa[50] = 96;
+  lvSpawnYa[50] = 112;
+--- 151,156 ----
+  LAYER_B_START = 50;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[50] = 112;
+! else
+!     lvSpawnXa[50] = 96;
+  lvSpawnYa[50] = 112;
+***************
+*** 151,153 ****
+  lvBGM[50] = bgm11_sky;
+! lvSpawnXa[51] = 256;
+  lvSpawnYa[51] = 288;
+--- 160,165 ----
+  lvBGM[50] = bgm11_sky;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[51] = 272;
+! else
+!     lvSpawnXa[51] = 256;
+  lvSpawnYa[51] = 288;
+***************
+*** 169,171 ****
+  lvBGM[53] = bgm11_forestB;
+! lvSpawnXa[54] = 448;
+  lvSpawnYa[54] = 576;
+--- 181,186 ----
+  lvBGM[53] = bgm11_forestB;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[54] = 464;
+! else
+!     lvSpawnXa[54] = 448;
+  lvSpawnYa[54] = 576;
+***************
+*** 175,177 ****
+  lvBGM[54] = bgm11_water;
+! lvSpawnXa[55] = 496;
+  lvSpawnYa[55] = 816;
+--- 190,195 ----
+  lvBGM[54] = bgm11_water;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[55] = 512;
+! else
+!     lvSpawnXa[55] = 496;
+  lvSpawnYa[55] = 816;
+***************
+*** 199,201 ****
+  lvBGM[58] = bgm11_mountain;
+! lvSpawnXa[59] = 1696;
+  lvSpawnYa[59] = 1136;
+--- 217,222 ----
+  lvBGM[58] = bgm11_mountain;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[59] = 1712;
+! else
+!     lvSpawnXa[59] = 1696;
+  lvSpawnYa[59] = 1136;
+***************
+*** 205,207 ****
+  lvBGM[59] = bgm11_water;
+! lvSpawnXa[60] = 1696;
+  lvSpawnYa[60] = 144;
+--- 226,231 ----
+  lvBGM[59] = bgm11_water;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[60] = 1712;
+! else
+!     lvSpawnXa[60] = 1696;
+  lvSpawnYa[60] = 144;
+***************
+*** 255,257 ****
+  lvBGM[104] = bgm11_boss;
+! lvSpawnXa[105] = 2432;
+  lvSpawnYa[105] = 1424;
+--- 279,284 ----
+  lvBGM[104] = bgm11_boss;
+! if (global.numPlayers >=3)
+!     lvSpawnXa[105] = 2448;
+! else
+!     lvSpawnXa[105] = 2432;
+  lvSpawnYa[105] = 1424;
+***************
+*** 303,305 ****
+              {
+!                 skin = 2;
+                  
+--- 330,332 ----
+              {
+!                 skin = 4;
+                  
+***************
+*** 312,316 ****
+                  {
+!                     x += 192;
+                      xx = x;
+-                     face = -1;
+                  }
+--- 339,346 ----
+                  {
+!                     if (i != 2)
+!                     {
+!                         x += 192;
+!                         face = -1;
+!                     }
+                      xx = x;
+                  }
+***************
+*** 348,350 ****
+                  xx = x;
+!                 xspeed = 0.9;
+                  yspeed = jumpYsp[2];
+--- 378,384 ----
+                  xx = x;
+!                 if (global.numPlayers >= 3) {
+!                     xspeed = 1.5;
+!                 } else {
+!                     xspeed = 0.9;
+!                 }
+                  yspeed = jumpYsp[2];

@@ -1,45 +1,65 @@
-*** original_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Sun Sep 14 15:32:57 2025
---- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Sat Sep 13 20:16:13 2025
+*** original_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Mon Sep 15 18:24:15 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Sun Sep 14 20:30:15 2025
 ***************
-*** 52,55 ****
+*** 21,23 ****
+      var ts = 16 * transSiz;
+!     draw_rectangle_color(xv, yv, xr - 17 - ts, yv + 216, cb, cb, cb, cb, 0);
+      draw_rectangle_color(xr + 32 + ts, yv, xr + 384, yv + 216, cb, cb, cb, cb, 0);
+--- 21,25 ----
+      var ts = 16 * transSiz;
+!     var playerBoxShift = global.numPlayers * 16;
+! 
+!     draw_rectangle_color(xv, yv, xr - 1 - playerBoxShift - ts, yv + 216, cb, cb, cb, cb, 0);
+      draw_rectangle_color(xr + 32 + ts, yv, xr + 384, yv + 216, cb, cb, cb, cb, 0);
+***************
+*** 52,54 ****
           
 !         if (global.numPlayers == 2)
           {
-              if (xr < (xv + 192))
---- 52,56 ----
+--- 54,56 ----
           
 !         if (global.numPlayers >= 2)
           {
-+             var playerIndex = global.numPlayers - 1;
-              if (xr < (xv + 192))
 ***************
-*** 57,61 ****
-                  if (pImg < 3)
-!                     draw_sprite(s11_Player2Revive, pImg, xr - 16, yr);
-                  else
-!                     draw_sprite(s11_Player2Idle, 0, (xr + 8) - 16, yr + 8);
+*** 69,70 ****
+--- 71,110 ----
               }
---- 58,62 ----
-                  if (pImg < 3)
-!                     draw_sprite(s11_Player2Revive, pImg, xr - 16 * playerIndex, yr);
-                  else
-!                     draw_sprite(s11_Player2Idle, 0, (xr + 8) - 16 * playerIndex, yr + 8);
-              }
-***************
-*** 63,65 ****
-              {
-!                 draw_sprite_ext(s11_Player2Revive, pImg, (xr + 16) - 16, yr, -1, 1, 0, c_white, 1);
-              }
---- 64,66 ----
-              {
-!                 draw_sprite_ext(s11_Player2Revive, pImg, (xr + 16) - 16 * playerIndex, yr, -1, 1, 0, c_white, 1);
-              }
-***************
-*** 67,69 ****
-              {
-!                 draw_sprite_ext(s11_Player2Idle, 0, (xr + 8) - 16, yr + 8, -1, 1, 0, c_white, 1);
-              }
---- 68,70 ----
-              {
-!                 draw_sprite_ext(s11_Player2Idle, 0, (xr + 8) - 16 * playerIndex, yr + 8, -1, 1, 0, c_white, 1);
-              }
++         }
++ 
++         if (global.numPlayers >= 3)
++         {
++             if (xr < (xv + 192))
++             {
++                 if (pImg < 3)
++                     draw_sprite(s11_Player3Revive, pImg, xr - 16 * 2, yr);
++                 else
++                     draw_sprite(s11_Player3Idle, 0, (xr + 8) - 16 * 2, yr + 8);
++             }
++             else if (pImg < 3)
++             {
++                 draw_sprite_ext(s11_Player3Revive, pImg, (xr + 16) - 16 * 2, yr, -1, 1, 0, c_white, 1);
++             }
++             else
++             {
++                 draw_sprite_ext(s11_Player3Idle, 0, (xr + 8) - 16 * 2, yr + 8, -1, 1, 0, c_white, 1);
++             }
++         }
++ 
++         if (global.numPlayers >= 4)
++         {
++             if (xr < (xv + 192))
++             {
++                 if (pImg < 3)
++                     draw_sprite(s11_Player4Revive, pImg, xr - 16 * 3, yr);
++                 else
++                     draw_sprite(s11_Player4Idle, 0, (xr + 8) - 16 * 3, yr + 8);
++             }
++             else if (pImg < 3)
++             {
++                 draw_sprite_ext(s11_Player4Revive, pImg, (xr + 16) - 16 * 3, yr, -1, 1, 0, c_white, 1);
++             }
++             else
++             {
++                 draw_sprite_ext(s11_Player4Idle, 0, (xr + 8) - 16 * 3, yr + 8, -1, 1, 0, c_white, 1);
++             }
+          }
