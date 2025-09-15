@@ -6,11 +6,12 @@ This is a mod to enable 4 players for various games in the game UFO50.
 
 Currently the following games are supported:
 * Velgress (2/3/4P Co-op & VS)
+* Waldorf's Journey (2/3/4P Free For All)
 * Bushido Ball (4P VS)
 * Hot Foot (4P VS)
+* Mooncat (3/4P Co-op)
 * Paint Chase (4P Team VS)
 * Attactics (4P Team VS)
-* Waldorf's Journey (2/3/4P Free For All)
 * The Big Bell Race (up to 6 Players)
 * Party House (3/4P VS)
 * Ninpek (3/4P Co-op)
