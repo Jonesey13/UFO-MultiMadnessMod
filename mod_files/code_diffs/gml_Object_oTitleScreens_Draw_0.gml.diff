@@ -1,28 +1,59 @@
-*** original_scripts/gml_Object_oTitleScreens_Draw_0.gml	Fri Sep 12 15:29:47 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Draw_0.gml	Fri Sep 12 15:41:10 2025
+*** original_scripts/gml_Object_oTitleScreens_Draw_0.gml	Sun Sep 14 15:32:56 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Draw_0.gml	Sat Sep 13 20:44:59 2025
 ***************
-*** 288,291 ****
+*** 288,300 ****
                   
 !                 scrDrawTextInput(160 - titleX, 152 + (_lineSpacing * i) + titleY, menuOption[i], 0, 0, 0);
 !                 
-                  if (menuToggle[i] == 0)
---- 288,295 ----
+!                 if (menuToggle[i] == 0)
+!                 {
+!                     draw_text((160 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "A");
+!                     draw_text_color((176 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "B", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+                  }
+!                 else if (menuToggle[i] == 1)
+!                 {
+!                     draw_text_color((160 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "A", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+!                     draw_text((176 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "B");
+                  }
+--- 288,317 ----
                   
-!                 if (menuStyle == 15) {
+!                 if (menuStyle == 15 || menuStyle == 11) {
 !                     scrDrawTextInput(160 - titleX, 120 + (_lineSpacing * i) + titleY, menuOption[i], 0, 0, 0);
 !                 } else {
 !                     scrDrawTextInput(160 - titleX, 152 + (_lineSpacing * i) + titleY, menuOption[i], 0, 0, 0);
-!                 }
+                  }
 ! 
-                  if (menuToggle[i] == 0)
+!                 if (menuStyle == 11) {
+!                     if (menuToggle[i] == 0)
+!                     {
+!                         draw_text((160 + menuToggleX) - titleX, 120 + (_lineSpacing * i) + titleY, "A");
+!                         draw_text_color((176 + menuToggleX) - titleX, 120 + (_lineSpacing * i) + titleY, "B", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+!                     }
+!                     else if (menuToggle[i] == 1)
+!                     {
+!                         draw_text_color((160 + menuToggleX) - titleX, 120 + (_lineSpacing * i) + titleY, "A", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+!                         draw_text((176 + menuToggleX) - titleX, 120 + (_lineSpacing * i) + titleY, "B");
+!                     }
+!                 } else {
+!                     if (menuToggle[i] == 0)
+!                     {
+!                         draw_text((160 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "A");
+!                         draw_text_color((176 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "B", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+!                     }
+!                     else if (menuToggle[i] == 1)
+!                     {
+!                         draw_text_color((160 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "A", global.palette[16], global.palette[16], global.palette[16], global.palette[16], 1);
+!                         draw_text((176 + menuToggleX) - titleX, 152 + (_lineSpacing * i) + titleY, "B");
+!                     }
+                  }
 ***************
 *** 306,308 ****
                   {
 !                     draw_sprite(pointerSprite, 0, 128 - titleX, 149 + (menuSel * _lineSpacing) + titleY);
                   }
---- 310,316 ----
+--- 323,329 ----
                   {
-!                     if (menuStyle == 15) {
+!                     if (menuStyle == 15 || menuStyle == 11) {
 !                         draw_sprite(pointerSprite, 0, 128 - titleX, 117 + (menuSel * _lineSpacing) + titleY);
 !                     } else {
 !                         draw_sprite(pointerSprite, 0, 128 - titleX, 149 + (menuSel * _lineSpacing) + titleY);
@@ -33,10 +64,10 @@
                       if ((round(stateCounter / 8) % 2) == 0)
 !                         draw_sprite(sLittleArrow, 0, 151 - titleX, 152 + (menuSel * _lineSpacing) + titleY);
                   }
---- 321,329 ----
+--- 334,342 ----
                       if ((round(stateCounter / 8) % 2) == 0)
 !                     {
-!                         if (menuStyle == 15) {
+!                         if (menuStyle == 15 || menuStyle == 11) {
 !                             draw_sprite(sLittleArrow, 0, 151 - titleX, 120 + (menuSel * _lineSpacing) + titleY);
 !                         } else {
 !                             draw_sprite(sLittleArrow, 0, 151 - titleX, 152 + (menuSel * _lineSpacing) + titleY);
@@ -54,9 +85,9 @@
 -             
 -             draw_sprite(pointerSprite, 0, 128, 149 + (menuSel * _lineSpacing));
           }
---- 348,366 ----
+--- 361,379 ----
               
-!             if (menuStyle == 15) {
+!             if (menuStyle == 15 || menuStyle == 11) {
 !                 for (var i = 0; i <= menuSelBot; i++)
 !                 {
 !                     if (i == menuSel)

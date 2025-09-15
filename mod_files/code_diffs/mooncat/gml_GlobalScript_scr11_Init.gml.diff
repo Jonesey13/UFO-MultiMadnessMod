@@ -1,0 +1,15 @@
+*** original_scripts/mooncat/gml_GlobalScript_scr11_Init.gml	Sun Sep 14 15:32:57 2025
+--- ufo50_modded_scripts/mooncat/gml_GlobalScript_scr11_Init.gml	Sat Sep 13 20:36:47 2025
+***************
+*** 11,14 ****
+      {
+!         global.g11_input[0] = menuToggle[2];
+!         global.g11_input[1] = menuToggle[3];
+      }
+--- 11,16 ----
+      {
+!         global.g11_input[0] = menuToggle[4];
+!         global.g11_input[1] = menuToggle[5];
+!         global.g11_input[2] = menuToggle[6];
+!         global.g11_input[3] = menuToggle[7];
+      }

@@ -1,5 +1,5 @@
-*** original_scripts/party_house/gml_GlobalScript_scr36_SaveGame.gml	Thu Aug 28 19:59:01 2025
---- ufo50_modded_scripts/party_house/gml_GlobalScript_scr36_SaveGame.gml	Thu Aug 28 19:20:50 2025
+*** original_scripts/party_house/gml_GlobalScript_scr36_SaveGame.gml	Sun Sep 14 15:32:56 2025
+--- ufo50_modded_scripts/party_house/gml_GlobalScript_scr36_SaveGame.gml	Sat Sep 13 19:59:53 2025
 ***************
 *** 29,32 ****
                   scrWriteReal("scenarioWins" + string(i + 1), scenarioWins[i]);
@@ -12,12 +12,28 @@
 !                     scrWriteReal("scenarioWinsMulti" + string(player + 1) + string(i + 1), scenarioWinsMulti[player][i]);
               }
 ***************
+*** 35,41 ****
+              
+!             if (capacity[0] > mostCapacity)
+!                 mostCapacity = capacity[0];
+!             
+!             if (capacity[1] > mostCapacity)
+!                 mostCapacity = capacity[1];
+              
+--- 35,40 ----
+              
+!             for (var p = 0; p < numPlayers; p++) {
+!                 if (capacity[p] > mostCapacity)
+!                     mostCapacity = capacity[p];
+!             }
+              
+***************
 *** 82,85 ****
                   scenarioWins[i] = scrReadReal("scenarioWins" + string(i + 1), 0);
 !                 scenarioWinsP1[i] = scrReadReal("scenarioWinsP1" + string(i + 1), 0);
 !                 scenarioWinsP2[i] = scrReadReal("scenarioWinsP2" + string(i + 1), 0);
               }
---- 82,86 ----
+--- 81,85 ----
                   scenarioWins[i] = scrReadReal("scenarioWins" + string(i + 1), 0);
 ! 
 !                 for (var player = 0; player < 4; player++)

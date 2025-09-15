@@ -1,0 +1,45 @@
+*** original_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Sun Sep 14 15:32:57 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Draw_0.gml	Sat Sep 13 20:16:13 2025
+***************
+*** 52,55 ****
+          
+!         if (global.numPlayers == 2)
+          {
+              if (xr < (xv + 192))
+--- 52,56 ----
+          
+!         if (global.numPlayers >= 2)
+          {
++             var playerIndex = global.numPlayers - 1;
+              if (xr < (xv + 192))
+***************
+*** 57,61 ****
+                  if (pImg < 3)
+!                     draw_sprite(s11_Player2Revive, pImg, xr - 16, yr);
+                  else
+!                     draw_sprite(s11_Player2Idle, 0, (xr + 8) - 16, yr + 8);
+              }
+--- 58,62 ----
+                  if (pImg < 3)
+!                     draw_sprite(s11_Player2Revive, pImg, xr - 16 * playerIndex, yr);
+                  else
+!                     draw_sprite(s11_Player2Idle, 0, (xr + 8) - 16 * playerIndex, yr + 8);
+              }
+***************
+*** 63,65 ****
+              {
+!                 draw_sprite_ext(s11_Player2Revive, pImg, (xr + 16) - 16, yr, -1, 1, 0, c_white, 1);
+              }
+--- 64,66 ----
+              {
+!                 draw_sprite_ext(s11_Player2Revive, pImg, (xr + 16) - 16 * playerIndex, yr, -1, 1, 0, c_white, 1);
+              }
+***************
+*** 67,69 ****
+              {
+!                 draw_sprite_ext(s11_Player2Idle, 0, (xr + 8) - 16, yr + 8, -1, 1, 0, c_white, 1);
+              }
+--- 68,70 ----
+              {
+!                 draw_sprite_ext(s11_Player2Idle, 0, (xr + 8) - 16 * playerIndex, yr + 8, -1, 1, 0, c_white, 1);
+              }

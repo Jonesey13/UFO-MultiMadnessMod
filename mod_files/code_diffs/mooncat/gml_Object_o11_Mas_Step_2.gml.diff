@@ -1,0 +1,46 @@
+*** original_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Sun Sep 14 15:32:57 2025
+--- ufo50_modded_scripts/mooncat/gml_Object_o11_Mas_Step_2.gml	Sun Sep 14 15:30:36 2025
+***************
+*** 6,9 ****
+      var pcount = instance_number(oPlayer);
+-     var pNum1 = instance_find(oPlayer, 0);
+-     var pNum2 = instance_find(oPlayer, 1);
+      
+--- 6,7 ----
+***************
+*** 17,20 ****
+          {
+!             var xpmin = min(pNum1.x, pNum2.x);
+!             var xpmax = max(pNum1.x, pNum2.x);
+              var xCamTest1 = xpmin - 8;
+--- 15,26 ----
+          {
+!             var xpmin = 1000;
+!             var xpmax = -1000;
+! 
+!             for (var i = 0; i < instance_number(oPlayer); ++i)
+!             {
+!                 var currentPlayer = instance_find(oPlayer,i);
+!                 xpmin = min(xpmin, currentPlayer.x);
+!                 xpmax = max(xpmax, currentPlayer.x);
+!             }
+! 
+              var xCamTest1 = xpmin - 8;
+***************
+*** 39,42 ****
+          {
+!             ypmin = min(pNum1.y, pNum2.y);
+!             ypmax = max(pNum1.y, pNum2.y);
+          }
+--- 45,55 ----
+          {
+!             ypmin = 1000;
+!             ypmax = -1000;
+! 
+!             for (var i = 0; i < instance_number(oPlayer); ++i)
+!             {
+!                 var currentPlayer = instance_find(oPlayer,i);
+!                 ypmin = min(ypmin, currentPlayer.y);
+!                 ypmax = max(ypmax, currentPlayer.y);
+!             }
+          }
