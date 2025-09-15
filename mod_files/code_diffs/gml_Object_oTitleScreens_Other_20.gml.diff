@@ -1,19 +1,15 @@
 *** original_scripts/gml_Object_oTitleScreens_Other_20.gml	Mon Sep 15 18:24:14 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_20.gml	Sun Sep 14 15:33:13 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_20.gml	Mon Sep 15 19:04:29 2025
 ***************
-*** 38,43 ****
+*** 38,41 ****
           
 !         menuToggle[2] = scrReadReal("p1_input", global.inputFocus - 1);
 !         menuToggle[3] = scrReadReal("p2_input", global.inputFocus - 1);
           scrCloseCurrFile();
-!         specialState = 1;
-      }
---- 38,45 ----
+--- 38,43 ----
           
 !         menuToggle[4] = scrReadReal("p1_input", global.inputFocus - 1);
 !         menuToggle[5] = scrReadReal("p2_input", global.inputFocus - 1);
 !         menuToggle[6] = scrReadReal("p3_input", global.inputFocus - 1);
 !         menuToggle[7] = scrReadReal("p4_input", global.inputFocus - 1);
           scrCloseCurrFile();
-!         LMspecialState = 1;
-      }
