@@ -1,0 +1,76 @@
+*** original_scripts/mooncat/gml_GlobalScript_scr11_SaveGame.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/mooncat/gml_GlobalScript_scr11_SaveGame.gml	Mon Sep 15 19:12:12 2025
+***************
+*** 0 ****
+--- 1,71 ----
++ function scr11_SaveGame(arg0)
++ {
++     with (o11_Mas)
++     {
++         if (arg0 == 0 || arg0 == 99)
++         {
++             scrWriteReal("p1_input", global.g11_input[0]);
++             scrWriteReal("p2_input", global.g11_input[1]);
++             scrWriteReal("p3_input", global.g11_input[2]);
++             scrWriteReal("p4_input", global.g11_input[3]);
++             var numLevelsVisited = 0;
++             var totalLevels = 0;
++             
++             for (var i = LAYER_A_START; i <= LAYER_A_END; i++)
++             {
++                 scrWriteReal("level" + string(i), global.g11_levelsVisited[i]);
++                 
++                 if (global.g11_levelsVisited[i])
++                     numLevelsVisited++;
++                 
++                 totalLevels++;
++             }
++             
++             for (var i = LAYER_B_START; i <= LAYER_B_END; i++)
++             {
++                 scrWriteReal("level" + string(i), global.g11_levelsVisited[i]);
++                 
++                 if (global.g11_levelsVisited[i])
++                     numLevelsVisited++;
++                 
++                 totalLevels++;
++             }
++             
++             for (var i = LAYER_C_START; i <= LAYER_C_END; i++)
++             {
++                 scrWriteReal("level" + string(i), global.g11_levelsVisited[i]);
++                 
++                 if (global.g11_levelsVisited[i])
++                     numLevelsVisited++;
++                 
++                 totalLevels++;
++             }
++             
++             for (var i = 0; i < 3; i++)
++                 scrWriteReal("egg" + string(i), global.g11_collectionEgg[i]);
++             
++             var numEggs = global.g11_collectionEgg[0] + global.g11_collectionEgg[1] + global.g11_collectionEgg[2];
++             scrSetRecord(false, numEggs);
++             scrSetRecord(true, numEggs);
++             scrSetGoal(global.GOLD_WIN, -1);
++             scrSetGoal(global.CHERRY_WIN, -1);
++             scrSetGoal(global.GARDEN_WIN, -1);
++             scrSetDetail(1, string(numLevelsVisited) + "/" + string(totalLevels));
++             return false;
++         }
++         else if (arg0 == 1)
++         {
++             for (var i = 0; i < 3; i++)
++                 global.g11_collectionEgg[i] = scrReadReal("egg" + string(i), false);
++             
++             for (var i = LAYER_A_START; i <= LAYER_A_END; i++)
++                 global.g11_levelsVisited[i] = scrReadReal("level" + string(i), false);
++             
++             for (var i = LAYER_B_START; i <= LAYER_B_END; i++)
++                 global.g11_levelsVisited[i] = scrReadReal("level" + string(i), false);
++             
++             for (var i = LAYER_C_START; i <= LAYER_C_END; i++)
++                 global.g11_levelsVisited[i] = scrReadReal("level" + string(i), false);
++         }
++     }
++ }
