@@ -1,5 +1,5 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 12 15:29:48 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 12 15:34:19 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 19 19:34:55 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Mon Sep 22 19:58:02 2025
 ***************
 *** 2,71 ****
   {
@@ -198,14 +198,8 @@
 +                     ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
                   
 ***************
-*** 284,285 ****
---- 214,216 ----
-          tLaunch = 0;
-+         goalPos = 0;
-          
-***************
 *** 315,316 ****
---- 246,267 ----
+--- 245,266 ----
               }
 +             else if (global.numPlayers >= 3 && uId == playerSel[2])
 +             {
@@ -236,7 +230,7 @@
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 626,640 ----
+--- 625,641 ----
   
 + var allInGoal = true;
 + 
@@ -249,15 +243,30 @@
 + 
   if (goalPos == 6)
   {
-!     playerInGoal[0] = false;
-!     playerInGoal[1] = false;
+!     for (var i = 0; i < global.numPlayers; i++) {
+!         playerInGoal[i] = false;
+!     }
+! 
       goalPos = 0;
 ***************
 *** 685,687 ****
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 645,647 ----
+--- 646,648 ----
   }
 ! else if (allInGoal)
   {
+***************
+*** 691,694 ****
+      {
+!         p1InGoal = false;
+!         p2InGoal = false;
+          ds_grid_sort(dsRank, 1, 0);
+--- 652,657 ----
+      {
+!         for (var i = 0; i < global.numPlayers; i++) {
+!             playerInGoal[i] = false;
+!         }
+! 
+          ds_grid_sort(dsRank, 1, 0);
