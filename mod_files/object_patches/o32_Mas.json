@@ -1,0 +1,9 @@
+{
+  "event_subtype_change": [
+    {
+      "event_type": "Draw",
+      "event_number": 0,
+      "new_event_subtype_draw": "DrawGUIEnd"
+    }
+  ]
+}

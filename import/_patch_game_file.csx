@@ -143,6 +143,26 @@ void patchGameWinFile(bool excludeAdditionalEnhancements)
         gameData.GameObjects.Add(newObject);
     }
 
+    foreach (string objectPath in Directory.EnumerateFiles("mod_files/object_patches", "*.json", SearchOption.TopDirectoryOnly))
+    {
+        var objectText = File.ReadAllText(objectPath);
+        string objectName = Path.GetFileNameWithoutExtension(objectPath);
+
+        GameObjectPatch gameObjectPatch = JsonSerializer.Deserialize<GameObjectPatch>(objectText);
+
+        UndertaleGameObject targetObject = gameData.GameObjects.First(gameObject => gameObject.Name.Content == objectName);
+
+        foreach (var eventObj in gameObjectPatch.EventSubtypeChangeList) {
+            var targetEvent = targetObject.Events[(int)eventObj.TargetEventType][eventObj.EventNumber];
+
+            switch (eventObj.TargetEventType) {
+                case EventType.Draw:
+                    targetEvent.EventSubtypeDraw = eventObj.NewEventDrawSubtype.Value;
+                    break;
+            }
+        }
+    }
+
     using (var stream = new FileStream("/tmp/data.win", FileMode.Create, FileAccess.Write))
     {
         UndertaleIO.Write(stream, gameData);
@@ -250,4 +270,22 @@ public class ObjectPhysics
 
     [JsonPropertyName("is_awake")]
     public bool IsAwake { get; set; }
+}
+
+public class GameObjectPatch{
+    [JsonPropertyName("event_subtype_change")]
+    public EventSubtypeChange[] EventSubtypeChangeList { get; set; }
+}
+
+public class EventSubtypeChange {
+    [JsonPropertyName("event_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<EventType>))]
+    public EventType TargetEventType { get; set; }
+
+    [JsonPropertyName("event_number")]
+    public int EventNumber { get; set; }
+
+    [JsonPropertyName("new_event_subtype_draw")]
+    [JsonConverter(typeof(JsonStringEnumConverter<EventSubtypeDraw>))]
+    public EventSubtypeDraw? NewEventDrawSubtype { get; set; }
 }
