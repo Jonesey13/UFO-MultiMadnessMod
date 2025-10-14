@@ -1,0 +1,61 @@
+*** original_scripts/gml_GlobalScript_scrActivateSplitScreen.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_GlobalScript_scrActivateSplitScreen.gml	Sun Sep 28 20:33:10 2025
+***************
+*** 0 ****
+--- 1,56 ----
++ function scrActivateSplitScreen()
++ {
++     with (oScreenHandler) {
++         if (!splitScreenOn) {
++             surface_resize(application_surface, surface_get_width(application_surface) * 2, surface_get_height(application_surface) * 2);
++             splitScreenOn = true;
++ 
++             __view_set(e__VW.WPort, 0, 192);
++             __view_set(e__VW.HPort, 0, 108);
++             
++             view_visible[1] = true;
++             view_camera[1] = camera_create_view(0, 0, 384, 216);
++             __view_set(e__VW.XPort, 1, 192);
++             __view_set(e__VW.YPort, 1, 0);
++             __view_set(e__VW.WPort, 1, 192);
++             __view_set(e__VW.HPort, 1, 108);
++             view_visible[1] = true;
++ 
++             view_camera[2] = camera_create_view(0, 0, 384, 216);
++             __view_set(e__VW.XPort, 2, 0);
++             __view_set(e__VW.YPort, 2, 108);
++             __view_set(e__VW.WPort, 2, 192);
++             __view_set(e__VW.HPort, 2, 108);
++             view_visible[2] = true;
++ 
++             view_camera[3] = camera_create_view(0, 0, 384, 216);
++             __view_set(e__VW.XPort, 3, 192);
++             __view_set(e__VW.YPort, 3, 108);
++             __view_set(e__VW.WPort, 3, 192);
++             __view_set(e__VW.HPort, 3, 108);
++             view_visible[3] = true;
++         }
++     }
++ }
++ 
++ 
++ enum e__VW
++ {
++     XView,
++     YView,
++     WView,
++     HView,
++     Angle,
++     HBorder,
++     VBorder,
++     HSpeed,
++     VSpeed,
++     Object,
++     Visible,
++     XPort,
++     YPort,
++     WPort,
++     HPort,
++     Camera,
++     SurfaceID
++ }

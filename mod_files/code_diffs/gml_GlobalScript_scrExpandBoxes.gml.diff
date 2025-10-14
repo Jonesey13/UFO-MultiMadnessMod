@@ -1,0 +1,15 @@
+*** original_scripts/gml_GlobalScript_scrExpandBoxes.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_GlobalScript_scrExpandBoxes.gml	Mon Oct 13 15:24:38 2025
+***************
+*** 0 ****
+--- 1,10 ----
++ // Given two bounding boxes, find the larger box that encompases them both
++ function scrExpandBoxes(firstBox, secondBox)
++ {
++     return [
++         min(firstBox[0], secondBox[0]),
++         min(firstBox[1], secondBox[1]),
++         max(firstBox[2], secondBox[2]),
++         max(firstBox[3], secondBox[3])
++     ]
++ }

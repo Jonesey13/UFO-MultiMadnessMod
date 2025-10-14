@@ -1,0 +1,102 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Sun Oct  5 20:26:06 2025
+***************
+*** 8,19 ****
+      
+!     case EVENT_RAIN:
+!         var xsp = 0;
+!         var ysp = 0;
+!         
+!         with (o32_Player)
+!         {
+!             xsp = lengthdir_x(dSpeed, dir) + lengthdir_x(sSpeed, dirSlide);
+!             ysp = lengthdir_y(dSpeed, dir) + lengthdir_y(sSpeed, dirSlide);
+!         }
+!         
+          if ((generalTimer % 50) == 0)
+--- 8,10 ----
+      
+!     case EVENT_RAIN:        
+          if ((generalTimer % 50) == 0)
+***************
+*** 24,27 ****
+                  var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
+                  
+!                 if (!position_meeting(_x + 8, _y + 8, oBlockPar) && !position_meeting(_x - 8, _y - 8, oBlockPar) && !position_meeting(_x - 8, _y + 8, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && !position_meeting(_x + 8, _y + 8, o32_Bush) && (abs(angle_difference(point_direction(o32_Player.x, o32_Player.y, o32_Player.x + lengthdir_x(o32_Player.dSpeed, o32_Player.dirCam), o32_Player.y + lengthdir_y(o32_Player.dSpeed, o32_Player.dirCam)), point_direction(o32_Player.x, o32_Player.y, _x, _y))) > 30 || o32_Player.dSpeed == 0))
+                  {
+--- 15,39 ----
+                  var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
++ 
++                 var inFrontOfPlayer = false;
++ 
++                 for (var i=0; i < global.numPlayers; i++) {
++                     if (abs(
++                             angle_difference(
++                                 players[i].dirCam, 
++                                 point_direction(players[i].x, players[i].y, _x, _y)
++                             )
++                         ) <= 30 
++                         && o32_Player.dSpeed != 0) {
++                         inFrontOfPlayer = true;
++                     }
++                 }
+                  
+!                 if (
+!                     !position_meeting(_x + 8, _y + 8, oBlockPar) 
+!                     && !position_meeting(_x - 8, _y - 8, oBlockPar) 
+!                     && !position_meeting(_x - 8, _y + 8, oBlockPar) 
+!                     && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) 
+!                     && !position_meeting(_x + 8, _y + 8, o32_Bush) 
+!                     && !inFrontOfPlayer
+!                 )
+                  {
+***************
+*** 67,70 ****
+                  
+!                 if (instance_exists(o32_Player))
+!                     direction = point_direction(x, y, o32_Player.x, o32_Player.y);
+              }
+--- 79,84 ----
+                  
+!                 if (instance_exists(o32_Player)) {
+!                     var nearestPlayer = instance_nearest(x, y, o32_Player);
+!                     direction = point_direction(x, y, nearestPlayer.x, nearestPlayer.y);
+!                 }
+              }
+***************
+*** 119,122 ****
+                  
+!                 if (instance_exists(oPlayer))
+!                     _pdist = point_distance(x, y, oPlayer.x, oPlayer.y);
+                  
+--- 133,136 ----
+                  
+!                 var nearestPlayer = instance_nearest(x, y, o32_Player);
+!                 _pdist = point_distance(x, y, nearestPlayer.x, nearestPlayer.y);
+                  
+***************
+*** 125,128 ****
+                  
+!                 if (!instance_exists(target) || _pdist < 100)
+!                     target = oPlayer;
+                  
+--- 139,143 ----
+                  
+!                 if (!instance_exists(target) || _pdist < 100) {
+!                     target = nearestPlayer;
+!                 }
+                  
+***************
+*** 221,225 ****
+                  {
+!                     var _x = clamp(((oPlayer.x div 32) * 32) + 8, x + 48 + 8, ((x + (image_xscale * 16)) - 48) + 8);
+!                     var _y = clamp(((oPlayer.y div 16) * 16) + 8, y + 48 + 8, ((y + (image_yscale * 16)) - 48) + 8);
+!                     var _dir = round(point_direction(_x, _y, oPlayer.x, oPlayer.y) / 90) * 90;
+                      
+--- 236,241 ----
+                  {
+!                     var nearestPlayer = instance_nearest(x, y, o32_Player);
+!                     var _x = clamp(((nearestPlayer.x div 32) * 32) + 8, x + 48 + 8, ((x + (image_xscale * 16)) - 48) + 8);
+!                     var _y = clamp(((nearestPlayer.y div 16) * 16) + 8, y + 48 + 8, ((y + (image_yscale * 16)) - 48) + 8);
+!                     var _dir = round(point_direction(_x, _y, nearestPlayer.x, nearestPlayer.y) / 90) * 90;
+                      

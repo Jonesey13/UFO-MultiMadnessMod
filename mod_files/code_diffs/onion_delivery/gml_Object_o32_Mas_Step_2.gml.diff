@@ -1,0 +1,124 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 17:02:57 2025
+***************
+*** 1,49 ****
+! if (instance_exists(player))
+  {
+!     cameraCenterX = player.x - 192 - 48;
+!     cameraCenterY = player.y - 108;
+      
+!     if (abs(angle_difference(player.dirCam, cameraDirection)) > 45)
+      {
+!         cameraDirection = player.dirCam;
+!         cameraOffsetAimX = lengthdir_x(cameraThreshold, player.dirCam);
+!         cameraOffsetAimY = lengthdir_y(cameraThreshold, player.dirCam);
+      }
+- }
+  
+! if (cameraDelay > 0)
+! {
+!     cameraDelay--;
+  }
+! else if (cameraOffsetX != cameraOffsetAimX || cameraOffsetY != cameraOffsetAimY)
+! {
+!     cameraSpeed += 0.01;
+!     cameraSpeed = min(cameraSpeed, cameraSpeedMax);
+  }
+! else
+! {
+!     cameraSpeed = 0;
+!     cameraDelay = 30;
+  }
+  
+- if ((cameraOffsetX + cameraSpeed) < cameraOffsetAimX)
+-     cameraOffsetX += cameraSpeed;
+- else if ((cameraOffsetX - cameraSpeed) > cameraOffsetAimX)
+-     cameraOffsetX -= cameraSpeed;
+- else
+-     cameraOffsetX = cameraOffsetAimX;
+- 
+- if ((cameraOffsetY + cameraSpeed) < cameraOffsetAimY)
+-     cameraOffsetY += cameraSpeed;
+- else if ((cameraOffsetY - cameraSpeed) > cameraOffsetAimY)
+-     cameraOffsetY -= cameraSpeed;
+- else
+-     cameraOffsetY = cameraOffsetAimY;
+- 
+- var _xv = floor(cameraCenterX + cameraOffsetX);
+- var _yv = floor(cameraCenterY + cameraOffsetY);
+- __view_set(e__VW.XView, 0, _xv);
+- __view_set(e__VW.YView, 0, _yv);
+- xPlayfield = _xv + 96;
+- yPlayfield = _yv;
+  
+--- 1,70 ----
+! for (var i = 0; i < global.numPlayers; i++)
+  {
+!     if (array_length(players) > i && instance_exists(players[i]))
+!     {
+!         var player = players[i];
+!         cameraCenterX = player.x - 192 - 48;
+!         cameraCenterY = player.y - 108;
+!         
+!         if (abs(angle_difference(player.dirCam, cameraDirection)) > 45)
+!         {
+!             cameraDirection = player.dirCam;
+!             cameraOffsetAimX = lengthdir_x(cameraThreshold, player.dirCam);
+!             cameraOffsetAimY = lengthdir_y(cameraThreshold, player.dirCam);
+!         }
+!     } else {
+!         continue;
+!     }
+      
+!     if (cameraDelay > 0)
+      {
+!         cameraDelay--;
+!     }
+!     else if (cameraOffsetX != cameraOffsetAimX || cameraOffsetY != cameraOffsetAimY)
+!     {
+!         cameraSpeed += 0.01;
+!         cameraSpeed = min(cameraSpeed, cameraSpeedMax);
+!     }
+!     else
+!     {
+!         cameraSpeed = 0;
+!         cameraDelay = 30;
+      }
+  
+!     if ((cameraOffsetX + cameraSpeed) < cameraOffsetAimX)
+!         cameraOffsetX += cameraSpeed;
+!     else if ((cameraOffsetX - cameraSpeed) > cameraOffsetAimX)
+!         cameraOffsetX -= cameraSpeed;
+!     else
+!         cameraOffsetX = cameraOffsetAimX;
+! 
+!     if ((cameraOffsetY + cameraSpeed) < cameraOffsetAimY)
+!         cameraOffsetY += cameraSpeed;
+!     else if ((cameraOffsetY - cameraSpeed) > cameraOffsetAimY)
+!         cameraOffsetY -= cameraSpeed;
+!     else
+!         cameraOffsetY = cameraOffsetAimY;
+! 
+! 
+!     var _xv = floor(cameraCenterX + cameraOffsetX);
+!     var _yv = floor(cameraCenterY + cameraOffsetY);
+!     __view_set(e__VW.XView, i, _xv);
+!     __view_set(e__VW.YView, i, _yv);
+! 
+!     xPlayfield[i] = _xv + 96;
+!     yPlayfield[i] = _yv;
+  }
+! 
+! if ( global.numPlayers == 2 || global.numPlayers == 3) {
+!     var _checkpointID = checkpointID[checkpointActive];
+! 
+!     __view_set(e__VW.XView, 3, _checkpointID.x - 192);
+!     __view_set(e__VW.YView, 3, _checkpointID.y - 108);
+  }
+! 
+! if ( global.numPlayers == 2) {
+!     __view_set(e__VW.XView, 2, o32_CPointHome.x - 192);
+!     __view_set(e__VW.YView, 2, o32_CPointHome.y - 108);
+  }
+  
+  

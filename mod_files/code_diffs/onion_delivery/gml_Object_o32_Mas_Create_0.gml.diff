@@ -1,0 +1,76 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 17:01:19 2025
+***************
+*** 67,68 ****
+--- 67,73 ----
+  PLAYFIELD_HEIGHT = 216;
++ 
++ if (global.numPlayers >= 2) {
++     scrActivateSplitScreen();
++ }
++ 
+  GARDEN_GOAL = 2;
+***************
+*** 71,73 ****
+  generalTimer = 0;
+! player = -4;
+  stateBuffered = -4;
+--- 76,80 ----
+  generalTimer = 0;
+! 
+! players = [];
+! 
+  stateBuffered = -4;
+***************
+*** 105,107 ****
+  currRegion = 0;
+! timerSpawnSystem = 0;
+  activeSpawner[0] = 0;
+--- 112,115 ----
+  currRegion = 0;
+! timerSpawnSystem = [0, 0, 0, 0];
+! 
+  activeSpawner[0] = 0;
+***************
+*** 119,122 ****
+  cameraOffsetAimY = 0;
+! xPlayfield = 0;
+! yPlayfield = 0;
+  eventNewsImage[EVENT_NOTHING] = 0;
+--- 127,130 ----
+  cameraOffsetAimY = 0;
+! xPlayfields = [];
+! yPlayfields = [];
+  eventNewsImage[EVENT_NOTHING] = 0;
+***************
+*** 151,152 ****
+--- 159,161 ----
+  displayTimerPrev = displayTimer;
++ checkpointActive = 0;
+  checkpointActiveName1 = "";
+***************
+*** 223 ****
+--- 232,254 ----
+  metaTrigger = false;
++ 
++ 
++ enum e__VW
++ {
++     XView,
++     YView,
++     WView,
++     HView,
++     Angle,
++     HBorder,
++     VBorder,
++     HSpeed,
++     VSpeed,
++     Object,
++     Visible,
++     XPort,
++     YPort,
++     WPort,
++     HPort,
++     Camera,
++     SurfaceID
++ }

@@ -1,0 +1,46 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Draw_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Draw_0.gml	Fri Oct 10 18:26:52 2025
+***************
+*** 1,3 ****
+! var _xv = camera_get_view_x(view_get_camera(0));
+! var _yv = camera_get_view_y(view_get_camera(0));
+  
+--- 1,10 ----
+! var _xv = 0;
+! var _yv = 0;
+! 
+! 
+! var player = -4;
+! 
+! if (instance_exists(o32_Player)) {
+!     player = instance_find(o32_Player, 0);
+! }
+  
+***************
+*** 11,12 ****
+--- 18,20 ----
+  {
++     display_set_gui_size(384, 216);
+      draw_clear_alpha(c_black, 1);
+***************
+*** 28,29 ****
+--- 36,38 ----
+  {
++     display_set_gui_size(384, 216);
+      draw_clear_alpha(c_black, 1);
+***************
+*** 55,56 ****
+--- 64,66 ----
+  {
++     display_set_gui_size(384, 216);
+      draw_clear_alpha(c_black, 1);
+***************
+*** 81,82 ****
+--- 91,97 ----
+  
++ if (global.numPlayers >= 2)
++     display_set_gui_size(384 * 2, 216 * 2);
++ else
++     display_set_gui_size(384, 216);
++ 
+  if (returnToBase && state == GAMESTATE_PLAY && onionsDelivered[dayNumber] == onionsDeliveredGoal)

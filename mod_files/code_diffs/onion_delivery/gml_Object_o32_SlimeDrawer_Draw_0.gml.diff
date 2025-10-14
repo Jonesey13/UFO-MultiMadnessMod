@@ -1,0 +1,59 @@
+*** original_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Tue Oct 14 20:40:03 2025
+***************
+*** 1,21 ****
+! var _xv = camera_get_view_x(view_get_camera(0));
+! var _yv = camera_get_view_y(view_get_camera(0));
+! var _xGrid = floor((_xv + 96) / 16);
+! var _yGrid = floor(_yv / 16);
+! var _img = img;
+! draw_sprite(s32_SlimePitBig, _img, _xGrid * 16, _yGrid * 16);
+! _img += 3;
+  
+! for (var n = 0; n < activeSlimeshadeCount; n++)
+! {
+!     with (slimeShade[n])
+      {
+!         for (var i = 0; i < image_xscale; i++)
+          {
+!             var _x = x + (16 * i);
+!             
+!             for (var j = 0; j < image_yscale; j++)
+              {
+!                 var _y = y + (16 * j);
+!                 scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, 0, _xv, _yv);
+              }
+--- 1,25 ----
+! var numViewports = global.numPlayers == 1 ? 1 : 4;
+  
+! for (var i = 0; i < numViewports; i++) {
+!     var _xv = camera_get_view_x(view_get_camera(i));
+!     var _yv = camera_get_view_y(view_get_camera(i));
+!     var _xGrid = floor((_xv + 96) / 16);
+!     var _yGrid = floor(_yv / 16);
+!     var _img = img;
+!     draw_sprite(s32_SlimePitBig, _img, _xGrid * 16, _yGrid * 16);
+!     _img += 3;
+! 
+!     for (var n = 0; n < activeSlimeshadeCount; n++)
+      {
+!         with (slimeShade[n])
+          {
+!             for (var i = 0; i < image_xscale; i++)
+              {
+!                 var _x = x + (16 * i);
+!                 
+!                 for (var j = 0; j < image_yscale; j++)
+!                 {
+!                     var _y = y + (16 * j);
+!                     scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, 0, _xv, _yv);
+!                 }
+              }
+***************
+*** 23,24 ****
+      }
+! }
+--- 27,28 ----
+      }
+! }
+\ No newline at end of file

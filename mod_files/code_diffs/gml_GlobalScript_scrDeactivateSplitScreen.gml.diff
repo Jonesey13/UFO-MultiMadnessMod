@@ -1,0 +1,14 @@
+*** original_scripts/gml_GlobalScript_scrDeactivateSplitScreen.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_GlobalScript_scrDeactivateSplitScreen.gml	Sun Sep 28 20:22:46 2025
+***************
+*** 0 ****
+--- 1,9 ----
++ function scrDeactivateSplitScreen()
++ {
++     with (oScreenHandler) {
++         if (splitScreenOn) {
++             surface_resize(application_surface, surface_get_width(application_surface) / 2, surface_get_height(application_surface) / 2);
++             splitScreenOn = false;
++         }
++     }
++ }

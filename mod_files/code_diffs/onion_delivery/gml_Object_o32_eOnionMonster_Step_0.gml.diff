@@ -1,0 +1,13 @@
+*** original_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Mon Sep 29 20:03:31 2025
+***************
+*** 2,5 ****
+  {
+!     targetX = round(oPlayer.x);
+!     targetY = round(oPlayer.y);
+  }
+--- 2,5 ----
+  {
+!     targetX = round(instance_nearest(x, y, oPlayer).x);
+!     targetY = round(instance_nearest(x, y, oPlayer).y);
+  }

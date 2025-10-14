@@ -1,0 +1,289 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Mon Oct 13 20:08:30 2025
+***************
+*** 1,104 ****
+! var _spawnFrequency = 10;
+! timerSpawnSystem = (timerSpawnSystem + 1) % _spawnFrequency;
+  
+! if (timerSpawnSystem != 0)
+!     exit;
+  
+! var _maxTraffic = 5;
+  
+- if (instance_number(o32_eCarTraffic) >= _maxTraffic)
+-     exit;
+  
+! var _collisionBorder = 64;
+! var _x1 = xPlayfield - _collisionBorder;
+! var _y1 = yPlayfield - _collisionBorder;
+! var _x2 = xPlayfield + PLAYFIELD_WIDTH + _collisionBorder;
+! var _y2 = yPlayfield + PLAYFIELD_HEIGHT + _collisionBorder;
+! var n = 0;
+! var _roadValid;
+! 
+! for (var i = 0; i < ROAD_COUNT; i++)
+! {
+!     var _roadCheck = instance_find(o32_dRoad, i);
+!     
+!     if (collision_rectangle(_x1, _y1, _x2, _y2, _roadCheck, false, false))
+!     {
+!         _roadValid[n] = _roadCheck;
+!         n++;
+      }
+- }
+  
+! if (n == 0)
+!     exit;
+  
+! var _modeRoad, _modeRoadHorizontal, _xRoadLeft, _xRoadRight, _yRoadTop, _modeRoadVertical, _yRoadBottom;
+  
+! with (_roadValid[scrIRandom(n - 1)])
+! {
+!     _modeRoadHorizontal = MODE_HORIZONTAL;
+!     _modeRoadVertical = MODE_VERTICAL;
+!     _modeRoad = mode;
+!     _xRoadLeft = x;
+!     _xRoadRight = x + (16 * image_xscale);
+!     _yRoadTop = y;
+!     _yRoadBottom = y + (16 * image_yscale);
+  }
+  
+! var _spawn = false;
+! var _xSpawnLeft = scrQuantize(xPlayfield - 16, 16);
+! var _xSpawnRight = scrQuantize(xPlayfield + PLAYFIELD_WIDTH + 16, 16);
+! var _ySpawnTop = scrQuantize(yPlayfield - 16, 16);
+! var _ySpawnBottom = scrQuantize(yPlayfield + PLAYFIELD_HEIGHT + 16, 16);
+! var _edgePad = 64;
+! var _x, _y, _carDirection;
+! 
+! if (_modeRoad == _modeRoadHorizontal)
+! {
+!     _x = scrChoose(_xSpawnLeft, _xSpawnRight);
+      
+!     if (_x > (_xRoadLeft + _edgePad) && _x < (_xRoadRight - _edgePad))
+      {
+!         if (_x == _xSpawnLeft)
+!         {
+!             _y = _yRoadTop + 40;
+!             _carDirection = 0;
+!         }
+!         else if (_x == _xSpawnRight)
+          {
+!             _y = _yRoadTop + 8;
+!             _carDirection = 180;
+          }
+-         
+-         _spawn = true;
+      }
+- }
+  
+! if (_modeRoad == _modeRoadVertical)
+! {
+!     _y = scrChoose(_ySpawnTop, _ySpawnBottom);
+!     
+!     if (_y > (_yRoadTop + _edgePad) && _y < (_yRoadBottom - _edgePad))
+      {
+!         if (_y == _ySpawnTop)
+          {
+!             _x = _xRoadLeft + 8;
+!             _carDirection = 270;
+          }
+!         else if (_y == _ySpawnBottom)
+          {
+!             _x = _xRoadLeft + 40;
+!             _carDirection = 90;
+          }
+-         
+-         _spawn = true;
+      }
+- }
+  
+! if (_spawn)
+! {
+!     if (!collision_rectangle(_x - 16, _y - 16, _x + 16, _y + 16, o32__enemyPar, false, false))
+      {
+!         var car = instance_create(_x, _y, o32_eCarTraffic);
+!         car.dir = _carDirection;
+      }
+! }
+--- 1,179 ----
+! // Build bounding boxes
+! var boundingBoxes = [];
+! var _collisionBorder = 64;
+  
+! for (var i = 0; i < global.numPlayers; i++) {
+!     var _x1 = xPlayfield[i] - _collisionBorder;
+!     var _y1 = yPlayfield[i] - _collisionBorder;
+!     var _x2 = xPlayfield[i] + PLAYFIELD_WIDTH + _collisionBorder;
+!     var _y2 = yPlayfield[i] + PLAYFIELD_HEIGHT + _collisionBorder;
+!     var boundingBox = [_x1, _y1, _x2, _y2];
+!     boundingBoxes[i] = boundingBox;
+! }
+  
+! // Compare bounding boxes to determine spawning cycles
+! var combinedBoxes = boundingBoxes;
+  
+  
+! while (true) {
+!     var overlapFound = false;
+!     var overlapFirstIndex = 0;
+!     var overlapSecondIndex = 0;
+! 
+!     for (var i = 0; i < array_length(combinedBoxes); i++) {
+!         for (var j =  i + 1; j < array_length(combinedBoxes); j++) {
+!             if (rectangle_in_rectangle(
+!                 combinedBoxes[i][0], combinedBoxes[i][1], combinedBoxes[i][2], combinedBoxes[i][3],
+!                 combinedBoxes[j][0], combinedBoxes[j][1], combinedBoxes[j][2], combinedBoxes[j][3]
+!             )) {
+!                 overlapFirstIndex = i;
+!                 overlapSecondIndex = j;
+!                 overlapFound = true;
+!                 break;
+!             }
+!         }
+! 
+!         if (overlapFound) {
+!             break;
+!         }
+      }
+  
+!     if (overlapFound) {
+!         newBox = scrExpandBoxes(combinedBoxes[overlapFirstIndex], combinedBoxes[overlapSecondIndex]);
+!         
+!         newCombinedBoxes = [newBox];
+  
+!         for (var i = 0; i < array_length(combinedBoxes); i++) {
+!             if (i != overlapFirstIndex && i != overlapSecondIndex) {
+!                 array_push(newCombinedBoxes, combinedBoxes[i]);
+!             }
+!         }
+  
+!         combinedBoxes = newCombinedBoxes;
+!     } else {
+!         break;
+!     }
+  }
+  
+! 
+! // Process Spawning Cycles
+! var relativeBoxSizes = [];
+! var relativeBoxSizeTotal = 0;
+! var standardBoxSize = scrComputeBoxSize(boundingBoxes[0]);
+! 
+! for (var i = 0; i < array_length(combinedBoxes); i++) {
+!     relativeBoxSizes[i] = scrComputeBoxSize(combinedBoxes[i]) / standardBoxSize;
+!     relativeBoxSizeTotal += relativeBoxSizes[i];
+! }
+! 
+! var _maxTraffic = 5 * relativeBoxSizeTotal;
+! 
+! for (var i = 0; i < array_length(combinedBoxes); i++) {
+! 
+!     var _spawnFrequency = floor(10 / relativeBoxSizes[i]);
+      
+!     timerSpawnSystem[i] += 1;
+! 
+!     if (timerSpawnSystem[i] < _spawnFrequency)
+!         continue;
+!     else 
+!         timerSpawnSystem[i] = 0;
+! 
+!     if (instance_number(o32_eCarTraffic) >= _maxTraffic)
+!         continue;
+! 
+!     var _roadValid;
+!     var n = 0;
+! 
+!     var _x1 = combinedBoxes[i][0];
+!     var _y1 = combinedBoxes[i][1];
+!     var _x2 = combinedBoxes[i][2];
+!     var _y2 = combinedBoxes[i][3];
+! 
+!     for (var r = 0; r < ROAD_COUNT; r++)
+      {
+!         var _roadCheck = instance_find(o32_dRoad, r);
+!         
+!         if (collision_rectangle(_x1, _y1, _x2, _y2, _roadCheck, false, false))
+          {
+!             _roadValid[n] = _roadCheck;
+!             n++;
+          }
+      }
+  
+!     if (n == 0) {
+!         exit;
+!     }
+! 
+!     var _modeRoad, _modeRoadHorizontal, _xRoadLeft, _xRoadRight, _yRoadTop, _modeRoadVertical, _yRoadBottom;
+! 
+!     with (_roadValid[scrIRandom(n - 1)])
+!     {
+!         _modeRoadHorizontal = MODE_HORIZONTAL;
+!         _modeRoadVertical = MODE_VERTICAL;
+!         _modeRoad = mode;
+!         _xRoadLeft = x;
+!         _xRoadRight = x + (16 * image_xscale);
+!         _yRoadTop = y;
+!         _yRoadBottom = y + (16 * image_yscale);
+!     }
+! 
+!     var _spawn = false;
+!     var _xSpawnLeft = scrQuantize(combinedBoxes[i][0] + 48, 16);
+!     var _xSpawnRight = scrQuantize(combinedBoxes[i][2] - 48, 16);
+!     var _ySpawnTop = scrQuantize(combinedBoxes[i][1] + 48, 16);
+!     var _ySpawnBottom = scrQuantize(combinedBoxes[i][3] - 48, 16);
+!     var _edgePad = 64;
+!     var _x, _y, _carDirection;
+! 
+!     if (_modeRoad == _modeRoadHorizontal)
+      {
+!         _x = scrChoose(_xSpawnLeft, _xSpawnRight);
+!         
+!         if (_x > (_xRoadLeft + _edgePad) && _x < (_xRoadRight - _edgePad))
+          {
+!             if (_x == _xSpawnLeft)
+!             {
+!                 _y = _yRoadTop + 40;
+!                 _carDirection = 0;
+!             }
+!             else if (_x == _xSpawnRight)
+!             {
+!                 _y = _yRoadTop + 8;
+!                 _carDirection = 180;
+!             }
+!             
+!             _spawn = true;
+          }
+!     }
+! 
+!     if (_modeRoad == _modeRoadVertical)
+!     {
+!         _y = scrChoose(_ySpawnTop, _ySpawnBottom);
+!         
+!         if (_y > (_yRoadTop + _edgePad) && _y < (_yRoadBottom - _edgePad))
+          {
+!             if (_y == _ySpawnTop)
+!             {
+!                 _x = _xRoadLeft + 8;
+!                 _carDirection = 270;
+!             }
+!             else if (_y == _ySpawnBottom)
+!             {
+!                 _x = _xRoadLeft + 40;
+!                 _carDirection = 90;
+!             }
+!             
+!             _spawn = true;
+          }
+      }
+  
+!     if (_spawn)
+      {
+!         if (!collision_rectangle(_x - 16, _y - 16, _x + 16, _y + 16, o32__enemyPar, false, false))
+!         {
+!             var car = instance_create(_x, _y, o32_eCarTraffic);
+!             car.dir = _carDirection;
+!         }
+      }
+! }
+\ No newline at end of file

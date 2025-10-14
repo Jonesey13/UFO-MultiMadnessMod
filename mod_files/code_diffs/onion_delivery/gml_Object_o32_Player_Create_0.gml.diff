@@ -1,0 +1,7 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Create_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Create_0.gml	Mon Sep 29 20:10:25 2025
+***************
+*** 78 ****
+--- 78,79 ----
+  visible = false;
++ player = 0;

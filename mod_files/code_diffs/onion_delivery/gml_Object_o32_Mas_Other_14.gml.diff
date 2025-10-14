@@ -1,0 +1,22 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 17:01:12 2025
+***************
+*** 9,11 ****
+  checkpointRadiusMax = 1024 + (dayNumber * 256);
+- checkpointActive = 0;
+  checkPointActiveName1 = checkpointName[checkpointActive][0];
+--- 9,10 ----
+***************
+*** 15,17 ****
+  event_user(USER_UPDATE_HUD_TIMER);
+! player = instance_create(x + 8, y + 8, o32_Player);
+  cameraCenterX = (x + 8) - 144;
+--- 14,21 ----
+  event_user(USER_UPDATE_HUD_TIMER);
+! 
+! for (var i = 0; i < global.numPlayers; i++) {
+!     players[i] = instance_create(x + 8 + 4 * i, y + 8 - 14 * i, o32_Player);
+!     players[i].player = i;
+! }
+! 
+  cameraCenterX = (x + 8) - 144;

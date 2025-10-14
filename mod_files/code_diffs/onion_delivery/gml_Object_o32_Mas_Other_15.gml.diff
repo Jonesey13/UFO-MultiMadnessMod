@@ -1,0 +1,25 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Mon Oct  6 20:04:12 2025
+***************
+*** 1,2 ****
+! if (!instance_exists(player))
+      exit;
+--- 1,2 ----
+! if (array_length(players) == 0)
+      exit;
+***************
+*** 9,14 ****
+  
+  var _REGION_RANGE = 16;
+  var _REGION_SIZE = 320;
+! var _playerRow = player.x div _REGION_SIZE;
+! var _playerColumn = player.y div _REGION_SIZE;
+  var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;
+--- 9,15 ----
+  
++ var firstPlayer = players[0];
+  var _REGION_RANGE = 16;
+  var _REGION_SIZE = 320;
+! var _playerRow = firstPlayer.x div _REGION_SIZE;
+! var _playerColumn = firstPlayer.y div _REGION_SIZE;
+  var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;

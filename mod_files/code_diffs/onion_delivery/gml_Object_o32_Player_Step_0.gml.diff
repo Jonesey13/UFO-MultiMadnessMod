@@ -1,0 +1,11 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Mon Sep 29 20:13:55 2025
+***************
+*** 71,73 ****
+  
+! scrGetInput(0);
+  
+--- 71,73 ----
+  
+! scrGetInput(player);
+  

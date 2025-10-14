@@ -1,0 +1,26 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Mon Oct  6 20:17:40 2025
+***************
+*** 20,23 ****
+              
+!             if (instance_exists(player))
+!             {
+                  if (player.reverse)
+--- 20,24 ----
+              
+!             if (instance_exists(o32_Player)) {
+!                 player = instance_find(o32_Player, 0);
+! 
+                  if (player.reverse)
+***************
+*** 60,63 ****
+              
+!             if (instance_exists(player))
+!             {
+                  if (player.reverse)
+--- 61,65 ----
+              
+!             if (instance_exists(o32_Player)) {
+!                 player = instance_find(o32_Player, 0);
+! 
+                  if (player.reverse)

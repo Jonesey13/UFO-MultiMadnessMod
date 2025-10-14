@@ -1,0 +1,10 @@
+*** original_scripts/gml_GlobalScript_scrComputeBoxSize.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_GlobalScript_scrComputeBoxSize.gml	Mon Oct 13 16:27:24 2025
+***************
+*** 0 ****
+--- 1,5 ----
++ // Given two bounding boxes, find the larger box that encompases them both
++ function scrComputeBoxSize(boundingBox)
++ {
++     return (boundingBox[2] - boundingBox[0]) * (boundingBox[3] - boundingBox[1]);
++ }

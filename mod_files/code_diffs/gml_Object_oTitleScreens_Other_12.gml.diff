@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Sun Sep 14 15:32:56 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Sat Sep 13 20:18:53 2025
+*** original_scripts/gml_Object_oTitleScreens_Other_12.gml	Tue Oct 14 20:49:19 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Other_12.gml	Mon Oct  6 20:24:46 2025
 ***************
 *** 72,74 ****
           menuOption[2] = scrStringManual("title_coop", 0);
@@ -76,7 +76,7 @@
       }
 ***************
 *** 174,175 ****
---- 193,258 ----
+--- 193,265 ----
       }
 +     else if (menuStyle == 18)
 +     {
@@ -142,6 +142,13 @@
 +             menuSel = 1;
 +         }
 +     }
++     else if (menuStyle == 25)
++     {
++         menuOption[0] = scrStringManual("title_1player", 0);
++         menuOption[1] = scrStringManual("title_2players", 0);
++         menuOption[2] = "3 PLAYERS";
++         menuOption[3] = "4 PLAYERS";
++     }
       else
 ***************
 *** 293,297 ****
@@ -150,7 +157,7 @@
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGame2PStarted && menuStyle == 15 && menuSel == 3)
                   scrSwitchSub(SUB_CONFIRM);
---- 376,388 ----
+--- 383,395 ----
                   scrSwitchSub(SUB_CONFIRM);
 !             else if (newGameStarted && menuStyle == 15 && menuSel == 4)
 !                 scrSwitchSub(SUB_CONFIRM);
@@ -171,7 +178,7 @@
                   scrSwitchState(STATE_HIGHSCORE);
 !             else if (menuStyle == 11 && menuSel >= 2)
                   menuToggle[menuSel] = !menuToggle[menuSel];
---- 392,400 ----
+--- 399,407 ----
                   scrSwitchState(STATE_HIGHSCORE);
 +             else if (menuStyle == 18 && menuSel == 3)
 +                 scrSwitchState(STATE_HIGHSCORE);
@@ -186,13 +193,13 @@
           {
 !             if (menuStyle == 11 && menuSel >= 2)
                   menuToggle[menuSel] = !menuToggle[menuSel];
---- 406,408 ----
+--- 413,415 ----
           {
 !             if (menuStyle == 11 && menuSel >= 4)
                   menuToggle[menuSel] = !menuToggle[menuSel];
 ***************
 *** 378,379 ****
---- 473,504 ----
+--- 480,511 ----
               global.numPlayers = 2;
 + 
 +         if (menuStyle == 18 && menuSel == 1)
@@ -227,7 +234,7 @@
           
 ***************
 *** 387,388 ****
---- 512,519 ----
+--- 519,526 ----
               global.numPlayers = 2;
 + 
 +         if (menuStyle == 7 && menuSel == 2)
@@ -238,7 +245,7 @@
           
 ***************
 *** 400,403 ****
---- 531,555 ----
+--- 538,571 ----
           
 +         if (menuStyle == 11 && menuSel == 2)
 +             global.numPlayers = 3;
@@ -258,6 +265,15 @@
 +         if (menuStyle == 24 && menuSel == 4)
 +             global.numPlayers = 4;
 + 
++         if (menuStyle == 25 && menuSel == 1)
++             global.numPlayers = 2;
++         
++         if (menuStyle == 25 && menuSel == 2)
++             global.numPlayers = 3;
++ 
++         if (menuStyle == 25 && menuSel == 3)
++             global.numPlayers = 4;
++ 
 +         if (menuStyle == 23 && menuSel == 2)
 +             global.numPlayers = 2;
 + 
@@ -266,7 +282,7 @@
           
 ***************
 *** 406,407 ****
---- 558,571 ----
+--- 574,587 ----
           
 +         if (menuStyle == 16 && menuSel == 1)
 +             global.numPlayers = 2;
@@ -292,7 +308,7 @@
           
 !         if (menuStyle == 17 && menuSel == 1)
               global.numPlayers = 4;
---- 573,587 ----
+--- 589,603 ----
           
 +         if (menuStyle == 15 && menuSel == 2)
 +             global.numPlayers = 3;
@@ -316,7 +332,7 @@
           
 !         if (menuStyle == 6 && menuSel == 3)
               global.numPlayers = 0;
---- 594,605 ----
+--- 610,621 ----
           
 +         if (menuStyle == 6 && menuSel == 3)
 +             global.numPlayers = 5;
@@ -331,7 +347,7 @@
               global.numPlayers = 0;
 ***************
 *** 447,448 ****
---- 623,636 ----
+--- 639,652 ----
               global.numPlayers = 0;
 + 
 +         if (menuStyle == 22 && menuSel == 1)

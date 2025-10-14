@@ -1,12 +1,19 @@
-*** original_scripts/gml_Object_oTitleScreens_Create_0.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Jun  8 13:22:30 2025
+*** original_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Sep 28 16:52:16 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Sep 28 20:31:47 2025
+***************
+*** 8,9 ****
+--- 8,11 ----
+  
++ scrDeactivateSplitScreen();
++ 
+  switch (introStyle)
 ***************
 *** 57,60 ****
   saveFileExists = scrReadSaveStatus();
 ! newGameStarted = scrReadNewGameStatus();
 ! newGame2PStarted = scrReadNewGame2PStatus();
   scrCloseCurrFile();
---- 57,64 ----
+--- 59,66 ----
   saveFileExists = scrReadSaveStatus();
 ! newGameStarted = scrReadReal("newGame", false);
 ! newGame2PStarted = scrReadReal("newGame2P", false);
