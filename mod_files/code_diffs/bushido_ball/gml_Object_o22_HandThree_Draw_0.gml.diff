@@ -1,11 +1,11 @@
 *** original_scripts/bushido_ball/gml_Object_o22_HandThree_Draw_0.gml	Thu Jan  1 00:00:00 1970
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandThree_Draw_0.gml	Thu Jun 19 22:13:48 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandThree_Draw_0.gml	Thu Oct 16 08:11:39 2025
 ***************
 *** 0 ****
 --- 1,24 ----
 + draw_sprite_ext(sprite_index, image_index, x, y, faceDir, image_yscale, image_angle, image_blend, image_alpha);
 + 
-+ draw_sprite_ext(s22_AllStand, sel, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 128), 360, 1, image_yscale, image_angle, image_blend, image_alpha);
++ draw_sprite_ext(s22_AllStand, sel, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 128), 360, 1, image_yscale, image_angle, image_blend, image_alpha);
 + 
 + enum e__VW
 + {

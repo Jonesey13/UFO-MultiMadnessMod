@@ -1,5 +1,5 @@
-*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Mon Sep  8 19:19:28 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Tue Sep  9 21:31:54 2025
+*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Thu Oct 16 08:29:22 2025
 ***************
 *** 57,59 ****
       
@@ -75,7 +75,7 @@
 !         pointsPre[0] = points[0];
 !         
 !         if (pointsBalloon >= reqBalloon)
-          {
+!         {
 !             scrSfx(sfx_special_loop00, 89, true, false);
 !             pointsBalloon -= reqBalloon;
 !             instance_create(_xv + 192, _yv + 216 + 32, o34_Balloon);
@@ -90,7 +90,7 @@
 !     if (multip)
 !     {
 !         if (pointsPre[1] < points[1])
-!         {
+          {
 !             pointsBalloon += (points[1] - pointsPre[1]);
 !             pointsPre[1] = points[1];
               
@@ -137,6 +137,15 @@
 !     for (var i = 0; i < global.numPlayers; i++)
       {
 ***************
+*** 464,466 ****
+      _yv = max(_yv, _stop);
+!     set_yview(_yv);
+      
+--- 463,465 ----
+      _yv = max(_yv, _stop);
+!     set_xview(_yv);
+      
+***************
 *** 525,533 ****
               global.g34_loop++;
 !             global.g34_life[0] = life[0];
@@ -154,3 +163,11 @@
 !                 global.g34_life[i] = life[i];
 !                 global.g34_score[i] = points[i];
               }
+***************
+*** 552,553 ****
+          instance_destroy();
+! }
+--- 548,549 ----
+          instance_destroy();
+! }
+\ No newline at end of file

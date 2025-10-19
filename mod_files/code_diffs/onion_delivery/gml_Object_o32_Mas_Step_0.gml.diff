@@ -1,0 +1,11 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Sun Oct 19 17:56:48 2025
+***************
+*** 162,164 ****
+      {
+!         with (player)
+          {
+--- 162,164 ----
+      {
+!         with (o32_Player)
+          {

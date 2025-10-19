@@ -1,5 +1,5 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Mon Oct  6 20:04:12 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_15.gml	Wed Oct 15 17:02:15 2025
 ***************
 *** 1,2 ****
 ! if (!instance_exists(player))
@@ -8,18 +8,198 @@
 ! if (array_length(players) == 0)
       exit;
 ***************
-*** 9,14 ****
+*** 9,82 ****
   
-  var _REGION_RANGE = 16;
-  var _REGION_SIZE = 320;
+! var _REGION_RANGE = 16;
+! var _REGION_SIZE = 320;
 ! var _playerRow = player.x div _REGION_SIZE;
 ! var _playerColumn = player.y div _REGION_SIZE;
-  var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;
---- 9,15 ----
+! var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;
   
-+ var firstPlayer = players[0];
-  var _REGION_RANGE = 16;
-  var _REGION_SIZE = 320;
-! var _playerRow = firstPlayer.x div _REGION_SIZE;
-! var _playerColumn = firstPlayer.y div _REGION_SIZE;
-  var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;
+! if (currRegion == _regionSample)
+!     exit;
+  
+! _regionPrevious = currRegion;
+! currRegion = _regionSample;
+! var _currRow = currRegion % _REGION_RANGE;
+! var _currColumn = currRegion div _REGION_RANGE;
+! 
+! for (var i = 0; i < activeSpawnerCount; i++)
+! {
+!     with (activeSpawner[i])
+!         bufferedDeactivation = true;
+! }
+! 
+! var _nSpawner = 0;
+! var _nSlimeshade = 0;
+! 
+! for (var i = -1; i < 2; i++)
+! {
+!     for (var j = -1; j < 2; j++)
+      {
+!         var _row = _currRow + i;
+!         var _column = _currColumn + j;
+!         
+!         if (_row < 0)
+!             _row += _REGION_RANGE;
+!         
+!         _row = _row % _REGION_RANGE;
+!         
+!         if (_column < 0)
+!             _column += _REGION_RANGE;
+!         
+!         _column = _column % _REGION_RANGE;
+!         var _region = (_column * _REGION_RANGE) + _row;
+!         var _spawnerCount = regionSpawnerCount[_region];
+!         
+!         for (var k = 0; k < _spawnerCount; k++)
+!         {
+!             var _spawner = ds_grid_get(ds_region_spawner, _region, k);
+!             activeSpawner[_nSpawner] = _spawner;
+!             _nSpawner++;
+!         }
+!         
+!         var _slimeShadeCount = regionSlimeshadeCount[_region];
+!         
+!         for (var k = 0; k < _slimeShadeCount; k++)
+          {
+!             var _slimeShade = ds_grid_get(ds_region_slimeshade, _region, k);
+              
+!             with (o32_SlimeDrawer)
+              {
+!                 var _duplicate = false;
+                  
+!                 for (var l = 0; l < _nSlimeshade; l++)
+                  {
+!                     if (slimeShade[l] == _slimeShade)
+                      {
+!                         _duplicate = true;
+!                         break;
+                      }
+-                 }
+-                 
+-                 if (!_duplicate)
+-                 {
+-                     slimeShade[_nSlimeshade] = _slimeShade;
+-                     _nSlimeshade++;
+                  }
+--- 9,87 ----
+  
+! for (var playerIndex = 0; playerIndex < global.numPlayers; playerIndex ++) {
+!     if (array_length(players) <= playerIndex || !instance_exists(players[playerIndex]))
+!         continue;
+!     
+!     var player = players[playerIndex];
+!     var _REGION_RANGE = 16;
+!     var _REGION_SIZE = 320;
+!     var _playerRow = player.x div _REGION_SIZE;
+!     var _playerColumn = player.y div _REGION_SIZE;
+!     var _regionSample = (_playerColumn * _REGION_RANGE) + _playerRow;
+! 
+!     if (currRegion[playerIndex] == _regionSample)
+!         exit;
+! 
+!     currRegion[playerIndex] = _regionSample;
+!     var _currRow = currRegion[playerIndex] % _REGION_RANGE;
+!     var _currColumn = currRegion[playerIndex] div _REGION_RANGE;
+  
+!     for (var i = 0; i < activeSpawnerCount[playerIndex]; i++)
+!     {
+!         with (activeSpawner[playerIndex][i])
+!             bufferedDeactivation = true;
+!     }
+  
+!     var _nSpawner = 0;
+!     var _nSlimeshade = 0;
+! 
+!     for (var i = -1; i < 2; i++)
+      {
+!         for (var j = -1; j < 2; j++)
+          {
+!             var _row = _currRow + i;
+!             var _column = _currColumn + j;
+!             
+!             if (_row < 0)
+!                 _row += _REGION_RANGE;
+!             
+!             _row = _row % _REGION_RANGE;
+!             
+!             if (_column < 0)
+!                 _column += _REGION_RANGE;
+!             
+!             _column = _column % _REGION_RANGE;
+!             var _region = (_column * _REGION_RANGE) + _row;
+!             var _spawnerCount = regionSpawnerCount[_region];
+!             
+!             for (var k = 0; k < _spawnerCount; k++)
+!             {
+!                 var _spawner = ds_grid_get(ds_region_spawner, _region, k);
+!                 activeSpawner[playerIndex][_nSpawner] = _spawner;
+!                 _nSpawner++;
+!             }
+!             
+!             var _slimeShadeCount = regionSlimeshadeCount[_region];
+              
+!             for (var k = 0; k < _slimeShadeCount; k++)
+              {
+!                 var _slimeShade = ds_grid_get(ds_region_slimeshade, _region, k);
+                  
+!                 with (o32_SlimeDrawer)
+                  {
+!                     var _duplicate = false;
+!                     
+!                     for (var l = 0; l < _nSlimeshade; l++)
+                      {
+!                         if (slimeShade[l] == _slimeShade)
+!                         {
+!                             _duplicate = true;
+!                             break;
+!                         }
+!                     }
+!                     
+!                     if (!_duplicate)
+!                     {
+!                         slimeShade[_nSlimeshade] = _slimeShade;
+!                         _nSlimeshade++;
+                      }
+                  }
+***************
+*** 85,102 ****
+      }
+- }
+  
+! for (var i = 0; i < _nSpawner; i++)
+! {
+!     with (activeSpawner[i])
+      {
+!         bufferedDeactivation = false;
+!         
+!         if (!active)
+!             event_user(0);
+      }
+- }
+  
+! activeSpawnerCount = _nSpawner;
+  
+! with (o32_SlimeDrawer)
+!     activeSlimeshadeCount = _nSlimeshade;
+--- 90,107 ----
+      }
+  
+!     for (var i = 0; i < _nSpawner; i++)
+      {
+!         with (activeSpawner[playerIndex][i])
+!         {
+!             bufferedDeactivation = false;
+!             
+!             if (!active)
+!                 event_user(0);
+!         }
+      }
+  
+!     activeSpawnerCount[playerIndex] = _nSpawner;
+  
+!     with (o32_SlimeDrawer)
+!         activeSlimeshadeCount = _nSlimeshade;
+! }
+\ No newline at end of file

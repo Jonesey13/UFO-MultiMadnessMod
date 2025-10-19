@@ -1,0 +1,78 @@
+*** original_scripts/onion_delivery/gml_GlobalScript_scr32_OnScreen.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_GlobalScript_scr32_OnScreen.gml	Sun Oct 19 13:49:41 2025
+***************
+*** 1,30 ****
+! function scr32_OnScreen(arg0, arg1, arg2, arg3, arg4)
+  {
+!     var _FIELD_WIDTH = 288 + (arg0 * 2);
+!     var _xLeft = (arg3 + 96) - arg0;
+!     var _xRight = _xLeft + _FIELD_WIDTH;
+!     var _xLeftWrapped = scrWrap(_xRight, 5120) - _FIELD_WIDTH;
+!     
+!     if (!(arg1 >= _xLeft || arg1 >= _xLeftWrapped))
+!         return false;
+!     
+!     var _xRightWrapped = scrWrap(_xLeft, 5120) + _FIELD_WIDTH;
+!     
+!     if (!(arg1 < _xRight || arg1 < _xRightWrapped))
+!         return false;
+!     
+!     var _FIELD_HEIGHT = 216 + (arg0 * 2);
+!     var _yTop = arg4 - arg0;
+!     var _yBottom = _yTop + _FIELD_HEIGHT;
+!     var _yTopWrapped = scrWrap(_yBottom, 5120) - _FIELD_HEIGHT;
+!     
+!     if (!(arg2 >= _yTop || arg2 >= _yTopWrapped))
+!         return false;
+!     
+!     var _yBottomWrapped = scrWrap(_yTop, 5120) + _FIELD_HEIGHT;
+!     
+!     if (!(arg2 < _yBottom || arg2 < _yBottomWrapped))
+!         return false;
+!     
+!     return true;
+  }
+--- 1,43 ----
+! function scr32_OnScreen(padding, objectX, objectY, unusedX, unusedY)
+  {
+!     var _FIELD_WIDTH = 288 + (padding * 2);
+!     var _FIELD_HEIGHT = 216 + (padding * 2);
+! 
+!     var totalViewPorts = 1;
+! 
+!     if (oScreenHandler.splitScreenOn) {
+!         totalViewPorts = 4;
+!     }
+! 
+!     for (var i = 0; i < totalViewPorts; i++) {
+!         var viewPortX = camera_get_view_x(view_get_camera(i));
+!         var viewPortY = camera_get_view_y(view_get_camera(i));
+!         var _xLeft = (viewPortX + 96) - padding;
+!         var _xRight = _xLeft + _FIELD_WIDTH;
+!         var _xLeftWrapped = scrWrap(_xRight, 5120) - _FIELD_WIDTH;
+!         
+!         if (!(objectX >= _xLeft || objectX >= _xLeftWrapped))
+!             continue;
+!         
+!         var _xRightWrapped = scrWrap(_xLeft, 5120) + _FIELD_WIDTH;
+!         
+!         if (!(objectX < _xRight || objectX < _xRightWrapped))
+!             continue;
+!         
+!         var _yTop = viewPortY - padding;
+!         var _yBottom = _yTop + _FIELD_HEIGHT;
+!         var _yTopWrapped = scrWrap(_yBottom, 5120) - _FIELD_HEIGHT;
+!         
+!         if (!(objectY >= _yTop || objectY >= _yTopWrapped))
+!             continue;
+!         
+!         var _yBottomWrapped = scrWrap(_yTop, 5120) + _FIELD_HEIGHT;
+!         
+!         if (!(objectY < _yBottom || objectY < _yBottomWrapped))
+!             continue;
+!         
+!         return true;
+!     }
+! 
+!     return false;
+  }

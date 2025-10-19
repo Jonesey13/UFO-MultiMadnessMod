@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrSaveConfig.gml	Fri Aug 22 11:55:09 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrSaveConfig.gml	Fri Aug 22 11:48:15 2025
+*** original_scripts/gml_GlobalScript_scrSaveConfig.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrSaveConfig.gml	Tue Oct 14 21:04:38 2025
 ***************
 *** 12,14 ****
       
@@ -10,13 +10,31 @@
 !     for (var p = 0; p <= 5; p++)
       {
 ***************
-*** 23,26 ****
---- 23,34 ----
+*** 23,32 ****
+--- 23,52 ----
       scrWriteConfig("doubledUpButtonsP2", global.doubledUpButtons[1]);
 +     scrWriteConfig("doubledUpButtonsP3", global.doubledUpButtons[2]);
 +     scrWriteConfig("doubledUpButtonsP4", global.doubledUpButtons[3]);
 +     scrWriteConfig("doubledUpButtonsP5", global.doubledUpButtons[4]);
 +     scrWriteConfig("doubledUpButtonsP6", global.doubledUpButtons[5]);
+      scrWriteConfig("altFire1P1", global.altFire1[0]);
+      scrWriteConfig("altFire1P2", global.altFire1[1]);
++     scrWriteConfig("altFire1P3", global.altFire1[2]);
++     scrWriteConfig("altFire1P4", global.altFire1[3]);
++     scrWriteConfig("altFire1P5", global.altFire1[4]);
++     scrWriteConfig("altFire1P6", global.altFire1[5]);
+      scrWriteConfig("altFire2P1", global.altFire2[0]);
+      scrWriteConfig("altFire2P2", global.altFire2[1]);
++     scrWriteConfig("altFire2P3", global.altFire2[2]);
++     scrWriteConfig("altFire2P4", global.altFire2[3]);
++     scrWriteConfig("altFire2P5", global.altFire2[4]);
++     scrWriteConfig("altFire2P6", global.altFire2[5]);
+      scrWriteConfig("invertedButtonsP1", global.invertedButtons[0]);
+      scrWriteConfig("invertedButtonsP2", global.invertedButtons[1]);
++     scrWriteConfig("invertedButtonsP3", global.invertedButtons[2]);
++     scrWriteConfig("invertedButtonsP4", global.invertedButtons[3]);
++     scrWriteConfig("invertedButtonsP5", global.invertedButtons[4]);
++     scrWriteConfig("invertedButtonsP6", global.invertedButtons[5]);
       scrWriteConfig("joyTypeP1", global.joyType[0]);
       scrWriteConfig("joyTypeP2", global.joyType[1]);
 +     scrWriteConfig("joyTypeP3", global.joyType[2]);

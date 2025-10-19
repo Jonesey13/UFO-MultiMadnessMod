@@ -1,14 +1,39 @@
-*** original_scripts/mortol/gml_Object_o29_Game_Other_21.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_Game_Other_21.gml	Sun May 11 20:14:00 2025
+*** original_scripts/mortol/gml_Object_o29_Game_Other_21.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Game_Other_21.gml	Thu Oct 16 08:26:17 2025
 ***************
-*** 53,58 ****
+*** 52,57 ****
           
 !         if (numPlayers == 1)
 !             currPlayer = 0;
 !         else
 !             currPlayer = 1;
           
---- 53,55 ----
+--- 52,54 ----
           
 !         currPlayer = numPlayers - 1;
           
+***************
+*** 71 ****
+--- 68,89 ----
+  }
++ 
++ enum e__VW
++ {
++     XView,
++     YView,
++     WView,
++     HView,
++     Angle,
++     HBorder,
++     VBorder,
++     HSpeed,
++     VSpeed,
++     Object,
++     Visible,
++     XPort,
++     YPort,
++     WPort,
++     HPort,
++     Camera,
++     SurfaceID
++ }

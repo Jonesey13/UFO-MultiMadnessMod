@@ -1,0 +1,47 @@
+*** original_scripts/gml_GlobalScript_scrOnScreenEx.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrOnScreenEx.gml	Sun Oct 19 13:51:48 2025
+***************
+*** 2,18 ****
+  {
+!     var _xv = camera_get_view_x(view_get_camera(0));
+!     
+!     if (x <= (_xv - arg0))
+!         return false;
+!     
+!     if (x >= (_xv + 384 + arg0))
+!         return false;
+!     
+!     var _yv = camera_get_view_y(view_get_camera(0));
+!     
+!     if (y <= (_yv - arg0))
+!         return false;
+!     
+!     if (y >= (_yv + 216 + arg0))
+!         return false;
+      
+--- 2,26 ----
+  {
+!     var totalViewPorts = 1;
+! 
+!     if (oScreenHandler.splitScreenOn) {
+!         totalViewPorts = 4;
+!     }
+! 
+!     for (var i = 0; i < totalViewPorts; i++) {
+!         var _xv = camera_get_view_x(view_get_camera(i));
+!         var _yv = camera_get_view_y(view_get_camera(i));
+!         
+!         if (x <= (_xv - arg0))
+!             continue;
+!         
+!         if (x >= (_xv + 384 + arg0))
+!             continue;
+!         
+!         
+!         if (y <= (_yv - arg0))
+!             continue;
+!         
+!         if (y >= (_yv + 216 + arg0))
+!             continue;
+!     }
+      

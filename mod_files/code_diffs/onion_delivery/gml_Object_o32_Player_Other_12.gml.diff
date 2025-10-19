@@ -1,0 +1,33 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Other_12.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Other_12.gml	Sun Oct 19 20:33:40 2025
+***************
+*** 3,4 ****
+--- 3,6 ----
+  
++ var playerNum = player;
++ 
+  life--;
+***************
+*** 14,17 ****
+      {
+!         statePortrait = PORTRAIT_BONK;
+!         tPortrait = 0;
+      }
+--- 16,19 ----
+      {
+!         statePortraits[playerNum] = PORTRAIT_BONK;
+!         tPortraits[playerNum] = 0;
+      }
+***************
+*** 25,29 ****
+          
+!         statePortrait = PORTRAIT_ON_FIRE;
+!         stepPortrait = 0;
+!         tPortrait = 0;
+      }
+--- 27,31 ----
+          
+!         statePortraits[playerNum] = PORTRAIT_ON_FIRE;
+!         stepPortraits[playerNum] = 0;
+!         tPortraits[playerNum] = 0;
+      }

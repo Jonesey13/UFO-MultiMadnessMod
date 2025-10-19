@@ -1,5 +1,5 @@
 *** original_scripts/ninpek/gml_Object_o34_Shuriken3_Step_0.gml	Thu Jan  1 00:00:00 1970
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Shuriken3_Step_0.gml	Fri Jun  6 14:09:49 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Shuriken3_Step_0.gml	Thu Oct 16 08:11:39 2025
 ***************
 *** 0 ****
 --- 1,27 ----
@@ -28,5 +28,5 @@
 +     exit;
 + }
 + 
-+ if (x < (scrViewX() + 4) || x > ((scrViewX() + 384) - 4))
++ if (x < (camera_get_view_x(view_get_camera(0)) + 4) || x > ((camera_get_view_x(view_get_camera(0)) + 384) - 4))
 +     instance_destroy();

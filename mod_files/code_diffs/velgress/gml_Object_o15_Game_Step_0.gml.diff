@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Sep 12 15:29:48 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Fri Sep 12 15:36:34 2025
+*** original_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Game_Step_0.gml	Thu Oct 16 08:37:23 2025
 ***************
 *** 9,18 ****
   
@@ -54,15 +54,15 @@
 !     {
 !         scrSfx(sfx_navi01, 50);
 !         titleY--;
+!         
+!         if (titleY < 0)
+!             titleY = 6;
+!     }
+!     else if (pressDown)
+!     {
+!         scrSfx(sfx_navi01, 50);
+!         titleY++;
           
-+         if (titleY < 0)
-+             titleY = 6;
-+     }
-+     else if (pressDown)
-+     {
-+         scrSfx(sfx_navi01, 50);
-+         titleY++;
-+         
 +         if (titleY > 6)
 +             titleY = 0;
 +     }
@@ -178,119 +178,119 @@
 +                 titleX = 0;
 +         }
 + 
++         if (fire2pressed)
++         {
++             if (titleX == 0) {
++                 iRecov++;
++                 if (iRecov > 2) {
++                     iRecov = 0;
++                 }
++             } else if (titleX == 1) {
++                 iGun++;
++                 if (iGun > 2) {
++                     iGun = 0;
++                 }
++             } else if (titleX == 2) {
++                 iFoot++;
++                 if (iFoot > 2) {
++                     iFoot = 0;
++                 }
++             } else if (titleX == 3) {
++                 iMagnet++;
++                 if (iMagnet > 1) {
++                     iMagnet = 0;
++                 }
++             } else if (titleX == 4) {
++                 iLightning++;
++                 if (iLightning > 1) {
++                     iLightning = 0;
++                 }
++             } else if (titleX == 5) {
++                 iJump++;
++                 if (iJump > 1) {
++                     iJump = 0;
++                 }
++             }
++         } 
++     }
++     if (titleY == 6)
++     {
           if (fire2pressed)
-!         {
-!             if (titleX == 0) {
-!                 iRecov++;
-!                 if (iRecov > 2) {
-!                     iRecov = 0;
-!                 }
-!             } else if (titleX == 1) {
-!                 iGun++;
-!                 if (iGun > 2) {
-!                     iGun = 0;
-!                 }
-!             } else if (titleX == 2) {
-!                 iFoot++;
-!                 if (iFoot > 2) {
-!                     iFoot = 0;
-!                 }
-!             } else if (titleX == 3) {
-!                 iMagnet++;
-!                 if (iMagnet > 1) {
-!                     iMagnet = 0;
-!                 }
-!             } else if (titleX == 4) {
-!                 iLightning++;
-!                 if (iLightning > 1) {
-!                     iLightning = 0;
-!                 }
-!             } else if (titleX == 5) {
-!                 iJump++;
-!                 if (iJump > 1) {
-!                     iJump = 0;
-!                 }
-!             }
-!         } 
-!     }
-!     if (titleY == 6)
-!     {
-!         if (fire2pressed)
 !         {
 !             scrSfx(sfx_powerup01, 60);
 !             global.g15_playerScores = [0, 0, 0, 0];
 !             state = STATE_INTRO_FALL;
 !         }
-      }
-  }
+!     }
+! }
 ! else if (state == STATE_INTRO_FALL)
-  {
-+     if (!introSoundTrig)
-+     {
-+         scrSfx(sfx_polyDrop00, 89);
-+         introSoundTrig = true;
-+     }
-+ 
-+     if (global.numPlayers == 1) {
-+         global.g15_threshY = 96;
-+         if (!inRecordOrPlayback())
-+             instance_create(192, -32, o15_IntroFall);
-+     } else {
-+         global.g15_threshY = threshYValues[currentThreshYSelect];
-+         global.g15_gameOverCondition = currentGameOverConditionSelect;
-+         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
-+         global.g15_multiplayerStartingLevel = startingLevelSelection;
-+         global.g15_multiplayerStartingPowerups = [iRecov, iGun, iFoot, iMagnet, iLightning, iJump];
-+ 
-+         if (startingLevelSelection == 5) {
-+             global.g15_randomiseLevel = true;
-+         } else {
-+             global.g15_randomiseLevel = false;
-+         }
-+ 
-+         if (global.numPlayers >= 2 && global.g15_randomiseLevel) {
-+             randomise();
-+             global.g15_multiplayerStartingLevel = irandom(3) + 1;
-+         }
-+         
-+         if (global.numPlayers == 2) {
-+             instance_create(170, -32, o15_IntroFall);
-+             var dropSecond = instance_create(214, -32, o15_IntroFall);
-+             dropSecond.sprite_index = s15_Player1StunnedMulti;
-+             dropSecond.image_index = 1;
-+             dropSecond.dummy = true;
-+         } else if (global.numPlayers == 3) {
-+             instance_create(160, -32, o15_IntroFall);
-+             var dropSecond = instance_create(190, -32, o15_IntroFall);
-+             dropSecond.sprite_index = s15_Player1StunnedMulti;
-+             dropSecond.image_index = 1;
-+             dropSecond.dummy = true;
-+             var dropThird = instance_create(220, -32, o15_IntroFall);
-+             dropThird.sprite_index = s15_Player1StunnedMulti;
-+             dropThird.image_index = 2;
-+             dropThird.dummy = true;
-+         } else if (global.numPlayers == 4) {
-+             instance_create(150, -32, o15_IntroFall);
-+             var dropSecond = instance_create(180, -32, o15_IntroFall);
-+             dropSecond.sprite_index = s15_Player1StunnedMulti;
-+             dropSecond.image_index = 1;
-+             dropSecond.dummy = true;
-+             var dropThird = instance_create(210, -32, o15_IntroFall);
-+             dropThird.sprite_index = s15_Player1StunnedMulti;
-+             dropThird.image_index = 2;
-+             dropThird.dummy = true;
-+             var dropFourth = instance_create(240, -32, o15_IntroFall);
-+             dropFourth.sprite_index = s15_Player1StunnedMulti;
-+             dropFourth.image_index = 3;
-+             dropFourth.dummy = true;
-+         }
-+     }
-+     
-+     if (global.numPlayers >= 2) {
-+         players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
-+         players[1].playerNum = 2;
-+         players[1].x = players[0].x + 304;
-+     }
+! {
+!     if (!introSoundTrig)
+!     {
+!         scrSfx(sfx_polyDrop00, 89);
+!         introSoundTrig = true;
+!     }
+! 
+!     if (global.numPlayers == 1) {
+!         global.g15_threshY = 96;
+!         if (!inRecordOrPlayback())
+!             instance_create(192, -32, o15_IntroFall);
+!     } else {
+!         global.g15_threshY = threshYValues[currentThreshYSelect];
+!         global.g15_gameOverCondition = currentGameOverConditionSelect;
+!         global.g15_coopCostMultiplier = coopCostValues[coopCostSelection];
+!         global.g15_multiplayerStartingLevel = startingLevelSelection;
+!         global.g15_multiplayerStartingPowerups = [iRecov, iGun, iFoot, iMagnet, iLightning, iJump];
+! 
+!         if (startingLevelSelection == 5) {
+!             global.g15_randomiseLevel = true;
+!         } else {
+!             global.g15_randomiseLevel = false;
+!         }
+! 
+!         if (global.numPlayers >= 2 && global.g15_randomiseLevel) {
+!             randomise();
+!             global.g15_multiplayerStartingLevel = irandom(3) + 1;
+!         }
+!         
+!         if (global.numPlayers == 2) {
+!             instance_create(170, -32, o15_IntroFall);
+!             var dropSecond = instance_create(214, -32, o15_IntroFall);
+!             dropSecond.sprite_index = s15_Player1StunnedMulti;
+!             dropSecond.image_index = 1;
+!             dropSecond.dummy = true;
+!         } else if (global.numPlayers == 3) {
+!             instance_create(160, -32, o15_IntroFall);
+!             var dropSecond = instance_create(190, -32, o15_IntroFall);
+!             dropSecond.sprite_index = s15_Player1StunnedMulti;
+!             dropSecond.image_index = 1;
+!             dropSecond.dummy = true;
+!             var dropThird = instance_create(220, -32, o15_IntroFall);
+!             dropThird.sprite_index = s15_Player1StunnedMulti;
+!             dropThird.image_index = 2;
+!             dropThird.dummy = true;
+!         } else if (global.numPlayers == 4) {
+!             instance_create(150, -32, o15_IntroFall);
+!             var dropSecond = instance_create(180, -32, o15_IntroFall);
+!             dropSecond.sprite_index = s15_Player1StunnedMulti;
+!             dropSecond.image_index = 1;
+!             dropSecond.dummy = true;
+!             var dropThird = instance_create(210, -32, o15_IntroFall);
+!             dropThird.sprite_index = s15_Player1StunnedMulti;
+!             dropThird.image_index = 2;
+!             dropThird.dummy = true;
+!             var dropFourth = instance_create(240, -32, o15_IntroFall);
+!             dropFourth.sprite_index = s15_Player1StunnedMulti;
+!             dropFourth.image_index = 3;
+!             dropFourth.dummy = true;
+!         }
+!     }
+!     
+!     if (global.numPlayers >= 2) {
+!         players[1] = instance_create_layer(345, 5336, "Compatibility_Instances_Depth_100", o15_Player);
+!         players[1].playerNum = 2;
+!         players[1].x = players[0].x + 304;
+      }
 + 
 +     if (global.numPlayers >= 3) {
 +         players[2] = instance_create_layer(40 + 70, 5336, "Compatibility_Instances_Depth_100", o15_Player);
@@ -305,12 +305,12 @@
 +     }
 + 
 +     state = STATE_INTRO_FALL_WAIT;
-+ }
-+ else if (state == STATE_INTRO_FALL_FINISH)
-+ {
+  }
+! else if (state == STATE_INTRO_FALL_FINISH)
+  {
 +     if (global.g15_isVsMode && global.g15_multiplayerStartingLevel == 1) {
 +         global.g15_QuickRestart = true;
-+         __view_set(e__VW.YView, 0, room_height - __view_get(e__VW.HView, 0));
++         set_yview(room_height - 216);
 +         activeInput = false;
 +         scrBGM(bgm15_stage01);
 +         scrDeactivateRegion(384, 0, room_width - 384, room_height, true, true);
@@ -364,3 +364,13 @@
                           scrSfx(sfx_special00, 55);
 !                         coins -= ceil(shopPrices[selItem] * costMultiplier);
                           shopBought[selItem] = 1;
+***************
+*** 249,251 ****
+          {
+!             set_view(1152, 0);
+              miscCount = 60;
+--- 552,555 ----
+          {
+!             set_xview(1152);
+!             set_yview(0);
+              miscCount = 60;

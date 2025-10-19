@@ -1,11 +1,11 @@
-*** original_scripts/skip_intro/gml_GlobalScript_scrInit.gml	Mon Sep  8 19:19:28 2025
---- ufo50_modded_scripts/skip_intro/gml_GlobalScript_scrInit.gml	Mon Sep  8 19:28:59 2025
+*** original_scripts/skip_intro/gml_GlobalScript_scrInit.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/skip_intro/gml_GlobalScript_scrInit.gml	Tue Oct 14 20:57:22 2025
 ***************
-*** 53,55 ****
+*** 4,6 ****
       global.QUICK_PLAY = 0;
 !     global.SKIP_INTRO = false;
       global.PROFILE_PRELOAD = 0;
---- 53,55 ----
+--- 4,6 ----
       global.QUICK_PLAY = 0;
 !     global.SKIP_INTRO = true;
       global.PROFILE_PRELOAD = 0;

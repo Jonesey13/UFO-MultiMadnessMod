@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Mon Aug 18 14:47:09 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Mon Aug 18 10:17:47 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Collision_o15__SpikeRoller.gml	Thu Oct 16 08:39:25 2025
 ***************
 *** 2,4 ****
   {
@@ -7,7 +7,7 @@
       scrSfx(sfx_die01, 85);
 --- 2,3 ----
 ***************
-*** 11,19 ****
+*** 11,64 ****
       vspd = 0;
 -     o15_Game.state = -99;
 -     o15_Game.alarm[0] = 10;
@@ -15,9 +15,54 @@
 !     if (o15_Game.currHighFloor > o15_Game.highFloor)
 !         o15_Game.newHighFloor = true;
 !     
-!     scrSaveGame(0);
-  }
---- 10,59 ----
+!     with (o15_Game)
+!     {
+!         var _save = false;
+!         
+!         if (currHighPoint > highPoint)
+!             _save = true;
+!         
+!         if (currHighFloor > highFloor)
+!             _save = true;
+          
+!         if (moneyCollected > mostMoneyCollected)
+!             _save = true;
+          
+!         if (!_save)
+          {
+!             var totalItemsEverBought = 0;
+              
+!             for (var i = 0; i < NUM_UNIQUE_ITEMS; i++)
+!             {
+!                 if (itemsEverBought[i])
+!                     totalItemsEverBought++;
+!             }
+              
+!             if (level > 1 && totalItemsEverBought < NUM_UNIQUE_ITEMS)
+                  _save = true;
+-         }
+-         
+-         if (!_save)
+-         {
+-             var totalKeys = 0;
+              
+!             if (key1)
+!                 totalKeys += 1;
+              
+!             if (key2)
+!                 totalKeys += 1;
+              
+!             if (key3)
+!                 totalKeys += 1;
+              
+!             if (totalKeys > mostKeysCollected)
+!                 _save = true;
+          }
+-         
+-         if (_save)
+-             scrSaveGame(0);
+      }
+--- 10,104 ----
       vspd = 0;
       
 !     var gameOver = true;
@@ -61,10 +106,55 @@
 !         o15_Game.state = o15_Game.STATE_GAME_OVER;
 !         o15_Game.gameOverDelay = 1000000;
 !         o15_Game.alarm[0] = 10;
-!         
+          
 !         if (o15_Game.currHighFloor > o15_Game.highFloor)
 !             o15_Game.newHighFloor = true;
-!         
-!         scrSaveGame(0);
-!     }
-  }
+          
+!         with (o15_Game)
+          {
+!             var _save = false;
+              
+!             if (currHighPoint > highPoint)
+!                 _save = true;
+              
+!             if (currHighFloor > highFloor)
+                  _save = true;
+              
+!             if (moneyCollected > mostMoneyCollected)
+!                 _save = true;
+              
+!             if (!_save)
+!             {
+!                 var totalItemsEverBought = 0;
+!                 
+!                 for (var i = 0; i < NUM_UNIQUE_ITEMS; i++)
+!                 {
+!                     if (itemsEverBought[i])
+!                         totalItemsEverBought++;
+!                 }
+!                 
+!                 if (level > 1 && totalItemsEverBought < NUM_UNIQUE_ITEMS)
+!                     _save = true;
+!             }
+              
+!             if (!_save)
+!             {
+!                 var totalKeys = 0;
+!                 
+!                 if (key1)
+!                     totalKeys += 1;
+!                 
+!                 if (key2)
+!                     totalKeys += 1;
+!                 
+!                 if (key3)
+!                     totalKeys += 1;
+!                 
+!                 if (totalKeys > mostKeysCollected)
+!                     _save = true;
+!             }
+              
+!             if (_save)
+!                 scrSaveGame(0);
+          }
+      }

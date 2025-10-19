@@ -1,5 +1,5 @@
-*** original_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Fri Jun  6 14:37:49 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Fri Jun  6 14:00:31 2025
+*** original_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Balloon_Step_0.gml	Thu Oct 16 08:11:46 2025
 ***************
 *** 5,10 ****
   {
@@ -21,7 +21,7 @@
       }
 ***************
 *** 29,45 ****
-          var _y = scrViewY() - 48;
+          var _y = camera_get_view_y(view_get_camera(0)) - 48;
 -         var ghost = instance_create(_x, _y, o34_Ghost);
           
 !         if (snum == 0)
@@ -39,7 +39,7 @@
 !             ghost.sprite_index = s34_NinjaGhost;
           }
 --- 33,60 ----
-          var _y = scrViewY() - 48;
+          var _y = camera_get_view_y(view_get_camera(0)) - 48;
           
 !         for (var i = 0; i < global.numPlayers; i++)
           {

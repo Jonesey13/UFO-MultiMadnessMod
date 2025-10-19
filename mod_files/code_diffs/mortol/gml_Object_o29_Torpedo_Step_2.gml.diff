@@ -1,8 +1,8 @@
-*** original_scripts/mortol/gml_Object_o29_Torpedo_Step_2.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_Torpedo_Step_2.gml	Sun May 11 20:14:00 2025
+*** original_scripts/mortol/gml_Object_o29_Torpedo_Step_2.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Torpedo_Step_2.gml	Thu Oct 16 08:26:41 2025
 ***************
-*** 6,7 ****
---- 6,11 ----
+*** 4,5 ****
+--- 4,9 ----
           sprite_index = s29_Torpedo2;
 +     if (o29_Game.currPlayer == 2)
 +         sprite_index = s29_Torpedo3;

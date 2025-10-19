@@ -1,5 +1,5 @@
-*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Mon Sep  8 19:19:28 2025
---- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Tue Sep  9 21:14:41 2025
+*** original_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/velgress/gml_Object_o15_Player_Step_0.gml	Thu Oct 16 08:40:25 2025
 ***************
 *** 1,2 ****
 ! if (instance_exists(oTextBox) || o15_Game.state == -2 || o15_Game.state == 4)
@@ -49,12 +49,12 @@
 !             sprite_index = s15_Player1StandMulti;
               scrDrawTextBoxSplit(scrString("level_complete"));
 ***************
-*** 188,191 ****
+*** 187,190 ****
           o15_Game.state = 0;
 !         x = 416 + (384 * (o15_Game.level - 1)) + 8;
 !         y = o15_Game.LEVEL_HEIGHT + 8;
           
---- 193,210 ----
+--- 192,209 ----
           o15_Game.state = 0;
 ! 
 !         with (o15_Player) {
@@ -74,8 +74,8 @@
 !         }
           
 ***************
-*** 195,196 ****
---- 214,219 ----
+*** 194,195 ****
+--- 213,218 ----
               y = o15_Game.LEVEL_HEIGHT + 40;
 +             if (global.numPlayers >= 2) {
 +                 x = 396 + (384 * (o15_Game.level - 1));
@@ -83,29 +83,38 @@
 +             }
           }
 ***************
-*** 231,233 ****
+*** 229,231 ****
   {
 !     sprite_index = s15_Player1Dead;
       hspd = 0;
---- 254,256 ----
+--- 252,254 ----
   {
 !     sprite_index = s15_Player1DeadMulti;
       hspd = 0;
 ***************
-*** 274,276 ****
+*** 268,270 ****
+          if (camera_get_view_y(view_get_camera(0)) < o15_Game.borderY)
+!             set_yview(o15_Game.borderY);
+          
+--- 291,293 ----
+          if (camera_get_view_y(view_get_camera(0)) < o15_Game.borderY)
+!            set_yview(o15_Game.borderY);
+          
+***************
+*** 272,274 ****
           {
 !             if (o15_Game.level == 3 && sprite_index == s15_SpikeRoller)
               {
---- 297,299 ----
+--- 295,297 ----
           {
 !             if (o15_Game.level == 3 && (sprite_index == s15_SpikeRoller || sprite_index == s15_SpikeRollerLarge))
               {
 ***************
-*** 286,288 ****
+*** 284,286 ****
               
 !             sprite_index = s15_SpikeRollerRoll;
           }
---- 309,314 ----
+--- 307,312 ----
               
 !             if (global.numPlayers >= 2)
 !                 sprite_index = s15_SpikeRollerRollLarge;
@@ -113,16 +122,16 @@
 !                 sprite_index = s15_SpikeRollerRoll;
           }
 ***************
-*** 329,331 ****
+*** 327,329 ****
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(0);
   
---- 355,357 ----
+--- 353,355 ----
   if (o15_Game.state != 3 && o15_Game.state != 4)
 !     scrGetInput(playerNum - 1);
   
 ***************
-*** 455,461 ****
+*** 453,459 ****
               {
 !                 scrSfx(sfx_warp00, 80);
 !                 instance_create(x, y - 12, o15_HighJumpBlast);
@@ -130,7 +139,7 @@
 !                 highJumpMult = 4;
 !                 alarm[0] = 1;
               }
---- 481,490 ----
+--- 479,488 ----
               {
 !                 with (o15_Player) {
 !                     scrSfx(sfx_warp00, 80);
@@ -142,82 +151,85 @@
 !                 }
               }
 ***************
-*** 494,496 ****
+*** 492,494 ****
       
 !     if (fire2pressed)
       {
---- 523,525 ----
+--- 521,523 ----
       
 !     if (fire2pressed && (global.numPlayers == 1 || highJumpCount == 0))
       {
 ***************
-*** 642,646 ****
+*** 640,644 ****
           if (doubleJump > 0)
 !             sprite_index = s15_Player1Walk;
           else
 !             sprite_index = s15_Player2Walk;
       }
---- 671,675 ----
+--- 669,673 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1WalkMulti;
           else
 !             sprite_index = s15_Player2WalkMulti;
       }
 ***************
-*** 648,650 ****
+*** 646,648 ****
       {
 !         sprite_index = s15_Player1Stand;
       }
---- 677,679 ----
+--- 675,677 ----
       {
 !         sprite_index = s15_Player1StandMulti;
       }
 ***************
-*** 652,654 ****
+*** 650,652 ****
       {
 !         sprite_index = s15_Player2Stand;
       }
---- 681,683 ----
+--- 679,681 ----
       {
 !         sprite_index = s15_Player2StandMulti;
       }
 ***************
-*** 657,659 ****
+*** 655,657 ****
   {
 !     sprite_index = s15_Player2Flip;
   }
---- 686,688 ----
+--- 684,686 ----
   {
 !     sprite_index = s15_Player2FlipMulti;
   }
 ***************
-*** 664,668 ****
+*** 662,666 ****
           if (doubleJump > 0)
 !             sprite_index = s15_Player1Jump;
           else
 !             sprite_index = s15_Player2Jump;
       }
---- 693,697 ----
+--- 691,695 ----
           if (doubleJump > 0)
 !             sprite_index = s15_Player1JumpMulti;
           else
 !             sprite_index = s15_Player2JumpMulti;
       }
 ***************
-*** 670,672 ****
+*** 668,670 ****
       {
 !         sprite_index = s15_Player1Fall;
       }
---- 699,701 ----
+--- 697,699 ----
       {
 !         sprite_index = s15_Player1FallMulti;
       }
 ***************
-*** 674,676 ****
+*** 672,675 ****
       {
 !         sprite_index = s15_Player2Fall;
       }
---- 703,705 ----
+! }
+--- 701,704 ----
       {
 !         sprite_index = s15_Player2FallMulti;
       }
+! }
+\ No newline at end of file

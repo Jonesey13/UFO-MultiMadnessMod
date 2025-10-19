@@ -1,17 +1,35 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 17:01:12 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Sun Oct 19 20:57:06 2025
 ***************
-*** 9,11 ****
+*** 3,11 ****
+  returnToBase = false;
+! statePortrait = PORTRAIT_STATIC;
+! stepPortrait = 0;
+! tPortrait = 0;
+! turnPortrait = 0;
+  checkpointRadiusMin = 0;
   checkpointRadiusMax = 1024 + (dayNumber * 256);
 - checkpointActive = 0;
   checkPointActiveName1 = checkpointName[checkpointActive][0];
---- 9,10 ----
+--- 3,14 ----
+  returnToBase = false;
+! for (var i = 0; i < global.numPlayers; i++) {
+!     statePortraits[i] = PORTRAIT_STATIC;
+! }
+! for (var i = 0; i < global.numPlayers; i++) {
+!     stepPortraits[i] = 0;
+!     tPortraits[i] = 0;
+!     turnPortrait[i] = 0;
+! }
+  checkpointRadiusMin = 0;
+  checkpointRadiusMax = 1024 + (dayNumber * 256);
+  checkPointActiveName1 = checkpointName[checkpointActive][0];
 ***************
 *** 15,17 ****
   event_user(USER_UPDATE_HUD_TIMER);
 ! player = instance_create(x + 8, y + 8, o32_Player);
   cameraCenterX = (x + 8) - 144;
---- 14,21 ----
+--- 18,25 ----
   event_user(USER_UPDATE_HUD_TIMER);
 ! 
 ! for (var i = 0; i < global.numPlayers; i++) {
@@ -20,3 +38,11 @@
 ! }
 ! 
   cameraCenterX = (x + 8) - 144;
+***************
+*** 46,47 ****
+      }
+! }
+--- 54,55 ----
+      }
+! }
+\ No newline at end of file

@@ -1,5 +1,5 @@
 *** original_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Thu Jan  1 00:00:00 1970
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Fri Jun  6 20:40:22 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandFour_Step_0.gml	Thu Oct 16 08:11:46 2025
 ***************
 *** 0 ****
 --- 1,174 ----
@@ -120,33 +120,33 @@
 +     switch (sel)
 +     {
 +         case 0:
-+             x = scrViewX() + 112 + 32;
-+             y = scrViewY() + 64 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32;
++             y = camera_get_view_y(view_get_camera(0)) + 64 + 16;
 +             break;
 +         
 +         case 1:
-+             x = scrViewX() + 112 + 32 + 48;
-+             y = scrViewY() + 64 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32 + 48;
++             y = camera_get_view_y(view_get_camera(0)) + 64 + 16;
 +             break;
 +         
 +         case 2:
-+             x = scrViewX() + 112 + 32 + 96;
-+             y = scrViewY() + 64 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32 + 96;
++             y = camera_get_view_y(view_get_camera(0)) + 64 + 16;
 +             break;
 +         
 +         case 3:
-+             x = scrViewX() + 112 + 32;
-+             y = scrViewY() + 112 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32;
++             y = camera_get_view_y(view_get_camera(0)) + 112 + 16;
 +             break;
 +         
 +         case 4:
-+             x = scrViewX() + 112 + 32 + 48;
-+             y = scrViewY() + 112 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32 + 48;
++             y = camera_get_view_y(view_get_camera(0)) + 112 + 16;
 +             break;
 +         
 +         case 5:
-+             x = scrViewX() + 112 + 32 + 96;
-+             y = scrViewY() + 112 + 16;
++             x = camera_get_view_x(view_get_camera(0)) + 112 + 32 + 96;
++             y = camera_get_view_y(view_get_camera(0)) + 112 + 16;
 +             break;
 +     }
 +     

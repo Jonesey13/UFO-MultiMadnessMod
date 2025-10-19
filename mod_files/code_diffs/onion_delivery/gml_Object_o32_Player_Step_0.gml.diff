@@ -1,11 +1,269 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Mon Sep 29 20:13:55 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Sun Oct 19 20:57:36 2025
+***************
+*** 3,4 ****
+--- 3,6 ----
+  
++ var playerNum = player;
++ 
+  if (tIframes > 0)
 ***************
 *** 71,73 ****
   
 ! scrGetInput(0);
   
---- 71,73 ----
+--- 73,75 ----
   
 ! scrGetInput(player);
   
+***************
+*** 100,102 ****
+              
+!             statePortrait = PORTRAIT_DRIVE;
+              tPointer = 150;
+--- 102,104 ----
+              
+!             statePortraits[playerNum] = PORTRAIT_DRIVE;
+              tPointer = 150;
+***************
+*** 117,119 ****
+      {
+!         o32_Mas.turnPortrait = 1;
+          dirAim = approach(dirAim, 0, 10);
+--- 119,121 ----
+      {
+!         o32_Mas.turnPortrait[playerNum] = 1;
+          dirAim = approach(dirAim, 0, 10);
+***************
+*** 125,127 ****
+      {
+!         o32_Mas.turnPortrait = 0;
+      }
+--- 127,129 ----
+      {
+!         o32_Mas.turnPortrait[playerNum] = 0;
+      }
+***************
+*** 182,184 ****
+  
+! o32_Mas.turnPortrait = turn;
+  groundLevel = 0;
+--- 184,186 ----
+  
+! o32_Mas.turnPortrait[playerNum] = turn;
+  groundLevel = 0;
+***************
+*** 198,200 ****
+          with (o32_Mas)
+!             statePortrait = PORTRAIT_IN_AIR_UP;
+          
+--- 200,202 ----
+          with (o32_Mas)
+!             statePortraits[playerNum] = PORTRAIT_IN_AIR_UP;
+          
+***************
+*** 301,304 ****
+          {
+!             if (statePortrait == PORTRAIT_REVERSE)
+!                 statePortrait = PORTRAIT_DRIVE;
+          }
+--- 303,306 ----
+          {
+!             if (statePortraits[playerNum] == PORTRAIT_REVERSE)
+!                 statePortraits[playerNum] = PORTRAIT_DRIVE;
+          }
+***************
+*** 338,341 ****
+                  {
+!                     if (statePortrait == PORTRAIT_REVERSE)
+!                         statePortrait = PORTRAIT_DRIVE;
+                  }
+--- 340,343 ----
+                  {
+!                     if (statePortraits[playerNum] == PORTRAIT_REVERSE)
+!                         statePortraits[playerNum] = PORTRAIT_DRIVE;
+                  }
+***************
+*** 383,386 ****
+                  {
+!                     if (statePortrait == PORTRAIT_DRIVE)
+!                         statePortrait = PORTRAIT_REVERSE;
+                  }
+--- 385,388 ----
+                  {
+!                     if (statePortraits[playerNum] == PORTRAIT_DRIVE)
+!                         statePortraits[playerNum] = PORTRAIT_REVERSE;
+                  }
+***************
+*** 402,405 ****
+              {
+!                 if (statePortrait == PORTRAIT_DRIVE)
+!                     statePortrait = PORTRAIT_REVERSE;
+              }
+--- 404,407 ----
+              {
+!                 if (statePortraits[playerNum] == PORTRAIT_DRIVE)
+!                     statePortraits[playerNum] = PORTRAIT_REVERSE;
+              }
+***************
+*** 622,625 ****
+          {
+!             if (statePortrait == PORTRAIT_IN_AIR_UP)
+!                 statePortrait = PORTRAIT_IN_AIR_DOWN;
+          }
+--- 624,627 ----
+          {
+!             if (statePortraits[playerNum] == PORTRAIT_IN_AIR_UP)
+!                 statePortraits[playerNum] = PORTRAIT_IN_AIR_DOWN;
+          }
+***************
+*** 647,651 ****
+                  {
+!                     statePortrait = PORTRAIT_DROWN;
+!                     stepPortrait = 0;
+!                     tPortrait = 0;
+                  }
+--- 649,653 ----
+                  {
+!                     statePortraits[playerNum] = PORTRAIT_DROWN;
+!                     stepPortraits[playerNum] = 0;
+!                     tPortraits[playerNum] = 0;
+                  }
+***************
+*** 689,691 ****
+                  with (o32_Mas)
+!                     statePortrait = PORTRAIT_DRIVE;
+                  
+--- 691,693 ----
+                  with (o32_Mas)
+!                     statePortraits[playerNum] = PORTRAIT_DRIVE;
+                  
+***************
+*** 715,718 ****
+                  {
+!                     if (statePortrait == PORTRAIT_IN_AIR_DOWN)
+!                         statePortrait = PORTRAIT_IN_AIR_UP;
+                  }
+--- 717,720 ----
+                  {
+!                     if (statePortraits[playerNum] == PORTRAIT_IN_AIR_DOWN)
+!                         statePortraits[playerNum] = PORTRAIT_IN_AIR_UP;
+                  }
+***************
+*** 723,726 ****
+                  {
+!                     if (statePortrait != PORTRAIT_REVERSE)
+!                         statePortrait = PORTRAIT_DRIVE;
+                  }
+--- 725,728 ----
+                  {
+!                     if (statePortraits[playerNum] != PORTRAIT_REVERSE)
+!                         statePortraits[playerNum] = PORTRAIT_DRIVE;
+                  }
+***************
+*** 774,776 ****
+                      
+!                     statePortrait = PORTRAIT_VICTORY;
+                      returnToBase = false;
+--- 776,778 ----
+                      
+!                     statePortraits[playerNum] = PORTRAIT_VICTORY;
+                      returnToBase = false;
+***************
+*** 802,805 ****
+                  {
+!                     statePortrait = PORTRAIT_DELIVERY;
+!                     tPortrait = 0;
+                      var _onionsToAdd = 1;
+--- 804,807 ----
+                  {
+!                     statePortraits[playerNum] = PORTRAIT_DELIVERY;
+!                     tPortraits[playerNum] = 0;
+                      var _onionsToAdd = 1;
+***************
+*** 846,848 ****
+                  
+!                 statePortrait = PORTRAIT_IN_AIR_UP;
+              }
+--- 848,850 ----
+                  
+!                 statePortraits[playerNum] = PORTRAIT_IN_AIR_UP;
+              }
+***************
+*** 887,889 ****
+              scrSfx(soundPlayerJumpSmall, 40, false, false);
+!             statePortrait = PORTRAIT_IN_AIR_UP;
+          }
+--- 889,891 ----
+              scrSfx(soundPlayerJumpSmall, 40, false, false);
+!             statePortraits[playerNum] = PORTRAIT_IN_AIR_UP;
+          }
+***************
+*** 913,916 ****
+                  scrSfx(soundBushBreak, 40, false, false);
+!                 statePortrait = PORTRAIT_BONK;
+!                 tPortrait = 0;
+              }
+--- 915,918 ----
+                  scrSfx(soundBushBreak, 40, false, false);
+!                 statePortraits[playerNum] = PORTRAIT_BONK;
+!                 tPortraits[playerNum] = 0;
+              }
+***************
+*** 1076,1101 ****
+      {
+          with (o32_Mas)
+          {
+-             muteBGM();
+              scrSfx(soundPlayerDie2, 80);
+!             statePortrait = PORTRAIT_STATIC;
+!             stepPortrait = 0;
+!             tPortrait = 0;
+!             
+!             if (dayEvent == EVENT_NOTHING)
+!                 event0 += 1;
+!             else if (dayEvent == EVENT_RAIN)
+!                 event1 += 1;
+!             else if (dayEvent == EVENT_INVASION)
+!                 event2 += 1;
+!             else if (dayEvent == EVENT_ZOMBIES)
+!                 event3 += 1;
+!             else if (dayEvent == EVENT_ONION_MONSTER)
+!                 event4 += 1;
+!             else if (dayEvent == EVENT_MAFIA_RAMPAGE)
+!                 event5 += 1;
+!             else if (dayEvent == EVENT_FLOODING)
+!                 event6 += 1;
+!             
+!             scr32_GamestateSet(GAMESTATE_DEATH);
+          }
+--- 1078,1106 ----
+      {
++         var playerNum = player;
+          with (o32_Mas)
+          {
+              scrSfx(soundPlayerDie2, 80);
+!             statePortraits[playerNum] = PORTRAIT_STATIC;
+!             stepPortraits[playerNum] = 0;
+!             tPortraits[playerNum] = 0;
+!             
+!             if (instance_number(o32_Player) == 1) {
+!               muteBGM();
+!               if (dayEvent == EVENT_NOTHING)
+!                   event0 += 1;
+!               else if (dayEvent == EVENT_RAIN)
+!                   event1 += 1;
+!               else if (dayEvent == EVENT_INVASION)
+!                   event2 += 1;
+!               else if (dayEvent == EVENT_ZOMBIES)
+!                   event3 += 1;
+!               else if (dayEvent == EVENT_ONION_MONSTER)
+!                   event4 += 1;
+!               else if (dayEvent == EVENT_MAFIA_RAMPAGE)
+!                   event5 += 1;
+!               else if (dayEvent == EVENT_FLOODING)
+!                   event6 += 1;
+!               
+!               scr32_GamestateSet(GAMESTATE_DEATH);
+!             }
+          }

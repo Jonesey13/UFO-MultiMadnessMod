@@ -1,5 +1,5 @@
-*** original_scripts/gml_GlobalScript_scrInitInput.gml	Mon Sep  8 19:19:27 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Tue Sep  9 20:39:19 2025
+*** original_scripts/gml_GlobalScript_scrInitInput.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrInitInput.gml	Tue Oct 14 21:03:15 2025
 ***************
 *** 5,6 ****
 --- 5,10 ----
@@ -119,17 +119,35 @@
 !     for (var p = 0; p <= 5; p++)
       {
 ***************
-*** 62,63 ****
---- 122,127 ----
+*** 62,69 ****
+--- 122,145 ----
       global.doubledUpButtons[1] = scrReadConfig("doubledUpButtonsP2", true);
 +     global.doubledUpButtons[2] = scrReadConfig("doubledUpButtonsP3", true);
 +     global.doubledUpButtons[3] = scrReadConfig("doubledUpButtonsP4", true);
 +     global.doubledUpButtons[4] = scrReadConfig("doubledUpButtonsP5", true);
 +     global.doubledUpButtons[5] = scrReadConfig("doubledUpButtonsP6", true);
+      global.altFire1[0] = scrReadConfig("altFire1P1", 32770);
+      global.altFire1[1] = scrReadConfig("altFire1P2", 32770);
++     global.altFire1[2] = scrReadConfig("altFire1P3", 32770);
++     global.altFire1[3] = scrReadConfig("altFire1P4", 32770);
++     global.altFire1[4] = scrReadConfig("altFire1P5", 32770);
++     global.altFire1[5] = scrReadConfig("altFire1P6", 32770);
+      global.altFire2[0] = scrReadConfig("altFire2P1", 32772);
+      global.altFire2[1] = scrReadConfig("altFire2P2", 32772);
++     global.altFire2[2] = scrReadConfig("altFire2P3", 32772);
++     global.altFire2[3] = scrReadConfig("altFire2P4", 32772);
++     global.altFire2[4] = scrReadConfig("altFire2P5", 32772);
++     global.altFire2[5] = scrReadConfig("altFire2P6", 32772);
+      global.invertedButtons[0] = scrReadConfig("invertedButtonsP1", false);
+      global.invertedButtons[1] = scrReadConfig("invertedButtonsP2", false);
++     global.invertedButtons[2] = scrReadConfig("invertedButtonsP3", false);
++     global.invertedButtons[3] = scrReadConfig("invertedButtonsP4", false);
++     global.invertedButtons[4] = scrReadConfig("invertedButtonsP5", false);
++     global.invertedButtons[5] = scrReadConfig("invertedButtonsP6", false);
       gamepad_set_axis_deadzone(0, 0);
 ***************
-*** 337,338 ****
---- 401,406 ----
+*** 343,344 ****
+--- 419,424 ----
       global.joyType[1] = scrReadConfig("joyTypeP2", scrDetectJoyType(1));
 +     global.joyType[2] = scrReadConfig("joyTypeP3", scrDetectJoyType(2));
 +     global.joyType[3] = scrReadConfig("joyTypeP4", scrDetectJoyType(3));

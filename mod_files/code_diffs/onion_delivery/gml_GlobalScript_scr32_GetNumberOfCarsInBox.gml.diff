@@ -1,0 +1,17 @@
+*** original_scripts/onion_delivery/gml_GlobalScript_scr32_GetNumberOfCarsInBox.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/onion_delivery/gml_GlobalScript_scr32_GetNumberOfCarsInBox.gml	Sun Oct 19 14:04:17 2025
+***************
+*** 0 ****
+--- 1,12 ----
++ function scr32_GetNumberOfCarsInBox(boundingBox)
++ {
++     var _list = ds_list_create();
++     return collision_rectangle_list(
++         boundingBox[0], boundingBox[1], boundingBox[2], boundingBox[3], 
++         o32_eCarTraffic, 
++         false, 
++         true, 
++         _list, 
++         false
++     );
++ }

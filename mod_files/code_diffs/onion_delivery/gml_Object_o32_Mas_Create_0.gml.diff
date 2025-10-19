@@ -1,5 +1,5 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 17:01:19 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Sun Oct 19 20:56:57 2025
 ***************
 *** 67,68 ****
 --- 67,73 ----
@@ -22,15 +22,21 @@
 ! 
   stateBuffered = -4;
 ***************
-*** 105,107 ****
-  currRegion = 0;
+*** 104,109 ****
+  tDayEnd = 0;
+! currRegion = 0;
 ! timerSpawnSystem = 0;
-  activeSpawner[0] = 0;
---- 112,115 ----
-  currRegion = 0;
+! activeSpawner[0] = 0;
+! activeSpawnerCount = 0;
+  cameraDirection = 0;
+--- 111,117 ----
+  tDayEnd = 0;
+! currRegion = [0, 0, 0, 0];
 ! timerSpawnSystem = [0, 0, 0, 0];
 ! 
-  activeSpawner[0] = 0;
+! activeSpawner = [[], [], [], []];
+! activeSpawnerCount = [0, 0, 0, 0];
+  cameraDirection = 0;
 ***************
 *** 119,122 ****
   cameraOffsetAimY = 0;
@@ -43,14 +49,32 @@
 ! yPlayfields = [];
   eventNewsImage[EVENT_NOTHING] = 0;
 ***************
-*** 151,152 ****
---- 159,161 ----
+*** 145,152 ****
+  showDebugInfo = false;
+! statePortrait = PORTRAIT_STATIC;
+! stepPortrait = 0;
+! tPortrait = 0;
+! turnPortrait = 0;
+  displayTimer = 0;
+  displayTimerPrev = displayTimer;
+  checkpointActiveName1 = "";
+--- 153,165 ----
+  showDebugInfo = false;
+! for (var i = 0; i < global.numPlayers; i++) {
+!     statePortraits[i] = PORTRAIT_STATIC;
+! }
+! for (var i = 0; i < global.numPlayers; i++) {
+!     stepPortraits[i] = 0;
+!     tPortraits[i] = 0;
+!     turnPortrait[i] = 0;
+! }
+  displayTimer = 0;
   displayTimerPrev = displayTimer;
 + checkpointActive = 0;
   checkpointActiveName1 = "";
 ***************
 *** 223 ****
---- 232,254 ----
+--- 236,258 ----
   metaTrigger = false;
 + 
 + 

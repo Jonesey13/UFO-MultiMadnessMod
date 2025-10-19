@@ -1,14 +1,14 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Thu Jun 19 21:53:54 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Draw_0.gml	Thu Oct 16 08:17:19 2025
 ***************
 *** 5,7 ****
       draw_set_color(global.palette[0]);
-!     draw_rectangle(scrViewX() + 118, scrViewY() + 32, scrViewX() + 264, scrViewY() + 160, 0);
-      var _x = scrViewX() + 128;
+!     draw_rectangle(camera_get_view_x(view_get_camera(0)) + 118, camera_get_view_y(view_get_camera(0)) + 32, camera_get_view_x(view_get_camera(0)) + 264, camera_get_view_y(view_get_camera(0)) + 160, 0);
+      var _x = camera_get_view_x(view_get_camera(0)) + 128;
 --- 5,7 ----
       draw_set_color(global.palette[0]);
-!     draw_rectangle(scrViewX() + 118, scrViewY() + 32, scrViewX() + 300, scrViewY() + 200, 0);
-      var _x = scrViewX() + 128;
+!     draw_rectangle(camera_get_view_x(view_get_camera(0)) + 118, camera_get_view_y(view_get_camera(0)) + 32, camera_get_view_x(view_get_camera(0)) + 300, camera_get_view_y(view_get_camera(0)) + 200, 0);
+      var _x = camera_get_view_x(view_get_camera(0)) + 128;
 ***************
 *** 35,37 ****
       
@@ -33,11 +33,97 @@
 ! else if (state == STATE_CHAR_SELECT && numPlayers <= 4)
   {
 ***************
-*** 189,191 ****
+*** 98,115 ****
+      for (var _a = 0; _a < _stats[0]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 404, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[1]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 412, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[2]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 420, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[0]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 403);
+      
+      for (var _a = 0; _a < _stats[1]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 411);
+      
+      for (var _a = 0; _a < _stats[2]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + 192) - 64) + (_a * 8), 419);
+      
+--- 103,120 ----
+      for (var _a = 0; _a < _stats[0]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 404, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[1]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 412, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[2]; _a++)
+!         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 420, 1.2, 1, 0, c_black, 1);
+      
+      for (var _a = 0; _a < _stats[0]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 403);
+      
+      for (var _a = 0; _a < _stats[1]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 411);
+      
+      for (var _a = 0; _a < _stats[2]; _a++)
+!         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), 419);
+      
+***************
+*** 165,182 ****
+              for (var _a = 0; _a < _stats[0]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 404, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[1]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 412, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[2]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 420, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[0]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 403);
+              
+              for (var _a = 0; _a < _stats[1]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 411);
+              
+              for (var _a = 0; _a < _stats[2]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + 192 + 64) - (_a * 8), 419);
+          }
+--- 170,187 ----
+              for (var _a = 0; _a < _stats[0]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 404, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[1]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 412, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[2]; _a++)
+!                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 420, 1.2, 1, 0, c_black, 1);
+              
+              for (var _a = 0; _a < _stats[0]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 403);
+              
+              for (var _a = 0; _a < _stats[1]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 411);
+              
+              for (var _a = 0; _a < _stats[2]; _a++)
+!                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), 419);
+          }
+***************
+*** 185,191 ****
+      scrSetFont(global.fontDefault);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + 192, 400, "speed", 0, 16, 4);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + 192, 408, "control", 0, 16, 4);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + 192, 416, "power", 0, 16, 4);
       
 !     if (numPlayers == 2)
       {
---- 194,196 ----
+--- 190,196 ----
+      scrSetFont(global.fontDefault);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), 400, "speed", 0, 16, 4);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), 408, "control", 0, 16, 4);
+!     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), 416, "power", 0, 16, 4);
       
 !     if (numPlayers == 2 || numPlayers == 5)
       {
@@ -105,22 +191,22 @@
 +     scrSetFont(global.fontDefault);
 +     
 +     for (var _a = 0; _a < _stats[0]; _a++)
-+         draw_sprite_ext(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
++         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
 +     
 +     for (var _a = 0; _a < _stats[1]; _a++)
-+         draw_sprite_ext(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
++         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
 +     
 +     for (var _a = 0; _a < _stats[2]; _a++)
-+         draw_sprite_ext(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
++         draw_sprite_ext(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
 +     
 +     for (var _a = 0; _a < _stats[0]; _a++)
-+         draw_sprite(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 3);
++         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 3);
 +     
 +     for (var _a = 0; _a < _stats[1]; _a++)
-+         draw_sprite(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 11);
++         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 11);
 +     
 +     for (var _a = 0; _a < _stats[2]; _a++)
-+         draw_sprite(sFX_StarRotate, 0, ((scrViewX() + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 19);
++         draw_sprite(sFX_StarRotate, 0, ((camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5)) - 64) + (_a * 8), UPPER_OFFSET + 19);
 +     
 +     if (instance_exists(o22_HandRight))
 +     {
@@ -172,22 +258,22 @@
 +             scrSetFont(global.fontDefault);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 3);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 3);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 11);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 11);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 19);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), UPPER_OFFSET + 19);
 +         }
 +     }
 + 
@@ -241,22 +327,22 @@
 +             scrSetFont(global.fontDefault);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 3);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 3);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 11);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 11);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 19);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) - 64) + (_a * 8), LOWER_OFFSET + 19);
 +         }
 +     }
 + 
@@ -310,32 +396,32 @@
 +             scrSetFont(global.fontDefault);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 4, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 12, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite_ext(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
++                 draw_sprite_ext(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 20, 1.2, 1, 0, c_black, 1);
 +             
 +             for (var _a = 0; _a < _stats[0]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 3);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 3);
 +             
 +             for (var _a = 0; _a < _stats[1]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 11);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 11);
 +             
 +             for (var _a = 0; _a < _stats[2]; _a++)
-+                 draw_sprite(sFX_StarRotate, 0, (scrViewX() + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 19);
++                 draw_sprite(sFX_StarRotate, 0, (camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5) + 64) - (_a * 8), LOWER_OFFSET + 19);
 +         }
 +     }
 +     
 +     scrSetFont(global.fontDefault);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET, "speed", 0, 16, 4);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET + 8, "control", 0, 16, 4);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET + 16, "power", 0, 16, 4);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET, "speed", 0, 16, 4);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET + 8, "control", 0, 16, 4);
-+     scrStringDrawCenterAltExt(scrViewX() + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET + 16, "power", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET, "speed", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET + 8, "control", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), UPPER_OFFSET + 16, "power", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET, "speed", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET + 8, "control", 0, 16, 4);
++     scrStringDrawCenterAltExt(camera_get_view_x(view_get_camera(0)) + (__view_get(e__VW.WView, 0) * 0.5), LOWER_OFFSET + 16, "power", 0, 16, 4);
 +     
 +     draw_text_ce(56, 424, scrStringVal("win_count", string(wins[LT])), 4);
 +     draw_text_ce(328, 424, scrStringVal("win_count", string(wins[RT])), 4);
@@ -386,3 +472,28 @@
           
 !         if (numPlayers == 4 || numPlayers == 5)
           {
+***************
+*** 488 ****
+--- 779,800 ----
+  }
++ 
++ enum e__VW
++ {
++     XView,
++     YView,
++     WView,
++     HView,
++     Angle,
++     HBorder,
++     VBorder,
++     HSpeed,
++     VSpeed,
++     Object,
++     Visible,
++     XPort,
++     YPort,
++     WPort,
++     HPort,
++     Camera,
++     SurfaceID
++ }

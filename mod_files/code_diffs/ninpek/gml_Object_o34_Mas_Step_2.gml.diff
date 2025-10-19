@@ -1,5 +1,5 @@
-*** original_scripts/ninpek/gml_Object_o34_Mas_Step_2.gml	Sun May 25 20:11:31 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_2.gml	Sun May 25 19:50:26 2025
+*** original_scripts/ninpek/gml_Object_o34_Mas_Step_2.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_2.gml	Thu Oct 16 08:29:49 2025
 ***************
 *** 16,18 ****
   
@@ -9,3 +9,11 @@
   
 ! for (var i = 0; i < global.numPlayers; i++)
   {
+***************
+*** 47,48 ****
+      }
+! }
+--- 47,48 ----
+      }
+! }
+\ No newline at end of file

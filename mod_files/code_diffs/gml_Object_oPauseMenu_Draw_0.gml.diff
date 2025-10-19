@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oPauseMenu_Draw_0.gml	Mon Sep  8 19:19:27 2025
---- ufo50_modded_scripts/gml_Object_oPauseMenu_Draw_0.gml	Tue Sep  9 20:41:38 2025
+*** original_scripts/gml_Object_oPauseMenu_Draw_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Draw_0.gml	Tue Oct 14 21:05:56 2025
 ***************
 *** 294,296 ****
                   draw_set_halign(fa_right);
@@ -7,5 +7,5 @@
                   draw_set_halign(fa_left);
 --- 294,296 ----
                   draw_set_halign(fa_right);
-!                 draw_sprite(sMenuP1P6, itemIndex[i], RIGHT_TEXT_X - 96, TOP);
+!                 draw_sprite(sMenuP1P6, itemIndex[i], RIGHT_TEXT_X - 32, TOP);
                   draw_set_halign(fa_left);

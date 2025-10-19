@@ -1,26 +1,149 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Mon Oct  6 20:17:40 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_13.gml	Sun Oct 19 20:34:21 2025
 ***************
-*** 20,23 ****
+*** 1,69 ****
+! switch (statePortrait)
+! {
+!     case PORTRAIT_STATIC:
+!         tPortrait = ++tPortrait % 3;
+!         
+!         if (tPortrait == 0)
+!         {
+!             stepPortrait++;
+!             stepPortrait %= 2;
+!         }
+!         
+!         break;
+!     
+!     case PORTRAIT_BONK:
+!         tPortrait = ++tPortrait % 15;
+!         
+!         if (tPortrait == 0)
+!         {
+!             statePortrait = PORTRAIT_DRIVE;
               
 !             if (instance_exists(player))
-!             {
-                  if (player.reverse)
---- 20,24 ----
-              
-!             if (instance_exists(o32_Player)) {
-!                 player = instance_find(o32_Player, 0);
-! 
-                  if (player.reverse)
-***************
-*** 60,63 ****
+              {
+!                 if (player.reverse)
+!                     statePortrait = PORTRAIT_REVERSE;
+              }
+!         }
+!         
+!         break;
+!     
+!     case PORTRAIT_ON_FIRE:
+!         tPortrait = ++tPortrait % 5;
+          
+!         if (tPortrait == 0)
+!         {
+!             if (stepPortrait < 2)
+!                 stepPortrait++;
+!             else
+!                 stepPortrait = 0;
+!         }
+          
+!         break;
+!     
+!     case PORTRAIT_DROWN:
+!         if (stepPortrait < 3)
+!         {
+!             tPortrait = ++tPortrait % 15;
+!             
+!             if (tPortrait == 0)
+!                 stepPortrait++;
+!         }
+          
+!         break;
+!     
+!     case PORTRAIT_DELIVERY:
+!         tPortrait = ++tPortrait % 30;
+          
+!         if (tPortrait == 0)
+!         {
+!             statePortrait = PORTRAIT_DRIVE;
               
 !             if (instance_exists(player))
-!             {
-                  if (player.reverse)
---- 61,65 ----
-              
-!             if (instance_exists(o32_Player)) {
-!                 player = instance_find(o32_Player, 0);
+              {
+!                 if (player.reverse)
+!                     statePortrait = PORTRAIT_REVERSE;
+              }
+!         }
+!         
+!         break;
+  }
+--- 1,75 ----
+! for (var i = 0; i < global.numPlayers; i++) {
+!     var statePortrait = statePortraits[i];
 ! 
-                  if (player.reverse)
+!     switch (statePortrait)
+!     {
+!         case PORTRAIT_STATIC:
+!             tPortraits[i] = ++tPortraits[i] % 3;
+              
+!             if (tPortraits[i] == 0)
+              {
+!                 stepPortraits[i]++;
+!                 stepPortraits[i] %= 2;
+              }
+!             
+!             break;
+          
+!         case PORTRAIT_BONK:
+!             tPortraits[i] = ++tPortraits[i] % 15;
+!             
+!             if (tPortraits[i] == 0)
+!             {
+!                 statePortraits[i] = PORTRAIT_DRIVE;
+!                 
+!                 if (instance_exists(players[i])) {
+!                     player = players[i];
+! 
+!                     if (player.reverse)
+!                         statePortraits[i] = PORTRAIT_REVERSE;
+!                 }
+!             }
+!             
+!             break;
+          
+!         case PORTRAIT_ON_FIRE:
+!             tPortraits[i] = ++tPortraits[i] % 5;
+!             
+!             if (tPortraits[i] == 0)
+!             {
+!                 if (stepPortraits[i] < 2)
+!                     stepPortraits[i]++;
+!                 else
+!                     stepPortraits[i] = 0;
+!             }
+!             
+!             break;
+          
+!         case PORTRAIT_DROWN:
+!             if (stepPortraits[i] < 3)
+!             {
+!                 tPortraits[i] = ++tPortraits[i] % 15;
+!                 
+!                 if (tPortraits[i] == 0)
+!                     stepPortraits[i]++;
+!             }
+!             
+!             break;
+          
+!         case PORTRAIT_DELIVERY:
+!             tPortraits[i] = ++tPortraits[i] % 30;
+              
+!             if (tPortraits[i] == 0)
+              {
+!                 statePortraits[i] = PORTRAIT_DRIVE;
+!                 
+!                 if (instance_exists(players[i])) {
+!                     player = players[i];
+! 
+!                     if (player.reverse)
+!                         statePortraits[i] = PORTRAIT_REVERSE;
+!                 }
+              }
+!             
+!             break;
+!     }
+  }

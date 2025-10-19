@@ -1,5 +1,5 @@
-*** original_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Tue Oct 14 20:40:03 2025
+*** original_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_SlimeDrawer_Draw_0.gml	Wed Oct 15 18:34:33 2025
 ***************
 *** 1,21 ****
 ! var _xv = camera_get_view_x(view_get_camera(0));
@@ -21,14 +21,14 @@
 !             for (var j = 0; j < image_yscale; j++)
               {
 !                 var _y = y + (16 * j);
-!                 scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, 0, _xv, _yv);
+!                 scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, _xv, _yv);
               }
 --- 1,25 ----
 ! var numViewports = global.numPlayers == 1 ? 1 : 4;
   
-! for (var i = 0; i < numViewports; i++) {
-!     var _xv = camera_get_view_x(view_get_camera(i));
-!     var _yv = camera_get_view_y(view_get_camera(i));
+! for (var viewPortNum = 0; viewPortNum < numViewports; viewPortNum++) {
+!     var _xv = camera_get_view_x(view_get_camera(viewPortNum));
+!     var _yv = camera_get_view_y(view_get_camera(viewPortNum));
 !     var _xGrid = floor((_xv + 96) / 16);
 !     var _yGrid = floor(_yv / 16);
 !     var _img = img;
@@ -46,7 +46,7 @@
 !                 for (var j = 0; j < image_yscale; j++)
 !                 {
 !                     var _y = y + (16 * j);
-!                     scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, 0, _xv, _yv);
+!                     scr32_DrawWrapped(s32_SlimePit, _img, _x, _y, 1, 1, _xv, _yv);
 !                 }
               }
 ***************

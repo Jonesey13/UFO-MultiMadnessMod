@@ -1,23 +1,23 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Thu Jun 19 22:09:36 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_10.gml	Thu Oct 16 08:10:35 2025
 ***************
-*** 20,22 ****
+*** 19,21 ****
       }
 !     else if (numPlayers == 2 || numPlayers == 4)
       {
---- 20,22 ----
+--- 19,21 ----
       }
 !     else if (numPlayers == 2 || numPlayers == 4 || numPlayers == 5)
       {
 ***************
-*** 40,45 ****
+*** 39,44 ****
           
 !         with (o22_CharselRight)
               visible = true;
 !         
 !         with (o22_PortraitRight)
               visible = true;
---- 40,92 ----
+--- 39,91 ----
           
 !         if (numPlayers == 5)
 !         {
@@ -72,11 +72,11 @@
 !         with (o22_CharselRight)
               visible = true;
 ***************
-*** 71,73 ****
+*** 70,72 ****
       {
 !         if (o22_HandLeft.ready && o22_HandRight.ready)
           {
---- 118,125 ----
+--- 117,124 ----
       {
 !         var allReady = o22_HandLeft.ready && o22_HandRight.ready;
 !         if (instance_exists(o22_HandThree) && instance_exists(o22_HandFour)) {
@@ -86,8 +86,8 @@
 !         if (allReady)
           {
 ***************
-*** 75,76 ****
---- 127,135 ----
+*** 74,75 ****
+--- 126,134 ----
               
 +             if (numPlayers == 5) {
 +                 if (p3_sel > -1)
@@ -97,3 +97,11 @@
 +             }
 +             
               if (numPlayers > 1 && p2_sel > -1)
+***************
+*** 88,89 ****
+          scr22_SwitchState(STATE_MATCH_PREP);
+! }
+--- 147,148 ----
+          scr22_SwitchState(STATE_MATCH_PREP);
+! }
+\ No newline at end of file

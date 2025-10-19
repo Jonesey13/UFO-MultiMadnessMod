@@ -1,7 +1,7 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Mon Oct 13 20:08:30 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_16.gml	Sun Oct 19 14:04:30 2025
 ***************
-*** 1,104 ****
+*** 1,28 ****
 ! var _spawnFrequency = 10;
 ! timerSpawnSystem = (timerSpawnSystem + 1) % _spawnFrequency;
   
@@ -10,8 +10,8 @@
   
 ! var _maxTraffic = 5;
   
-- if (instance_number(o32_eCarTraffic) >= _maxTraffic)
--     exit;
+! if (instance_number(o32_eCarTraffic) >= _maxTraffic)
+!     exit;
   
 ! var _collisionBorder = 64;
 ! var _x1 = xPlayfield - _collisionBorder;
@@ -30,12 +30,72 @@
 !         _roadValid[n] = _roadCheck;
 !         n++;
       }
-- }
+--- 1,58 ----
+! // Build bounding boxes
+! var boundingBoxes = [];
+! var _collisionBorder = 64;
   
-! if (n == 0)
-!     exit;
+! for (var i = 0; i < global.numPlayers; i++) {
+!     var _x1 = xPlayfield[i] - _collisionBorder;
+!     var _y1 = yPlayfield[i] - _collisionBorder;
+!     var _x2 = xPlayfield[i] + PLAYFIELD_WIDTH + _collisionBorder;
+!     var _y2 = yPlayfield[i] + PLAYFIELD_HEIGHT + _collisionBorder;
+!     var boundingBox = [_x1, _y1, _x2, _y2];
+!     boundingBoxes[i] = boundingBox;
+! }
   
-! var _modeRoad, _modeRoadHorizontal, _xRoadLeft, _xRoadRight, _yRoadTop, _modeRoadVertical, _yRoadBottom;
+! // Compare bounding boxes to determine spawning cycles
+! var combinedBoxes = boundingBoxes;
+! var maxIters = 5;
+! var numIters = 0;
+! 
+! 
+! while (numIters <= maxIters) {
+!     numIters += 1;
+!     var overlapFound = false;
+!     var overlapFirstIndex = 0;
+!     var overlapSecondIndex = 0;
+! 
+!     for (var i = 0; i < array_length(combinedBoxes); i++) {
+!         for (var j =  i + 1; j < array_length(combinedBoxes); j++) {
+!             if (rectangle_in_rectangle(
+!                 combinedBoxes[i][0], combinedBoxes[i][1], combinedBoxes[i][2], combinedBoxes[i][3],
+!                 combinedBoxes[j][0], combinedBoxes[j][1], combinedBoxes[j][2], combinedBoxes[j][3]
+!             )) {
+!                 overlapFirstIndex = i;
+!                 overlapSecondIndex = j;
+!                 overlapFound = true;
+!                 break;
+!             }
+!         }
+! 
+!         if (overlapFound) {
+!             break;
+!         }
+!     }
+  
+!     if (overlapFound) {
+!         newBox = scrExpandBoxes(combinedBoxes[overlapFirstIndex], combinedBoxes[overlapSecondIndex]);
+!         
+!         newCombinedBoxes = [newBox];
+  
+!         for (var i = 0; i < array_length(combinedBoxes); i++) {
+!             if (i != overlapFirstIndex && i != overlapSecondIndex) {
+!                 array_push(newCombinedBoxes, combinedBoxes[i]);
+!             }
+!         }
+! 
+!         combinedBoxes = newCombinedBoxes;
+!     } else {
+!         break;
+      }
+***************
+*** 30,104 ****
+  
+- if (n == 0)
+-     exit;
+- 
+- var _modeRoad, _modeRoadHorizontal, _xRoadLeft, _xRoadRight, _yRoadTop, _modeRoadVertical, _yRoadBottom;
   
 ! with (_roadValid[scrIRandom(n - 1)])
 ! {
@@ -106,65 +166,9 @@
 !         car.dir = _carDirection;
       }
 ! }
---- 1,179 ----
-! // Build bounding boxes
-! var boundingBoxes = [];
-! var _collisionBorder = 64;
-  
-! for (var i = 0; i < global.numPlayers; i++) {
-!     var _x1 = xPlayfield[i] - _collisionBorder;
-!     var _y1 = yPlayfield[i] - _collisionBorder;
-!     var _x2 = xPlayfield[i] + PLAYFIELD_WIDTH + _collisionBorder;
-!     var _y2 = yPlayfield[i] + PLAYFIELD_HEIGHT + _collisionBorder;
-!     var boundingBox = [_x1, _y1, _x2, _y2];
-!     boundingBoxes[i] = boundingBox;
-! }
-  
-! // Compare bounding boxes to determine spawning cycles
-! var combinedBoxes = boundingBoxes;
+--- 60,182 ----
   
   
-! while (true) {
-!     var overlapFound = false;
-!     var overlapFirstIndex = 0;
-!     var overlapSecondIndex = 0;
-! 
-!     for (var i = 0; i < array_length(combinedBoxes); i++) {
-!         for (var j =  i + 1; j < array_length(combinedBoxes); j++) {
-!             if (rectangle_in_rectangle(
-!                 combinedBoxes[i][0], combinedBoxes[i][1], combinedBoxes[i][2], combinedBoxes[i][3],
-!                 combinedBoxes[j][0], combinedBoxes[j][1], combinedBoxes[j][2], combinedBoxes[j][3]
-!             )) {
-!                 overlapFirstIndex = i;
-!                 overlapSecondIndex = j;
-!                 overlapFound = true;
-!                 break;
-!             }
-!         }
-! 
-!         if (overlapFound) {
-!             break;
-!         }
-      }
-  
-!     if (overlapFound) {
-!         newBox = scrExpandBoxes(combinedBoxes[overlapFirstIndex], combinedBoxes[overlapSecondIndex]);
-!         
-!         newCombinedBoxes = [newBox];
-  
-!         for (var i = 0; i < array_length(combinedBoxes); i++) {
-!             if (i != overlapFirstIndex && i != overlapSecondIndex) {
-!                 array_push(newCombinedBoxes, combinedBoxes[i]);
-!             }
-!         }
-  
-!         combinedBoxes = newCombinedBoxes;
-!     } else {
-!         break;
-!     }
-  }
-  
-! 
 ! // Process Spawning Cycles
 ! var relativeBoxSizes = [];
 ! var relativeBoxSizeTotal = 0;
@@ -173,9 +177,9 @@
 ! for (var i = 0; i < array_length(combinedBoxes); i++) {
 !     relativeBoxSizes[i] = scrComputeBoxSize(combinedBoxes[i]) / standardBoxSize;
 !     relativeBoxSizeTotal += relativeBoxSizes[i];
-! }
-! 
-! var _maxTraffic = 5 * relativeBoxSizeTotal;
+  }
+  
+! var _maxTraffic = 5;
 ! 
 ! for (var i = 0; i < array_length(combinedBoxes); i++) {
 ! 
@@ -188,7 +192,7 @@
 !     else 
 !         timerSpawnSystem[i] = 0;
 ! 
-!     if (instance_number(o32_eCarTraffic) >= _maxTraffic)
+!     if (scr32_GetNumberOfCarsInBox(combinedBoxes[i]) >= _maxTraffic * relativeBoxSizes[i])
 !         continue;
 ! 
 !     var _roadValid;

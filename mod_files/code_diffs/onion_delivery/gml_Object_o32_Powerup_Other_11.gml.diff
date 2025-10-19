@@ -1,0 +1,15 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Powerup_Other_11.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Powerup_Other_11.gml	Sun Oct 19 20:34:42 2025
+***************
+*** 7,10 ****
+  {
+!     statePortrait = PORTRAIT_POWERUP;
+!     tPortrait = 0;
+  }
+--- 7,12 ----
+  {
+!     for (var i = 0; i < global.numPlayers; i++) {
+!         statePortrait[i] = PORTRAIT_POWERUP;
+!         tPortraits[i] = 0;
+!     }
+  }

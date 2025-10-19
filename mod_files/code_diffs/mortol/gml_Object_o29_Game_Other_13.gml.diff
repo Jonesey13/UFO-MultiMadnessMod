@@ -1,5 +1,20 @@
-*** original_scripts/mortol/gml_Object_o29_Game_Other_13.gml	Thu May 15 21:38:36 2025
---- ufo50_modded_scripts/mortol/gml_Object_o29_Game_Other_13.gml	Sun May 11 20:14:00 2025
+*** original_scripts/mortol/gml_Object_o29_Game_Other_13.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/mortol/gml_Object_o29_Game_Other_13.gml	Thu Oct 16 08:24:56 2025
+***************
+*** 39,44 ****
+              o29_MotherShip.x++;
+!             set_xview(camera_get_view_x(view_get_camera(0)) + 1);
+              
+              if (camera_get_view_x(view_get_camera(0)) >= (room_width - 384))
+!                 set_xview(room_width - 384);
+          }
+--- 39,44 ----
+              o29_MotherShip.x++;
+!              set_xview(camera_get_view_x(view_get_camera(0)) + 1);
+              
+              if (camera_get_view_x(view_get_camera(0)) >= (room_width - 384))
+!                  set_xview(room_width - 384);
+          }
 ***************
 *** 65,68 ****
               
@@ -28,3 +43,11 @@
 !                     currPlayer += 1;
 !                 }
                   
+***************
+*** 163,164 ****
+      }
+! }
+--- 169,170 ----
+      }
+! }
+\ No newline at end of file

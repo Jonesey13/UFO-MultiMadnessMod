@@ -1,0 +1,21 @@
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Other_10.gml	Sun Oct 19 21:02:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Other_10.gml	Sun Oct 19 20:39:22 2025
+***************
+*** 3,4 ****
+--- 3,6 ----
+  
++ var playerNum = player;
++ 
+  if (abs(xsp) < 2 || state == STATE_IN_AIR)
+***************
+*** 15,18 ****
+          scrSfx(soundPlayerWallBonk[scrIRandomRange(0, 2)], 30);
+!         statePortrait = PORTRAIT_BONK;
+!         tPortrait = 0;
+      }
+--- 17,21 ----
+          scrSfx(soundPlayerWallBonk[scrIRandomRange(0, 2)], 30);
+!         statePortrait[playerNum] = PORTRAIT_BONK;
+!         stepPortraits[playerNum] = 0;
+!         tPortraits[playerNum] = 0;
+      }

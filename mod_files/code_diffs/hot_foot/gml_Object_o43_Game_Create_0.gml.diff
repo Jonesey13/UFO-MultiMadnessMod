@@ -1,5 +1,5 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Create_0.gml	Sat Jun  7 07:56:50 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Create_0.gml	Sat Jun  7 08:00:37 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Create_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Create_0.gml	Thu Oct 16 08:18:43 2025
 ***************
 *** 24,25 ****
 --- 24,27 ----
@@ -7,3 +7,9 @@
 + RANDOMISE_CONTROLLERS = false;
 + ControllerMap = [1, 2, 3, 4];
   useDraft = true;
+***************
+*** 248,250 ****
+      athlete[2] = 14;
+-     
+      do
+--- 250,251 ----

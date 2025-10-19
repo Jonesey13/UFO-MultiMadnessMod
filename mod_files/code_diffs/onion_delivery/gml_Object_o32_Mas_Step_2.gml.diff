@@ -1,7 +1,7 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 17:02:57 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Wed Oct 15 18:48:45 2025
 ***************
-*** 1,49 ****
+*** 1,48 ****
 ! if (instance_exists(player))
   {
 !     cameraCenterX = player.x - 192 - 48;
@@ -46,8 +46,7 @@
 - 
 - var _xv = floor(cameraCenterX + cameraOffsetX);
 - var _yv = floor(cameraCenterY + cameraOffsetY);
-- __view_set(e__VW.XView, 0, _xv);
-- __view_set(e__VW.YView, 0, _yv);
+- set_view(_xv, _yv);
 - xPlayfield = _xv + 96;
 - yPlayfield = _yv;
   
@@ -122,3 +121,28 @@
   }
   
   
+***************
+*** 50 ****
+--- 72,93 ----
+      event_user(USER_REGION_BASED_SPAWNING);
++ 
++ enum e__VW
++ {
++     XView,
++     YView,
++     WView,
++     HView,
++     Angle,
++     HBorder,
++     VBorder,
++     HSpeed,
++     VSpeed,
++     Object,
++     Visible,
++     XPort,
++     YPort,
++     WPort,
++     HPort,
++     Camera,
++     SurfaceID
++ }

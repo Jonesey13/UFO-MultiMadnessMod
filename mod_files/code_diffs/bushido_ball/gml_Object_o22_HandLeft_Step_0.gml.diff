@@ -1,5 +1,5 @@
-*** original_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Thu Aug 28 19:59:00 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Sat Aug 30 16:48:09 2025
+*** original_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandLeft_Step_0.gml	Thu Oct 16 08:14:59 2025
 ***************
 *** 1,2 ****
 ! scrGetInput(0);
@@ -17,12 +17,12 @@
 +     
       o22_PortraitLeft.val = sel;
 ***************
-*** 96,99 ****
+*** 98,101 ****
               
 !             with (o22_PortraitRight)
 !                 visible = true;
           }
---- 100,105 ----
+--- 102,107 ----
               
 !             if (o22_Game.numPlayers != 5) {
 !                 with (o22_PortraitRight)
@@ -30,7 +30,7 @@
 !             }
           }
 ***************
-*** 101,110 ****
+*** 103,112 ****
       
 !     if (o22_Game.numPlayers == 2)
       {
@@ -41,7 +41,7 @@
 !             if (ready)
 !                 _canBackOut = false;
           }
---- 107,115 ----
+--- 109,117 ----
       
 !     if (o22_Game.numPlayers == 2 || o22_Game.numPlayers == 5)
       {

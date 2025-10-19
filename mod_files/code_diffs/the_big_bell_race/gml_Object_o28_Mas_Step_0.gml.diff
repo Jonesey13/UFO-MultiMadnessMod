@@ -1,5 +1,5 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Sep 19 19:34:55 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Mon Sep 22 19:58:02 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Oct 17 20:12:29 2025
 ***************
 *** 2,71 ****
   {
@@ -223,14 +223,14 @@
 +             }
               else
 ***************
-*** 675,680 ****
+*** 674,679 ****
   
   if (goalPos == 6)
   {
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 625,641 ----
+--- 624,640 ----
   
 + var allInGoal = true;
 + 
@@ -249,24 +249,32 @@
 ! 
       goalPos = 0;
 ***************
-*** 685,687 ****
+*** 684,686 ****
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 646,648 ----
+--- 645,647 ----
   }
 ! else if (allInGoal)
   {
 ***************
-*** 691,694 ****
+*** 690,693 ****
       {
 !         p1InGoal = false;
 !         p2InGoal = false;
           ds_grid_sort(dsRank, 1, 0);
---- 652,657 ----
+--- 651,656 ----
       {
 !         for (var i = 0; i < global.numPlayers; i++) {
 !             playerInGoal[i] = false;
 !         }
 ! 
           ds_grid_sort(dsRank, 1, 0);
+***************
+*** 713,714 ****
+      }
+! }
+--- 676,677 ----
+      }
+! }
+\ No newline at end of file

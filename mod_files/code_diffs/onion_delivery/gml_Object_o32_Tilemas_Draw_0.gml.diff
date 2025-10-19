@@ -1,31 +1,42 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Tilemas_Draw_0.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Tilemas_Draw_0.gml	Tue Oct 14 20:44:11 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Tilemas_Draw_0.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Tilemas_Draw_0.gml	Wed Oct 15 18:48:31 2025
 ***************
-*** 3,21 ****
-  
+*** 1,7 ****
+! var _xv = camera_get_view_x(view_get_camera(0));
+! var _yv = camera_get_view_y(view_get_camera(0));
+! 
 ! for (var _xx = -1; _xx < 2; _xx++)
   {
 !     var _xat = (_xv div 1024) + _xx;
-!     var _xatt = _xat % 5;
-!     
-!     if (_xatt < 0)
+      var _xatt = _xat % 5;
+--- 1,4 ----
+! for (var _xx = -1; _xx <= 5; _xx++)
+  {
+!     var _xat = _xx;
+      var _xatt = _xat % 5;
+***************
+*** 9,15 ****
+      if (_xatt < 0)
 !         _xatt = 4;
-!     
+      
 !     for (var _yy = -1; _yy < 2; _yy++)
       {
 !         var _yat = (_yv div 1024) + _yy;
-!         var _yatt = _yat % 5;
-!         
-!         if (_yatt < 0)
-!             _yatt = 4;
-!         
-!         draw_sprite(bak[_yatt][_xatt], 0, _xat * 1024, _yat * 1024);
-      }
---- 3,9 ----
-  
-! for (var _xx = 0; _xx <= 4; _xx++)
-  {
-!     for (var _yy = 0; _yy <= 4; _yy++)
+          var _yatt = _yat % 5;
+--- 6,12 ----
+      if (_xatt < 0)
+!         _xatt += 5;
+      
+!     for (var _yy = -1; _yy <= 5; _yy++)
       {
-!         draw_sprite(bak[_xx][_yy], 0, _xx * 1024, _yy * 1024);
-      }
+!         var _yat = _yy;
+          var _yatt = _yat % 5;
+***************
+*** 17,19 ****
+          if (_yatt < 0)
+!             _yatt = 4;
+          
+--- 14,16 ----
+          if (_yatt < 0)
+!             _yatt += 5;
+          

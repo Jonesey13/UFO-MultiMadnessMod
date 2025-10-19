@@ -1,25 +1,25 @@
-*** original_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Sat Jun  7 17:53:43 2025
---- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Sat Jun  7 17:45:00 2025
+*** original_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Tue Oct 14 20:52:30 2025
+--- ufo50_modded_scripts/paint_chase/gml_Object_o49_Game_Other_10.gml	Thu Oct 16 08:30:36 2025
 ***************
-*** 32,34 ****
+*** 31,33 ****
   }
 ! else if (numPlayers == 2)
   {
---- 32,34 ----
+--- 31,33 ----
   }
 ! else if (numPlayers == 2 || numPlayers == 4)
   {
 ***************
-*** 270,271 ****
---- 270,274 ----
+*** 269,270 ****
+--- 269,273 ----
           instance_create(createX, createY, o49_Racer);
 + 
 +     if (obj == "P" && numPlayers == 4)
 +         instance_create(createX, createY, o49_Racer);
       
 ***************
-*** 299,300 ****
---- 302,339 ----
+*** 298,299 ****
+--- 301,338 ----
   
 + if (numPlayers == 4) {
 +     var playerList = [0, 1, 2, 3];
@@ -59,11 +59,19 @@
 + 
   with (o49_Racer)
 ***************
-*** 332,334 ****
+*** 331,333 ****
   }
 ! else if (numPlayers == 2)
   {
---- 371,373 ----
+--- 370,372 ----
   }
 ! else if (numPlayers == 2 || numPlayers == 4)
   {
+***************
+*** 337,338 ****
+          futureState = STATE_2P_STATS;
+! }
+--- 376,377 ----
+          futureState = STATE_2P_STATS;
+! }
+\ No newline at end of file
