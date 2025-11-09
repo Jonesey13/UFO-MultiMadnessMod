@@ -1,53 +1,109 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Sun Oct 19 20:56:57 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Create_0.gml	Mon Nov  3 18:43:05 2025
 ***************
-*** 67,68 ****
---- 67,73 ----
+*** 42,43 ****
+--- 42,44 ----
+  GAMESTATE_ENDING = n++;
++ GAMESTATE_MENU = n++;
+  n = 0;
+***************
+*** 67,73 ****
   PLAYFIELD_HEIGHT = 216;
-+ 
-+ if (global.numPlayers >= 2) {
-+     scrActivateSplitScreen();
-+ }
-+ 
   GARDEN_GOAL = 2;
-***************
-*** 71,73 ****
+! state = GAMESTATE_SETUP;
+  subState = 0;
   generalTimer = 0;
 ! player = -4;
   stateBuffered = -4;
---- 76,80 ----
+--- 68,84 ----
+  PLAYFIELD_HEIGHT = 216;
++ 
+  GARDEN_GOAL = 2;
+! state = GAMESTATE_MENU;
+! titleY = 0;
+! 
+! startingTimeOptions = [30, 45, 60, 75, 99];
+! currentStartingTimeSelect = 2;
+! 
+! onionsDeliveredGoal = 5;
+! 
+  subState = 0;
   generalTimer = 0;
 ! 
 ! players = [];
 ! 
   stateBuffered = -4;
 ***************
-*** 104,109 ****
+*** 75,77 ****
+  stateInit = false;
+! blackout = true;
+  godMode = false;
+--- 86,88 ----
+  stateInit = false;
+! blackout = false;
+  godMode = false;
+***************
+*** 104,113 ****
   tDayEnd = 0;
 ! currRegion = 0;
 ! timerSpawnSystem = 0;
 ! activeSpawner[0] = 0;
 ! activeSpawnerCount = 0;
-  cameraDirection = 0;
---- 111,117 ----
+! cameraDirection = 0;
+  cameraThreshold = 32;
+- cameraDelay = 0;
+- cameraSpeed = 0;
+  cameraSpeedMax = 2;
+--- 115,136 ----
   tDayEnd = 0;
 ! currRegion = [0, 0, 0, 0];
 ! timerSpawnSystem = [0, 0, 0, 0];
 ! 
 ! activeSpawner = [[], [], [], []];
 ! activeSpawnerCount = [0, 0, 0, 0];
-  cameraDirection = 0;
-***************
-*** 119,122 ****
-  cameraOffsetAimY = 0;
-! xPlayfield = 0;
-! yPlayfield = 0;
-  eventNewsImage[EVENT_NOTHING] = 0;
---- 127,130 ----
-  cameraOffsetAimY = 0;
 ! xPlayfields = [];
 ! yPlayfields = [];
+! 
+! for (var i = 0; i < global.numPlayers; i++) {
+!     cameraDirection[i] = 0;
+!     cameraOffsetAimX[i] = 0;
+!     cameraOffsetAimY[i] = 0;
+!     cameraOffsetX[i] = 0;
+!     cameraOffsetY[i] = 0;
+!     cameraDelay[i] = 0;
+!     cameraSpeed[i] = 0;
+!     xPlayfields[i] = 0;
+!     yPlayfields[i] = 0;
+! }
+  cameraThreshold = 32;
+  cameraSpeedMax = 2;
+***************
+*** 115,122 ****
+  cameraCenterY = 0;
+- cameraOffsetX = 0;
+- cameraOffsetY = 0;
+- cameraOffsetAimX = 0;
+- cameraOffsetAimY = 0;
+- xPlayfield = 0;
+- yPlayfield = 0;
   eventNewsImage[EVENT_NOTHING] = 0;
+--- 138,139 ----
+***************
+*** 136,139 ****
+  dayEvent = ds_list_find_value(eventList, dayNumber);
+  ds_delivery_log = ds_list_create();
+- onionsDeliveredGoal = 5;
+  onionsTotal = 0;
+--- 153,161 ----
+  dayEvent = ds_list_find_value(eventList, dayNumber);
++ dayEventCustom = -1;
++ dayEventOptions = ["NOTHING", "RAIN", "INVASION", "ZOMBIES", "ONION_MONSTER", "MAFIA", "FLOODING"];
++ dayEventMultiplierActive = false;
++ ds_region_spawner = -1;
++ ds_region_slimeshade = -1;
++ ds_checkpoint_distance = -1;
+  ds_delivery_log = ds_list_create();
+  onionsTotal = 0;
 ***************
 *** 145,152 ****
   showDebugInfo = false;
@@ -58,12 +114,10 @@
   displayTimer = 0;
   displayTimerPrev = displayTimer;
   checkpointActiveName1 = "";
---- 153,165 ----
+--- 167,177 ----
   showDebugInfo = false;
 ! for (var i = 0; i < global.numPlayers; i++) {
 !     statePortraits[i] = PORTRAIT_STATIC;
-! }
-! for (var i = 0; i < global.numPlayers; i++) {
 !     stepPortraits[i] = 0;
 !     tPortraits[i] = 0;
 !     turnPortrait[i] = 0;
@@ -74,7 +128,7 @@
   checkpointActiveName1 = "";
 ***************
 *** 223 ****
---- 236,258 ----
+--- 248,270 ----
   metaTrigger = false;
 + 
 + 

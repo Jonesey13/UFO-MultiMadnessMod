@@ -1,0 +1,8 @@
+*** original_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Create_0.gml	Fri Nov  7 20:49:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Create_0.gml	Mon Nov  3 19:25:38 2025
+***************
+*** 10,11 ****
+--- 10,12 ----
+  chaseTime = 0;
++ targetPlayerNum = 1;
+  targetX = x;

@@ -1,9 +1,37 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Sun Oct  5 20:26:06 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_17.gml	Mon Nov  3 20:57:24 2025
 ***************
-*** 8,19 ****
-      
-!     case EVENT_RAIN:
+*** 2,3 ****
+--- 2,27 ----
+  var _yv = camera_get_view_y(view_get_camera(0));
++ var numberOfSeperateScreens = 0;
++ 
++ for (var i = 0; i < global.numPlayers; i++) {
++     if (i >= array_length(players) || !instance_exists(players[i]))
++         continue;
++ 
++     var overlapFound = false;
++ 
++     for (var j = 0; j < i ; j++) {
++         if (!instance_exists(players[j]))
++             continue;
++ 
++         if (abs(xPlayfields[i] - xPlayfields[j]) < PLAYFIELD_WIDTH)
++             overlapFound = true;
++ 
++         if (abs(yPlayfields[i] - yPlayfields[j]) < PLAYFIELD_HEIGHT)
++             overlapFound = true;
++     }
++ 
++     if (overlapFound)
++         continue;
++ 
++     numberOfSeperateScreens++;
++ }
+  
+***************
+*** 9,30 ****
+      case EVENT_RAIN:
 !         var xsp = 0;
 !         var ysp = 0;
 !         
@@ -11,81 +39,453 @@
 !         {
 !             xsp = lengthdir_x(dSpeed, dir) + lengthdir_x(sSpeed, dirSlide);
 !             ysp = lengthdir_y(dSpeed, dir) + lengthdir_y(sSpeed, dirSlide);
-!         }
+          }
 !         
-          if ((generalTimer % 50) == 0)
---- 8,10 ----
-      
-!     case EVENT_RAIN:        
-          if ((generalTimer % 50) == 0)
-***************
-*** 24,27 ****
-                  var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
-                  
+!         if ((generalTimer % 50) == 0)
+!         {
+!             repeat (min((generalTimer div 1000) + 1, 4))
+              {
+!                 var _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                 var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
+!                 
 !                 if (!position_meeting(_x + 8, _y + 8, oBlockPar) && !position_meeting(_x - 8, _y - 8, oBlockPar) && !position_meeting(_x - 8, _y + 8, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && !position_meeting(_x + 8, _y + 8, o32_Bush) && (abs(angle_difference(point_direction(o32_Player.x, o32_Player.y, o32_Player.x + lengthdir_x(o32_Player.dSpeed, o32_Player.dirCam), o32_Player.y + lengthdir_y(o32_Player.dSpeed, o32_Player.dirCam)), point_direction(o32_Player.x, o32_Player.y, _x, _y))) > 30 || o32_Player.dSpeed == 0))
                   {
---- 15,39 ----
-                  var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
-+ 
-+                 var inFrontOfPlayer = false;
-+ 
-+                 for (var i=0; i < global.numPlayers; i++) {
-+                     if (abs(
-+                             angle_difference(
-+                                 players[i].dirCam, 
-+                                 point_direction(players[i].x, players[i].y, _x, _y)
-+                             )
-+                         ) <= 30 
-+                         && o32_Player.dSpeed != 0) {
-+                         inFrontOfPlayer = true;
-+                     }
-+                 }
-                  
-!                 if (
-!                     !position_meeting(_x + 8, _y + 8, oBlockPar) 
-!                     && !position_meeting(_x - 8, _y - 8, oBlockPar) 
-!                     && !position_meeting(_x - 8, _y + 8, oBlockPar) 
-!                     && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) 
-!                     && !position_meeting(_x + 8, _y + 8, o32_Bush) 
-!                     && !inFrontOfPlayer
-!                 )
+!                     with (instance_create(_x, _y, o32_Slime))
+!                         image_index = 3;
+                  }
+--- 33,80 ----
+      case EVENT_RAIN:
+!         var scaleFactor = global.numPlayers;
+! 
+!         if (dayEventMultiplierActive) {
+!             scaleFactor = scaleFactor / numberOfSeperateScreens;
+          }
+! 
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             var _xv = camera_get_view_x(view_get_camera(p));
+!             var _yv = camera_get_view_y(view_get_camera(p));
+! 
+!             if (generalTimer % floor(50 * scaleFactor ) == 0)
+              {
+!                 repeat (min((generalTimer div 1000) + 1, 4))
                   {
+!                     var _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                     var _y = (scrIRandomRange(_yv - 32, _yv + 216 + 32) div 16) * 16;
+! 
+!                     var inFrontOfPlayer = false;
+! 
+!                     for (var i=0; i < global.numPlayers; i++) {
+!                         if (!instance_exists(players[i])) {
+!                             continue;
+!                         }
+!                         if (abs(
+!                                 angle_difference(
+!                                     players[i].dirCam, 
+!                                     point_direction(players[i].x, players[i].y, _x, _y)
+!                                 )
+!                             ) <= 30 
+!                             && o32_Player.dSpeed != 0) {
+!                             inFrontOfPlayer = true;
+!                         }
+!                     }
+!                     
+!                     if (
+!                         !position_meeting(_x + 8, _y + 8, oBlockPar) 
+!                         && !position_meeting(_x - 8, _y - 8, oBlockPar) 
+!                         && !position_meeting(_x - 8, _y + 8, oBlockPar) 
+!                         && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) 
+!                         && !position_meeting(_x + 8, _y + 8, o32_Bush) 
+!                         && !inFrontOfPlayer
+!                     )
+!                     {
+!                         with (instance_create(_x, _y, o32_Slime))
+!                             image_index = 3;
+!                     }
+                  }
 ***************
-*** 67,70 ****
+*** 36,70 ****
+      case EVENT_INVASION:
+!         if (!instance_exists(o32_eUFOInvader))
+!         {
+!             var _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!             var _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!             
+!             with (instance_create(_x, _y, o32_eUFOInvader))
+!                 target = -4;
+          }
+!         
+!         if (instance_number(o32_eUFOInvaderSmall) < 3 && (generalTimer % 50) == 0)
+!         {
+!             var _x, _y;
+!             
+!             if (scrChoose(0, 1))
+!             {
+!                 _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                 _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!             }
+!             else
+              {
+!                 _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+!                 _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+              }
+              
+!             with (instance_create(_x, _y, o32_eUFOInvaderSmall))
+              {
+!                 speed = 4;
+!                 stateTime = 0;
+!                 rattle = 0;
+!                 flashing = 0;
                   
 !                 if (instance_exists(o32_Player))
 !                     direction = point_direction(x, y, o32_Player.x, o32_Player.y);
               }
---- 79,84 ----
+--- 86,133 ----
+      case EVENT_INVASION:
+!         var scaleFactor = global.numPlayers;
+! 
+!         if (dayEventMultiplierActive) {
+!             scaleFactor = scaleFactor / numberOfSeperateScreens;
+          }
+! 
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             var _xv = camera_get_view_x(view_get_camera(p));
+!             var _yv = camera_get_view_y(view_get_camera(p));
+! 
+!             if (instance_number(o32_eUFOInvader) <= p && instance_exists(o32_Mas.players[p]))
+              {
+!                 var _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                 var _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 
+!                 with (instance_create(_x, _y, o32_eUFOInvader))
+!                     target = -4;
+              }
+              
+!             if (instance_number(o32_eUFOInvaderSmall) < 3 && (generalTimer % floor(50 * scaleFactor)) == 0)
+              {
+!                 var _x, _y;
                   
-!                 if (instance_exists(o32_Player)) {
-!                     var nearestPlayer = instance_nearest(x, y, o32_Player);
-!                     direction = point_direction(x, y, nearestPlayer.x, nearestPlayer.y);
+!                 if (scrChoose(0, 1))
+!                 {
+!                     _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 else
+!                 {
+!                     _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 
+!                 with (instance_create(_x, _y, o32_eUFOInvaderSmall))
+!                 {
+!                     speed = 4;
+!                     stateTime = 0;
+!                     rattle = 0;
+!                     flashing = 0;
+!                     
+!                     if (instance_exists(o32_Player)) {
+!                         var nearestPlayer = instance_nearest(x, y, o32_Player);
+!                         direction = point_direction(x, y, nearestPlayer.x, nearestPlayer.y);
+!                     }
 !                 }
               }
 ***************
-*** 119,122 ****
-                  
+*** 75,103 ****
+      case EVENT_ZOMBIES:
+!         if ((generalTimer % 20) == 0)
+!         {
+!             var _x, _y;
+!             
+!             if (scrChoose(0, 1))
+!             {
+!                 _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                 _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!             }
+!             else
+!             {
+!                 _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+!                 _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!             }
+!             
+!             if (!position_meeting(_x, _y, oBlockPar) && !position_meeting(_x + 15, _y + 15, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && instance_number(o32_Dude) < 64)
+              {
+!                 repeat (3 + scrIRandom(4))
+                  {
+!                     with (instance_create(_x + scrIRandom(16), _y + scrIRandom(16), o32_Dude))
+                      {
+!                         zombieMode = true;
+!                         sprite_index = s32_DudeZombie;
+!                         t = scrIRandom(40);
+!                         direction = point_direction(x, y, _xv + 192, _yv + 108);
+!                         spd = 1;
+!                         depth = -40;
+                      }
+--- 138,177 ----
+      case EVENT_ZOMBIES:
+!         var scaleFactor = global.numPlayers;
+! 
+!         if (dayEventMultiplierActive) {
+!             scaleFactor = scaleFactor / numberOfSeperateScreens;
+!         }
+! 
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             var _xv = camera_get_view_x(view_get_camera(p));
+!             var _yv = camera_get_view_y(view_get_camera(p));
+! 
+!             if ((generalTimer % floor(20 * scaleFactor)) == 0)
+              {
+!                 var _x, _y;
+!                 
+!                 if (scrChoose(0, 1))
+                  {
+!                     _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 else
+!                 {
+!                     _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 
+!                 if (!position_meeting(_x, _y, oBlockPar) && !position_meeting(_x + 15, _y + 15, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && instance_number(o32_Dude) < 64)
+!                 {
+!                     repeat (3 + scrIRandom(4))
+                      {
+!                         with (instance_create(_x + scrIRandom(16), _y + scrIRandom(16), o32_Dude))
+!                         {
+!                             zombieMode = true;
+!                             sprite_index = s32_DudeZombie;
+!                             t = scrIRandom(40);
+!                             direction = point_direction(x, y, _xv + 192, _yv + 108);
+!                             spd = 1;
+!                             depth = -40;
+!                         }
+                      }
+***************
+*** 105,136 ****
+              }
+!         }
+!         
+!         if (instance_exists(o32_Player))
+!         {
+!             with (o32_Dude)
+              {
+!                 if (!zombieMode)
+!                     continue;
+!                 
+!                 if (!scr32_OnScreen(-16, x, y, _xv, _yv))
+!                     continue;
+!                 
+!                 var _pdist = 1000;
+!                 
 !                 if (instance_exists(oPlayer))
 !                     _pdist = point_distance(x, y, oPlayer.x, oPlayer.y);
-                  
---- 133,136 ----
-                  
-!                 var nearestPlayer = instance_nearest(x, y, o32_Player);
-!                 _pdist = point_distance(x, y, nearestPlayer.x, nearestPlayer.y);
-                  
-***************
-*** 125,128 ****
-                  
+!                 
+!                 type = 0;
+!                 target = instance_nearest(x, y, o32__enemyPar);
+!                 
 !                 if (!instance_exists(target) || _pdist < 100)
 !                     target = oPlayer;
-                  
---- 139,143 ----
-                  
-!                 if (!instance_exists(target) || _pdist < 100) {
-!                     target = nearestPlayer;
+!                 
+!                 if (instance_exists(target))
+!                     direction = point_direction(x, y, target.x, target.y);
+!                 
+!                 spd = approach(spd, 0.8, 0.01);
+              }
+          }
+!         
+          break;
+--- 179,211 ----
+              }
+!             
+!             if (instance_exists(o32_Player))
+              {
+!                 with (o32_Dude)
+!                 {
+!                     if (!zombieMode)
+!                         continue;
+!                     
+!                     if (!scr32_OnScreen(-16, x, y, _xv, _yv))
+!                         continue;
+!                     
+!                     var _pdist = 1000;
+!                     
+!                     var nearestPlayer = instance_nearest(x, y, o32_Player);
+!                     _pdist = point_distance(x, y, nearestPlayer.x, nearestPlayer.y);
+!                     
+!                     type = 0;
+!                     target = instance_nearest(x, y, o32__enemyPar);
+!                     
+!                     if (!instance_exists(target) || _pdist < 100) {
+!                         target = nearestPlayer;
+!                     }
+!                     
+!                     if (instance_exists(target))
+!                         direction = point_direction(x, y, target.x, target.y);
+!                     
+!                     spd = approach(spd, 0.8, 0.01);
 !                 }
+              }
+          }
+! 
+          break;
+***************
+*** 138,141 ****
+      case EVENT_ONION_MONSTER:
+!         if (!instance_exists(o32_eOnionMonster))
+!             instance_create(room_width * 0.5, room_height * 0.5, o32_eOnionMonster);
+          
+--- 213,220 ----
+      case EVENT_ONION_MONSTER:
+!         if (dayEventMultiplierActive && instance_number(o32_eOnionMonster) < global.numPlayers) {
+!             var monster = instance_create(room_width * 0.5, room_height * 0.5, o32_eOnionMonster);
+!             monster.targetPlayerNum = instance_number(o32_eOnionMonster);
+!         } else if (!instance_exists(o32_eOnionMonster)) {
+!             instance_create(room_width * 0.5, room_height * 0.5, o32_eOnionMonster); 
+!         }
+          
+***************
+*** 144,175 ****
+      case EVENT_MAFIA_RAMPAGE:
+!         if ((generalTimer % 20) == 0)
+!         {
+!             if ((generalTimer % 200) == 0)
+              {
+!                 with (o32_eGangsterCar)
+                  {
+!                     if (target == -4 && !scr32_OnScreen(160, x, y, _xv, _yv))
+                      {
+!                         instance_destroy();
+!                         break;
+                      }
+!                 }
+!                 
+!                 with (o32_ePoliceCar)
+!                 {
+!                     if (target == -4 && !scr32_OnScreen(160, x, y, _xv, _yv))
+                      {
+!                         instance_destroy();
+!                         break;
+                      }
+                  }
+!             }
+!             else
+!             {
+!                 with (o32_eGangsterCar)
+                  {
+!                     if (target == -4 && !scr32_OnScreen(512, x, y, _xv, _yv))
+                      {
+!                         instance_destroy();
+!                         break;
+                      }
+--- 223,274 ----
+      case EVENT_MAFIA_RAMPAGE:
+!         var scaleFactor = global.numPlayers;
+! 
+!         if (dayEventMultiplierActive) {
+!             scaleFactor = scaleFactor / numberOfSeperateScreens;
+!         }
+! 
+!         for (var p = 0; p < global.numPlayers; p++) {
+!             var _xv = camera_get_view_x(view_get_camera(p));
+!             var _yv = camera_get_view_y(view_get_camera(p));
+!             
+!             if ((generalTimer % floor(20 * scaleFactor)) == 0)
+              {
+!                 if ((generalTimer % floor(200 * scaleFactor)) == 0)
+                  {
+!                     with (o32_eGangsterCar)
+                      {
+!                         if (target == -4 && !scr32_OnScreen(160, x, y, _xv, _yv))
+!                         {
+!                             instance_destroy();
+!                             break;
+!                         }
+                      }
+!                     
+!                     with (o32_ePoliceCar)
+                      {
+!                         if (target == -4 && !scr32_OnScreen(160, x, y, _xv, _yv))
+!                         {
+!                             instance_destroy();
+!                             break;
+!                         }
+                      }
+                  }
+!                 else
+                  {
+!                     with (o32_eGangsterCar)
+!                     {
+!                         if (target == -4 && !scr32_OnScreen(512, x, y, _xv, _yv))
+!                         {
+!                             instance_destroy();
+!                             break;
+!                         }
+!                     }
+!                     
+!                     with (o32_ePoliceCar)
+                      {
+!                         if (target == -4 && !scr32_OnScreen(512, x, y, _xv, _yv))
+!                         {
+!                             instance_destroy();
+!                             break;
+!                         }
+                      }
+***************
+*** 177,207 ****
                   
+!                 with (o32_ePoliceCar)
+                  {
+!                     if (target == -4 && !scr32_OnScreen(512, x, y, _xv, _yv))
+!                     {
+!                         instance_destroy();
+!                         break;
+!                     }
+                  }
+-             }
+-             
+-             var _x, _y;
+-             
+-             if (scrChoose(0, 1))
+-             {
+-                 _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+-                 _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+-             }
+-             else
+-             {
+-                 _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+-                 _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+-             }
+-             
+-             if (!position_meeting(_x, _y, oBlockPar) && !position_meeting(_x + 15, _y + 15, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && position_meeting(_x, _y, o32_dRoad))
+-             {
+-                 if (instance_number(o32_eGangsterCar) < 2)
+-                     instance_create(_x + scrIRandom(8) + 4, _y + scrIRandom(8) + 4, o32_eGangsterCar);
+-                 else if (instance_number(o32_ePoliceCar) < 2)
+-                     instance_create(_x + scrIRandom(8) + 4, _y + scrIRandom(8) + 4, o32_ePoliceCar);
+              }
+--- 276,297 ----
+                  
+!                 var _x, _y;
+!                 
+!                 if (scrChoose(0, 1))
+                  {
+!                     _x = (scrIRandomRange(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrChoose(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 else
+!                 {
+!                     _x = (scrChoose(_xv, _xv + 384 + 96) div 16) * 16;
+!                     _y = (scrIRandomRange(_yv - 32, _yv + 216 + 64) div 16) * 16;
+!                 }
+!                 
+!                 if (!position_meeting(_x, _y, oBlockPar) && !position_meeting(_x + 15, _y + 15, oBlockPar) && !position_meeting(_x + 8, _y + 8, o32_dWaterWay) && position_meeting(_x, _y, o32_dRoad))
+!                 {
+!                     if (instance_number(o32_eGangsterCar) < 2)
+!                         instance_create(_x + scrIRandom(8) + 4, _y + scrIRandom(8) + 4, o32_eGangsterCar);
+!                     else if (instance_number(o32_ePoliceCar) < 2)
+!                         instance_create(_x + scrIRandom(8) + 4, _y + scrIRandom(8) + 4, o32_ePoliceCar);
+                  }
+              }
 ***************
 *** 221,225 ****
                   {
@@ -93,7 +493,7 @@
 !                     var _y = clamp(((oPlayer.y div 16) * 16) + 8, y + 48 + 8, ((y + (image_yscale * 16)) - 48) + 8);
 !                     var _dir = round(point_direction(_x, _y, oPlayer.x, oPlayer.y) / 90) * 90;
                       
---- 236,241 ----
+--- 311,316 ----
                   {
 !                     var nearestPlayer = instance_nearest(x, y, o32_Player);
 !                     var _x = clamp(((nearestPlayer.x div 32) * 32) + 8, x + 48 + 8, ((x + (image_xscale * 16)) - 48) + 8);

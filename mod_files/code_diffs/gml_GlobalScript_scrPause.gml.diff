@@ -1,0 +1,25 @@
+*** original_scripts/gml_GlobalScript_scrPause.gml	Fri Nov  7 20:49:40 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrPause.gml	Mon Oct 20 20:43:43 2025
+***************
+*** 5,6 ****
+--- 5,9 ----
+      
++     global.pausedFromSplitScreen = oScreenHandler.splitScreenOn;
++     scrDeactivateSplitScreen();
++ 
+      global.paused = true;
+***************
+*** 8,9 ****
+--- 11,13 ----
+      game_set_speed(60, gamespeed_fps);
++     scrSaveTimePlayed();
+      
+***************
+*** 21,23 ****
+      
+!     var pauseMenu = instance_create_depth(room_width + 16, 0, 0, oPauseMenu);
+      
+--- 25,27 ----
+      
+!     var pauseMenu = instance_create(room_width + 16, 0, oPauseMenu);
+      

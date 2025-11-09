@@ -1,0 +1,38 @@
+*** original_scripts/onion_delivery/gml_Object_o32_FxRain_Draw_0.gml	Fri Nov  7 20:49:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_FxRain_Draw_0.gml	Fri Nov  7 20:43:36 2025
+***************
+*** 1,11 ****
+! var xv = camera_get_view_x(view_get_camera(0)) + 96 + 8;
+! var yv = camera_get_view_y(view_get_camera(0)) + 8;
+! var wv = 280;
+! var hv = 200;
+  
+! repeat (10)
+! {
+!     var _x = scrIRandomRange(xv, xv + wv) & -16;
+!     var _y = scrIRandomRange(yv, yv + hv) & -16;
+!     draw_sprite(s32_FxRain, scrIRandomRange(0, 2), _x, _y);
+  }
+--- 1,22 ----
+! var totalViewPorts = 1;
+  
+! if (oScreenHandler.splitScreenOn) {
+!     totalViewPorts = 4;
+! }
+! 
+! for (var i = 0; i < totalViewPorts; i++) {
+!     if (global.numPlayers <= i)
+!         continue;
+!     
+!     var xv = camera_get_view_x(view_get_camera(i)) + 96 + 8;
+!     var yv = camera_get_view_y(view_get_camera(i)) + 8;
+!     var wv = 280;
+!     var hv = 200;
+! 
+!     repeat (10)
+!     {
+!         var _x = scrIRandomRange(xv, xv + wv) & -16;
+!         var _y = scrIRandomRange(yv, yv + hv) & -16;
+!         draw_sprite(s32_FxRain, scrIRandomRange(0, 2), _x, _y);
+!     }
+  }

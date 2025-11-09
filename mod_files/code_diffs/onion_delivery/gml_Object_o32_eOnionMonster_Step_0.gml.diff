@@ -1,12 +1,21 @@
-*** original_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Mon Sep 29 20:03:31 2025
+*** original_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_eOnionMonster_Step_0.gml	Mon Nov  3 20:18:29 2025
 ***************
-*** 2,5 ****
+*** 1,5 ****
+! if (instance_exists(oPlayer))
   {
 !     targetX = round(oPlayer.x);
 !     targetY = round(oPlayer.y);
   }
---- 2,5 ----
+--- 1,12 ----
+! if (o32_Mas.dayEventMultiplierActive && array_length(o32_Mas.players) >= targetPlayerNum) {
+!     if (instance_exists(o32_Mas.players[targetPlayerNum - 1])) {
+!         targetPlayer = o32_Mas.players[targetPlayerNum - 1];
+!         targetX = targetPlayer.x;
+!         targetY = targetPlayer.y;
+!     }
+! }
+! else if (instance_exists(oPlayer))
   {
 !     targetX = round(instance_nearest(x, y, oPlayer).x);
 !     targetY = round(instance_nearest(x, y, oPlayer).y);

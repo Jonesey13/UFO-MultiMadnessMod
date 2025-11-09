@@ -1,0 +1,15 @@
+*** original_scripts/onion_delivery/gml_Object_oPauseMenu_Other_17.gml	Fri Nov  7 20:49:40 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_oPauseMenu_Other_17.gml	Sat Nov  1 22:06:49 2025
+***************
+*** 2,4 ****
+  
+! if (stateCounter == 2)
+      scrUnpause();
+--- 2,8 ----
+  
+! if (stateCounter == 2) {
+!     if (global.pausedFromSplitScreen) {
+!         scrActivateSplitScreen();
+!     }
+      scrUnpause();
++ }

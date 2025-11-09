@@ -1,5 +1,5 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Wed Oct 15 18:48:45 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_2.gml	Fri Oct 31 19:14:53 2025
 ***************
 *** 1,48 ****
 ! if (instance_exists(player))
@@ -59,48 +59,48 @@
 !         cameraCenterX = player.x - 192 - 48;
 !         cameraCenterY = player.y - 108;
 !         
-!         if (abs(angle_difference(player.dirCam, cameraDirection)) > 45)
+!         if (abs(angle_difference(player.dirCam, cameraDirection[i])) > 45)
 !         {
-!             cameraDirection = player.dirCam;
-!             cameraOffsetAimX = lengthdir_x(cameraThreshold, player.dirCam);
-!             cameraOffsetAimY = lengthdir_y(cameraThreshold, player.dirCam);
+!             cameraDirection[i] = player.dirCam;
+!             cameraOffsetAimX[i] = lengthdir_x(cameraThreshold, player.dirCam);
+!             cameraOffsetAimY[i] = lengthdir_y(cameraThreshold, player.dirCam);
 !         }
 !     } else {
 !         continue;
 !     }
       
-!     if (cameraDelay > 0)
+!     if (cameraDelay[i] > 0)
       {
-!         cameraDelay--;
+!         cameraDelay[i]--;
 !     }
-!     else if (cameraOffsetX != cameraOffsetAimX || cameraOffsetY != cameraOffsetAimY)
+!     else if (cameraOffsetX[i]!= cameraOffsetAimX[i] || cameraOffsetY[i] != cameraOffsetAimY[i])
 !     {
-!         cameraSpeed += 0.01;
-!         cameraSpeed = min(cameraSpeed, cameraSpeedMax);
+!         cameraSpeed[i] += 0.01;
+!         cameraSpeed[i] = min(cameraSpeed[i], cameraSpeedMax);
 !     }
 !     else
 !     {
-!         cameraSpeed = 0;
-!         cameraDelay = 30;
+!         cameraSpeed[i] = 0;
+!         cameraDelay[i] = 30;
       }
   
-!     if ((cameraOffsetX + cameraSpeed) < cameraOffsetAimX)
-!         cameraOffsetX += cameraSpeed;
-!     else if ((cameraOffsetX - cameraSpeed) > cameraOffsetAimX)
-!         cameraOffsetX -= cameraSpeed;
+!     if ((cameraOffsetX[i] + cameraSpeed[i]) < cameraOffsetAimX[i])
+!         cameraOffsetX[i] += cameraSpeed[i];
+!     else if ((cameraOffsetX[i] - cameraSpeed[i]) > cameraOffsetAimX[i])
+!         cameraOffsetX[i] -= cameraSpeed[i];
 !     else
-!         cameraOffsetX = cameraOffsetAimX;
+!         cameraOffsetX[i] = cameraOffsetAimX[i];
 ! 
-!     if ((cameraOffsetY + cameraSpeed) < cameraOffsetAimY)
-!         cameraOffsetY += cameraSpeed;
-!     else if ((cameraOffsetY - cameraSpeed) > cameraOffsetAimY)
-!         cameraOffsetY -= cameraSpeed;
+!     if ((cameraOffsetY[i] + cameraSpeed[i]) < cameraOffsetAimY[i])
+!         cameraOffsetY[i] += cameraSpeed[i];
+!     else if ((cameraOffsetY[i] - cameraSpeed[i]) > cameraOffsetAimY[i])
+!         cameraOffsetY[i] -= cameraSpeed[i];
 !     else
-!         cameraOffsetY = cameraOffsetAimY;
+!         cameraOffsetY[i] = cameraOffsetAimY[i];
 ! 
 ! 
-!     var _xv = floor(cameraCenterX + cameraOffsetX);
-!     var _yv = floor(cameraCenterY + cameraOffsetY);
+!     var _xv = floor(cameraCenterX + cameraOffsetX[i]);
+!     var _yv = floor(cameraCenterY + cameraOffsetY[i]);
 !     __view_set(e__VW.XView, i, _xv);
 !     __view_set(e__VW.YView, i, _yv);
 ! 
@@ -108,7 +108,7 @@
 !     yPlayfield[i] = _yv;
   }
 ! 
-! if ( global.numPlayers == 2 || global.numPlayers == 3) {
+! if ( state == GAMESTATE_PLAY && (global.numPlayers == 2 || global.numPlayers == 3)) {
 !     var _checkpointID = checkpointID[checkpointActive];
 ! 
 !     __view_set(e__VW.XView, 3, _checkpointID.x - 192);

@@ -1,7 +1,9 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Sun Oct 19 20:57:06 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Other_14.gml	Fri Oct 31 14:02:51 2025
 ***************
-*** 3,11 ****
+*** 1,11 ****
+! generalTimer = (99 - TIMER_START) * 60;
+  onionsDelivered[dayNumber] = 0;
   returnToBase = false;
 ! statePortrait = PORTRAIT_STATIC;
 ! stepPortrait = 0;
@@ -11,7 +13,9 @@
   checkpointRadiusMax = 1024 + (dayNumber * 256);
 - checkpointActive = 0;
   checkPointActiveName1 = checkpointName[checkpointActive][0];
---- 3,14 ----
+--- 1,14 ----
+! generalTimer = (60 * dayLength - TIMER_START) * 60;
+  onionsDelivered[dayNumber] = 0;
   returnToBase = false;
 ! for (var i = 0; i < global.numPlayers; i++) {
 !     statePortraits[i] = PORTRAIT_STATIC;
@@ -25,24 +29,37 @@
   checkpointRadiusMax = 1024 + (dayNumber * 256);
   checkPointActiveName1 = checkpointName[checkpointActive][0];
 ***************
-*** 15,17 ****
+*** 15,24 ****
   event_user(USER_UPDATE_HUD_TIMER);
 ! player = instance_create(x + 8, y + 8, o32_Player);
-  cameraCenterX = (x + 8) - 144;
---- 18,25 ----
+! cameraCenterX = (x + 8) - 144;
+! cameraCenterY = (y + 8) - 108;
+! cameraOffsetAimX = lengthdir_x(cameraThreshold, 0);
+! cameraOffsetAimY = lengthdir_y(cameraThreshold, 0);
+! cameraOffsetX = cameraOffsetAimX;
+! cameraOffsetY = cameraOffsetAimY;
+! set_view(cameraCenterX + cameraOffsetX, cameraCenterY + cameraOffsetY);
+  
+--- 18,31 ----
   event_user(USER_UPDATE_HUD_TIMER);
 ! 
 ! for (var i = 0; i < global.numPlayers; i++) {
 !     players[i] = instance_create(x + 8 + 4 * i, y + 8 - 14 * i, o32_Player);
 !     players[i].player = i;
+!     cameraCenterX = (x + 8) - 144;
+!     cameraCenterY = (y + 8) - 108;
+!     cameraOffsetAimX[i] = lengthdir_x(cameraThreshold, 0);
+!     cameraOffsetAimY[i] = lengthdir_y(cameraThreshold, 0);
+!     cameraOffsetX[i] = cameraOffsetAimX[i];
+!     cameraOffsetY[i] = cameraOffsetAimY[i];
+!     set_view(cameraCenterX + cameraOffsetX[i], cameraCenterY + cameraOffsetY[i]);
 ! }
-! 
-  cameraCenterX = (x + 8) - 144;
+  
 ***************
 *** 46,47 ****
       }
 ! }
---- 54,55 ----
+--- 53,54 ----
       }
 ! }
 \ No newline at end of file

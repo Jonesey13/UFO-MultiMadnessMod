@@ -1,11 +1,194 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Sun Oct 19 21:02:40 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Sun Oct 19 17:56:48 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Mon Nov  3 18:44:08 2025
+***************
+*** 23,24 ****
+--- 23,176 ----
+      }
++ } else if (state == GAMESTATE_MENU) {
++     if (pressUp)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY--;
++         
++         if (titleY < 0)
++             titleY = 7;
++     }
++     else if (pressDown)
++     {
++         scrSfx(sfx_navi01, 50);
++         titleY++;
++         
++         if (titleY > 7)
++             titleY = 0;
++     }
++ 
++     if (titleY == 0)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             currentStartingTimeSelect++;
++ 
++             if (currentStartingTimeSelect == 5)
++                 currentStartingTimeSelect = 0;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             currentStartingTimeSelect--;
++ 
++             if (currentStartingTimeSelect == -1)
++                 currentStartingTimeSelect = 4;
++         }
++     }
++     if (titleY == 1)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             onionsDeliveredGoal++;
++ 
++             if (onionsDeliveredGoal == 16)
++                 onionsDeliveredGoal = 15;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             onionsDeliveredGoal--;
++ 
++             if (onionsDeliveredGoal == 0)
++                 onionsDeliveredGoal = 1;
++         }
++     }
++     if (titleY == 2)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_DROPOFF++;
++ 
++             if (TIMER_BONUS_DROPOFF == 21)
++                 TIMER_BONUS_DROPOFF = 20;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_DROPOFF--;
++ 
++             if (TIMER_BONUS_DROPOFF == -1)
++                 TIMER_BONUS_DROPOFF = 0;
++         }
++     }
++     if (titleY == 3)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_CRATE++;
++ 
++             if (TIMER_BONUS_CRATE == 21)
++                 TIMER_BONUS_CRATE = 20;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_CRATE--;
++ 
++             if (TIMER_BONUS_CRATE == -1)
++                 TIMER_BONUS_CRATE = 0;
++         }
++     }
++     if (titleY == 4)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_FINAL++;
++ 
++             if (TIMER_BONUS_FINAL == 21)
++                 TIMER_BONUS_FINAL = 20;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             TIMER_BONUS_FINAL--;
++ 
++             if (TIMER_BONUS_FINAL == -1)
++                 TIMER_BONUS_FINAL = 0;
++         }
++     }
++     if (titleY == 5)
++     {
++         if (fire2pressed || pressRight)
++         {
++             scrSfx(sfx_navi01, 60);
++             dayEventCustom++;
++ 
++             if (dayEventCustom == 7)
++                 dayEventCustom = 0;
++         } else if (fire1pressed || pressLeft)
++         {
++             scrSfx(sfx_navi01, 60);
++             dayEventCustom--;
++ 
++             if (dayEventCustom == -2)
++                 dayEventCustom = 6;
++         }
++     }
++     if (titleY == 6)
++     {
++         if (fire2pressed || pressRight)
++         {
++             dayEventMultiplierActive = !dayEventMultiplierActive;
++         } else if (fire1pressed || pressLeft)
++         {
++             dayEventMultiplierActive = !dayEventMultiplierActive;
++         }
++     }
++     if (titleY == 7)
++     {
++         if (fire2pressed)
++         {
++             TIMER_START = startingTimeOptions[currentStartingTimeSelect];
++             if (dayEventCustom != -1) {
++                 dayEvent = dayEventCustom;
++             }
++             blackout = true;
++             scr32_GamestateSet(GAMESTATE_SETUP);
++ 
++             if (global.numPlayers >= 2) {
++                 scrActivateSplitScreen();
++             }
++         }
++     }
+  }
 ***************
 *** 162,164 ****
       {
 !         with (player)
           {
---- 162,164 ----
+--- 314,316 ----
       {
 !         with (o32_Player)
           {
+***************
+*** 201,203 ****
+                  
+!                 dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
+                  event_user(USER_CLEANUP);
+--- 353,359 ----
+                  
+!                 if (dayEventCustom == -1) {
+!                     dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
+!                 } else {
+!                     dayEvent = dayEventCustom;
+!                 }
+                  event_user(USER_CLEANUP);
+***************
+*** 228,230 ****
+              event_user(USER_CLEANUP);
+!             dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
+              scr32_GamestateSet(GAMESTATE_NEWS, true);
+--- 384,390 ----
+              event_user(USER_CLEANUP);
+!             if (dayEventCustom == -1) {
+!                 dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
+!             } else {
+!                 dayEvent = dayEventCustom;
+!             }
+              scr32_GamestateSet(GAMESTATE_NEWS, true);

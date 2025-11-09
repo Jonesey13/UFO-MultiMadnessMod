@@ -1,4 +1,4 @@
-*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Tue Oct 14 20:52:30 2025
+*** original_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Fri Nov  7 20:49:38 2025
 --- ufo50_modded_scripts/bushido_ball/gml_Object_o22_HandRight_Step_0.gml	Thu Oct 16 08:16:24 2025
 ***************
 *** 5,7 ****
@@ -20,33 +20,6 @@
       o22_PortraitRight.val = sel;
 +     
       var _xv = camera_get_view_x(view_get_camera(0));
-***************
-*** 134,136 ****
-          case 3:
-!             x = _yv + 112 + 32;
-              y = _yv + 16 + 112 + 16;
---- 139,141 ----
-          case 3:
-!             x = _xv + 112 + 32;
-              y = _yv + 16 + 112 + 16;
-***************
-*** 139,141 ****
-          case 4:
-!             x = _yv + 112 + 32 + 48;
-              y = _yv + 16 + 112 + 16;
---- 144,146 ----
-          case 4:
-!             x = _xv + 112 + 32 + 48;
-              y = _yv + 16 + 112 + 16;
-***************
-*** 144,146 ****
-          case 5:
-!             x = _yv + 112 + 32 + 96;
-              y = _yv + 16 + 112 + 16;
---- 149,151 ----
-          case 5:
-!             x = _xv + 112 + 32 + 96;
-              y = _yv + 16 + 112 + 16;
 ***************
 *** 167,175 ****
   {

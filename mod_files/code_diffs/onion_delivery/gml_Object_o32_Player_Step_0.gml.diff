@@ -1,5 +1,5 @@
-*** original_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Sun Oct 19 20:57:36 2025
+*** original_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Player_Step_0.gml	Mon Nov  3 16:42:07 2025
 ***************
 *** 3,4 ****
 --- 3,6 ----
@@ -180,6 +180,24 @@
 !                     statePortraits[playerNum] = PORTRAIT_DELIVERY;
 !                     tPortraits[playerNum] = 0;
                       var _onionsToAdd = 1;
+***************
+*** 807,809 ****
+                      
+!                     if (onionsDelivered[dayNumber] == 5)
+                      {
+--- 809,811 ----
+                      
+!                     if (onionsDelivered[dayNumber] == onionsDeliveredGoal)
+                      {
+***************
+*** 812,814 ****
+                      }
+!                     else if (onionsDelivered[dayNumber] < 5)
+                      {
+--- 814,816 ----
+                      }
+!                     else if (onionsDelivered[dayNumber] < onionsDeliveredGoal)
+                      {
 ***************
 *** 846,848 ****
                   
