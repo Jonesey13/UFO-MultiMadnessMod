@@ -6,6 +6,7 @@ This is a mod to enable 4 players for various games in the game UFO50.
 
 Currently the following games are supported:
 * Velgress (2/3/4P Co-op & VS)
+* Onion Delivery (2/3/4P Splitscreen Co-op)
 * Waldorf's Journey (2/3/4P Free For All)
 * Bushido Ball (4P VS)
 * Hot Foot (4P VS)
