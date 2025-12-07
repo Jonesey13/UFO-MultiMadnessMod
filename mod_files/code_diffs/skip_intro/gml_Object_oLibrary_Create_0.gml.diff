@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oLibrary_Create_0.gml	Sun Aug 10 16:08:16 2025
---- ufo50_modded_scripts/gml_Object_oLibrary_Create_0.gml	Fri Jul 25 12:08:26 2025
+*** original_scripts/skip_intro/gml_Object_oLibrary_Create_0.gml	Sun Aug 10 16:08:16 2025
+--- ufo50_modded_scripts/skip_intro/gml_Object_oLibrary_Create_0.gml	Fri Jul 25 12:08:26 2025
 ***************
 *** 40,42 ****
       if (global.SKIP_INTRO)
