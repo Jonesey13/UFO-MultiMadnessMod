@@ -1,8 +1,8 @@
-*** original_scripts/gml_Object_oScreenHandler_Create_0.gml	Sun Sep 28 17:20:40 2025
---- ufo50_modded_scripts/gml_Object_oScreenHandler_Create_0.gml	Sun Sep 28 20:16:57 2025
+*** original_scripts/gml_Object_oScreenHandler_Create_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/gml_Object_oScreenHandler_Create_0.gml	Sat Dec  6 19:19:35 2025
 ***************
 *** 12 ****
---- 12,13 ----
+--- 12,14 ----
   do_screen = false;
 + splitScreenOn = false;
-\ No newline at end of file
++ splitScreenRequested = false;

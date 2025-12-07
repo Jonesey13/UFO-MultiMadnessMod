@@ -1,8 +1,19 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Sat Jun  7 07:56:49 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Sat Jun  7 08:27:31 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_10.gml	Sat Dec  6 19:52:41 2025
 ***************
-*** 21,22 ****
---- 21,29 ----
+*** 21,31 ****
+      }
+      else if (numPlayers == 0)
+      {
+!         subState = 7;
+!         
+          with (o43_Coach)
+              visible = false;
+      }
+  }
+- 
+  if (subState == 1)
+--- 21,38 ----
       }
 +     else if (numPlayers == 5)
 +     {
@@ -12,47 +23,328 @@
 +         scrTransition(12, 16, global.palette[31], -1, false);
 +     }
       else if (numPlayers == 0)
+      {
+!         subState = 6.9;
+          with (o43_Coach)
++         {
+              visible = false;
++         }
+      }
+  }
+  if (subState == 1)
 ***************
-*** 82,84 ****
-          
+*** 33,37 ****
+      if (scrTransitionDone())
+          subState++;
+  }
+- 
+  if (subState == 2)
+--- 40,45 ----
+      if (scrTransitionDone())
++     {
+          subState++;
++     }
+  }
+  if (subState == 2)
+***************
+*** 43,45 ****
+      }
+-     
+      if (fire2pressed)
+--- 51,52 ----
+***************
+*** 47,54 ****
+          scrSfx(soundSelectA, 60);
+-         
+          if (titleY == 1)
+              playMode = VS;
+          else if (titleY == 0)
+              playMode = COOP;
+!         
+          titleY = 0;
+--- 54,63 ----
+          scrSfx(soundSelectA, 60);
+          if (titleY == 1)
++         {
+              playMode = VS;
++         }
+          else if (titleY == 0)
++         {
+              playMode = COOP;
+!         }
+          titleY = 0;
+***************
+*** 58,60 ****
+  }
+- 
+  if (subState == 3)
+--- 67,68 ----
+***************
+*** 62,66 ****
+      if (scrTransitionDone())
+          subState++;
+  }
+- 
+  if (subState == 4)
+--- 70,75 ----
+      if (scrTransitionDone())
++     {
+          subState++;
++     }
+  }
+  if (subState == 4)
+***************
+*** 72,74 ****
+      }
+-     
+      if (fire2pressed)
+--- 81,82 ----
+***************
+*** 76,84 ****
+          scrSfx(soundSelectA, 60);
+-         
+          if (titleY == 0)
+              useDraft = true;
+          else if (titleY == 1)
+              useDraft = false;
+!         
 !         subState = 5;
           scrTransition(-1, 24, 0, -2, false);
---- 89,94 ----
-          
-!         if (numPlayers == 4 && playMode = VS)
-!             subState = 7;
+--- 84,101 ----
+          scrSfx(soundSelectA, 60);
+          if (titleY == 0)
++         {
+              useDraft = true;
++         }
+          else if (titleY == 1)
++         {
+              useDraft = false;
+!         }
+!         if (numPlayers == 4 && playMode == VS)
+!         {
+!             subState = 6.9;
+!         }
 !         else
+!         {
 !             subState = 5;
+!         }
           scrTransition(-1, 24, 0, -2, false);
 ***************
-*** 89,90 ****
---- 99,103 ----
+*** 86,90 ****
+  }
+- 
+  if (subState == 5)
+  {
+      if (scrTransitionDone())
+--- 103,110 ----
+  }
+  if (subState == 5)
   {
 +     if (RANDOMISE_CONTROLLERS && global.numPlayers >= 4)
++     {
 +         ControllerMap = rng_random_array_shuffle([1, 2, 3, 4]);
-+ 
++     }
       if (scrTransitionDone())
 ***************
-*** 106,108 ****
+*** 92,99 ****
+          if (useDraft)
+              futureState = STATE_DRAFT;
+          else
+              futureState = STATE_FREE_PICK;
+      }
+  }
+! 
+  if (subState == 7)
+--- 112,128 ----
+          if (useDraft)
++         {
+              futureState = STATE_DRAFT;
++         }
+          else
++         {
+              futureState = STATE_FREE_PICK;
++         }
+      }
+  }
+! if (subState == 6.9)
+! {
+!     titleY = 0;
+!     subState = 7;
+!     scrInputClear();
+! }
+  if (subState == 7)
+***************
+*** 104,108 ****
+          titleY--;
+-         
           if (titleY < 0)
 !             titleY = 5;
       }
---- 119,121 ----
+--- 133,138 ----
+          titleY--;
           if (titleY < 0)
+!         {
 !             titleY = 6;
+!         }
       }
 ***************
-*** 113,115 ****
-          
+*** 112,118 ****
+          titleY++;
+!         
 !         if (titleY > 5)
               titleY = 0;
---- 126,128 ----
-          
+      }
+-     
+      if (titleY == 0)
+--- 142,148 ----
+          titleY++;
 !         if (titleY > 6)
+!         {
               titleY = 0;
++         }
+      }
+      if (titleY == 0)
+***************
+*** 123,127 ****
+              POINT_GOAL++;
+-             
+              if (POINT_GOAL > 30)
+                  POINT_GOAL = 5;
+          }
+--- 153,158 ----
+              POINT_GOAL++;
+              if (POINT_GOAL > 30)
++             {
+                  POINT_GOAL = 5;
++             }
+          }
+***************
+*** 131,135 ****
+              POINT_GOAL--;
+-             
+              if (POINT_GOAL < 5)
+                  POINT_GOAL = 30;
+          }
+--- 162,167 ----
+              POINT_GOAL--;
+              if (POINT_GOAL < 5)
++             {
+                  POINT_GOAL = 30;
++             }
+          }
+***************
+*** 142,146 ****
+              MAX_BAGS++;
+-             
+              if (MAX_BAGS > 7)
+                  MAX_BAGS = 1;
+          }
+--- 174,179 ----
+              MAX_BAGS++;
+              if (MAX_BAGS > 7)
++             {
+                  MAX_BAGS = 1;
++             }
+          }
+***************
+*** 150,154 ****
+              MAX_BAGS--;
+-             
+              if (MAX_BAGS < 1)
+                  MAX_BAGS = 7;
+          }
+--- 183,188 ----
+              MAX_BAGS--;
+              if (MAX_BAGS < 1)
++             {
+                  MAX_BAGS = 7;
++             }
+          }
+***************
+*** 161,165 ****
+              SPECIAL_COST++;
+-             
+              if (SPECIAL_COST > 2)
+                  SPECIAL_COST = 1;
+          }
+--- 195,200 ----
+              SPECIAL_COST++;
+              if (SPECIAL_COST > 2)
++             {
+                  SPECIAL_COST = 1;
++             }
+          }
+***************
+*** 169,173 ****
+              SPECIAL_COST--;
+-             
+              if (SPECIAL_COST < 1)
+                  SPECIAL_COST = 2;
+          }
+--- 204,209 ----
+              SPECIAL_COST--;
+              if (SPECIAL_COST < 1)
++             {
+                  SPECIAL_COST = 2;
++             }
+          }
+***************
+*** 180,189 ****
+              TM_AI++;
+-             
+              if (TM_AI > 2)
+                  TM_AI = 1;
+!             
+              if (TM_AI == 1)
+                  TM_JUMP_SYNC = true;
+              else
+                  TM_JUMP_SYNC = false;
+          }
+--- 216,229 ----
+              TM_AI++;
+              if (TM_AI > 2)
++             {
+                  TM_AI = 1;
+!             }
+              if (TM_AI == 1)
++             {
+                  TM_JUMP_SYNC = true;
++             }
+              else
++             {
+                  TM_JUMP_SYNC = false;
++             }
+          }
+***************
+*** 193,202 ****
+              TM_AI--;
+-             
+              if (TM_AI < 1)
+                  TM_AI = 2;
+!             
+              if (TM_AI == 1)
+                  TM_JUMP_SYNC = true;
+              else
+                  TM_JUMP_SYNC = false;
+          }
+--- 233,246 ----
+              TM_AI--;
+              if (TM_AI < 1)
++             {
+                  TM_AI = 2;
+!             }
+              if (TM_AI == 1)
++             {
+                  TM_JUMP_SYNC = true;
++             }
+              else
++             {
+                  TM_JUMP_SYNC = false;
++             }
+          }
 ***************
 *** 213,214 ****
---- 226,235 ----
+--- 257,266 ----
       {
 +         if (fire2pressed || pressRight || fire1pressed || pressLeft)
 +         {
@@ -68,10 +360,20 @@
               scrSfx(soundSelectA, 60);
 !             subState = 8;
               scrTransition(-1, 24, 0, -2, false);
---- 237,242 ----
+--- 268,277 ----
               scrSfx(soundSelectA, 60);
-!             if (numPlayers == 4 && playMode = VS)
+!             if (numPlayers == 4 && playMode == VS)
+!             {
 !                 subState = 5;
-!             else 
+!             }
+!             else
+!             {
 !                 subState = 8;
+!             }
               scrTransition(-1, 24, 0, -2, false);
+***************
+*** 221,223 ****
+  }
+- 
+  if (subState == 8)
+--- 280,281 ----

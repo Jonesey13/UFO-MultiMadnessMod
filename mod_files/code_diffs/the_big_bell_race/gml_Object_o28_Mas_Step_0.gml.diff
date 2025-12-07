@@ -1,12 +1,12 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Oct 17 20:12:29 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Step_0.gml	Sat Dec  6 19:29:20 2025
 ***************
 *** 2,71 ****
   {
 !     scrGetInput(0);
 !     
 !     if (naviSel[0] == 0)
-!     {
+      {
 !         if (pressLeft)
 !         {
 !             scrSfx(sfx_navi00, 40);
@@ -74,13 +74,13 @@
           {
 --- 2,7 ----
   {
-!     for (var i = 0; i < global.numPlayers; i++) {
+!     for (var i = 0; i < global.numPlayers; i++)
+      {
 !         scrGetInput(i);
-!         
 !         if (naviSel[i] == 0)
           {
 ***************
-*** 74,84 ****
+*** 74,83 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
@@ -90,16 +90,16 @@
 !                     
 !                     if (navi[1] < 0)
 !                         navi[1] = 5;
-!                 }
-              }
---- 10,14 ----
+                  }
+--- 10,15 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]--;
 !                 if (navi[i] < 0)
+!                 {
 !                     navi[i] = 5;
-              }
+                  }
 ***************
-*** 87,97 ****
+*** 87,96 ****
                   scrSfx(sfx_navi00, 40);
 !                 var np = navi[1];
 !                 
@@ -109,14 +109,14 @@
 !                     
 !                     if (navi[1] > 5)
 !                         navi[1] = 0;
-!                 }
-              }
---- 17,21 ----
+                  }
+--- 19,24 ----
                   scrSfx(sfx_navi00, 40);
 !                 navi[i]++;
 !                 if (navi[i] > 5)
+!                 {
 !                     navi[i] = 0;
-              }
+                  }
 ***************
 *** 99,105 ****
               {
@@ -126,16 +126,16 @@
                       scrSfx(sfx_select01, 45);
 !                     naviSel[1] = 1;
                   }
---- 23,38 ----
+--- 27,42 ----
               {
 !                 selectablePlayerFound = true;
-!                     
-!                 for (var j = 0; j < global.numPlayers; j++) {
-!                     if (i != j && navi[i] == navi[j] && naviSel[j] == 1) {
-!                         selectablePlayerFound = false
+!                 for (var j = 0; j < global.numPlayers; j++)
+!                 {
+!                     if (i != j && navi[i] == navi[j] && naviSel[j] == 1)
+!                     {
+!                         selectablePlayerFound = false;
 !                     }
 !                 }
-! 
 !                 if (selectablePlayerFound && naviSel[i] == 0)
                   {
 +                     readies++;
@@ -152,7 +152,7 @@
                   scrSfx(sfx_deselect00, 45);
 !                 naviSel[1] = 0;
                   t = 0;
---- 42,49 ----
+--- 46,53 ----
           {
 !             if (naviSel[i] == 1)
               {
@@ -162,119 +162,787 @@
 !                 naviSel[i] = 0;
                   t = 0;
 ***************
-*** 121,123 ****
+*** 118,123 ****
+      }
+-     
+      if (naviSel[0] == 1)
       {
 !         if (!multip || naviSel[1] == 1)
           {
---- 55,57 ----
+--- 56,60 ----
+      }
+      if (naviSel[0] == 1)
       {
 !         if (!multip || readies == global.numPlayers)
           {
 ***************
-*** 128,141 ****
+*** 128,157 ****
                   playerSel[1] = navi[1];
 !                 ds_grid_set(dsScore, 0, 5, playerSel[0]);
 !                 
 !                 if (multip)
-!                 {
+                  {
 !                     ds_grid_set(dsScore, 0, 4, playerSel[1]);
 !                     nShuf = 3;
-!                 }
+                  }
 !                 else
-!                 {
+                  {
 !                     while (ds_grid_get(dsScore, 0, 4) == ds_grid_get(dsScore, 0, 5))
 !                         ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
                   }
-                  
---- 62,71 ----
+-                 
+                  while (ds_grid_get(dsScore, 0, 3) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 3) == ds_grid_get(dsScore, 0, 4))
+                      ds_grid_set(dsScore, 0, 3, scrIRandomRange(0, 5));
+!                 
+                  while (ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 3))
+                      ds_grid_set(dsScore, 0, 2, scrIRandomRange(0, 5));
+!                 
+                  while (ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 3) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 2))
+                      ds_grid_set(dsScore, 0, 1, scrIRandomRange(0, 5));
+!                 
+                  while (ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 3) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 2) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 1))
+                      ds_grid_set(dsScore, 0, 0, scrIRandomRange(0, 5));
+!                 
+                  for (var i = 0; i < 6; i++)
+                      iUfoCuts[i] = ds_grid_get(dsScore, 0, 5 - i);
+!                 
+                  set_yview(0);
+--- 65,95 ----
                   playerSel[1] = navi[1];
-! 
-!                 for (var j = 0; j < global.numPlayers; j++) {
+!                 for (var j = 0; j < global.numPlayers; j++)
+                  {
 !                     playerSel[j] = navi[j];
 !                     ds_grid_set(dsScore, 0, 5 - j, playerSel[j]);
                   }
-+ 
-+                 while (ds_grid_get(dsScore, 0, 4) == ds_grid_get(dsScore, 0, 5))
-+                     ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
-                  
+!                 while (ds_grid_get(dsScore, 0, 4) == ds_grid_get(dsScore, 0, 5))
+                  {
+!                     ds_grid_set(dsScore, 0, 4, scrIRandomRange(0, 5));
+                  }
+                  while (ds_grid_get(dsScore, 0, 3) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 3) == ds_grid_get(dsScore, 0, 4))
++                 {
+                      ds_grid_set(dsScore, 0, 3, scrIRandomRange(0, 5));
+!                 }
+                  while (ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 2) == ds_grid_get(dsScore, 0, 3))
++                 {
+                      ds_grid_set(dsScore, 0, 2, scrIRandomRange(0, 5));
+!                 }
+                  while (ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 3) || ds_grid_get(dsScore, 0, 1) == ds_grid_get(dsScore, 0, 2))
++                 {
+                      ds_grid_set(dsScore, 0, 1, scrIRandomRange(0, 5));
+!                 }
+                  while (ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 5) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 4) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 3) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 2) || ds_grid_get(dsScore, 0, 0) == ds_grid_get(dsScore, 0, 1))
++                 {
+                      ds_grid_set(dsScore, 0, 0, scrIRandomRange(0, 5));
+!                 }
+                  for (var i = 0; i < 6; i++)
++                 {
+                      iUfoCuts[i] = ds_grid_get(dsScore, 0, 5 - i);
+!                 }
+                  set_yview(0);
 ***************
-*** 315,316 ****
---- 245,266 ----
+*** 167,169 ****
+      var skip = false;
+-     
+      if (t++ >= 30)
+--- 105,106 ----
+***************
+*** 171,173 ****
+          t = 0;
+-         
+          if (!bgmTrig)
+--- 108,109 ----
+***************
+*** 177,186 ****
+          }
+-         
+          for (var i = 0; i < 96; i++)
+              iCrowd[i] = scrChoose(0, 1);
+!         
+          if (xUfoCuts > 800)
+              skip = true;
+      }
+-     
+      xUfoCuts++;
+--- 113,123 ----
+          }
+          for (var i = 0; i < 96; i++)
++         {
+              iCrowd[i] = scrChoose(0, 1);
+!         }
+          if (xUfoCuts > 800)
++         {
+              skip = true;
++         }
+      }
+      xUfoCuts++;
+***************
+*** 188,193 ****
+      scrGetInput(0);
+-     
+      if (fire2pressed)
+          skip = true;
+!     
+      if (skip)
+--- 125,130 ----
+      scrGetInput(0);
+      if (fire2pressed)
++     {
+          skip = true;
+!     }
+      if (skip)
+***************
+*** 208,213 ****
+      var checknum = instance_number(o28_CheckpointH);
+-     
+      for (var i = 0; i < checknum; i++)
+          ccollision[i] = instance_find(o28_CheckpointH, i);
+!     
+      for (var i = 0; i < checknum; i++)
+--- 145,150 ----
+      var checknum = instance_number(o28_CheckpointH);
+      for (var i = 0; i < checknum; i++)
++     {
+          ccollision[i] = instance_find(o28_CheckpointH, i);
+!     }
+      for (var i = 0; i < checknum; i++)
+***************
+*** 216,230 ****
+          {
+!             checkp[self.ccollision[i].num] = ccollision[i];
+!             
+!             if (self.ccollision[i].num == 0)
+!                 self.ccollision[i].visible = true;
+          }
+      }
+-     
+      checknum = instance_number(o28_PowerupSpawn);
+      var psCount = -1;
+-     
+      for (var i = 0; i < checknum; i++)
+          ccollision[i] = instance_find(o28_PowerupSpawn, i);
+!     
+      for (var i = 0; i < checknum; i++)
+--- 153,167 ----
+          {
+!             checkp[ccollision[i].num] = ccollision[i];
+!             if (ccollision[i].num == 0)
+!             {
+!                 ccollision[i].visible = true;
+!             }
+          }
+      }
+      checknum = instance_number(o28_PowerupSpawn);
+      var psCount = -1;
+      for (var i = 0; i < checknum; i++)
++     {
+          ccollision[i] = instance_find(o28_PowerupSpawn, i);
+!     }
+      for (var i = 0; i < checknum; i++)
+***************
+*** 237,241 ****
+      }
+-     
+      tPSpawn = 0;
+-     
+      with (o28_TurbopadL)
+--- 174,176 ----
+***************
+*** 252,258 ****
+      }
+-     
+      setup = 4;
+-     
+      if (global.attractMode)
+          setup = 5;
+  }
+--- 187,193 ----
+      }
+      setup = 4;
+      if (global.attractMode)
++     {
+          setup = 5;
++     }
+  }
+***************
+*** 263,265 ****
+          t = 0;
+-         
+          if (countdown > 0)
+--- 198,199 ----
+***************
+*** 267,271 ****
+              countdown--;
+-             
+              if (countdown < 3)
+                  scrSfx(sfx_polyCountdown00, 40);
+          }
+--- 201,206 ----
+              countdown--;
+              if (countdown < 3)
++             {
+                  scrSfx(sfx_polyCountdown00, 40);
++             }
+          }
+***************
+*** 284,286 ****
+          tLaunch = 0;
+-         
+          if (rCount < 5)
+--- 219,220 ----
+***************
+*** 290,306 ****
+              var uId = ds_grid_get(dsScore, 0, 5 - rCount);
+!             racer[rCount] = instance_create(self.spawn[currStage].x + 8, self.spawn[currStage].y + 8, o28_Egg);
+!             self.racer[rCount].image_index = uId;
+!             self.racer[rCount].sUfo = sUfo[uId];
+!             self.racer[rCount].myId = uId;
+!             self.racer[rCount].sNum = rCount;
+!             self.racer[rCount].dad = id;
+!             self.racer[rCount].firstSpawn = true;
+!             self.racer[rCount].lap = 0;
+!             self.racer[rCount].lapPos = 0;
+!             self.racer[rCount].inGoal = false;
+!             
+              if (uId == playerSel[0])
+              {
+!                 self.racer[rCount].human = true;
+!                 self.racer[rCount].num = 0;
+                  lapP1TimeStamp = current_time;
+--- 224,239 ----
+              var uId = ds_grid_get(dsScore, 0, 5 - rCount);
+!             racer[rCount] = instance_create(spawn[currStage].x + 8, spawn[currStage].y + 8, o28_Egg);
+!             racer[rCount].image_index = uId;
+!             racer[rCount].sUfo = sUfo[uId];
+!             racer[rCount].myId = uId;
+!             racer[rCount].sNum = rCount;
+!             racer[rCount].dad = id;
+!             racer[rCount].firstSpawn = true;
+!             racer[rCount].lap = 0;
+!             racer[rCount].lapPos = 0;
+!             racer[rCount].inGoal = false;
+              if (uId == playerSel[0])
+              {
+!                 racer[rCount].human = true;
+!                 racer[rCount].num = 0;
+                  lapP1TimeStamp = current_time;
+***************
+*** 310,313 ****
+              {
+!                 self.racer[rCount].human = true;
+!                 self.racer[rCount].num = 1;
+                  lapP2TimeStamp = current_time;
+--- 243,246 ----
+              {
+!                 racer[rCount].human = true;
+!                 racer[rCount].num = 1;
+                  lapP2TimeStamp = current_time;
+***************
+*** 317,325 ****
+              {
+!                 self.racer[rCount].human = false;
+!                 self.racer[rCount].num = 99;
               }
-+             else if (global.numPlayers >= 3 && uId == playerSel[2])
+-             
+              ds_grid_set(dsRank, 0, rCount, racer[rCount]);
+              ds_grid_set(dsRank, 1, rCount, rCount);
+!             scrFX(s28_Launch, 0.5, self.spawn[currStage].x, self.spawn[currStage].y);
+          }
+--- 250,277 ----
+              {
+!                 racer[rCount].human = false;
+!                 racer[rCount].num = 99;
+!                 if (global.numPlayers >= 3 && uId == playerSel[2])
+!                 {
+!                     racer[rCount].human = true;
+!                     racer[rCount].num = 2;
+!                 }
+!                 else if (global.numPlayers >= 4 && uId == playerSel[3])
+!                 {
+!                     racer[rCount].human = true;
+!                     racer[rCount].num = 3;
+!                 }
+!                 else if (global.numPlayers >= 5 && uId == playerSel[4])
+!                 {
+!                     racer[rCount].human = true;
+!                     racer[rCount].num = 4;
+!                 }
+!                 else if (global.numPlayers >= 6 && uId == playerSel[5])
+!                 {
+!                     racer[rCount].human = true;
+!                     racer[rCount].num = 5;
+!                 }
+              }
+              ds_grid_set(dsRank, 0, rCount, racer[rCount]);
+              ds_grid_set(dsRank, 1, rCount, rCount);
+!             scrFX(s28_Launch, 0.5, spawn[currStage].x, spawn[currStage].y);
+          }
+***************
+*** 334,336 ****
+      scrGetInput(0);
+-     
+      if (t++ >= 60 || fire2pressed)
+--- 286,287 ----
+***************
+*** 347,349 ****
+      scrGetInput(0);
+-     
+      if (fire2pressed)
+--- 298,299 ----
+***************
+*** 351,357 ****
+          with (o28_SDChar)
+              instance_destroy();
+!         
+          setup++;
+          var _firstPlace = ds_grid_get(dsRank, 0, 0);
+-         
+          if (_firstPlace.num == 0 || _firstPlace.num == 1)
+--- 301,307 ----
+          with (o28_SDChar)
++         {
+              instance_destroy();
+!         }
+          setup++;
+          var _firstPlace = ds_grid_get(dsRank, 0, 0);
+          if (_firstPlace.num == 0 || _firstPlace.num == 1)
+***************
+*** 368,376 ****
+          t = 0;
+-         
+          for (var i = 0; i < 6; i++)
+!             ds_grid_set(dsScore, 2, i, pointPos[self.racer[5 - i].lapPos * 0.000001]);
+!         
+          if (currStage == 0)
+              ds_grid_sort(dsScore, 2, 0);
+!         
+          ds_grid_copy(dsScorePrev, dsScore);
+--- 318,327 ----
+          t = 0;
+          for (var i = 0; i < 6; i++)
+!         {
+!             ds_grid_set(dsScore, 2, i, pointPos[racer[5 - i].lapPos * 0.000001]);
+!         }
+          if (currStage == 0)
++         {
+              ds_grid_sort(dsScore, 2, 0);
+!         }
+          ds_grid_copy(dsScorePrev, dsScore);
+***************
+*** 382,387 ****
+      scrGetInput(0);
+-     
+      if (t < 90)
+          t++;
+!     
+      if (t > 45 && (t % 4) == 0)
+--- 333,338 ----
+      scrGetInput(0);
+      if (t < 90)
++     {
+          t++;
+!     }
+      if (t > 45 && (t % 4) == 0)
+***************
+*** 389,391 ****
+          scrSfx(sfx_collect03, 85);
+-         
+          for (var i = 0; i < 6; i++)
+--- 340,341 ----
+***************
+*** 394,401 ****
+              {
+!                 if (self.racer[i].myId == j)
+                      rNum = j;
+              }
+-             
+              var rNum = ds_grid_value_y(dsScore, 0, 0, 0, 5, rNum);
+-             
+              if (ds_grid_get(dsScore, 2, rNum) > 0)
+--- 344,351 ----
+              {
+!                 if (racer[i].myId == j)
+!                 {
+                      rNum = j;
++                 }
+              }
+              var rNum = ds_grid_value_y(dsScore, 0, 0, 0, 5, rNum);
+              if (ds_grid_get(dsScore, 2, rNum) > 0)
+***************
+*** 407,409 ****
+      }
+-     
+      if (fire2pressed)
+--- 357,358 ----
+***************
+*** 411,413 ****
+          t = 0;
+-         
+          while (ds_grid_get_max(dsScore, 2, 0, 2, 5) > 0)
+--- 360,361 ----
+***************
+*** 415,417 ****
+              var rNum = -1;
+-             
+              for (var i = 0; i < 6; i++)
+--- 363,364 ----
+***************
+*** 420,427 ****
+                  {
+!                     if (self.racer[i].myId == j)
+                          rNum = j;
+                  }
+-                 
+                  rNum = ds_grid_value_y(dsScore, 0, 0, 0, 5, rNum);
+-                 
+                  if (ds_grid_get(dsScore, 2, rNum) > 0)
+--- 367,374 ----
+                  {
+!                     if (racer[i].myId == j)
+!                     {
+                          rNum = j;
++                     }
+                  }
+                  rNum = ds_grid_value_y(dsScore, 0, 0, 0, 5, rNum);
+                  if (ds_grid_get(dsScore, 2, rNum) > 0)
+***************
+*** 433,435 ****
+          }
+-         
+          ds_grid_sort(dsScore, 1, 0);
+--- 380,381 ----
+***************
+*** 444,446 ****
+      scrGetInput(0);
+-     
+      if (fire2pressed)
+--- 390,391 ----
+***************
+*** 448,486 ****
+          muteBGM();
+-         
+          with (o28_CheckpointH)
+              visible = false;
+!         
+          with (o28_TurbopadL)
+              visible = false;
+!         
+          with (o28_TurboPadR)
+              visible = false;
+!         
+          with (o28_Powerup)
+              instance_destroy();
+!         
+          with (o28_Bomb)
+              instance_destroy();
+!         
+          with (o28_Mace)
+              instance_destroy();
+!         
+          with (o28_MegaBomb)
+              instance_destroy();
+!         
+          with (o28_Bullet01)
+              instance_destroy();
+!         
+          with (o28_UFO)
+              instance_destroy();
+!         
+          with (o28_Egg)
+              instance_destroy();
+!         
+          with (oUFOThruster)
+              instance_destroy();
+!         
+          with (o28_SDChar)
+              instance_destroy();
+!         
+          if (currStage < 7)
+--- 393,442 ----
+          muteBGM();
+          with (o28_CheckpointH)
++         {
+              visible = false;
+!         }
+          with (o28_TurbopadL)
++         {
+              visible = false;
+!         }
+          with (o28_TurboPadR)
++         {
+              visible = false;
+!         }
+          with (o28_Powerup)
++         {
+              instance_destroy();
+!         }
+          with (o28_Bomb)
++         {
+              instance_destroy();
+!         }
+          with (o28_Mace)
++         {
+              instance_destroy();
+!         }
+          with (o28_MegaBomb)
++         {
+              instance_destroy();
+!         }
+          with (o28_Bullet01)
++         {
+              instance_destroy();
+!         }
+          with (o28_UFO)
++         {
+              instance_destroy();
+!         }
+          with (o28_Egg)
++         {
+              instance_destroy();
+!         }
+          with (oUFOThruster)
++         {
+              instance_destroy();
+!         }
+          with (o28_SDChar)
++         {
+              instance_destroy();
+!         }
+          if (currStage < 7)
+***************
+*** 498,503 ****
+              winState = 0;
+-             
+              if (ds_grid_get(dsScore, 1, 0) == 72)
+                  winState = 1;
+!             
+              nextSetup = 90;
+--- 454,459 ----
+              winState = 0;
+              if (ds_grid_get(dsScore, 1, 0) == 72)
 +             {
-+                 racer[rCount].human = true;
-+                 racer[rCount].num = 2;
-+             }
-+             else if (global.numPlayers >= 4 && uId == playerSel[3])
+                  winState = 1;
+!             }
+              nextSetup = 90;
+***************
+*** 520,529 ****
+          with (o28_UFO)
+              instance_destroy();
+!         
+          with (o28_Egg)
+              instance_destroy();
+!         
+          with (o28_Powerup)
+              instance_destroy();
+!         
+          set_xview(nview);
+--- 476,488 ----
+          with (o28_UFO)
++         {
+              instance_destroy();
+!         }
+          with (o28_Egg)
++         {
+              instance_destroy();
+!         }
+          with (o28_Powerup)
++         {
+              instance_destroy();
+!         }
+          set_xview(nview);
+***************
+*** 537,539 ****
+          t = 0;
+-         
+          if (nextSetup == 90)
+--- 496,497 ----
+***************
+*** 541,551 ****
+              scrBGM(bgm28_stingWin, false);
+-             
+              if (winState == 0)
+                  scrWin(global.GOLD_WIN);
+              else
+                  scrWin(global.CHERRY_WIN);
+!             
+              scrSaveGame(0);
+          }
+-         
+          setup = nextSetup;
+--- 499,510 ----
+              scrBGM(bgm28_stingWin, false);
+              if (winState == 0)
 +             {
-+                 racer[rCount].human = true;
-+                 racer[rCount].num = 3;
-+             }
-+             else if (global.numPlayers >= 5 && uId == playerSel[4])
-+             {
-+                 racer[rCount].human = true;
-+                 racer[rCount].num = 4;
-+             }
-+             else if (global.numPlayers >= 6 && uId == playerSel[5])
-+             {
-+                 racer[rCount].human = true;
-+                 racer[rCount].num = 5;
+                  scrWin(global.GOLD_WIN);
 +             }
               else
++             {
+                  scrWin(global.CHERRY_WIN);
+!             }
+              scrSaveGame(0);
+          }
+          setup = nextSetup;
 ***************
-*** 674,679 ****
-  
+*** 558,560 ****
+          scrGetInput(i);
+-         
+          if (fire2pressed)
+--- 517,518 ----
+***************
+*** 582,584 ****
+          obj = instance_create(camera_get_view_x(view_get_camera(0)), camera_get_view_y(view_get_camera(0)), oDCut);
+-         
+          with (obj)
+--- 540,541 ----
+***************
+*** 590,596 ****
+              textLingerTime = 240;
+-             
+              for (var n = 0; n < scrollLines; n++)
+                  strScroll[n] = scrStringManual("game_credits_28_" + string(n + 1), 0);
+          }
+-         
+          setup += 1;
+--- 547,553 ----
+              textLingerTime = 240;
+              for (var n = 0; n < scrollLines; n++)
++             {
+                  strScroll[n] = scrStringManual("game_credits_28_" + string(n + 1), 0);
++             }
+          }
+          setup += 1;
+***************
+*** 626,628 ****
+              scrGetInput(i);
+-             
+              if (fire2pressed)
+--- 583,584 ----
+***************
+*** 635,640 ****
+  }
+- 
+  if (setup < 100)
+      exit;
+! 
+  if (tBGM != -1)
+--- 591,596 ----
+  }
+  if (setup < 100)
++ {
+      exit;
+! }
+  if (tBGM != -1)
+***************
+*** 647,649 ****
+  }
+- 
+  if (tRank++ == 10)
+--- 603,604 ----
+***************
+*** 653,655 ****
+  }
+- 
+  if (instance_number(o28_Powerup) == 0)
+--- 608,609 ----
+***************
+*** 657,662 ****
+      var SPAWN_TIME = 300;
+-     
+      if (global.cheatID == 1)
+          SPAWN_TIME = 1;
+!     
+      if (tPSpawn++ >= SPAWN_TIME)
+--- 611,616 ----
+      var SPAWN_TIME = 300;
+      if (global.cheatID == 1)
++     {
+          SPAWN_TIME = 1;
+!     }
+      if (tPSpawn++ >= SPAWN_TIME)
+***************
+*** 665,667 ****
+          var spawnpoint = powerupSpawn[scrIRandomRange(0, 3)];
+-         
+          with (instance_create(spawnpoint.x, spawnpoint.y, o28_Powerup))
+--- 619,620 ----
+***************
+*** 673,695 ****
+  }
+! 
   if (goalPos == 6)
   {
 !     p1InGoal = false;
 !     p2InGoal = false;
       goalPos = 0;
---- 624,640 ----
-  
-+ var allInGoal = true;
-+ 
-+ for (var i = 0; i < global.numPlayers; i++) {
-+     if (!playerInGoal[i]) {
-+         allInGoal = false;
-+         break;
-+     }
-+ }
-+ 
-  if (goalPos == 6)
-  {
-!     for (var i = 0; i < global.numPlayers; i++) {
-!         playerInGoal[i] = false;
-!     }
-! 
-      goalPos = 0;
-***************
-*** 684,686 ****
+      setup = 15;
+-     
+      if (global.attractMode)
+          scrExitToTitleScreen();
   }
 ! else if ((!multip && p1InGoal) || (multip && p1InGoal && p2InGoal))
   {
---- 645,647 ----
-  }
-! else if (allInGoal)
-  {
-***************
-*** 690,693 ****
+      scrGetInput(0);
+-     
+      if (fire2pressed)
       {
 !         p1InGoal = false;
 !         p2InGoal = false;
           ds_grid_sort(dsRank, 1, 0);
---- 651,656 ----
+-         
+          for (var i = 0; i < 6; i++)
+--- 626,659 ----
+  }
+! var allInGoal = true;
+! for (var i = 0; i < global.numPlayers; i++)
+! {
+!     if (!playerInGoal[i])
+!     {
+!         allInGoal = false;
+!         break;
+!     }
+! }
+  if (goalPos == 6)
+  {
+!     for (var i = 0; i < global.numPlayers; i++)
+!     {
+!         playerInGoal[i] = false;
+!     }
+      goalPos = 0;
+      setup = 15;
+      if (global.attractMode)
++     {
+          scrExitToTitleScreen();
++     }
+  }
+! else if (allInGoal)
+  {
+      scrGetInput(0);
+      if (fire2pressed)
       {
-!         for (var i = 0; i < global.numPlayers; i++) {
+!         for (var i = 0; i < global.numPlayers; i++)
+!         {
 !             playerInGoal[i] = false;
 !         }
-! 
           ds_grid_sort(dsRank, 1, 0);
+          for (var i = 0; i < 6; i++)
 ***************
-*** 713,714 ****
-      }
-! }
---- 676,677 ----
-      }
-! }
-\ No newline at end of file
+*** 700,708 ****
+          }
+-         
+          with (o28_UFO)
+              inGoal = true;
+!         
+          with (o28_Egg)
+              inGoal = true;
+!         
+          var sdc = instance_create(camera_get_view_x(view_get_camera(0)) + 160, camera_get_view_y(view_get_camera(0)) + 80, o28_SDChar);
+--- 664,673 ----
+          }
+          with (o28_UFO)
++         {
+              inGoal = true;
+!         }
+          with (o28_Egg)
++         {
+              inGoal = true;
+!         }
+          var sdc = instance_create(camera_get_view_x(view_get_camera(0)) + 160, camera_get_view_y(view_get_camera(0)) + 80, o28_SDChar);

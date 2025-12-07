@@ -1,135 +1,641 @@
-*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri Aug 22 11:55:08 2025
---- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Thu Aug 21 11:27:46 2025
+*** original_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/hot_foot/gml_Object_o43_Game_Other_12.gml	Sat Dec  6 19:52:41 2025
 ***************
-*** 50,51 ****
---- 50,57 ----
-      draftX[1] = 12;
-+ 
-+     if (playMode == VS && numPlayers == 4) {
-+         draftX[1] = 2;
-+         draftX[2] = 11;
-+         draftX[3] = 12;
+*** 12,32 ****
+      blowouts = 0;
+-     
+      for (var i = 1; i <= 14; i++)
+          chars[i][PLAYED] = false;
+!     
+      if (charUnlock)
+          numChars = 14;
+      else
+          numChars = 12;
+!     
+      var xShift;
+-     
+      if (charUnlock)
+          xShift = 12;
+      else
+          xShift = 36;
+!     
+      for (var i = 1; i <= numChars; i++)
+          draftOptions[i] = i;
+!     
+      for (var i = 1; i <= numChars; i++)
+--- 12,38 ----
+      blowouts = 0;
+      for (var i = 1; i <= 14; i++)
++     {
+          chars[i][PLAYED] = false;
+!     }
+      if (charUnlock)
++     {
+          numChars = 14;
 +     }
-      
+      else
++     {
+          numChars = 12;
+!     }
+      var xShift;
+      if (charUnlock)
++     {
+          xShift = 12;
++     }
+      else
++     {
+          xShift = 36;
+!     }
+      for (var i = 1; i <= numChars; i++)
++     {
+          draftOptions[i] = i;
+!     }
+      for (var i = 1; i <= numChars; i++)
 ***************
-*** 60,62 ****
-      
+*** 34,36 ****
+          var draftable = instance_create((i * 24) + xShift, 110, o43_Draftable);
+-         
+          if (verify(draftable))
+--- 40,41 ----
+***************
+*** 42,64 ****
+              draftIDs[i] = draftable.id;
+-             
+              if ((i % 2) == 0)
+                  draftable.image_xscale = -1;
+          }
+      }
+-     
+      draftX[0] = 1;
+      draftX[1] = 12;
+!     
+      with (o43_Coach)
+          visible = false;
+!     
+      with (o43_Bumper)
+          visible = false;
+!     
+      with (o43_Bumper2)
+          visible = false;
+!     
 !     inputPlayer = 3;
   }
---- 66,69 ----
-      
+- 
+  if (subState == 1)
+--- 47,77 ----
+              draftIDs[i] = draftable.id;
+              if ((i % 2) == 0)
++             {
+                  draftable.image_xscale = -1;
++             }
+          }
+      }
+      draftX[0] = 1;
+      draftX[1] = 12;
+!     if (playMode == VS && numPlayers == 4)
+!     {
+!         draftX[1] = 2;
+!         draftX[2] = 11;
+!         draftX[3] = 12;
+!     }
+      with (o43_Coach)
++     {
+          visible = false;
+!     }
+      with (o43_Bumper)
++     {
+          visible = false;
+!     }
+      with (o43_Bumper2)
++     {
+          visible = false;
+!     }
 !     inputPlayer = 5;
 !     scrGetInputAll(numPlayers);
   }
+  if (subState == 1)
 ***************
-*** 68,70 ****
-      
+*** 66,85 ****
+      with (o43_Draftable)
+          selected = false;
+!     
 !     for (var p = 0; p <= (numPlayers - 1); p++)
       {
---- 75,77 ----
-      
-!     for (var p = 0; p < numPlayers; p++)
-      {
-***************
-*** 72,75 ****
-          
+          var t;
+!         
 !         if (playMode != COOP)
               t = p;
           else
---- 79,84 ----
-          
-!         if (playMode == VS && numPlayers == 2)
-              t = p;
-+         else if (playMode == VS && numPlayers == 4)
-+             t = p div 2;
-          else
-***************
-*** 79,81 ****
-          
+              t = 0;
+!         
+          var teamFull = false;
+!         
 !         if (playMode != COOP && athlete[(2 * p) + 2])
               teamFull = true;
---- 88,92 ----
-          
-!         if (playMode == VS && numPlayers == 2 && athlete[(2 * p) + 2])
-!             teamFull = true;
-!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (t + 1)] && athlete[2 * t + 1])
+          else if (playMode == COOP && athlete[p + 1])
               teamFull = true;
+!         
+          if (global.numPlayers == 1 && bFire2pressed[1])
+--- 79,111 ----
+      with (o43_Draftable)
++     {
+          selected = false;
+!     }
+!     for (var p = 0; p < numPlayers; p++)
+      {
+          var t;
+!         if (playMode == VS && numPlayers == 2)
+!         {
+              t = p;
++         }
++         else if (playMode == VS && numPlayers == 4)
++         {
++             t = p div 2;
++         }
+          else
++         {
+              t = 0;
+!         }
+          var teamFull = false;
+!         if (playMode == VS && numPlayers == 2 && athlete[(2 * p) + 2])
+!         {
+!             teamFull = true;
+!         }
+!         else if (playMode == VS && numPlayers == 4 && athlete[2 * (t + 1)] && athlete[(2 * t) + 1])
+!         {
+              teamFull = true;
++         }
+          else if (playMode == COOP && athlete[p + 1])
++         {
+              teamFull = true;
+!         }
+          if (global.numPlayers == 1 && bFire2pressed[1])
 ***************
-*** 92,94 ****
-          
+*** 91,97 ****
+          }
+!         
 !         if (bPressRight[p] && !teamFull)
           {
---- 103,105 ----
-          
+              scrSfx(soundNaviB, 50);
+-             
+              do
+--- 117,121 ----
+          }
 !         if (bPressRight[ControllerMap[p] - 1] && !teamFull)
           {
+              scrSfx(soundNaviB, 50);
+              do
 ***************
-*** 106,108 ****
-          
+*** 99,103 ****
+                  draftX[p]++;
+-                 
+                  if (draftX[p] > numChars)
+                      draftX[p] = 1;
+              }
+--- 123,128 ----
+                  draftX[p]++;
+                  if (draftX[p] > numChars)
++                 {
+                      draftX[p] = 1;
++                 }
+              }
+***************
+*** 105,111 ****
+          }
+!         
 !         if (bPressLeft[p] && !teamFull)
           {
---- 117,119 ----
-          
+              scrSfx(soundNaviB, 50);
+-             
+              do
+--- 130,134 ----
+          }
 !         if (bPressLeft[ControllerMap[p] - 1] && !teamFull)
           {
+              scrSfx(soundNaviB, 50);
+              do
 ***************
-*** 128,130 ****
-          
+*** 113,117 ****
+                  draftX[p]--;
+-                 
+                  if (draftX[p] < 0)
+                      draftX[p] = numChars;
+              }
+--- 136,141 ----
+                  draftX[p]--;
+                  if (draftX[p] < 0)
++                 {
+                      draftX[p] = numChars;
++                 }
+              }
+***************
+*** 119,130 ****
+          }
+-         
+          var invalidPick = false;
+-         
+          if (t == 0 && (athlete[1] == draftX[p] || athlete[2] == draftX[p]))
+              invalidPick = true;
+!         
+          if (t == 1 && (athlete[3] == draftX[p] || athlete[4] == draftX[p]))
+              invalidPick = true;
+!         
 !         if (bFire2pressed[p] && !invalidPick && !teamFull)
           {
---- 139,141 ----
-          
-!         if (bFire2pressed[ControllerMap[p] - 1] && !invalidPick && !teamFull)
+--- 143,154 ----
+          }
+          var invalidPick = false;
+          if (t == 0 && (athlete[1] == draftX[p] || athlete[2] == draftX[p]))
++         {
+              invalidPick = true;
+!         }
+          if (t == 1 && (athlete[3] == draftX[p] || athlete[4] == draftX[p]))
++         {
+              invalidPick = true;
+!         }
+!         if (bFire2pressed[ControllerMap[p] - 1] && !invalidPick && !teamFull && (numPlayers <= 2 || !athlete[p + 1]))
           {
 ***************
-*** 133,135 ****
-              
+*** 132,142 ****
+              var pick;
+!             
 !             if (playMode != COOP)
               {
---- 144,146 ----
-              
+                  if (t == 0 && !athlete[1])
+                      pick = 1;
+                  else if (t == 1 && !athlete[3])
+                      pick = 1;
+                  else
+                      pick = 2;
+              }
+--- 156,179 ----
+              var pick;
 !             if (playMode == VS && numPlayers <= 2)
               {
-***************
-*** 139,140 ****
---- 150,153 ----
+                  if (t == 0 && !athlete[1])
++                 {
                       pick = 1;
++                 }
+                  else if (t == 1 && !athlete[3])
++                 {
+                      pick = 1;
++                 }
 +                 else if (t == 1 && !athlete[4])
++                 {
 +                     pick = 2;
++                 }
                   else
-***************
-*** 142,143 ****
---- 155,160 ----
-              }
++                 {
+                      pick = 2;
++                 }
++             }
 +             else if (playMode == VS && numPlayers == 4)
 +             {
-+                 pick = p mod 2 + 1;
-+             }
-              else if (playMode == COOP)
++                 pick = (p % 2) + 1;
+              }
+***************
+*** 146,159 ****
+              }
+-             
+              if (t == 0)
+                  athlete[pick] = draftX[p];
+!             
+              if (t == 1)
+                  athlete[pick + 2] = draftX[p];
+!             
+              var currChar = draftIDs[draftX[p]];
+-             
+              if (!verify(currChar))
+                  exit;
+!             
+              with (currChar)
+--- 183,197 ----
+              }
+              if (t == 0)
++             {
+                  athlete[pick] = draftX[p];
+!             }
+              if (t == 1)
++             {
+                  athlete[pick + 2] = draftX[p];
+!             }
+              var currChar = draftIDs[draftX[p]];
+              if (!verify(currChar))
++             {
+                  exit;
+!             }
+              with (currChar)
+***************
+*** 163,165 ****
+                      var copy = instance_copy(1);
+-                     
+                      if (verify(copy))
+--- 201,202 ----
+***************
+*** 173,175 ****
+                  }
+-                 
+                  if (t == 1)
+--- 210,211 ----
+***************
+*** 177,179 ****
+                      var copy = instance_copy(1);
+-                     
+                      if (verify(copy))
+--- 213,214 ----
+***************
+*** 187,192 ****
+                  }
+-                 
+                  selected = false;
+              }
+-             
+              if (numPlayers == 1 || (numPlayers == 2 && playMode == COOP))
+--- 222,225 ----
+***************
+*** 196,198 ****
+              }
+-             
+              if (numPlayers == 1 && athlete[1] && athlete[2])
+--- 229,230 ----
 ***************
 *** 202,204 ****
               }
 !             else if (numPlayers == 2 && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
               {
---- 219,221 ----
+--- 234,236 ----
               }
-!             else if ((numPlayers == 2 || numPlayers = 4) && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
+!             else if ((numPlayers == 2 || numPlayers == 4) && playMode == VS && athlete[1] && athlete[2] && athlete[3] && athlete[4])
               {
 ***************
 *** 213,215 ****
           }
 !         else if (bFire2pressed[p])
           {
---- 230,232 ----
+--- 245,247 ----
           }
 !         else if (bFire2pressed[ControllerMap[p] - 1])
           {
 ***************
-*** 218,220 ****
-          
+*** 217,223 ****
+          }
+!         
 !         if (bFire1pressed[p] && (athlete[(2 * t) + 1] || athlete[(2 * t) + 2]))
           {
---- 235,237 ----
-          
-!         if (bFire1pressed[ControllerMap[p] - 1] && (athlete[(2 * t) + 1] || athlete[(2 * t) + 2]))
+              scrSfx(soundDeselect, 60);
+-             
+              with (o43_Draftable)
+--- 249,258 ----
+          }
+!         if (bFire1pressed[ControllerMap[p] - 1] && (
+!             (numPlayers <= 2 || teamFull)
+!                 ? (athlete[(2 * t) + 1] || athlete[(2 * t) + 2])
+!                 : (athlete[p + 1])
+!             )
+!         )
           {
+              scrSfx(soundDeselect, 60);
+              with (o43_Draftable)
+***************
+*** 225,242 ****
+                  if (t == 0 && x < 192 && y > 160)
+                      instance_destroy();
+!                 
+                  if (t == 1 && x > 192 && y > 160)
+                      instance_destroy();
+              }
+-             
+              athlete[(2 * t) + 1] = false;
+              athlete[(2 * t) + 2] = false;
+-             
+              with (o43_Draftable)
+                  visible = true;
+!             
+              for (var i = 1; i <= numChars; i++)
+                  draftOptions[i] = i;
+          }
+-         
+          with (o43_Draftable)
+--- 260,280 ----
+                  if (t == 0 && x < 192 && y > 160)
++                 {
+                      instance_destroy();
+!                 }
+                  if (t == 1 && x > 192 && y > 160)
++                 {
+                      instance_destroy();
++                 }
+              }
+              athlete[(2 * t) + 1] = false;
+              athlete[(2 * t) + 2] = false;
+              with (o43_Draftable)
++             {
+                  visible = true;
+!             }
+              for (var i = 1; i <= numChars; i++)
++             {
+                  draftOptions[i] = i;
++             }
+          }
+          with (o43_Draftable)
+***************
+*** 246,248 ****
+--- 284,288 ----
+                  if (!teamFull)
++                 {
+                      selected = true;
++                 }
+              }
+***************
+*** 250,252 ****
+      }
+-     
+      while (!draftOptions[draftX[0]])
+--- 290,291 ----
+***************
+*** 254,260 ****
+          draftX[0]++;
+-         
+          if (draftX[0] > numChars)
+              draftX[0] = 1;
+      }
+-     
+      while (!draftOptions[draftX[1]])
+--- 293,299 ----
+          draftX[0]++;
+          if (draftX[0] > numChars)
++         {
+              draftX[0] = 1;
++         }
+      }
+      while (!draftOptions[draftX[1]])
+***************
+*** 262,269 ****
+          draftX[1]++;
+-         
+          if (draftX[1] > numChars)
+              draftX[1] = 1;
+      }
+  }
+- 
+  if (subState == 2)
+--- 301,308 ----
+          draftX[1]++;
+          if (draftX[1] > numChars)
++         {
+              draftX[1] = 1;
++         }
+      }
+  }
+  if (subState == 2)
+***************
+*** 271,273 ****
+      stateTimer++;
+-     
+      if (stateTimer >= 24)
+--- 310,311 ----
+***************
+*** 277,279 ****
+              i = scrIRandomRange(1, 12);
+-             
+              do
+--- 315,316 ----
+***************
+*** 281,291 ****
+                  i++;
+-                 
+                  if (i > 12)
+                      i = 1;
+              }
+              until (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4]);
+-             
+              athlete[3] = i;
+              i = scrIRandomRange(1, 12);
+-             
+              do
+--- 318,327 ----
+                  i++;
+                  if (i > 12)
++                 {
+                      i = 1;
++                 }
+              }
+              until (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4]);
+              athlete[3] = i;
+              i = scrIRandomRange(1, 12);
+              do
+***************
+*** 293,305 ****
+                  i++;
+-                 
+                  if (i > 12)
+                      i = 1;
+              }
+              until (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4]);
+-             
+              athlete[4] = i;
+          }
+-         
+          var i = scrIRandomRange(1, 12);
+-         
+          while (true)
+--- 329,339 ----
+                  i++;
+                  if (i > 12)
++                 {
+                      i = 1;
++                 }
+              }
+              until (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4]);
+              athlete[4] = i;
+          }
+          var i = scrIRandomRange(1, 12);
+          while (true)
+***************
+*** 307,312 ****
+              i++;
+-             
+              if (i > 12)
+                  i = 1;
+!             
+              if (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4])
+--- 341,346 ----
+              i++;
+              if (i > 12)
++             {
+                  i = 1;
+!             }
+              if (i != athlete[1] && i != athlete[2] && i != athlete[3] && i != athlete[4])
+***************
+*** 314,317 ****
+                  with (draftIDs[i])
+                      crying = true;
+!                 
+                  lastboss = i;
+--- 348,352 ----
+                  with (draftIDs[i])
++                 {
+                      crying = true;
+!                 }
+                  lastboss = i;
+***************
+*** 320,322 ****
+          }
+-         
+          stateTimer = 0;
+--- 355,356 ----
+***************
+*** 325,327 ****
+  }
+- 
+  if (subState == 3)
+--- 359,360 ----
+***************
+*** 331,342 ****
+          stateTimer = 100;
+-         
+          with (o43_Draftable)
+              crying = false;
+      }
+-     
+      if (stateTimer == 0)
+          scrSfx(soundCry, 61);
+!     
+      stateTimer++;
+-     
+      if (stateTimer >= 100)
+--- 364,375 ----
+          stateTimer = 100;
+          with (o43_Draftable)
++         {
+              crying = false;
++         }
+      }
+      if (stateTimer == 0)
++     {
+          scrSfx(soundCry, 61);
+!     }
+      stateTimer++;
+      if (stateTimer >= 100)
+***************
+*** 349,351 ****
+  }
+- 
+  if (subState == 4)
+--- 382,383 ----
+***************
+*** 355,361 ****
+--- 387,399 ----
+          if (global.cheatID > 0)
++         {
+              futureState = STATE_MATCH_SETUP;
++         }
+          else if (!shownTutorial)
++         {
+              futureState = STATE_TUTORIAL;
++         }
+          else
++         {
+              futureState = STATE_MATCH_SETUP;
++         }
+      }

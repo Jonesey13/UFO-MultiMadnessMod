@@ -1,29 +1,381 @@
-*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Thu Oct 16 08:12:27 2025
+*** original_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Sun Dec  7 21:04:41 2025
+--- ufo50_modded_scripts/bushido_ball/gml_Object_o22_Game_Other_13.gml	Sun Dec  7 21:15:44 2025
 ***************
-*** 136,138 ****
-          }
-!         else if (o22_Ball.x > (camera_get_view_x(view_get_camera(0)) + 384 + 16))
-          {
---- 136,138 ----
-          }
-!         else if (o22_Ball.x > (camera_get_view_x(view_get_camera(0)) + __view_get(e__VW.WView, 0) + 16))
-          {
+*** 5,7 ****
+  SUB_WIN = 10;
+- 
+  if (substate == SUB_INIT)
+--- 5,6 ----
 ***************
-*** 141,143 ****
-          }
-!         else if (o22_Ball.y < camera_get_view_y(view_get_camera(0)) || o22_Ball.y > (camera_get_view_y(view_get_camera(0)) + 216 + 16))
-          {
---- 141,143 ----
-          }
-!         else if (o22_Ball.y < camera_get_view_y(view_get_camera(0)) || o22_Ball.y > (camera_get_view_y(view_get_camera(0)) + __view_get(e__VW.HView, 0) + 16))
-          {
+*** 11,13 ****
+          var obj = instance_create(camera_get_view_x(view_get_camera(0)), camera_get_view_y(view_get_camera(0)), oDCut);
+-         
+          with (obj)
+--- 10,11 ----
 ***************
-*** 185,187 ****
+*** 19,21 ****
+              textLingerTime = 240;
+-             
+              for (var i = 0; i < scrollLines; i++)
+--- 17,18 ----
+***************
+*** 27,29 ****
+      }
+-     
+      scr22_SwitchSub(SUB_NEXT_POINT);
+--- 24,25 ----
+***************
+*** 33,36 ****
+      if (global.g22_timeActive)
+          matchTime = max(matchTime - 1, 0);
+!     
+      if (matchTime == 0)
+--- 29,33 ----
+      if (global.g22_timeActive)
++     {
+          matchTime = max(matchTime - 1, 0);
+!     }
+      if (matchTime == 0)
+***************
+*** 38,45 ****
+          if (points[LT] > points[RT])
+              winner = LT;
+          else if (points[RT] > points[LT])
+              winner = RT;
+          else
+              winner = 2;
+!         
+          scr22_SwitchSub(SUB_WIN);
+--- 35,47 ----
+          if (points[LT] > points[RT])
++         {
+              winner = LT;
++         }
+          else if (points[RT] > points[LT])
++         {
+              winner = RT;
++         }
+          else
++         {
+              winner = 2;
+!         }
+          scr22_SwitchSub(SUB_WIN);
+***************
+*** 47,49 ****
+      }
+-     
+      if (verify(o22_Ball))
+--- 49,50 ----
+***************
+*** 68,70 ****
+      }
+-     
+      if (global.g22_enforceRules)
+--- 69,70 ----
+***************
+*** 82,84 ****
+              stallTime++;
+-             
+              with (o22__Player)
+--- 82,83 ----
+***************
+*** 86,93 ****
+                  if (other.numPlayers <= 2 && state == STATE_STUNNED && faceDir == -other.courtside)
+                      other.stallTime = 0;
+!                 
+                  if (state == STATE_BALL_DEADLOCK)
+                      other.stallTime = 0;
+              }
+-             
+              if (stallTime > INACTION_TIME)
+--- 85,94 ----
+                  if (other.numPlayers <= 2 && state == STATE_STUNNED && faceDir == -other.courtside)
++                 {
+                      other.stallTime = 0;
+!                 }
+                  if (state == STATE_BALL_DEADLOCK)
++                 {
+                      other.stallTime = 0;
++                 }
+              }
+              if (stallTime > INACTION_TIME)
+***************
+*** 95,100 ****
+                  if (courtside == LEFT)
+                      scr22_Penalty(LT, scrString("stalling"), sfx_time00);
+                  else if (courtside == RIGHT)
+                      scr22_Penalty(RT, scrString("stalling"), sfx_time00);
+!                 
+                  stallTime = 0;
+--- 96,104 ----
+                  if (courtside == LEFT)
++                 {
+                      scr22_Penalty(LT, scrString("stalling"), sfx_time00);
++                 }
+                  else if (courtside == RIGHT)
++                 {
+                      scr22_Penalty(RT, scrString("stalling"), sfx_time00);
+!                 }
+                  stallTime = 0;
+***************
+*** 103,105 ****
+      }
+-     
+      if (sideChanges > 0)
+--- 107,108 ----
+***************
+*** 111,115 ****
+                  aiLevel = ceil(aiLevelStart - (other.sideChanges / 4));
+-                 
+                  if (aiLevel < -9)
+                      aiLevel = -9;
+              }
+--- 114,119 ----
+                  aiLevel = ceil(aiLevelStart - (other.sideChanges / 4));
+                  if (aiLevel < -9)
++                 {
+                      aiLevel = -9;
++                 }
+              }
+***************
+*** 122,130 ****
+              if (ai)
+                  aiLevel = ceil(aiLevelStart);
+          }
+      }
+-     
+      if (endingMatch && !instance_exists(oDCut) && fire2pressed)
+          scrExitToTitleScreen();
+!     
+      if (verify(o22_Ball))
+--- 126,136 ----
+              if (ai)
++             {
+                  aiLevel = ceil(aiLevelStart);
++             }
+          }
+      }
+      if (endingMatch && !instance_exists(oDCut) && fire2pressed)
++     {
+          scrExitToTitleScreen();
+!     }
+      if (verify(o22_Ball))
+***************
+*** 149,151 ****
+              wallTimer++;
+-             
+              if (wallTimer >= 120)
+--- 155,156 ----
+***************
+*** 170,177 ****
+          penaltyTimer = -1;
+-         
+          if (teamScoredOn == 0)
+              pointsLost++;
+!         
+          points[teamScoring]++;
+-         
+          if (points[teamScoring] >= global.g22_scoreGoal)
+--- 175,181 ----
+          penaltyTimer = -1;
+          if (teamScoredOn == 0)
++         {
+              pointsLost++;
+!         }
+          points[teamScoring]++;
+          if (points[teamScoring] >= global.g22_scoreGoal)
+***************
+*** 185,192 ****
               {
 !                 if (numPlayers != 4)
                   {
---- 185,187 ----
+                      if (teamScoring == LT)
+                          scrBGM(winStinger[p1_sel], false);
+                      else
+                          scrBGM(winStinger[p2_sel], false);
+                  }
+--- 189,200 ----
               {
 !                 if (numPlayers != 4 && numPlayers != 5)
                   {
+                      if (teamScoring == LT)
++                     {
+                          scrBGM(winStinger[p1_sel], false);
++                     }
+                      else
++                     {
+                          scrBGM(winStinger[p2_sel], false);
++                     }
+                  }
+***************
+*** 197,199 ****
+              }
+-             
+              with (o22_Ref)
+--- 205,206 ----
+***************
+*** 204,209 ****
+          }
+-         
+          with (o22_Ball)
+              scr22_SwitchState(STATE_INACTIVE);
+!         
+          lastSide = NONE;
+--- 211,216 ----
+          }
+          with (o22_Ball)
++         {
+              scr22_SwitchState(STATE_INACTIVE);
+!         }
+          lastSide = NONE;
+***************
+*** 214,216 ****
+          onServe = true;
+-         
+          with (o22__Player)
+--- 221,222 ----
+***************
+*** 223,225 ****
+          }
+-         
+          if (teamScoring == LT)
+--- 229,230 ----
+***************
+*** 227,230 ****
+              with (o22_PlayerL)
+                  sprite_index = sprWin;
+!             
+              with (o22_PlayerR)
+--- 232,236 ----
+              with (o22_PlayerL)
++             {
+                  sprite_index = sprWin;
+!             }
+              with (o22_PlayerR)
+***************
+*** 242,248 ****
+              }
+-             
+              with (o22_PlayerR)
+                  sprite_index = sprWin;
+          }
+-         
+          miscCount = 1;
+--- 248,254 ----
+              }
+              with (o22_PlayerR)
++             {
+                  sprite_index = sprWin;
++             }
+          }
+          miscCount = 1;
+***************
+*** 252,254 ****
+--- 258,262 ----
+          if (miscCount++ >= 100)
++         {
+              scr22_SwitchSub(SUB_NEXT_POINT);
++         }
+      }
+***************
+*** 260,265 ****
+          with (o22_Ball)
+              scr22_SwitchState(STATE_INACTIVE);
+!         
+          wallTimer = 0;
+-         
+          with (o22__Player)
+--- 268,273 ----
+          with (o22_Ball)
++         {
+              scr22_SwitchState(STATE_INACTIVE);
+!         }
+          wallTimer = 0;
+          with (o22__Player)
+***************
+*** 269,271 ****
+          }
+-         
+          miscCount = 1;
+--- 277,278 ----
+***************
+*** 275,277 ****
+          var stillResetting = false;
+-         
+          with (o22__Player)
+--- 282,283 ----
+***************
+*** 279,283 ****
+              if (state == STATE_RESET)
+                  stillResetting = true;
+          }
+-         
+          if (!stillResetting)
+--- 285,290 ----
+              if (state == STATE_RESET)
++             {
+                  stillResetting = true;
++             }
+          }
+          if (!stillResetting)
+***************
+*** 287,295 ****
+                  scr22_SwitchState(STATE_TOSS_BALL);
+-                 
+                  if (o22_Game.lastScored == NONE)
+                      lookDirection = RT;
+                  else
+                      lookDirection = !o22_Game.lastScored;
+              }
+-             
+              miscCount = 2;
+--- 294,304 ----
+                  scr22_SwitchState(STATE_TOSS_BALL);
+                  if (o22_Game.lastScored == NONE)
++                 {
+                      lookDirection = RT;
++                 }
+                  else
++                 {
+                      lookDirection = !o22_Game.lastScored;
++                 }
+              }
+              miscCount = 2;
+***************
+*** 300,302 ****
+          var ballReleased = false;
+-         
+          with (o22_Ref)
+--- 309,310 ----
+***************
+*** 304,308 ****
+              if (substate >= 3)
+                  ballReleased = true;
+          }
+-         
+          if (ballReleased)
+--- 312,317 ----
+              if (substate >= 3)
++             {
+                  ballReleased = true;
++             }
+          }
+          if (ballReleased)
+***************
+*** 312,314 ****
+                  scr22_SwitchState(STATE_ACTIVE);
+-                 
+                  with (o22__Player)
+--- 321,322 ----
+***************
+*** 322,324 ****
+              }
+-             
+              scr22_SwitchSub(SUB_PLAY);
+--- 330,331 ----
+***************
+*** 334,336 ****
+      }
+-     
+      scr22_SwitchState(STATE_MATCH_OVER);
+--- 341,342 ----

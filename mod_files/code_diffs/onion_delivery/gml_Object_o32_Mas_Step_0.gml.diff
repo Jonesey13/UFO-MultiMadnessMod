@@ -1,43 +1,78 @@
 *** original_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Fri Nov  7 20:49:38 2025
---- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Mon Nov  3 18:44:08 2025
+--- ufo50_modded_scripts/onion_delivery/gml_Object_o32_Mas_Step_0.gml	Sat Dec  6 19:35:57 2025
 ***************
-*** 23,24 ****
---- 23,176 ----
-      }
-+ } else if (state == GAMESTATE_MENU) {
+*** 4,6 ****
+  scrGetInput(0);
+! 
+  if (state == GAMESTATE_BUFFER)
+--- 4,15 ----
+  scrGetInput(0);
+! if (state != GAMESTATE_MENU && global.numPlayers >= 2)
+! {
+!     oScreenHandler.splitScreenRequested = true;
+!     scrActivateSplitScreen();
+! }
+! else
+! {
+!     oScreenHandler.splitScreenRequested = false;
+!     scrDeactivateSplitScreen();
+! }
+  if (state == GAMESTATE_BUFFER)
+***************
+*** 8,10 ****
+      tBuffer = (tBuffer + 1) % 30;
+-     
+      if (tBuffer != 0)
+--- 17,18 ----
+***************
+*** 20,22 ****
+          }
+-         
+          scr32_GamestateSet(stateBuffered);
+--- 28,29 ----
+***************
+*** 24,25 ****
+--- 31,203 ----
+  }
++ else if (state == GAMESTATE_MENU)
++ {
 +     if (pressUp)
 +     {
 +         scrSfx(sfx_navi01, 50);
 +         titleY--;
-+         
 +         if (titleY < 0)
++         {
 +             titleY = 7;
++         }
 +     }
 +     else if (pressDown)
 +     {
 +         scrSfx(sfx_navi01, 50);
 +         titleY++;
-+         
 +         if (titleY > 7)
++         {
 +             titleY = 0;
++         }
 +     }
-+ 
 +     if (titleY == 0)
 +     {
 +         if (fire2pressed || pressRight)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             currentStartingTimeSelect++;
-+ 
 +             if (currentStartingTimeSelect == 5)
++             {
 +                 currentStartingTimeSelect = 0;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             currentStartingTimeSelect--;
-+ 
 +             if (currentStartingTimeSelect == -1)
++             {
 +                 currentStartingTimeSelect = 4;
++             }
 +         }
 +     }
 +     if (titleY == 1)
@@ -46,16 +81,19 @@
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             onionsDeliveredGoal++;
-+ 
 +             if (onionsDeliveredGoal == 16)
++             {
 +                 onionsDeliveredGoal = 15;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             onionsDeliveredGoal--;
-+ 
 +             if (onionsDeliveredGoal == 0)
++             {
 +                 onionsDeliveredGoal = 1;
++             }
 +         }
 +     }
 +     if (titleY == 2)
@@ -64,16 +102,19 @@
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_DROPOFF++;
-+ 
 +             if (TIMER_BONUS_DROPOFF == 21)
++             {
 +                 TIMER_BONUS_DROPOFF = 20;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_DROPOFF--;
-+ 
 +             if (TIMER_BONUS_DROPOFF == -1)
++             {
 +                 TIMER_BONUS_DROPOFF = 0;
++             }
 +         }
 +     }
 +     if (titleY == 3)
@@ -82,16 +123,19 @@
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_CRATE++;
-+ 
 +             if (TIMER_BONUS_CRATE == 21)
++             {
 +                 TIMER_BONUS_CRATE = 20;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_CRATE--;
-+ 
 +             if (TIMER_BONUS_CRATE == -1)
++             {
 +                 TIMER_BONUS_CRATE = 0;
++             }
 +         }
 +     }
 +     if (titleY == 4)
@@ -100,16 +144,19 @@
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_FINAL++;
-+ 
 +             if (TIMER_BONUS_FINAL == 21)
++             {
 +                 TIMER_BONUS_FINAL = 20;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             TIMER_BONUS_FINAL--;
-+ 
 +             if (TIMER_BONUS_FINAL == -1)
++             {
 +                 TIMER_BONUS_FINAL = 0;
++             }
 +         }
 +     }
 +     if (titleY == 5)
@@ -118,16 +165,19 @@
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             dayEventCustom++;
-+ 
 +             if (dayEventCustom == 7)
++             {
 +                 dayEventCustom = 0;
-+         } else if (fire1pressed || pressLeft)
++             }
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             scrSfx(sfx_navi01, 60);
 +             dayEventCustom--;
-+ 
 +             if (dayEventCustom == -2)
++             {
 +                 dayEventCustom = 6;
++             }
 +         }
 +     }
 +     if (titleY == 6)
@@ -135,7 +185,8 @@
 +         if (fire2pressed || pressRight)
 +         {
 +             dayEventMultiplierActive = !dayEventMultiplierActive;
-+         } else if (fire1pressed || pressLeft)
++         }
++         else if (fire1pressed || pressLeft)
 +         {
 +             dayEventMultiplierActive = !dayEventMultiplierActive;
 +         }
@@ -145,50 +196,454 @@
 +         if (fire2pressed)
 +         {
 +             TIMER_START = startingTimeOptions[currentStartingTimeSelect];
-+             if (dayEventCustom != -1) {
++             if (dayEventCustom != -1)
++             {
 +                 dayEvent = dayEventCustom;
 +             }
 +             blackout = true;
 +             scr32_GamestateSet(GAMESTATE_SETUP);
-+ 
-+             if (global.numPlayers >= 2) {
-+                 scrActivateSplitScreen();
-+             }
 +         }
 +     }
-  }
++ }
+  else if (state == GAMESTATE_SETUP)
 ***************
-*** 162,164 ****
+*** 33,40 ****
+      }
+-     
+      if (!inRecordOrPlayback() && global.cheatID != 1)
+          scr32_GamestateSet(GAMESTATE_INTRO);
+      else
+          scr32_GamestateSet(GAMESTATE_DAY_START);
+!     
+      subState = 0;
+--- 211,220 ----
+      }
+      if (!inRecordOrPlayback() && global.cheatID != 1)
++     {
+          scr32_GamestateSet(GAMESTATE_INTRO);
++     }
+      else
++     {
+          scr32_GamestateSet(GAMESTATE_DAY_START);
+!     }
+      subState = 0;
+***************
+*** 45,53 ****
+      var _end = false;
+-     
+      if (fire2pressed)
+          _end = true;
+!     
+      if (subState == 0 && cutCount == 45)
+          scrSfx(soundCutsSnore, 50);
+!     
+      if (subState < 6)
+--- 225,234 ----
+      var _end = false;
+      if (fire2pressed)
++     {
+          _end = true;
+!     }
+      if (subState == 0 && cutCount == 45)
++     {
+          scrSfx(soundCutsSnore, 50);
+!     }
+      if (subState < 6)
+***************
+*** 58,60 ****
+              subState++;
+-             
+              if (subState == 2)
+--- 239,240 ----
+***************
+*** 82,84 ****
+      }
+-     
+      if (_end)
+--- 262,263 ----
+***************
+*** 88,93 ****
+          mute(soundCutsTV);
+-         
+          with (o32_TvOn)
+              instance_destroy();
+!         
+          scrInputClear();
+--- 267,272 ----
+          mute(soundCutsTV);
+          with (o32_TvOn)
++         {
+              instance_destroy();
+!         }
+          scrInputClear();
+***************
+*** 96,98 ****
+  }
+- 
+  if (state == GAMESTATE_NEWS)
+--- 275,276 ----
+***************
+*** 105,112 ****
+      }
+-     
+      dayPreview--;
+-     
+      if ((dayPreview % 10) == 9)
+          anchorFace = (anchorFace + scrIRandomRange(1, 4)) % 6;
+!     
+      if (dayPreview > 0)
+--- 283,289 ----
+      }
+      dayPreview--;
+      if ((dayPreview % 10) == 9)
++     {
+          anchorFace = (anchorFace + scrIRandomRange(1, 4)) % 6;
+!     }
+      if (dayPreview > 0)
+***************
+*** 116,120 ****
+--- 293,301 ----
+              if (dayPreview > 300)
++             {
+                  dayPreview = min(dayPreview, 200);
++             }
+              else if (dayPreview > 10)
++             {
+                  dayPreview = min(dayPreview, 10);
++             }
+          }
+***************
+*** 136,140 ****
+      }
+-     
+      tTextBlink++;
+-     
+      if (initTrig)
+--- 317,319 ----
+***************
+*** 149,152 ****
+      if (tPointer > 0)
+          tPointer--;
+!     
+      if (!endTrig && global.cheatID != 1)
+--- 328,332 ----
+      if (tPointer > 0)
++     {
+          tPointer--;
+!     }
+      if (!endTrig && global.cheatID != 1)
+***************
+*** 156,164 ****
+      }
+-     
+      event_user(USER_TIME_BASED_SPAWNING);
+      event_user(USER_DAY_EVENTS);
+-     
+      if (generalTimer == (3600 * dayLength))
       {
 !         with (player)
           {
---- 314,316 ----
+--- 336,342 ----
+      }
+      event_user(USER_TIME_BASED_SPAWNING);
+      event_user(USER_DAY_EVENTS);
+      if (generalTimer == (3600 * dayLength))
       {
 !         with (o32_Player)
           {
 ***************
-*** 201,203 ****
-                  
+*** 174,179 ****
+              returnToBase = true;
+-             
+              with (o32_CPointHome)
+                  active = 1;
+!             
+              tPointer = 150;
+--- 352,357 ----
+              returnToBase = true;
+              with (o32_CPointHome)
++             {
+                  active = 1;
+!             }
+              tPointer = 150;
+***************
+*** 181,183 ****
+      }
+-     
+      if (endTrig)
+--- 359,360 ----
+***************
+*** 185,188 ****
+          if (tDayEnd == 0)
+              muteBGM();
+!         
+          if (tDayEnd++ >= 120)
+--- 362,366 ----
+          if (tDayEnd == 0)
++         {
+              muteBGM();
+!         }
+          if (tDayEnd++ >= 120)
+***************
+*** 190,195 ****
+              endTrig = false;
+-             
+              if (onionsDelivered[dayNumber] > oneDayBest)
+                  oneDayBest = onionsDelivered[dayNumber];
+!             
+              if (dayNumber < 6)
+--- 368,373 ----
+              endTrig = false;
+              if (onionsDelivered[dayNumber] > oneDayBest)
++             {
+                  oneDayBest = onionsDelivered[dayNumber];
+!             }
+              if (dayNumber < 6)
+***************
+*** 197,203 ****
+                  dayNumber++;
+-                 
+                  if (dayNumber == GARDEN_GOAL)
+                      scrWin(global.GARDEN_WIN);
+!                 
 !                 dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
                   event_user(USER_CLEANUP);
---- 353,359 ----
-                  
-!                 if (dayEventCustom == -1) {
+--- 375,388 ----
+                  dayNumber++;
+                  if (dayNumber == GARDEN_GOAL)
++                 {
+                      scrWin(global.GARDEN_WIN);
+!                 }
+!                 if (dayEventCustom == -1)
+!                 {
 !                     dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
-!                 } else {
+!                 }
+!                 else
+!                 {
 !                     dayEvent = dayEventCustom;
 !                 }
                   event_user(USER_CLEANUP);
+***************
+*** 208,213 ****
+                  scrSfx(soundWeekEnd, 80);
+-                 
+                  for (var i = 0; i < 7; i++)
+                      onionsTotal += onionsDelivered[i];
+!                 
+                  scr32_GamestateSet(GAMESTATE_VICTORY);
+--- 393,398 ----
+                  scrSfx(soundWeekEnd, 80);
+                  for (var i = 0; i < 7; i++)
++                 {
+                      onionsTotal += onionsDelivered[i];
+!                 }
+                  scr32_GamestateSet(GAMESTATE_VICTORY);
+***************
+*** 217,219 ****
+  }
+- 
+  if (state == GAMESTATE_DEATH)
+--- 402,403 ----
+***************
+*** 223,225 ****
+          scrInputClear();
+-         
+          if (continues > 0)
+--- 407,408 ----
 ***************
 *** 228,230 ****
               event_user(USER_CLEANUP);
 !             dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
               scr32_GamestateSet(GAMESTATE_NEWS, true);
---- 384,390 ----
+--- 411,420 ----
               event_user(USER_CLEANUP);
-!             if (dayEventCustom == -1) {
+!             if (dayEventCustom == -1)
+!             {
 !                 dayEvent = ds_list_find_value(eventList, dayNumber % ds_list_size(eventList));
-!             } else {
+!             }
+!             else
+!             {
 !                 dayEvent = dayEventCustom;
 !             }
               scr32_GamestateSet(GAMESTATE_NEWS, true);
+***************
+*** 237,242 ****
+              onionsDelivered[dayNumber] = 0;
+-             
+              for (var i = 0; i < 7; i++)
+                  onionsTotal += onionsDelivered[i];
+!             
+              scrSaveGame(0);
+--- 427,432 ----
+              onionsDelivered[dayNumber] = 0;
+              for (var i = 0; i < 7; i++)
++             {
+                  onionsTotal += onionsDelivered[i];
+!             }
+              scrSaveGame(0);
+***************
+*** 257,259 ****
+      dayEvent = EVENT_NOTHING;
+-     
+      if (fire2pressed)
+--- 447,448 ----
+***************
+*** 263,270 ****
+          scrSaveGame(0);
+-         
+          if (onionsTotal < onionCherryGoal)
+              scrWin(global.GOLD_WIN);
+          else
+              scrWin(global.CHERRY_WIN);
+!         
+          scr32_GamestateSet(GAMESTATE_SUMMARY);
+--- 452,461 ----
+          scrSaveGame(0);
+          if (onionsTotal < onionCherryGoal)
++         {
+              scrWin(global.GOLD_WIN);
++         }
+          else
++         {
+              scrWin(global.CHERRY_WIN);
+!         }
+          scr32_GamestateSet(GAMESTATE_SUMMARY);
+***************
+*** 286,291 ****
+      var _end = false;
+-     
+      if (fire2pressed)
+          _end = true;
+!     
+      if (subState < 7)
+--- 477,482 ----
+      var _end = false;
+      if (fire2pressed)
++     {
+          _end = true;
+!     }
+      if (subState < 7)
+***************
+*** 296,306 ****
+              subState++;
+-             
+              if (subState == 1)
+                  scrSfx(soundCutsLook, 50);
+              else if (subState == 3)
+                  scrSfx(soundCutsLook, 50);
+              else if (subState == 5)
+                  scrSfx(soundCutsPonder, 50);
+              else if (subState == 7)
+                  scrBGM(bgm32_gameplay);
+          }
+--- 487,504 ----
+              subState++;
+              if (subState == 1)
++             {
+                  scrSfx(soundCutsLook, 50);
++             }
+              else if (subState == 3)
++             {
+                  scrSfx(soundCutsLook, 50);
++             }
+              else if (subState == 5)
++             {
+                  scrSfx(soundCutsPonder, 50);
++             }
+              else if (subState == 7)
++             {
+                  scrBGM(bgm32_gameplay);
++             }
+          }
+***************
+*** 310,316 ****
+          if (creditsY > -272)
+              creditsY -= 0.1;
+          else
+              _end = true;
+      }
+-     
+      if (_end)
+--- 508,517 ----
+          if (creditsY > -272)
++         {
+              creditsY -= 0.1;
++         }
+          else
++         {
+              _end = true;
++         }
+      }
+      if (_end)
+***************
+*** 321,323 ****
+  }
+- 
+  with (o32__enemyPar)
+--- 522,523 ----
+***************
+*** 333,337 ****
+              }
+-             
+              if (scr32_OnScreen(-16, x, y, _xv, _yv))
+                  beenInView = true;
+          }
+--- 533,538 ----
+              }
+              if (scr32_OnScreen(-16, x, y, _xv, _yv))
++             {
+                  beenInView = true;
++             }
+          }
+***************
+*** 343,345 ****
+  }
+- 
+  with (o32_eParked)
+--- 544,545 ----
+***************
+*** 349,351 ****
+  }
+- 
+  with (o32__Destructible)
+--- 549,550 ----
+***************
+*** 355,360 ****
+          if (destroyed && !scr32_OnScreen(32, xstart + 8, ystart + 8, _xv, _yv))
+              event_user(USER_RESET);
+      }
+  }
+- 
+  with (o32_FxPipe)
+--- 554,560 ----
+          if (destroyed && !scr32_OnScreen(32, xstart + 8, ystart + 8, _xv, _yv))
++         {
+              event_user(USER_RESET);
++         }
+      }
+  }
+  with (o32_FxPipe)
+***************
+*** 364,366 ****
+          t = scrChoose(10, 30, 60);
+-         
+          if (scr32_OnScreen(32, x, y, _xv, _yv))
+--- 564,565 ----
+***************
+*** 377,379 ****
+  }
+- 
+  if (godMode)
+--- 576,577 ----
+***************
+*** 381,384 ****
+      with (o32_Player)
+          life = lifeMax;
+!     
+      generalTimer = 0;
+--- 579,583 ----
+      with (o32_Player)
++     {
+          life = lifeMax;
+!     }
+      generalTimer = 0;

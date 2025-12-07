@@ -1,19 +1,73 @@
-*** original_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Sep 28 16:52:16 2025
---- ufo50_modded_scripts/gml_Object_oTitleScreens_Create_0.gml	Sun Sep 28 20:31:47 2025
+*** original_scripts/gml_Object_oTitleScreens_Create_0.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/gml_Object_oTitleScreens_Create_0.gml	Sat Dec  6 19:19:35 2025
 ***************
-*** 8,9 ****
---- 8,11 ----
-  
-+ scrDeactivateSplitScreen();
-+ 
+*** 1,2 ****
+! game_set_speed(global.STANDARD_FPS, gamespeed_fps);
+  global.playIntro = false;
+--- 1,2 ----
+! game_set_speed(global.STANDARD_FPS, 0);
+  global.playIntro = false;
+***************
+*** 7,9 ****
+  introStyle = global.mGameIntroStyle[global.currGame];
+- 
   switch (introStyle)
+--- 7,8 ----
 ***************
-*** 57,60 ****
+*** 13,21 ****
+          if (global.roomPrev == rmLibrary || global.roomPrev == rmTitleScreens || resetFlag)
+              playUFOSoft = true;
+          else
+              playUFOSoft = false;
+!         
+          timeUntilIntro = false;
+          break;
+-     
+      case 2:
+--- 12,22 ----
+          if (global.roomPrev == rmLibrary || global.roomPrev == rmTitleScreens || resetFlag)
++         {
+              playUFOSoft = true;
++         }
+          else
++         {
+              playUFOSoft = false;
+!         }
+          timeUntilIntro = false;
+          break;
+      case 2:
+***************
+*** 31,35 ****
+          }
+-         
+          break;
+-     
+      case 3:
+--- 32,34 ----
+***************
+*** 45,49 ****
+          }
+-         
+          break;
+-     
+      case 4:
+--- 44,46 ----
+***************
+*** 53,55 ****
+  }
+- 
+  logoStyle = global.mGameLogoStyle[global.currGame];
+--- 50,51 ----
+***************
+*** 57,63 ****
   saveFileExists = scrReadSaveStatus();
 ! newGameStarted = scrReadNewGameStatus();
 ! newGame2PStarted = scrReadNewGame2PStatus();
   scrCloseCurrFile();
---- 59,66 ----
+  timeUntilAttract = global.mGameAttractModeTimer[global.currGame];
+- 
+  if (global.cheatID > 0)
+--- 53,62 ----
   saveFileExists = scrReadSaveStatus();
 ! newGameStarted = scrReadReal("newGame", false);
 ! newGame2PStarted = scrReadReal("newGame2P", false);
@@ -22,3 +76,92 @@
 ! newGame5PStarted = scrReadReal("newGame5P", false);
 ! newGame6PStarted = scrReadReal("newGame6P", false);
   scrCloseCurrFile();
+  timeUntilAttract = global.mGameAttractModeTimer[global.currGame];
+  if (global.cheatID > 0)
+***************
+*** 65,71 ****
+      if (global.cheatedBypassTitle)
+          menuStyle = -1;
+!     
+      global.numPlayers = global.cheatedNumPlayers;
+  }
+- 
+  STATE_BLACKSCREEN = 0;
+--- 64,70 ----
+      if (global.cheatedBypassTitle)
++     {
+          menuStyle = -1;
+!     }
+      global.numPlayers = global.cheatedNumPlayers;
+  }
+  STATE_BLACKSCREEN = 0;
+***************
+*** 84,90 ****
+      if (global.currGameID != 40 && !audio_group_is_loaded(global.AUDIOGROUP_BGM[global.currGameID]))
+          return false;
+!     
+      if (texturegroup_get_status(global.TEXTUREGROUP[global.currGameID]) != 3)
+          return false;
+!     
+      return true;
+--- 83,91 ----
+      if (global.currGameID != 40 && !audio_group_is_loaded(global.AUDIOGROUP_BGM[global.currGameID]))
++     {
+          return false;
+!     }
+      if (texturegroup_get_status(global.TEXTUREGROUP[global.currGameID]) != 3)
++     {
+          return false;
+!     }
+      return true;
+***************
+*** 93,106 ****
+  pointerSprite = sMenuHand;
+- 
+  if (global.currGameID == 49 || global.currGameID == 27 || global.currGameID == 29 || global.currGameID == 2 || global.currGameID == 26 || global.currGameID == 50 || global.currGameID == 11 || global.currGameID == 22)
+      pointerSprite = sMenuHandProto;
+  else if (global.currGameID == 33 || global.currGameID == 35)
+      pointerSprite = sMenuHandSword;
+  else if (global.currGameID == 12)
+      pointerSprite = sMenuHandPistol;
+  else if (global.currGameID == 39)
+      pointerSprite = sMenuHandKnife;
+  else if (global.currGameID == 25)
+      pointerSprite = sMenuHandAnt;
+! 
+  soundNavi = sfx_title01a;
+--- 94,115 ----
+  pointerSprite = sMenuHand;
+  if (global.currGameID == 49 || global.currGameID == 27 || global.currGameID == 29 || global.currGameID == 2 || global.currGameID == 26 || global.currGameID == 50 || global.currGameID == 11 || global.currGameID == 22)
++ {
+      pointerSprite = sMenuHandProto;
++ }
+  else if (global.currGameID == 33 || global.currGameID == 35)
++ {
+      pointerSprite = sMenuHandSword;
++ }
+  else if (global.currGameID == 12)
++ {
+      pointerSprite = sMenuHandPistol;
++ }
+  else if (global.currGameID == 39)
++ {
+      pointerSprite = sMenuHandKnife;
++ }
+  else if (global.currGameID == 25)
++ {
+      pointerSprite = sMenuHandAnt;
+! }
+  soundNavi = sfx_title01a;
+***************
+*** 109,111 ****
+  soundDeselect = sfx_deselect02;
+- 
+  if (introStyle == 1)
+--- 118,119 ----
+***************
+*** 124,126 ****
+  }
+- 
+  scrInputClear();
+--- 132,133 ----

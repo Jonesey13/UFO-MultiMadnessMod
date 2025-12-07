@@ -1,5 +1,5 @@
-*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Mon Sep  8 19:19:27 2025
---- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Tue Sep  9 20:42:48 2025
+*** original_scripts/gml_Object_oPauseMenu_Other_13.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/gml_Object_oPauseMenu_Other_13.gml	Mon Nov 24 21:26:50 2025
 ***************
 *** 12,14 ****
       
@@ -54,3 +54,21 @@
 +         global.joyType[4] = scrDetectJoyType(4);
 +         global.joyType[5] = scrDetectJoyType(5);
           stateCounter = 1;
+***************
+*** 354,357 ****
+              
+!             if (_slotChosen == global.joySlot[!currPlayer])
+!                 global.joySlot[!currPlayer] = _oldSlot;
+              
+--- 362,372 ----
+              
+! 
+!             for (var p = 0; p <= 5; p++) {
+!                 if (p == currPlayer) {
+!                     continue;
+!                 } else if (_slotChosen == global.joySlot[p]) {
+!                     global.joySlot[p] = _oldSlot;
+!                     break;
+!                 }
+!             }
+              

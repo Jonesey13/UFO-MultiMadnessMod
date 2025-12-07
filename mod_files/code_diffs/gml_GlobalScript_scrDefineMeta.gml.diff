@@ -1,24 +1,63 @@
-*** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Tue Oct 14 20:49:19 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Sat Oct  4 19:52:33 2025
+*** original_scripts/gml_GlobalScript_scrDefineMeta.gml	Sun Dec  7 21:04:41 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrDefineMeta.gml	Sat Dec  6 19:19:35 2025
 ***************
-*** 41,42 ****
---- 41,43 ----
+*** 14,19 ****
+          global.mGameRealtime[i] = true;
+-         
+          for (var j = 0; j < global.NUM_PILLARS; j++)
+              global.mGamePillars[i][j] = false;
+!         
+          global.mGameMenuStyle[i] = 0;
+--- 14,19 ----
+          global.mGameRealtime[i] = true;
+          for (var j = 0; j < global.NUM_PILLARS; j++)
++         {
+              global.mGamePillars[i][j] = false;
+!         }
+          global.mGameMenuStyle[i] = 0;
+***************
+*** 31,33 ****
+      }
+-     
+      nGame = 1;
+--- 31,32 ----
+***************
+*** 41,48 ****
+      scr34_Meta(nGame);
+      scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
+      global.mGameCoop[nGame] = true;
+      nGame++;
+      scr49_Meta(nGame);
+      scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
+!     global.mGameVersus[nGame] = true;
+      nGame++;
+--- 40,51 ----
       scr34_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 19;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
-***************
-*** 45,46 ****
---- 46,48 ----
+      global.mGameCoop[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
       scr49_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 18;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
+!     global.mGameVersus[nGame] = true;
+!     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
+***************
+*** 54,55 ****
+--- 57,59 ----
+      global.mGameCoop[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
 ***************
 *** 57,58 ****
---- 59,72 ----
+--- 61,75 ----
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 +     global.mGameCoop[nGame] = true;
 +     global.mGameMultiplayer[nGame] = true;
 +     global.mGameMenuStyle[nGame] = 22;
++     global.mGamePlayersSupported[nGame] = 4;
 +     global.g15_threshY = 96;
 +     global.g15_skipOptionsMenu = false;
 +     global.g15_gameOverCondition = 0;
@@ -31,31 +70,60 @@
       nGame++;
 ***************
 *** 64,65 ****
---- 78,80 ----
+--- 81,84 ----
       global.mGameVersus[nGame] = true;
 +     global.mGameMenuStyle[nGame] = 23;
++     global.mGamePlayersSupported[nGame] = 4;
       nGame++;
 ***************
-*** 97,98 ****
---- 112,114 ----
+*** 78,79 ****
+--- 97,99 ----
+      global.mGameCoop[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
+***************
+*** 83,84 ****
+--- 103,105 ----
+      global.mGameCoop[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
+***************
+*** 97,100 ****
+--- 118,123 ----
       scr28_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 20;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
+      global.mGameVersus[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 6;
+      nGame++;
+***************
+*** 106,107 ****
+--- 129,131 ----
+      global.mGameVersus[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
 ***************
 *** 111,112 ****
---- 127,129 ----
+--- 135,138 ----
       scr32_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 25;
++     global.mGamePlayersSupported[nGame] = 4;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
 ***************
-*** 118,119 ****
---- 135,137 ----
+*** 118,123 ****
+--- 144,152 ----
       scr36_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 24;
       scrAddPillars(global.PILLAR_EPIC, global.PILLAR_THINKY);
-***************
-*** 122,123 ****
---- 140,142 ----
+      global.mGameVersus[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;
       scr43_Meta(nGame);
 +     global.mGameMenuStyle[nGame] = 21;
       scrAddPillars(global.PILLAR_QUICK, global.PILLAR_REFLEX);
+***************
+*** 125,126 ****
+--- 154,156 ----
+      global.mGameCoop[nGame] = true;
++     global.mGamePlayersSupported[nGame] = 4;
+      nGame++;

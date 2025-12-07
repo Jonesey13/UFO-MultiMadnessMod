@@ -1,30 +1,116 @@
-*** original_scripts/gml_GlobalScript_scrSaveGame.gml	Sat Jun  7 21:06:07 2025
---- ufo50_modded_scripts/gml_GlobalScript_scrSaveGame.gml	Sun Jun  8 13:21:28 2025
+*** original_scripts/gml_GlobalScript_scrSaveGame.gml	Fri Nov  7 20:49:38 2025
+--- ufo50_modded_scripts/gml_GlobalScript_scrSaveGame.gml	Sat Dec  6 19:19:35 2025
 ***************
-*** 27,32 ****
+*** 3,21 ****
+      if (global.currFile < 1 || global.currFile > global.NUM_PROFILES)
+          return false;
+!     
+      if (!scrInGame() || room == rmTitleScreens)
+          return false;
+!     
+      if (global.cheatedNoSave || inRecordOrPlayback() || global.arcadeCabinetMode)
+          return false;
+!     
+      scrOpenCurrFile();
+      var saveSuccess = false;
+-     
+      if (script_exists(global.mGameSaveScript[global.currGame]))
+          saveSuccess = script_execute(global.mGameSaveScript[global.currGame], arg0);
+!     
+      if (saveSuccess == true)
+          scrSaveNotification(0);
+!     
+      if (!global.playIntro)
+--- 3,25 ----
+      if (global.currFile < 1 || global.currFile > global.NUM_PROFILES)
++     {
+          return false;
+!     }
+      if (!scrInGame() || room == rmTitleScreens)
++     {
+          return false;
+!     }
+      if (global.cheatedNoSave || inRecordOrPlayback() || global.arcadeCabinetMode)
++     {
+          return false;
+!     }
+      scrOpenCurrFile();
+      var saveSuccess = false;
+      if (script_exists(global.mGameSaveScript[global.currGame]))
++     {
+          saveSuccess = script_execute(global.mGameSaveScript[global.currGame], arg0);
+!     }
+      if (saveSuccess == true)
++     {
+          scrSaveNotification(0);
+!     }
+      if (!global.playIntro)
+***************
+*** 23,32 ****
+          if (global.numPlayers == 1)
+              scrWriteReal("newGame", true);
+!         
+          if (global.numPlayers == 2)
               scrWriteReal("newGame2P", true);
--     }
-      
+      }
+-     
       var _makeBackup = false;
-      
+-     
       if (global.backupTimer >= global.BACKUP_MINIMUM_TIME && global.currFile >= 1 && global.currFile <= global.NUM_PROFILES_ACCESSIBLE)
---- 27,45 ----
+--- 27,53 ----
+          if (global.numPlayers == 1)
++         {
+              scrWriteReal("newGame", true);
+!         }
+          if (global.numPlayers == 2)
++         {
               scrWriteReal("newGame2P", true);
-      
++         }
 +         if (global.numPlayers == 3)
++         {
 +             scrWriteReal("newGame3P", true);
-+     
++         }
 +         if (global.numPlayers == 4)
++         {
 +             scrWriteReal("newGame4P", true);
-+ 
++         }
 +         if (global.numPlayers == 5)
++         {
 +             scrWriteReal("newGame5P", true);
-+     
++         }
 +         if (global.numPlayers == 6)
++         {
 +             scrWriteReal("newGame6P", true);
-+     }
++         }
+      }
       var _makeBackup = false;
-      
-+     scrGetRecords();
-+     
       if (global.backupTimer >= global.BACKUP_MINIMUM_TIME && global.currFile >= 1 && global.currFile <= global.NUM_PROFILES_ACCESSIBLE)
+***************
+*** 34,39 ****
+          global.backupSaveNum[global.currFile]++;
+-         
+          if (global.backupSaveNum[global.currFile] > global.NUM_BACKUPS)
+              global.backupSaveNum[global.currFile] = 1;
+!         
+          scrWriteRealManual(0, "backupSaveNum", global.backupSaveNum[global.currFile]);
+--- 55,60 ----
+          global.backupSaveNum[global.currFile]++;
+          if (global.backupSaveNum[global.currFile] > global.NUM_BACKUPS)
++         {
+              global.backupSaveNum[global.currFile] = 1;
+!         }
+          scrWriteRealManual(0, "backupSaveNum", global.backupSaveNum[global.currFile]);
+***************
+*** 41,45 ****
+      }
+-     
+      scrCloseCurrFile();
+-     
+      if (_makeBackup)
+--- 62,64 ----
+***************
+*** 53,55 ****
+      }
+-     
+      return true;
+--- 72,73 ----

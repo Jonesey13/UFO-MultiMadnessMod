@@ -1,48 +1,214 @@
-*** original_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Thu Oct 16 08:28:17 2025
+*** original_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Ghost_Step_0.gml	Sat Dec  6 19:37:14 2025
 ***************
-*** 102,107 ****
-                      
+*** 1,8 ****
+  scrGetInput(num);
+- 
+  if (!instance_exists(o34_Mas))
+      exit;
+! 
+  tflick++;
+- 
+  if (state == 0)
+--- 1,7 ----
+  scrGetInput(num);
+  if (!instance_exists(o34_Mas))
++ {
+      exit;
+! }
+  tflick++;
+  if (state == 0)
+***************
+*** 12,20 ****
+          if (global.halfTime == 0)
+              x++;
+      }
+-     
+      if (y < (camera_get_view_y(view_get_camera(0)) + 60))
+          y += 1;
+      else
+          state = 1;
+  }
+--- 11,24 ----
+          if (global.halfTime == 0)
++         {
+              x++;
++         }
+      }
+      if (y < (camera_get_view_y(view_get_camera(0)) + 60))
++     {
+          y += 1;
++     }
+      else
++     {
+          state = 1;
++     }
+  }
+***************
+*** 27,32 ****
+              if (global.halfTime == 0)
+                  x++;
+          }
+      }
+-     
+      if (holdLeft)
+--- 31,37 ----
+              if (global.halfTime == 0)
++             {
+                  x++;
++             }
+          }
+      }
+      if (holdLeft)
+***************
+*** 34,37 ****
+          if ((xSpeed - 0.05) > -1)
+              xSpeed -= 0.05;
+!         
+          face = -1;
+--- 39,43 ----
+          if ((xSpeed - 0.05) > -1)
++         {
+              xSpeed -= 0.05;
+!         }
+          face = -1;
+***************
+*** 41,44 ****
+          if ((xSpeed + 0.05) < 1)
+              xSpeed += 0.05;
+!         
+          face = 1;
+--- 47,51 ----
+          if ((xSpeed + 0.05) < 1)
++         {
+              xSpeed += 0.05;
+!         }
+          face = 1;
+***************
+*** 53,55 ****
+      }
+-     
+      if (holdUp)
+--- 60,61 ----
+***************
+*** 57,59 ****
+--- 63,67 ----
+          if ((ySpeed - 0.05) > -1)
++         {
+              ySpeed -= 0.05;
++         }
+      }
+***************
+*** 62,64 ****
+--- 70,74 ----
+          if ((ySpeed + 0.05) < 1)
++         {
+              ySpeed += 0.05;
++         }
+      }
+***************
+*** 72,77 ****
+      }
+-     
+      x += xSpeed;
+      y += ySpeed;
+-     
+      if (tShot > 0)
+--- 82,85 ----
+***************
+*** 89,91 ****
+                  var shuri = instance_create(x + (12 * face), y + 6 + (4 * i), myWpn);
+-                 
+                  if (verify(shuri))
+--- 97,98 ----
+***************
+*** 93,98 ****
+                      if (face == -1)
+                          shuri.direction = 180;
+                      else
+                          shuri.direction = 0;
+!                     
+                      shuri.speed = 4;
+--- 100,108 ----
+                      if (face == -1)
++                     {
+                          shuri.direction = 180;
++                     }
+                      else
++                     {
+                          shuri.direction = 0;
+!                     }
+                      shuri.speed = 4;
+***************
+*** 101,107 ****
+                      shuri.dad = id;
+!                     
 !                     if (myWpn == o34_Shuriken)
                           shuri.sprite_index = s34_Gshot;
 !                     else
                           shuri.sprite_index = s34_Gshot2;
                   }
---- 102,111 ----
-                      
+--- 111,128 ----
+                      shuri.dad = id;
 !                     if (shuri.num == 0)
+!                     {
                           shuri.sprite_index = s34_Gshot;
+!                     }
 !                     else if (shuri.num == 1)
+!                     {
                           shuri.sprite_index = s34_Gshot2;
++                     }
 +                     else if (shuri.num == 2)
++                     {
 +                         shuri.sprite_index = s34_Gshot3;
++                     }
 +                     else if (shuri.num == 3)
++                     {
 +                         shuri.sprite_index = s34_Gshot4;
++                     }
                   }
 ***************
-*** 113,116 ****
+*** 110,124 ****
+      }
+-     
+      if (x < (camera_get_view_x(view_get_camera(0)) + 8))
           x = camera_get_view_x(view_get_camera(0)) + 8;
-!     else if (x > ((camera_get_view_x(view_get_camera(0)) + 384) - 8))
-!         x = (camera_get_view_x(view_get_camera(0)) + 384) - 8;
-      
---- 117,120 ----
+      else if (x > ((camera_get_view_x(view_get_camera(0)) + 384) - 8))
+          x = (camera_get_view_x(view_get_camera(0)) + 384) - 8;
+!     
+      if (y < (camera_get_view_y(view_get_camera(0)) + 8))
+          y = camera_get_view_y(view_get_camera(0)) + 8;
+      else if (y > ((camera_get_view_y(view_get_camera(0)) + 216) - 16))
+          y = (camera_get_view_y(view_get_camera(0)) + 216) - 16;
+!     
+      t++;
+-     
+      if (fire2pressed || t > 300)
+--- 131,149 ----
+      }
+      if (x < (camera_get_view_x(view_get_camera(0)) + 8))
++     {
           x = camera_get_view_x(view_get_camera(0)) + 8;
-!     else if (x > ((camera_get_view_x(view_get_camera(0)) + __view_get(e__VW.WView, 0)) - 8))
-!         x = (camera_get_view_x(view_get_camera(0)) + __view_get(e__VW.WView, 0)) - 8;
-      
-***************
-*** 118,121 ****
++     }
+      else if (x > ((camera_get_view_x(view_get_camera(0)) + 384) - 8))
++     {
+          x = (camera_get_view_x(view_get_camera(0)) + 384) - 8;
+!     }
+      if (y < (camera_get_view_y(view_get_camera(0)) + 8))
++     {
           y = camera_get_view_y(view_get_camera(0)) + 8;
-!     else if (y > ((camera_get_view_y(view_get_camera(0)) + 216) - 16))
-!         y = (camera_get_view_y(view_get_camera(0)) + 216) - 16;
-      
---- 122,125 ----
-          y = camera_get_view_y(view_get_camera(0)) + 8;
-!     else if (y > ((camera_get_view_y(view_get_camera(0)) + __view_get(e__VW.HView, 0)) - 16))
-!         y = (camera_get_view_y(view_get_camera(0)) + __view_get(e__VW.HView, 0)) - 16;
-      
++     }
+      else if (y > ((camera_get_view_y(view_get_camera(0)) + 216) - 16))
++     {
+          y = (camera_get_view_y(view_get_camera(0)) + 216) - 16;
+!     }
+      t++;
+      if (fire2pressed || t > 300)
 ***************
-*** 132,142 ****
+*** 129,144 ****
+          spawn.face = face;
+-         
+          if (num == 0)
           {
               spawn.spriteRun = s34_NinjaRun;
               spawn.spriteJump = s34_NinjaJump2;
@@ -52,9 +218,13 @@
           {
               spawn.spriteRun = s34_P2Run;
               spawn.spriteJump = s34_P2Jump2;
-!             spawn.myWpn = o34_Shuriken2;
+-             spawn.myWpn = o34_Shuriken2;
           }
---- 136,158 ----
+!         
+          spawn.sprite_index = spawn.spriteRun;
+--- 154,179 ----
+          spawn.face = face;
+          if (num == 0)
           {
 +             spawn.myWpn = o34_Shuriken;
               spawn.spriteRun = s34_NinjaRun;
@@ -65,7 +235,7 @@
 +             spawn.myWpn = o34_Shuriken2;
               spawn.spriteRun = s34_P2Run;
               spawn.spriteJump = s34_P2Jump2;
-!         }
+          }
 !         else if (num == 2)
 !         {
 !             spawn.myWpn = o34_Shuriken3;
@@ -77,12 +247,5 @@
 !             spawn.myWpn = o34_Shuriken4;
 !             spawn.spriteRun = s34_P4Run;
 !             spawn.spriteJump = s34_P4Jump2;
-          }
-***************
-*** 150,151 ****
-      }
-! }
---- 166,167 ----
-      }
-! }
-\ No newline at end of file
+!         }
+          spawn.sprite_index = spawn.spriteRun;

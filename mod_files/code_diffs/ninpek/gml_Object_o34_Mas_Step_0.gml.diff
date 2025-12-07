@@ -1,76 +1,273 @@
-*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Thu Oct 16 08:29:22 2025
+*** original_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/ninpek/gml_Object_o34_Mas_Step_0.gml	Sat Dec  6 19:51:39 2025
 ***************
-*** 57,59 ****
-      
+*** 3,13 ****
+  var _scrollFrame = false;
+- 
+  if (global.halfTime == 0)
+      _scrollFrame = true;
+! 
+  if (state >= 60 && state < 70)
+      global.solutionState = true;
+  else
+      global.solutionState = false;
+! 
+  if ((++tWater % 40) == 0)
+--- 3,16 ----
+  var _scrollFrame = false;
+  if (global.halfTime == 0)
++ {
+      _scrollFrame = true;
+! }
+  if (state >= 60 && state < 70)
++ {
+      global.solutionState = true;
++ }
+  else
++ {
+      global.solutionState = false;
+! }
+  if ((++tWater % 40) == 0)
+***************
+*** 17,19 ****
+      var pWater = iWater;
+-     
+      if (iWater == 0)
+--- 20,21 ----
+***************
+*** 21,23 ****
+--- 23,27 ----
+          if (_xv > 3648)
++         {
+              iWater++;
++         }
+      }
+***************
+*** 26,28 ****
+--- 30,34 ----
+          if (_xv > 7488)
++         {
+              iWater++;
++         }
+      }
+***************
+*** 31,35 ****
+          if (_xv > 11328)
+              iWater++;
+      }
+-     
+      if (pWater != iWater)
+--- 37,42 ----
+          if (_xv > 11328)
++         {
+              iWater++;
++         }
+      }
+      if (pWater != iWater)
+***************
+*** 37,42 ****
+          if (verify(o34_Water))
+              o34_Water.iWater = iWater;
+      }
+  }
+- 
+  if (state == 10)
+--- 44,50 ----
+          if (verify(o34_Water))
++         {
+              o34_Water.iWater = iWater;
++         }
+      }
+  }
+  if (state == 10)
+***************
+*** 56,59 ****
+      pointsPre[0] = 0;
+!     
 !     if (multip)
       {
---- 57,59 ----
-      
+--- 64,66 ----
+      pointsPre[0] = 0;
 !     if (global.numPlayers >= 2)
       {
 ***************
-*** 70,71 ****
---- 70,99 ----
+*** 70,72 ****
       }
-+ 
-+     if (global.numPlayers >= 3)
-+     {
-+         p[2] = instance_create((x + 24) - 24, y, o34_Player);
-+         points[2] = 0;
-+         self.p[2].num = 2;
-+         self.p[2].face = 1;
-+         self.p[2].spriteRun = s34_P3Run;
-+         self.p[2].spriteJump = s34_P3Jump2;
-+         self.p[2].myWpn = o34_Shuriken3;
-+         self.p[2].sprite_index = s34_P3Run;
-+         life[2] = 2;
-+         pointsPre[2] = 0;
-+     }
-+ 
-+     if (global.numPlayers >= 4)
-+     {
-+         p[3] = instance_create((x + 32) - 24, y, o34_Player);
-+         points[3] = 0;
-+         self.p[3].num = 3;
-+         self.p[3].face = 1;
-+         self.p[3].spriteRun = s34_P4Run;
-+         self.p[3].spriteJump = s34_P4Jump2;
-+         self.p[3].myWpn = o34_Shuriken4;
-+         self.p[3].sprite_index = s34_P4Run;
-+         life[3] = 2;
-+         pointsPre[3] = 0;
-+     }
-      
+!     
+      pointsBalloon = 0;
+--- 77,104 ----
+      }
+!     if (global.numPlayers >= 3)
+!     {
+!         p[2] = instance_create((x + 24) - 24, y, o34_Player);
+!         points[2] = 0;
+!         self.p[2].num = 2;
+!         self.p[2].face = 1;
+!         self.p[2].spriteRun = s34_P3Run;
+!         self.p[2].spriteJump = s34_P3Jump2;
+!         self.p[2].myWpn = o34_Shuriken3;
+!         self.p[2].sprite_index = s34_P3Run;
+!         life[2] = 2;
+!         pointsPre[2] = 0;
+!     }
+!     if (global.numPlayers >= 4)
+!     {
+!         p[3] = instance_create((x + 32) - 24, y, o34_Player);
+!         points[3] = 0;
+!         self.p[3].num = 3;
+!         self.p[3].face = 1;
+!         self.p[3].spriteRun = s34_P4Run;
+!         self.p[3].spriteJump = s34_P4Jump2;
+!         self.p[3].myWpn = o34_Shuriken4;
+!         self.p[3].sprite_index = s34_P4Run;
+!         life[3] = 2;
+!         pointsPre[3] = 0;
+!     }
+      pointsBalloon = 0;
 ***************
-*** 104,115 ****
+*** 80,82 ****
+      set_xview(_xv);
+-     
+      with (o34_eSpawn)
+--- 112,113 ----
+***************
+*** 88,96 ****
+                  if (spawn == o34_eFish)
+                      spawn = o34_eFishB;
+                  else if (spawn == o34_eSnake)
+                      spawn = o34_eRagSpawner;
+                  else if (spawn == o34_eShroom)
+                      spawn = o34_eNoil;
+              }
+-             
+              instance_create(x, y, spawn);
+--- 119,132 ----
+                  if (spawn == o34_eFish)
++                 {
+                      spawn = o34_eFishB;
++                 }
+                  else if (spawn == o34_eSnake)
++                 {
+                      spawn = o34_eRagSpawner;
++                 }
+                  else if (spawn == o34_eShroom)
++                 {
+                      spawn = o34_eNoil;
++                 }
+              }
+              instance_create(x, y, spawn);
+***************
+*** 99,101 ****
+      }
+-     
+      if (global.g34_loop > 0 || global.cheatID == 1)
+--- 135,136 ----
+***************
+*** 103,115 ****
+          if (global.g34_loop == 0)
               global.g34_loop = 1;
-!         
-!         points[0] = max(0, global.g34_score[0]);
-!         
-!         if (multip)
-!         {
-!             life[0] = max(global.g34_life[0], 2);
-!             life[1] = max(global.g34_life[1], 2);
-!             points[1] = max(0, global.g34_score[1]);
+-         
+-         points[0] = max(0, global.g34_score[0]);
+-         
+-         if (multip)
+-         {
+-             life[0] = max(global.g34_life[0], 2);
+-             life[1] = max(global.g34_life[1], 2);
+-             points[1] = max(0, global.g34_score[1]);
           }
 !         else
           {
---- 132,140 ----
+--- 138,148 ----
+          if (global.g34_loop == 0)
++         {
               global.g34_loop = 1;
-! 
-!         for (var i = 0; i < global.numPlayers; i++) {
+          }
+!         for (var i = 0; i < global.numPlayers; i++)
+!         {
 !             points[i] = max(0, global.g34_score[i]);
 !             life[i] = max(global.g34_life[i], 2);
-          }
-!     
+!         }
 !         if (global.numPlayers == 1)
           {
 ***************
-*** 180,205 ****
-      
+*** 124,126 ****
+          var _tileOffset = _xv % 16;
+-         
+          if (_tileOffset == 0)
+--- 157,158 ----
+***************
+*** 129,131 ****
+              var _columnTrigger = collision_line(_xColumn + 8, 0, _xColumn + 8, 216, o34_BonusSmall, false, true);
+-             
+              if (instance_exists(_columnTrigger))
+--- 161,162 ----
+***************
+*** 135,143 ****
+                      with (instance_position(_xColumn + 8, (i * 16) + 8, o34_BonusSmall))
+                          visible = true;
+                  }
+              }
+-             
+              _xColumn = _xv - 16;
+              _columnTrigger = collision_line(_xColumn + 8, 0, _xColumn + 8, 216, o34_BonusSmall, false, true);
+-             
+              if (instance_exists(_columnTrigger))
+--- 166,174 ----
+                      with (instance_position(_xColumn + 8, (i * 16) + 8, o34_BonusSmall))
++                     {
+                          visible = true;
++                     }
+                  }
+              }
+              _xColumn = _xv - 16;
+              _columnTrigger = collision_line(_xColumn + 8, 0, _xColumn + 8, 216, o34_BonusSmall, false, true);
+              if (instance_exists(_columnTrigger))
+***************
+*** 147,149 ****
+--- 178,182 ----
+                      with (instance_position(_xColumn + 8, (i * 16) + 8, o34_BonusSmall))
++                     {
+                          instance_destroy();
++                     }
+                  }
+***************
+*** 155,157 ****
+              var _columnTrigger = collision_line(_xColumn + 8, 0, _xColumn + 8, 216, o34_eSpawn, false, true);
+-             
+              if (instance_exists(_columnTrigger))
+--- 188,189 ----
+***************
+*** 165,173 ****
+                              if (spawn == o34_eFish)
+                                  spawn = o34_eFishB;
+                              else if (spawn == o34_eSnake)
+                                  spawn = o34_eRagSpawner;
+                              else if (spawn == o34_eShroom)
+                                  spawn = o34_eNoil;
+                          }
+-                         
+                          instance_create(x, y, spawn);
+--- 197,210 ----
+                              if (spawn == o34_eFish)
++                             {
+                                  spawn = o34_eFishB;
++                             }
+                              else if (spawn == o34_eSnake)
++                             {
+                                  spawn = o34_eRagSpawner;
++                             }
+                              else if (spawn == o34_eShroom)
++                             {
+                                  spawn = o34_eNoil;
++                             }
+                          }
+                          instance_create(x, y, spawn);
+***************
+*** 179,206 ****
+      }
+!     
 !     if (pointsPre[0] < points[0])
-!     {
+      {
 !         pointsBalloon += (points[0] - pointsPre[0]);
 !         pointsPre[0] = points[0];
 !         
@@ -93,33 +290,149 @@
           {
 !             pointsBalloon += (points[1] - pointsPre[1]);
 !             pointsPre[1] = points[1];
-              
---- 205,211 ----
-      
-!     for (var i = 0; i < global.numPlayers; i++) {
+!             
+              if (pointsBalloon >= reqBalloon)
+--- 216,223 ----
+      }
+!     for (var i = 0; i < global.numPlayers; i++)
+      {
 !         if (pointsPre[i] < points[i])
           {
 !             pointsBalloon += (points[i] - pointsPre[i]);
 !             pointsPre[i] = points[i];
-              
+              if (pointsBalloon >= reqBalloon)
 ***************
-*** 327,329 ****
-          
+*** 210,216 ****
+                  instance_create(_xv + 192, _yv + 216 + 32, o34_Balloon);
+-                 
+                  if (reqBalloon == 3000)
+                      reqBalloon = 4000;
+                  else if (reqBalloon == 4000)
+                      reqBalloon = 5000;
+              }
+--- 227,236 ----
+                  instance_create(_xv + 192, _yv + 216 + 32, o34_Balloon);
+                  if (reqBalloon == 3000)
++                 {
+                      reqBalloon = 4000;
++                 }
+                  else if (reqBalloon == 4000)
++                 {
+                      reqBalloon = 5000;
++                 }
+              }
+***************
+*** 218,220 ****
+      }
+-     
+      if (!bItemReset && _xv > 7680)
+--- 238,239 ----
+***************
+*** 224,226 ****
+          bItemType = 0;
+-         
+          with (o34_BonusSmall)
+--- 243,244 ----
+***************
+*** 231,235 ****
+      }
+-     
+      tLightning = ++tLightning % 150;
+-     
+      if (tLightning == 0)
+--- 249,251 ----
+***************
+*** 237,239 ****
+          var _lightning = collision_rectangle(_xv, -512, _xv + 384, -496, o34_LightnV, 0, 0);
+-         
+          if (verify(_lightning))
+--- 253,254 ----
+***************
+*** 241,243 ****
+              scrSfx(sfx_elec01, 40, false, false);
+-             
+              with (o34_LightnV)
+--- 256,257 ----
+***************
+*** 250,254 ****
+      }
+-     
+      if ((++tText % 60) == 0)
+          mText = ++mText % 2;
+  }
+--- 264,269 ----
+      }
+      if ((++tText % 60) == 0)
++     {
+          mText = ++mText % 2;
++     }
+  }
+***************
+*** 263,265 ****
+          }
+-         
+          scrSaveGame(0);
+--- 278,279 ----
+***************
+*** 272,277 ****
+      t++;
+-     
+      if (t == 30)
+          scrBGM(bgm34_intro, false);
+!     
+      if (t >= 90)
+--- 286,291 ----
+      t++;
+      if (t == 30)
++     {
+          scrBGM(bgm34_intro, false);
+!     }
+      if (t >= 90)
+***************
+*** 285,287 ****
+      blinkIntro++;
+-     
+      if (yIntro > -32)
+--- 299,300 ----
+***************
+*** 299,301 ****
+      blinkIntro++;
+-     
+      if (t++ >= 30)
+--- 312,313 ----
+***************
+*** 310,312 ****
+      xIntro += 3;
+-     
+      if (t++ >= 45)
+--- 322,323 ----
+***************
+*** 315,317 ****
+          p[0] = instance_create(xcs + 64, ycs + 16, o34_Player);
+-         
+          with (p[0])
+--- 326,327 ----
+***************
+*** 326,332 ****
+          }
+!         
 !         if (multip)
           {
---- 333,335 ----
-          
+              p[1] = instance_create(xcs + 16, ycs + 16, o34_Player);
+-             
+              with (p[1])
+--- 336,340 ----
+          }
 !         if (global.numPlayers >= 2)
           {
+              p[1] = instance_create(xcs + 16, ycs + 16, o34_Player);
+              with (p[1])
 ***************
 *** 343,345 ****
           }
-!         
+-         
           state++;
---- 349,351 ----
-          }
-! 
-          state++;
+--- 351,352 ----
 ***************
 *** 349,358 ****
   {
@@ -132,42 +445,297 @@
 !     
 !     for (var i = 0; i < nmult; i++)
       {
---- 355,357 ----
+--- 356,358 ----
   {
-!     for (var i = 0; i < global.numPlayers; i++)
+!     for (var i = 0; i < 2; i++)
       {
 ***************
-*** 464,466 ****
+*** 361,366 ****
+              fire2pressed = false;
+-             
+              if (global.halfTime)
+                  x++;
+!             
+              if (x < -80)
+--- 361,366 ----
+              fire2pressed = false;
+              if (global.halfTime)
++             {
+                  x++;
+!             }
+              if (x < -80)
+***************
+*** 368,382 ****
+                  if (state == 0 && x > -200)
+                      fire2pressed = true;
+!                 
+                  if (state == 1 && x > -144)
+                      fire2pressed = true;
+              }
+-             
+              if (x >= 0)
+                  instance_destroy();
+          }
+      }
+-     
+      xIntro += 3;
+-     
+      if (t++ >= 240)
+--- 368,384 ----
+                  if (state == 0 && x > -200)
++                 {
+                      fire2pressed = true;
+!                 }
+                  if (state == 1 && x > -144)
++                 {
+                      fire2pressed = true;
++                 }
+              }
+              if (x >= 0)
++             {
+                  instance_destroy();
++             }
+          }
+      }
+      xIntro += 3;
+      if (t++ >= 240)
+***************
+*** 385,390 ****
+          depth = 0;
+-         
+          with (o34_Player)
+              instance_destroy();
+!         
+          state = 70;
+--- 387,392 ----
+          depth = 0;
+          with (o34_Player)
++         {
+              instance_destroy();
+!         }
+          state = 70;
+***************
+*** 392,394 ****
+  }
+- 
+  if (state >= 60 && state < 70)
+--- 394,395 ----
+***************
+*** 397,402 ****
+      scrGetInput(0);
+-     
+      if (fire2pressed)
+          introSkip = true;
+!     
+      if (multip)
+--- 398,403 ----
+      scrGetInput(0);
+      if (fire2pressed)
++     {
+          introSkip = true;
+!     }
+      if (multip)
+***************
+*** 404,410 ****
+          scrGetInput(1);
+-         
+          if (fire2pressed)
+              introSkip = true;
+      }
+-     
+      if (introSkip)
+--- 405,411 ----
+          scrGetInput(1);
+          if (fire2pressed)
++         {
+              introSkip = true;
++         }
+      }
+      if (introSkip)
+***************
+*** 414,419 ****
+          depth = 0;
+-         
+          with (o34_Player)
+              instance_destroy();
+!         
+          state = 70;
+--- 415,420 ----
+          depth = 0;
+          with (o34_Player)
++         {
+              instance_destroy();
+!         }
+          state = 70;
+***************
+*** 421,423 ****
+  }
+- 
+  if (state == 70)
+--- 422,423 ----
+***************
+*** 439,446 ****
+          yViewDelta = 0;
+-         
+          if (global.g34_loop == 0)
+              scrWin(global.GOLD_WIN);
+          else
+              scrWin(global.CHERRY_WIN);
+!         
+          scrSaveGame(0);
+--- 439,448 ----
+          yViewDelta = 0;
+          if (global.g34_loop == 0)
++         {
+              scrWin(global.GOLD_WIN);
++         }
+          else
++         {
+              scrWin(global.CHERRY_WIN);
+!         }
+          scrSaveGame(0);
+***************
+*** 452,457 ****
+      if (yScrollSpeed > -4)
+          yScrollSpeed -= 0.005;
+!     
+      yViewDelta += yScrollSpeed;
+-     
+      while (yViewDelta <= -1)
+--- 454,459 ----
+      if (yScrollSpeed > -4)
++     {
+          yScrollSpeed -= 0.005;
+!     }
+      yViewDelta += yScrollSpeed;
+      while (yViewDelta <= -1)
+***************
+*** 461,467 ****
+      }
+-     
+      var _stop = -448;
       _yv = max(_yv, _stop);
 !     set_yview(_yv);
-      
---- 463,465 ----
+!     
+      if (_yv == _stop)
+--- 463,467 ----
+      }
+      var _stop = -448;
       _yv = max(_yv, _stop);
 !     set_xview(_yv);
-      
+      if (_yv == _stop)
 ***************
-*** 525,533 ****
+*** 469,472 ****
+          with (o34_Player)
+              instance_destroy();
+!         
+          state = 82;
+--- 469,473 ----
+          with (o34_Player)
++         {
+              instance_destroy();
+!         }
+          state = 82;
+***************
+*** 478,485 ****
+      imgEnd %= 2;
+-     
+      if (global.halfTime)
+          xEnd -= 1;
+      else
+          xEnd -= 2;
+!     
+      if (xEnd <= 16)
+--- 479,488 ----
+      imgEnd %= 2;
+      if (global.halfTime)
++     {
+          xEnd -= 1;
++     }
+      else
++     {
+          xEnd -= 2;
+!     }
+      if (xEnd <= 16)
+***************
+*** 503,505 ****
+      t = ++t % 40;
+-     
+      if (t == 0 && global.g34_loop > 0)
+--- 506,507 ----
+***************
+*** 510,512 ****
+          sw.speed = 2;
+-         
+          with (o34_Bonus)
+--- 512,513 ----
+***************
+*** 514,521 ****
+              if (y >= (_yv + 200))
+                  instance_destroy();
+          }
+      }
+-     
+      scrGetInput(0);
+-     
+      if (fire2pressed)
+--- 515,522 ----
+              if (y >= (_yv + 200))
++             {
+                  instance_destroy();
++             }
+          }
+      }
+      scrGetInput(0);
+      if (fire2pressed)
+***************
+*** 525,535 ****
               global.g34_loop++;
 !             global.g34_life[0] = life[0];
 !             global.g34_score[0] = points[0];
 !             
 !             if (multip)
-!             {
+              {
 !                 global.g34_life[1] = life[1];
 !                 global.g34_score[1] = points[1];
               }
---- 524,529 ----
+-             
+              room_restart();
+--- 526,532 ----
               global.g34_loop++;
-! 
-!             for (var i = 0; i < global.numPlayers; i++) {
+!             for (var i = 0; i < global.numPlayers; i++)
+              {
 !                 global.g34_life[i] = life[i];
 !                 global.g34_score[i] = points[i];
               }
+              room_restart();
 ***************
-*** 552,553 ****
+*** 542,544 ****
+  }
+- 
+  with (o34__ePar)
+--- 539,540 ----
+***************
+*** 546,553 ****
+      if ((x + xCenter) > _xv && (x + xCenter) < (_xv + 384))
+          drawSprite = true;
+      else
+          drawSprite = false;
+!     
+      if (x < (_xv - 128))
           instance_destroy();
-! }
---- 548,549 ----
+  }
+--- 542,554 ----
+      if ((x + xCenter) > _xv && (x + xCenter) < (_xv + 384))
++     {
+          drawSprite = true;
++     }
+      else
++     {
+          drawSprite = false;
+!     }
+      if (x < (_xv - 128))
++     {
           instance_destroy();
-! }
-\ No newline at end of file
++     }
+  }

@@ -1,41 +1,45 @@
-*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Tue Oct 14 20:52:30 2025
---- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Thu Oct 16 08:31:49 2025
+*** original_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Fri Nov  7 20:49:39 2025
+--- ufo50_modded_scripts/the_big_bell_race/gml_Object_o28_Mas_Create_0.gml	Sat Dec  6 19:29:20 2025
 ***************
-*** 11,13 ****
-  
+*** 10,26 ****
+  multip = false;
+! 
 ! if (global.numPlayers == 2)
       multip = true;
---- 11,13 ----
-  
-! if (global.numPlayers >= 2)
-      multip = true;
-***************
-*** 15,19 ****
+! 
   navi[0] = 0;
-  
+! 
   if (multip)
 !     navi[1] = 1;
   else
---- 15,22 ----
-  navi[0] = 0;
-+ readies = 0;
-  
-  if (multip)
-!     for (var i = 0; i < global.numPlayers; i++) {
-!         navi[i] = i;
-!     }
-  else
-***************
-*** 21,26 ****
-  
+      navi[1] = 9;
+! 
 ! naviSel[0] = 0;
 ! naviSel[1] = 0;
 ! playerSel[0] = 0;
 ! playerSel[1] = 1;
   cb = 0;
---- 24,29 ----
-  
-! for (var i = 0; i < global.numPlayers; i++) {
+--- 10,33 ----
+  multip = false;
+! if (global.numPlayers >= 2)
+! {
+      multip = true;
+! }
+  navi[0] = 0;
+! readies = 0;
+  if (multip)
+! {
+!     for (var i = 0; i < global.numPlayers; i++)
+!     {
+!         navi[i] = i;
+!     }
+! }
+  else
++ {
+      navi[1] = 9;
+! }
+! for (var i = 0; i < global.numPlayers; i++)
+! {
 !     naviSel[i] = 0;
 !     playerSel[i] = i;
 ! }
@@ -46,26 +50,100 @@
 ! p1InGoal = false;
 ! p2InGoal = false;
   dsRank = ds_grid_create(2, 6);
---- 48,52 ----
+--- 52,57 ----
   goalPos = 0;
-! for (var i = 0; i < global.numPlayers; i++) {
+! for (var i = 0; i < global.numPlayers; i++)
+! {
 !     playerInGoal[i] = false;
 ! }
   dsRank = ds_grid_create(2, 6);
 ***************
-*** 70,72 ****
-          spawn[i] = instance_nearest(x, y, o28_Spawn);
-!         x += 384;
-      }
---- 74,76 ----
-          spawn[i] = instance_nearest(x, y, o28_Spawn);
-!         x += __view_get(e__VW.WView, 0);
-      }
+*** 50,52 ****
+  dsScorePrev = ds_grid_create(2, 6);
+- 
+  for (var i = 0; i < 6; i++)
+--- 59,60 ----
 ***************
-*** 143,144 ****
+*** 60,62 ****
+  }
+- 
+  x = 192;
+--- 68,69 ----
+***************
+*** 64,66 ****
+  var snum = instance_number(o28_Spawn);
+- 
+  if (snum > 0)
+--- 71,72 ----
+***************
+*** 73,78 ****
+  }
+- 
+  bgmTrig = false;
+  iCrowd = 0;
+- 
+  for (var i = 0; i < 96; i++)
+--- 79,82 ----
+***************
+*** 80,82 ****
+      crowd[i] = 0;
+-     
+      if (scrIRandomRange(0, 3) != 0)
+--- 84,85 ----
+***************
+*** 87,95 ****
+  }
+- 
+  xUfoCuts = -96;
+  sinUfoCuts = 270;
+- 
+  for (var i = 0; i < 6; i++)
+      iUfoCuts[i] = i;
+! 
+  crowd[23] = 0;
+--- 90,97 ----
+  }
+  xUfoCuts = -96;
+  sinUfoCuts = 270;
+  for (var i = 0; i < 6; i++)
++ {
+      iUfoCuts[i] = i;
+! }
+  crowd[23] = 0;
+***************
+*** 118,120 ****
+  scrResetSpeedRun();
+- 
+  if (global.attractMode)
+--- 120,121 ----
+***************
+*** 129,139 ****
+      dsList = ds_list_create();
+-     
+      for (var i = 0; i < 6; i++)
+          ds_list_add(dsList, i);
+!     
+      scrShuffle(dsList);
+-     
+      for (var i = 0; i < 6; i++)
+          ds_grid_set(dsScore, 0, i, ds_list_find_value(dsList, i));
+!     
+      ds_list_destroy(dsList);
+--- 130,140 ----
+      dsList = ds_list_create();
+      for (var i = 0; i < 6; i++)
++     {
+          ds_list_add(dsList, i);
+!     }
+      scrShuffle(dsList);
+      for (var i = 0; i < 6; i++)
++     {
+          ds_grid_set(dsScore, 0, i, ds_list_find_value(dsList, i));
+!     }
+      ds_list_destroy(dsList);
+***************
+*** 141,143 ****
+  }
+- 
   tBGM = 0;
-! trigEndPhaseBGM = false;
---- 147,148 ----
-  tBGM = 0;
-! trigEndPhaseBGM = false;
-\ No newline at end of file
+--- 142,143 ----

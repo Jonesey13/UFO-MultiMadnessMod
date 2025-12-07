@@ -1,0 +1,14 @@
+*** original_scripts/gml_Object_oScreenHandler_Step_2.gml	Thu Jan  1 00:00:00 1970
+--- ufo50_modded_scripts/gml_Object_oScreenHandler_Step_2.gml	Sat Dec  6 19:19:35 2025
+***************
+*** 0 ****
+--- 1,9 ----
++ if (splitScreenRequested && !global.paused)
++ {
++     scrActivateSplitScreen();
++ }
++ else
++ {
++     scrDeactivateSplitScreen();
++ }
++ splitScreenRequested = false;
