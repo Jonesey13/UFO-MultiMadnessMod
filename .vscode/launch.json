@@ -1,20 +1,33 @@
 {
   "version": "0.2.0",
-  "configurations": [
+  "configurations": [ 
     {
       "name": ".NET Script Debug",
       "type": "coreclr",
       "request": "launch",
       "program": "${env:HOME}/.dotnet/tools/dotnet-script",
       "args": ["${file}"],
-      "cwd": "${workspaceFolder}",
       "windows": {
         "program": "${env:USERPROFILE}/.dotnet/tools/dotnet-script.exe",
       },
-      "linux": {
-        "program": "${env:HOME}/.dotnet/tools/dotnet-script",
-      },
+      "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
+    },
+    {
+      // Use IntelliSense to find out which attributes exist for C# debugging
+      // Use hover for the description of the existing attributes
+      // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+      "name": "GMLoader Export",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      // If you have changed target frameworks, make sure to update the program path.
+      "program": "${workspaceFolder}/import/texture_export/bin/Debug/net9.0/texture_export.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/import/texture_export",
+      // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+      "console": "internalConsole",
+      "stopAtEntry": false
     }
   ]
 }
